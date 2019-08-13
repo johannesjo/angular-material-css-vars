@@ -1,5 +1,57 @@
+@import '../../projects/material-css-vars/src/lib/variables';
+
 mat-sidenav-container.isDarkTheme {
   background: black;
+}
+
+.bg-50 {
+  background-color: rgba(map_get($palette-primary, 50));
+}
+
+.bg-100 {
+  background-color: rgba(map_get($palette-primary, 100));
+}
+
+.bg-200 {
+  background-color: rgba(map_get($palette-primary, 200));
+}
+
+.bg-300 {
+  background-color: rgba(map_get($palette-primary, 300));
+}
+
+.bg-400 {
+  background-color: rgba(map_get($palette-primary, 400));
+}
+
+.bg-500 {
+  background-color: rgba(map_get($palette-primary, 400));
+}
+
+.bg-600 {
+  background-color: rgba(map_get($palette-primary, 600));
+}
+
+.bg-700 {
+  background-color: rgba(map_get($palette-primary, 600));
+}
+
+.bg-800 {
+  background-color: rgba(map_get($palette-primary, 800));
+}
+
+.bg-900 {
+  background-color: rgba(map_get($palette-primary, 900));
+}
+
+.palette {
+  display: flex;
+  flex-wrap: wrap;
+
+  > div {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 .app-content {
