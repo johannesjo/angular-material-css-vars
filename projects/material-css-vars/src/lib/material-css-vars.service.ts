@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import * as tinycolor2 from 'tinycolor2';
+import tinycolor2 from 'tinycolor2';
 
 interface CssVariable {
   name: string;
@@ -34,27 +34,29 @@ export class MaterialCssVarsService {
   public primary: string;
   public accent: string;
 
-  private stylePrimary: CssVariable[];
-  private styleAccent: CssVariable[];
+  private _stylePrimary: CssVariable[];
+  private _styleAccent: CssVariable[];
 
   constructor() {
   }
 
   changePrimary(hex: string) {
     this.primary = hex;
-    this.stylePrimary = this._computeColors(MaterialCssVarsService.PREFIX_PRIMARY, this.primary);
-    this._setStyle(this.stylePrimary);
+    this._stylePrimary = this._computeColors(MaterialCssVarsService.PREFIX_PRIMARY, this.primary);
+    this._setStyle(this._stylePrimary);
   }
 
   changeAccent(hex: string) {
     this.accent = hex;
-    this.styleAccent = this._computeColors(MaterialCssVarsService.PREFIX_ACCENT, this.accent);
-    this._setStyle(this.styleAccent);
+    this._styleAccent = this._computeColors(MaterialCssVarsService.PREFIX_ACCENT, this.accent);
+    this._setStyle(this._styleAccent);
   }
 
   private _computeColors(prefix: string, hex: string): CssVariable[] {
     return MaterialCssVarsService.COLOR_MAPPER.map(item => {
-      return this._getColorObject(prefix, item.name,
+      return this._getColorObject(
+        prefix,
+        item.name,
         tinycolor2(hex).lighten(item.map[0]).darken(item.map[1]).saturate(item.map[2])
       );
     });
