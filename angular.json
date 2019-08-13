@@ -119,6 +119,76 @@
           }
         }
       }
+    },
+    "angular-material-css-variables": {
+      "projectType": "library",
+      "root": "projects/angular-material-css-variables",
+      "sourceRoot": "projects/angular-material-css-variables/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-material-css-variables/tsconfig.lib.json",
+            "project": "projects/angular-material-css-variables/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-material-css-variables/src/test.ts",
+            "tsConfig": "projects/angular-material-css-variables/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-material-css-variables/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-material-css-variables/tsconfig.lib.json",
+              "projects/angular-material-css-variables/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "material-css-vars": {
+      "projectType": "library",
+      "root": "projects/material-css-vars",
+      "sourceRoot": "projects/material-css-vars/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/material-css-vars/tsconfig.lib.json",
+            "project": "projects/material-css-vars/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/material-css-vars/src/test.ts",
+            "tsConfig": "projects/material-css-vars/tsconfig.spec.json",
+            "karmaConfig": "projects/material-css-vars/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/material-css-vars/tsconfig.lib.json",
+              "projects/material-css-vars/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "angular-material-css-vars"
 }

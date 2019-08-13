@@ -17,7 +17,21 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "angular-material-css-variables": [
+        "dist/angular-material-css-variables"
+      ],
+      "angular-material-css-variables/*": [
+        "dist/angular-material-css-variables/*"
+      ],
+      "material-css-vars": [
+        "dist/material-css-vars"
+      ],
+      "material-css-vars/*": [
+        "dist/material-css-vars/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
