@@ -7,7 +7,6 @@ import {MatDialog, MatSnackBar} from '@angular/material';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-material-css-vars';
   isDarkTheme = false;
   lastDialogResult: string;
   mode: string;
