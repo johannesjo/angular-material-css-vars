@@ -67,26 +67,26 @@
 
         <div style="display: flex;">
     <span>
-      <h4>Primary color: {{primary}}</h4>
+      <h4>Primary color</h4>
       <span [colorPicker]="primary"
             [style.background]="primary"
-            [cpOKButton]="true"
+            [cpOKButton]="false"
             [cpDialogDisplay]="'inline'"
             [cpToggle]="true"
             [cpAlphaChannel]="'disabled'"
             [cpOutputFormat]="'hex'"
-            (colorPickerSelect)="onPrimaryChange($event)"></span>
+            (colorPickerChange)="onPrimaryChange($event)"></span>
     </span>
           <span>
-      <h4>Accent color: {{accent}}</h4>
+      <h4>Accent color</h4>
       <span [colorPicker]="accent"
             [style.background]="accent"
-            [cpOKButton]="true"
+            [cpOKButton]="false"
             [cpDialogDisplay]="'inline'"
             [cpToggle]="true"
             [cpAlphaChannel]="'disabled'"
             [cpOutputFormat]="'hex'"
-            (colorPickerSelect)="onAccentChange($event)"></span>
+            (colorPickerChange)="onAccentChange($event)"></span>
     </span>
         </div>
       </mat-card-content>
