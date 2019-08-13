@@ -25,7 +25,7 @@ mat-sidenav-container.isDarkTheme {
 }
 
 .bg-500 {
-  background-color: rgba(map_get($palette-primary, 400));
+  background-color: rgba(map_get($palette-primary, 500));
 }
 
 .bg-600 {
@@ -33,7 +33,7 @@ mat-sidenav-container.isDarkTheme {
 }
 
 .bg-700 {
-  background-color: rgba(map_get($palette-primary, 600));
+  background-color: rgba(map_get($palette-primary, 700));
 }
 
 .bg-800 {
