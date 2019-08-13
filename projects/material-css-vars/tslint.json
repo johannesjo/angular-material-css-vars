@@ -12,6 +12,14 @@
       "element",
       "lib",
       "kebab-case"
+    ],
+    "variable-name": [
+      true,
+      "allow-pascal-case",
+      "allow-snake-case",
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore"
     ]
   }
 }
