@@ -5,31 +5,10 @@
   }
 
   $color: map-get($palette, $hue);
-  //@debug $color;
 
-  @if (type-of($color) != color) {
-    @if ($opacity == null) {
-      @return rgba($color, 1);
-    }
+  @if type-of($color) == color {
+    @return rgba($color, if($opacity == null, opacity($color), $opacity));
+  } @else {
     @return rgba($color, str-replace($color, ')', '-alpha, 1)'));
   }
-  @return rgba($color, if($opacity == null, opacity($color), $opacity));
 }
-
-//@function mat-color($palette-primary, $hue: default, $opacity: null) {
-//  @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {
-//    @return mat-color($palette-primary, default, $hue);
-//  }
-//
-//  $color: map-get($palette-primary, $hue);
-//
-//  //@debug $color;
-//  //@debug type-of($color);
-//  //@debug $opacity;
-//
-//  @if type-of($color) == string {
-//    $new-string: str-replace($color, ')', '-alpha, 1)');
-//    @return rgba($color, $new-string);
-//  }
-//  @return rgba($color, 1);
-//}

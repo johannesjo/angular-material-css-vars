@@ -81,6 +81,7 @@ $css-default-light-theme: (
   --palette-foreground-divider-alpha: 0.12,
   --palette-foreground-dividers: hex-to-rgb($dark-dividers),
   --palette-foreground-disabled: hex-to-rgb($dark-disabled-text),
+  --palette-foreground-disabled-alpha: 0.5,
   --palette-foreground-disabled-button: hex-to-rgb(#000000),
   --palette-foreground-disabled-button-alpha: 0.26,
   --palette-foreground-disabled-text: hex-to-rgb($dark-disabled-text),
