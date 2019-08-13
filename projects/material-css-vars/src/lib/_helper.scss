@@ -8,12 +8,11 @@
   @return $string;
 }
 
-@function hexToRGB($color) {
+@function hex-to-rgb($color) {
   @return (red($color), green($color), blue($color));
 }
 
 @mixin css-vars-root($varMap: null) {
-  // Native CSS: assign CSS custom properties to the global scope
   @at-root :root {
     @each $varName, $varValue in $varMap {
       @if (type_of($varValue)==string) {

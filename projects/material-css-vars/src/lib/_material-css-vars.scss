@@ -1,27 +1,9 @@
 @import '~@angular/material/theming';
-@import 'helper-mixins';
+@import 'helper';
 @import '_variables';
 
-// main overwrite to make it all work
-@function mat-color($palette-primary, $hue: default, $opacity: null) {
-  @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {
-    @return mat-color($palette-primary, default, $hue);
-  }
-
-  $color: map-get($palette-primary, $hue);
-
-  // TODO check why opacity is not working and if this a problem
-  //@debug $color;
-  //@debug $opacity;
-  //$opacity: if($opacity == null, opacity($color), $opacity);
-  $opacity: if($opacity == null, 1, $opacity);
-
-  @if type-of($opacity) == string {
-    $new-string: str-replace($color, ')', '-alpha, 1)');
-    @return rgba($color, $new-string);
-  }
-  @return rgba($color, 1);
-}
+// contains main overwrite of `mat-color` to make it all work
+@import '_mixins';
 
 
 @mixin initCssVars($default-theme, $text) {
@@ -34,13 +16,13 @@
 @mixin initMatTheme($dark-theme-body-class) {
   @include mat-core();
 
-  $primary: mat-palette($palette-primary) !default;
-  $accent: mat-palette($palette-accent, A200, A100, A400) !default;
-  $warn: mat-palette($palette-warn) !default;
+  $primary: mat-palette($palette-primary);
+  $accent: mat-palette($palette-accent, A200, A100, A400);
+  $warn: mat-palette($palette-warn);
 
-  $theme: mat-light-theme($primary, $accent, $warn) !default;
-  $dark-theme: mat-dark-theme($primary, $accent, $warn) !default;
-  //
+  $theme: mat-light-theme($primary, $accent, $warn);
+  $dark-theme: mat-dark-theme($primary, $accent, $warn);
+
   $theme: map_merge($theme, (
     background: $palette-background,
     foreground: $palette-foreground,
@@ -49,16 +31,18 @@
   @at-root {
     @include angular-material-theme($theme);
 
-    .#{$dark-theme-body-class} {
-      @include angular-material-theme($dark-theme);
+    @if $dark-theme-body-class {
+      .#{$dark-theme-body-class} {
+        @include angular-material-theme($dark-theme);
+      }
     }
   }
 }
-
 
 @mixin init($default-theme: $css-default-light-theme, $dark-theme-body-class: 'isDarkTheme', $default-theme-text: $css-vars-text) {
   @include initCssVars($default-theme, $default-theme-text);
   @include initMatTheme($dark-theme-body-class);
 }
+
 
 @include init();
