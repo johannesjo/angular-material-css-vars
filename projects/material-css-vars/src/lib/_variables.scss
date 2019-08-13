@@ -3,22 +3,24 @@ $css-vars-text: (
   --light-primary-text: hexToRGB($light-primary-text),
 );
 
+// TODO convert standard theme to map
+
 $css-default-light-theme: (
   // PRIMARY
-  --palette-primary-50: hexToRGB(#e8eaf6),
-  --palette-primary-100: hexToRGB(#c5cae9), //lighter
-  --palette-primary-200: hexToRGB(#9fa8da),
-  --palette-primary-300: hexToRGB(#7986cb),
-  --palette-primary-400: hexToRGB(#5c6bc0),
-  --palette-primary-500: hexToRGB(#3f51b5), //default
-  --palette-primary-600: hexToRGB(#3949ab),
-  --palette-primary-700: hexToRGB(#303f9f), //darker
-  --palette-primary-800: hexToRGB(#283593),
-  --palette-primary-900: hexToRGB(#1a237e),
-  --palette-primary-A100: hexToRGB(#8c9eff),
-  --palette-primary-A200: hexToRGB(#536dfe),
-  --palette-primary-A400: hexToRGB(#3d5afe),
-  --palette-primary-A700: hexToRGB(#304ffe),
+  --palette-primary-50: hexToRGB(#e1f5fe),
+  --palette-primary-100: hexToRGB(#b3e5fc), //lighter
+  --palette-primary-200: hexToRGB(#81d4fa),
+  --palette-primary-300: hexToRGB(#4fc3f7),
+  --palette-primary-400: hexToRGB(#29b6f6),
+  --palette-primary-500: hexToRGB(#03a9f4), //default
+  --palette-primary-600: hexToRGB(#039be5),
+  --palette-primary-700: hexToRGB(#0288d1), //darker
+  --palette-primary-800: hexToRGB(#0277bd),
+  --palette-primary-900: hexToRGB(#01579b),
+  --palette-primary-A100: hexToRGB(#80d8ff),
+  --palette-primary-A200: hexToRGB(#40c4ff),
+  --palette-primary-A400: hexToRGB(#00b0ff),
+  --palette-primary-A700: hexToRGB(#0091ea),
   // ACCENT
   --palette-accent-50: hexToRGB(#fce4ec),
   --palette-accent-100: hexToRGB(#f8bbd0),

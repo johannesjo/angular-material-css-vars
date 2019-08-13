@@ -37,6 +37,7 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
+import {ColorPickerModule} from 'ngx-color-picker';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import {FormsModule} from '@angular/forms';
     MatGridListModule,
     MatSliderModule,
     MatSnackBarModule,
+    ColorPickerModule,
     FormsModule,
   ],
   providers: [],
