@@ -66,6 +66,8 @@ export class AppComponent {
     private _snackbar: MatSnackBar,
     private _materialCssVarsService: MaterialCssVarsService,
   ) {
+    this.onPrimaryChange(this.primary);
+    this.onAccentChange(this.accent);
 
 
     // Update the value for the progress-bar on an interval.
