@@ -1,6 +1,6 @@
 {
   "name": "angular-material-css-vars",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,14 +11,19 @@
     "demo": "run-s demo.build demo.gh-pages",
     "demo.build": "ng build --prod",
     "demo.gh-pages": "gh-pages -d dist/angular-material-css-vars",
-    "build_lib": "ng build ng-example-library",
-    "copy": "run-s copy.license copy.readme",
-    "copy.license": "copy ./LICENSE ./dist/material-css-vars",
-    "copy.readme": "copy ./README.md ./dist/material-css-vars",
-    "pack": "cd dist/material-css-vars && npm pack",
-    "package": "run-s build_lib copy pack"
+    "lib": "run-s lib.build copy",
+    "lib.build": "ng build material-css-vars",
+    "lib.pack": "cd dist/material-css-vars && npm pack",
+    "lib.pub": "cd dist/material-css-vars && npm pack",
+    "copy": "run-s copy.license copy.readme copy.scss",
+    "copy.license": "copyfiles ./LICENSE ./dist/material-css-vars",
+    "copy.readme": "copyfiles ./README.md ./dist/material-css-vars",
+    "copy.scss": "copyfiles -f ./projects/material-css-vars/src/lib/*.scss ./dist/material-css-vars/",
+    "package": "run-s lib copy lib.pack",
+    "pub": "cd ./dist/material-css-vars/ && npm publish",
+    "patch" : "npm version patch && cd ./projects/material-css-vars && npm patch && cd .. && cd ..",
+    "patch-release": "run-s package && npm pub"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~8.1.2",
     "@angular/cdk": "~8.1.2",
@@ -46,6 +51,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "copyfiles": "^2.1.1",
     "gh-pages": "^2.1.1",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
