@@ -57,7 +57,7 @@ export class MaterialCssVarsService {
 
   public primary: string;
   public accent: string;
-  public darkContrastThreshold: HueValue = '400';
+  public contrastColorThreshold: HueValue = '400';
 
   private _stylePrimary: CssVariable[];
   private _styleAccent: CssVariable[];
@@ -86,7 +86,7 @@ export class MaterialCssVarsService {
   }
 
   changeContrastColorThreshold(threshold: HueValue) {
-    this.darkContrastThreshold = threshold;
+    this.contrastColorThreshold = threshold;
 
     let color = MaterialCssVarsService.LIGHT_TEXT_VAR;
     const updates = MaterialCssVarsService.SORTED_HUES.map((hue) => {

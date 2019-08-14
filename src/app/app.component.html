@@ -129,7 +129,7 @@
               <br>
 
               <mat-form-field>
-                <mat-select [(ngModel)]="threshold"
+                <mat-select [(ngModel)]="materialCssVarsService.contrastColorThreshold"
                             (ngModelChange)="onChangeThreshold($event)"
                             name="game"
                             placeholder="Threshold for contrast color">
