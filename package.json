@@ -16,7 +16,7 @@
     "copy.license": "copyfiles ./LICENSE ./dist/material-css-vars",
     "pub": "run-s lib && cd ./dist/material-css-vars/ && npm publish && cd .. && cd ..",
     "patch": "npm version patch && cd ./projects/material-css-vars && npm version patch && cd .. && cd ..",
-    "patch-release": "run-s patch pub"
+    "patch-release": "run-s lib demo patch pub"
   },
   "dependencies": {
     "@angular/animations": "~8.1.2",

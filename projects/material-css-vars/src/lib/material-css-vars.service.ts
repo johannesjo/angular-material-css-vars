@@ -67,7 +67,7 @@ export class MaterialCssVarsService {
   private _isAutoContrast = true;
 
   constructor(
-    @Inject(DOCUMENT) private document: Document,
+    @Inject(DOCUMENT) private document: any,
   ) {
   }
 
