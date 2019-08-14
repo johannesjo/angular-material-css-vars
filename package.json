@@ -15,13 +15,9 @@
     "lib.build": "ng build material-css-vars",
     "lib.pack": "cd dist/material-css-vars && npm pack",
     "lib.pub": "cd dist/material-css-vars && npm pack",
-    "copy": "run-s copy.license copy.readme copy.scss",
-    "copy.license": "copyfiles ./LICENSE ./dist/material-css-vars",
-    "copy.readme": "copyfiles ./README.md ./dist/material-css-vars",
-    "copy.scss": "copyfiles -f ./projects/material-css-vars/src/lib/*.scss ./dist/material-css-vars/",
     "package": "run-s lib copy lib.pack",
     "pub": "cd ./dist/material-css-vars/ && npm publish",
-    "patch" : "npm version patch && cd ./projects/material-css-vars && npm patch && cd .. && cd ..",
+    "patch": "npm version patch && cd ./projects/material-css-vars && npm patch && cd .. && cd ..",
     "patch-release": "run-s package && npm pub"
   },
   "dependencies": {
@@ -47,6 +43,7 @@
     "@angular/cli": "~8.1.2",
     "@angular/compiler-cli": "~8.1.2",
     "@angular/language-service": "~8.1.2",
+    "@linnenschmidt/build-ng-packagr": "^8.0.0",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
