@@ -1,8 +1,8 @@
 @import '~@angular/material/theming';
-@import 'helper';
-@import '_variables';
+@import 'internal-helper';
+@import 'css-variables-maps';
 // contains main overwrite of `mat-color` to make it all work
-@import '_mixins';
+@import 'mat-color-overwrite';
 
 
 @mixin initCssVars($default-theme, $text) {
@@ -15,16 +15,16 @@
 @mixin initMatTheme($dark-theme-body-class) {
   @include mat-core();
 
-  $primary: mat-palette($palette-primary);
-  $accent: mat-palette($palette-accent);
-  $warn: mat-palette($palette-warn);
+  $primary: mat-palette($css-vars-palette-primary);
+  $accent: mat-palette($css-vars-palette-accent);
+  $warn: mat-palette($css-vars-palette-warn);
 
   $theme: mat-light-theme($primary, $accent, $warn);
   $dark-theme: mat-dark-theme($primary, $accent, $warn);
 
   $theme: map_merge($theme, (
-    background: $palette-background,
-    foreground: $palette-foreground,
+    background: $css-vars-palette-background,
+    foreground: $css-vars-palette-foreground,
   ));
 
   @at-root {
@@ -38,10 +38,11 @@
   }
 }
 
-@mixin init($default-theme: $css-default-light-theme, $dark-theme-body-class: 'isDarkTheme', $default-theme-text: $css-vars-text) {
+@mixin initMaterialCssVars(
+  $default-theme: $css-vars-default-light-theme,
+  $dark-theme-body-class: 'isDarkTheme',
+  $default-theme-text: $css-vars-text
+) {
   @include initCssVars($default-theme, $default-theme-text);
   @include initMatTheme($dark-theme-body-class);
 }
-
-
-@include init();

@@ -1,4 +1,4 @@
-@import 'helper';
+@import 'internal-helper';
 @import '~@angular/material/theming';
 
 $css-vars-text: (
@@ -8,7 +8,7 @@ $css-vars-text: (
 
 // TODO convert standard theme to map
 
-$css-default-light-theme: (
+$css-vars-default-light-theme: (
   // PRIMARY
   --palette-primary-50: hex-to-rgb(#e1f5fe),
   --palette-primary-100: hex-to-rgb(#b3e5fc), //lighter
@@ -24,7 +24,6 @@ $css-default-light-theme: (
   --palette-primary-A200: hex-to-rgb(#40c4ff),
   --palette-primary-A400: hex-to-rgb(#00b0ff),
   --palette-primary-A700: hex-to-rgb(#0091ea),
-
   --palette-primary-contrast-50: var(--dark-primary-text),
   --palette-primary-contrast-100: var(--dark-primary-text),
   --palette-primary-contrast-200: var(--dark-primary-text),
@@ -39,8 +38,6 @@ $css-default-light-theme: (
   --palette-primary-contrast-A200: var(--light-primary-text),
   --palette-primary-contrast-A400: var(--light-primary-text),
   --palette-primary-contrast-A700: var(--light-primary-text),
-
-
   // ACCENT
   --palette-accent-50: hex-to-rgb(#fce4ec),
   --palette-accent-100: hex-to-rgb(#f8bbd0),
@@ -121,7 +118,7 @@ $css-default-light-theme: (
 );
 
 
-$palette-primary: (
+$css-vars-palette-primary: (
   50: var(--palette-primary-50),
   100: var(--palette-primary-100),
   200: var(--palette-primary-200),
@@ -154,7 +151,7 @@ $palette-primary: (
   )
 ) !default;
 
-$palette-accent: (
+$css-vars-palette-accent: (
   50: var(--palette-accent-50),
   100: var(--palette-accent-100),
   200: var(--palette-accent-200),
@@ -187,7 +184,7 @@ $palette-accent: (
   )
 ) !default;
 
-$palette-warn: (
+$css-vars-palette-warn: (
   50: var(--palette-warn-50),
   100: var(--palette-warn-100),
   200: var(--palette-warn-200),
@@ -220,7 +217,7 @@ $palette-warn: (
   )
 ) !default;
 
-$palette-background: (
+$css-vars-palette-background: (
   status-bar: var(--palette-background-status-bar),
   app-bar: var(--palette-background-app-bar),
   background: var(--palette-background-background),
@@ -237,7 +234,7 @@ $palette-background: (
   disabled-list-option: var(--palette-background-disabled-list-option),
 ) !default;
 
-$palette-foreground: (
+$css-vars-palette-foreground: (
   base: var(--palette-foreground-base),
   divider: var(--palette-foreground-divider),
   dividers: var(--palette-foreground-dividers),

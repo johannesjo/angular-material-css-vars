@@ -1,0 +1,54 @@
+@import 'css-variables-maps';
+// Utility mixins for the public
+
+
+@function mat-css-primary-color(
+  $hue: 500,
+  $opacity: null,
+  $palette: $css-vars-palette-primary
+) {
+  @if (type-of($opacity) == number) {
+    @return rgba(map_get($palette, $hue), $opacity);
+  } @else {
+    @return rgb(map_get($palette, $hue));
+  }
+}
+
+@function mat-css-accent-color(
+  $hue: 500,
+  $opacity: null,
+  $palette: $css-vars-palette-accent
+) {
+  @if (type-of($opacity) == number) {
+    @return rgba(map_get($palette, $hue), $opacity);
+  } @else {
+    @return rgb(map_get($palette, $hue));
+  }
+}
+
+@function mat-css-contrast-color(
+  $hue: 500,
+  $opacity: null,
+  $palette: map_get($css-vars-palette-primary, 'contrast')
+) {
+  @if (type-of($opacity) == number) {
+    @return rgba(map_get($palette, $hue), $opacity);
+  } @else {
+    @return rgb(map_get($palette, $hue));
+  }
+}
+
+
+@mixin mat-css-color-and-contrast(
+  $hue,
+   $primary-palette: $css-vars-palette-primary,
+   $contrast-palette: map_get($css-vars-palette-primary, 'contrast')
+) {
+  background: mat-css-primary-color($hue);
+  color: mat-css-contrast-color($hue);
+}
+
+@mixin mat-css-bg($hue, $primary-palette: $css-vars-palette-primary) {
+  background: mat-css-primary-color($hue);
+}
+

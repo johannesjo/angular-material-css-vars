@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { MaterialCssVarsService } from './material-css-vars.service';
+import {MaterialCssVarsService} from './material-css-vars.service';
 
 describe('MaterialCssVarsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
