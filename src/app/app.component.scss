@@ -1,7 +1,7 @@
 @import '../../projects/material-css-vars/src/lib/variables';
 
 mat-sidenav-container.isDarkTheme {
-  background: black;
+  background: rgb(39, 39, 39);
 }
 
 $palette-contrast: map_get($palette-primary, contrast);

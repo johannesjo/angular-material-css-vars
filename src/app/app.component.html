@@ -192,7 +192,7 @@
     <!-- Material Button -->
     <mat-card>
       <mat-card-content>
-        <h2>Material Button</h2>
+        <h2>Material Buttons</h2>
         <!--        <h3>Basic Buttons</h3>-->
         <div class="example-button-row">
           <button mat-button>Basic</button>
@@ -550,115 +550,6 @@
       </mat-card-content>
     </mat-card>
     <!-- /Material Tab -->
-
-    <mat-card>
-      <mat-icon>build</mat-icon>
-      <mat-icon>android</mat-icon>
-    </mat-card>
-
-    <!-- Material Slider -->
-    <mat-card>
-      <mat-card-content>
-        <h2>Material Slider :: Configuration</h2>
-
-        <section class="example-section">
-          <mat-form-field class="example-margin">
-            <input [(ngModel)]="slider.value"
-                   matInput
-                   placeholder="Value"
-                   type="number">
-          </mat-form-field>
-          <mat-form-field class="example-margin">
-            <input [(ngModel)]="slider.min"
-                   matInput
-                   placeholder="Min value"
-                   type="number">
-          </mat-form-field>
-          <mat-form-field class="example-margin">
-            <input [(ngModel)]="slider.max"
-                   matInput
-                   placeholder="Max value"
-                   type="number">
-          </mat-form-field>
-          <mat-form-field class="example-margin">
-            <input [(ngModel)]="slider.step"
-                   matInput
-                   placeholder="Step size"
-                   type="number">
-          </mat-form-field>
-        </section>
-
-        <section class="example-section">
-          <mat-checkbox [(ngModel)]="slider.showTicks"
-                        class="example-margin">Show ticks
-          </mat-checkbox>
-          <mat-checkbox *ngIf="slider.showTicks"
-                        [(ngModel)]="slider.autoTicks"
-                        class="example-margin">
-            Auto ticks
-          </mat-checkbox>
-          <mat-form-field *ngIf="slider.showTicks && !slider.autoTicks"
-                          class="example-margin">
-            <input [(ngModel)]="slider.tickInterval"
-                   matInput
-                   placeholder="Tick interval"
-                   type="number">
-          </mat-form-field>
-        </section>
-
-        <section class="example-section">
-          <mat-checkbox [(ngModel)]="slider.thumbLabel"
-                        class="example-margin">Show thumb label
-          </mat-checkbox>
-        </section>
-
-        <section class="example-section">
-          <mat-checkbox [(ngModel)]="slider.checked"
-                        class="example-margin">Checked
-          </mat-checkbox>
-        </section>
-
-        <section class="example-section">
-          <mat-checkbox [(ngModel)]="slider.vertical"
-                        class="example-margin">Vertical
-          </mat-checkbox>
-          <mat-checkbox [(ngModel)]="slider.invert"
-                        class="example-margin">Inverted
-          </mat-checkbox>
-        </section>
-
-        <section class="example-section">
-          <mat-checkbox [(ngModel)]="slider.disabled"
-                        class="example-margin">Disabled
-          </mat-checkbox>
-        </section>
-      </mat-card-content>
-
-      <mat-card-content>
-        <h2>Slider Result</h2>
-        <mat-slider [disabled]="slider.disabled"
-                    [invert]="slider.invert"
-                    [max]="slider.max"
-                    [min]="slider.min"
-                    [step]="slider.step"
-                    [thumbLabel]="slider.thumbLabel"
-                    [tickInterval]="slider.tickInterval"
-                    [value]="slider.value"
-                    [vertical]="slider.vertical"
-                    class="example-margin">
-        </mat-slider>
-      </mat-card-content>
-
-      <mat-card-content>
-        <h2>Slider Toggle Result</h2>
-        <mat-slide-toggle (change)="slider.checked = !slider.checked"
-                          [checked]="slider.checked"
-                          [disabled]="slider.disabled">Slide me!
-        </mat-slide-toggle>
-      </mat-card-content>
-
-    </mat-card>
-    <!-- /Material Slider -->
 
     <!-- Material Menu -->
     <mat-card>
