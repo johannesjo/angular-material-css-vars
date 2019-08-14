@@ -11,16 +11,12 @@
     "demo": "run-s demo.build demo.gh-pages",
     "demo.build": "ng build --prod",
     "demo.gh-pages": "gh-pages -d dist/angular-material-css-vars",
-    "lib": "run-s lib.build copy",
+    "lib": "run-s lib.build copy.license",
     "lib.build": "ng build material-css-vars",
-    "lib.pack": "cd dist/material-css-vars && npm pack",
-    "lib.pub": "cd dist/material-css-vars && npm pack",
-    "copy": "run-s copy.license",
     "copy.license": "copyfiles ./LICENSE ./dist/material-css-vars",
-    "package": "run-s lib copy lib.pack",
-    "pub": "cd ./dist/material-css-vars/ && npm publish",
+    "pub": "run-s lib && cd ./dist/material-css-vars/ && npm publish && cd .. && cd ..",
     "patch": "npm version patch && cd ./projects/material-css-vars && npm version patch && cd .. && cd ..",
-    "patch-release": "run-s package patch pub"
+    "patch-release": "run-s patch pub"
   },
   "dependencies": {
     "@angular/animations": "~8.1.2",
