@@ -45,8 +45,8 @@
     </mat-toolbar>
   </mat-sidenav>
 
-  <mat-toolbar color="primary"
-               class="mat-elevation-z5">
+  <mat-toolbar class="mat-elevation-z5"
+               color="primary">
     <button (click)="sidenav.toggle()"
             class="app-menu-button"
             mat-button>
@@ -79,27 +79,27 @@
         <mat-card class="mat-elevation-z3">
           <mat-card-content>
             <h2>Primary color</h2>
-            <div [colorPicker]="primary"
-                 [style.background]="primary"
-                 [cpOKButton]="false"
-                 [cpDialogDisplay]="'inline'"
-                 [cpToggle]="true"
+            <div (colorPickerChange)="onPrimaryChange($event)"
+                 [colorPicker]="primary"
                  [cpAlphaChannel]="'disabled'"
+                 [cpDialogDisplay]="'inline'"
+                 [cpOKButton]="false"
                  [cpOutputFormat]="'hex'"
-                 (colorPickerChange)="onPrimaryChange($event)"></div>
+                 [cpToggle]="true"
+                 [style.background]="primary"></div>
           </mat-card-content>
         </mat-card>
         <mat-card class="mat-elevation-z3">
           <mat-card-content>
             <h2>Accent color</h2>
-            <div [colorPicker]="accent"
-                 [style.background]="accent"
-                 [cpOKButton]="false"
-                 [cpDialogDisplay]="'inline'"
-                 [cpToggle]="true"
+            <div (colorPickerChange)="onAccentChange($event)"
+                 [colorPicker]="accent"
                  [cpAlphaChannel]="'disabled'"
+                 [cpDialogDisplay]="'inline'"
+                 [cpOKButton]="false"
                  [cpOutputFormat]="'hex'"
-                 (colorPickerChange)="onAccentChange($event)"></div>
+                 [cpToggle]="true"
+                 [style.background]="accent"></div>
           </mat-card-content>
         </mat-card>
 
@@ -130,8 +130,8 @@
             <br>
 
             <mat-form-field>
-              <mat-select [(ngModel)]="materialCssVarsService.contrastColorThreshold"
-                          (ngModelChange)="onChangeThreshold($event)"
+              <mat-select (ngModelChange)="onChangeThreshold($event)"
+                          [(ngModel)]="materialCssVarsService.contrastColorThreshold"
                           name="game"
                           placeholder="Threshold for contrast color">
                 <mat-option *ngFor="let hue of hues"
@@ -203,17 +203,17 @@
         <!--        <h3>Basic Buttons</h3>-->
         <div class="example-button-row">
           <button mat-button>Basic</button>
-          <button mat-button
-                  color="primary">Primary
+          <button color="primary"
+                  mat-button>Primary
           </button>
-          <button mat-button
-                  color="accent">Accent
+          <button color="accent"
+                  mat-button>Accent
           </button>
-          <button mat-button
-                  color="warn">Warn
+          <button color="warn"
+                  mat-button>Warn
           </button>
-          <button mat-button
-                  disabled>Disabled
+          <button disabled
+                  mat-button>Disabled
           </button>
           <a mat-button
              routerLink=".">Link</a>
@@ -222,17 +222,17 @@
         <!--        <h3>Raised Buttons</h3>-->
         <div class="example-button-row">
           <button mat-raised-button>Basic</button>
-          <button mat-raised-button
-                  color="primary">Primary
+          <button color="primary"
+                  mat-raised-button>Primary
           </button>
-          <button mat-raised-button
-                  color="accent">Accent
+          <button color="accent"
+                  mat-raised-button>Accent
           </button>
-          <button mat-raised-button
-                  color="warn">Warn
+          <button color="warn"
+                  mat-raised-button>Warn
           </button>
-          <button mat-raised-button
-                  disabled>Disabled
+          <button disabled
+                  mat-raised-button>Disabled
           </button>
           <a mat-raised-button
              routerLink=".">Link</a>
@@ -241,17 +241,17 @@
         <!--        <h3>Stroked Buttons</h3>-->
         <div class="example-button-row">
           <button mat-stroked-button>Basic</button>
-          <button mat-stroked-button
-                  color="primary">Primary
+          <button color="primary"
+                  mat-stroked-button>Primary
           </button>
-          <button mat-stroked-button
-                  color="accent">Accent
+          <button color="accent"
+                  mat-stroked-button>Accent
           </button>
-          <button mat-stroked-button
-                  color="warn">Warn
+          <button color="warn"
+                  mat-stroked-button>Warn
           </button>
-          <button mat-stroked-button
-                  disabled>Disabled
+          <button disabled
+                  mat-stroked-button>Disabled
           </button>
           <a mat-stroked-button
              routerLink=".">Link</a>
@@ -260,17 +260,17 @@
         <!--        <h3>Flat Buttons</h3>-->
         <div class="example-button-row">
           <button mat-flat-button>Basic</button>
-          <button mat-flat-button
-                  color="primary">Primary
+          <button color="primary"
+                  mat-flat-button>Primary
           </button>
-          <button mat-flat-button
-                  color="accent">Accent
+          <button color="accent"
+                  mat-flat-button>Accent
           </button>
-          <button mat-flat-button
-                  color="warn">Warn
+          <button color="warn"
+                  mat-flat-button>Warn
           </button>
-          <button mat-flat-button
-                  disabled>Disabled
+          <button disabled
+                  mat-flat-button>Disabled
           </button>
           <a mat-flat-button
              routerLink=".">Link</a>
@@ -278,28 +278,28 @@
 
         <!--        <h3>Icon Buttons</h3>-->
         <div class="example-button-row">
-          <button mat-icon-button
-                  aria-label="Example icon-button with a heart icon">
+          <button aria-label="Example icon-button with a heart icon"
+                  mat-icon-button>
             <mat-icon>favorite</mat-icon>
           </button>
-          <button mat-icon-button
+          <button aria-label="Example icon-button with a heart icon"
                   color="primary"
-                  aria-label="Example icon-button with a heart icon">
+                  mat-icon-button>
             <mat-icon>favorite</mat-icon>
           </button>
-          <button mat-icon-button
+          <button aria-label="Example icon-button with a heart icon"
                   color="accent"
-                  aria-label="Example icon-button with a heart icon">
+                  mat-icon-button>
             <mat-icon>favorite</mat-icon>
           </button>
-          <button mat-icon-button
+          <button aria-label="Example icon-button with a heart icon"
                   color="warn"
-                  aria-label="Example icon-button with a heart icon">
+                  mat-icon-button>
             <mat-icon>favorite</mat-icon>
           </button>
-          <button mat-icon-button
+          <button aria-label="Example icon-button with a heart icon"
                   disabled
-                  aria-label="Example icon-button with a heart icon">
+                  mat-icon-button>
             <mat-icon>favorite</mat-icon>
           </button>
         </div>
@@ -307,20 +307,20 @@
         <!--        <h3>Fab Buttons</h3>-->
         <div class="example-button-row">
           <button mat-fab>Basic</button>
-          <button mat-fab
-                  color="primary">Primary
+          <button color="primary"
+                  mat-fab>Primary
           </button>
-          <button mat-fab
-                  color="accent">Accent
+          <button color="accent"
+                  mat-fab>Accent
           </button>
-          <button mat-fab
-                  color="warn">Warn
+          <button color="warn"
+                  mat-fab>Warn
           </button>
-          <button mat-fab
-                  disabled>Disabled
+          <button disabled
+                  mat-fab>Disabled
           </button>
-          <button mat-fab
-                  aria-label="Example icon-button with a heart icon">
+          <button aria-label="Example icon-button with a heart icon"
+                  mat-fab>
             <mat-icon>favorite</mat-icon>
           </button>
           <a mat-fab
@@ -330,20 +330,20 @@
         <!--        <h3>Mini Fab Buttons</h3>-->
         <div class="example-button-row">
           <button mat-mini-fab>Basic</button>
-          <button mat-mini-fab
-                  color="primary">Primary
+          <button color="primary"
+                  mat-mini-fab>Primary
           </button>
-          <button mat-mini-fab
-                  color="accent">Accent
+          <button color="accent"
+                  mat-mini-fab>Accent
           </button>
-          <button mat-mini-fab
-                  color="warn">Warn
+          <button color="warn"
+                  mat-mini-fab>Warn
           </button>
-          <button mat-mini-fab
-                  disabled>Disabled
+          <button disabled
+                  mat-mini-fab>Disabled
           </button>
-          <button mat-mini-fab
-                  aria-label="Example icon-button with a heart icon">
+          <button aria-label="Example icon-button with a heart icon"
+                  mat-mini-fab>
             <mat-icon>favorite</mat-icon>
           </button>
           <a mat-mini-fab

@@ -131,7 +131,7 @@ export class AppComponent {
     this.materialCssVarsService.setAutoContrastEnabled(this.isAutoContrast);
   }
 
-  toggleTheme(){
+  toggleTheme() {
     this.isDarkTheme = !this.isDarkTheme;
     this.materialCssVarsService.setDarkTheme(this.isDarkTheme);
   }
