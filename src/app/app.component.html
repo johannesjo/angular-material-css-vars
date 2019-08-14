@@ -45,7 +45,8 @@
     </mat-toolbar>
   </mat-sidenav>
 
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary"
+               class="mat-elevation-z5">
     <button (click)="sidenav.toggle()"
             class="app-menu-button"
             mat-button>
@@ -111,6 +112,12 @@
           <mat-card class="mat-elevation-z3">
             <mat-card-content>
               <h2>Contrast Color</h2>
+
+              <mat-slide-toggle (change)="toggleAutoContrast()"
+                                [checked]="isAutoContrast">Auto Contrast Colors
+              </mat-slide-toggle>
+              <br>
+              <br>
 
               <button (click)="materialCssVarsService.setDarkContrastColor()"
                       class="app-sidebar-button"

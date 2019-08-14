@@ -10,6 +10,9 @@ import {HueValue} from '../../projects/material-css-vars/src/lib/model';
 })
 export class AppComponent {
   isDarkTheme = false;
+  isAutoContrast = true;
+
+
   lastDialogResult: string;
   mode: string;
   value: number;
@@ -121,6 +124,11 @@ export class AppComponent {
   onChangeThreshold(threshold: HueValue) {
     this.threshold = threshold;
     this.materialCssVarsService.changeContrastColorThreshold(threshold);
+  }
+
+  toggleAutoContrast() {
+    this.isAutoContrast = !this.isAutoContrast;
+    this.materialCssVarsService.setAutoContrastEnabled(this.isAutoContrast);
   }
 
 }

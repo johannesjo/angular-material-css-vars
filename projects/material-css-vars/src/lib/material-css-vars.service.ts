@@ -59,6 +59,7 @@ export class MaterialCssVarsService {
   public accent: string;
   public contrastColorThreshold: HueValue = '400';
 
+  private _isAutoContrast = true;
   private _stylePrimary: CssVariable[];
   private _styleAccent: CssVariable[];
 
@@ -69,6 +70,10 @@ export class MaterialCssVarsService {
     this.primary = hex;
     this._stylePrimary = this._computeColors(MaterialCssVarsService.PREFIX_PRIMARY, this.primary);
     this._setStyle(this._stylePrimary);
+
+    if (this._isAutoContrast) {
+      this._recalculatePrimaryPaletteContrastColor();
+    }
   }
 
   changeAccent(hex: string) {
@@ -92,6 +97,11 @@ export class MaterialCssVarsService {
     }]);
   }
 
+  setAutoContrastEnabled(val: boolean) {
+    this._isAutoContrast = val;
+    this._recalculatePrimaryPaletteContrastColor();
+  }
+
   changeContrastColorThreshold(threshold: HueValue) {
     this.contrastColorThreshold = threshold;
 
@@ -100,6 +110,27 @@ export class MaterialCssVarsService {
       if (hue === threshold) {
         color = MaterialCssVarsService.LIGHT_TEXT_VAR;
       }
+      return {
+        val: `var(${color})`,
+        name: `${MaterialCssVarsService.PREFIX_CONTRAST}${hue}`,
+      };
+    });
+    this._setStyle(updates);
+  }
+
+  private _recalculatePrimaryPaletteContrastColor() {
+    const lightText = this._getCssVarValue(MaterialCssVarsService.LIGHT_TEXT_VAR);
+    const darkText = this._getCssVarValue(MaterialCssVarsService.DARK_TEXT_VAR);
+
+    const updates = MaterialCssVarsService.SORTED_HUES.map((hue) => {
+      const hueVarVal = this._getCssVarValue(`${MaterialCssVarsService.PREFIX_PRIMARY}${hue}`);
+
+      const rLight = tinycolor2.readability(`rgb(${hueVarVal})`, `rgb(${lightText})`);
+      const rDark = tinycolor2.readability(`rgb(${hueVarVal})`, `rgb(${darkText})`);
+      const color = (rLight > rDark)
+        ? MaterialCssVarsService.LIGHT_TEXT_VAR
+        : MaterialCssVarsService.DARK_TEXT_VAR;
+
       return {
         val: `var(${color})`,
         name: `${MaterialCssVarsService.PREFIX_CONTRAST}${hue}`,
@@ -132,10 +163,12 @@ export class MaterialCssVarsService {
   }
 
   private _setStyle(vars: CssVariable[]) {
-    console.log(vars);
-
     vars.forEach(s => {
       MaterialCssVarsService.ROOT.style.setProperty(s.name, s.val);
     });
+  }
+
+  private _getCssVarValue(v: string): string {
+    return getComputedStyle(MaterialCssVarsService.ROOT).getPropertyValue(v);
   }
 }
