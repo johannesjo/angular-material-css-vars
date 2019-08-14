@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import tinycolor2 from 'tinycolor2';
-import {HueValue} from './model';
+import {HueValue, MaterialCssVariables} from './model';
 
 interface CssVariable {
   name: string;
-  rgb: string;
+  val: string;
 }
 
 @Injectable({
@@ -85,6 +85,13 @@ export class MaterialCssVarsService {
     this.changeContrastColorThreshold(MaterialCssVarsService.MAGIC_THRESHOLD_LIGHT);
   }
 
+  setVariable(cssVarName: MaterialCssVariables, value: string) {
+    this._setStyle([{
+      name: cssVarName,
+      val: value,
+    }]);
+  }
+
   changeContrastColorThreshold(threshold: HueValue) {
     this.contrastColorThreshold = threshold;
 
@@ -94,7 +101,7 @@ export class MaterialCssVarsService {
         color = MaterialCssVarsService.LIGHT_TEXT_VAR;
       }
       return {
-        rgb: `var(${color})`,
+        val: `var(${color})`,
         name: `${MaterialCssVarsService.PREFIX_CONTRAST}${hue}`,
       };
     });
@@ -120,13 +127,15 @@ export class MaterialCssVarsService {
     const c = tinycolor2(value).toRgb();
     return {
       name: `${prefix}${name}`,
-      rgb: `${c.r}, ${c.g}, ${c.b}`
+      val: `${c.r}, ${c.g}, ${c.b}`
     };
   }
 
   private _setStyle(vars: CssVariable[]) {
+    console.log(vars);
+
     vars.forEach(s => {
-      MaterialCssVarsService.ROOT.style.setProperty(s.name, s.rgb);
+      MaterialCssVarsService.ROOT.style.setProperty(s.name, s.val);
     });
   }
 }

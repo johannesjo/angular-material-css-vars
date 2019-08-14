@@ -3,3 +3,4 @@
  */
 
 export * from './lib/material-css-vars.service';
+export * from './lib/model';
