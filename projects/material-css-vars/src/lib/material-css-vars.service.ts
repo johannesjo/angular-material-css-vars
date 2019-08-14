@@ -54,10 +54,15 @@ export class MaterialCssVarsService {
 
   private _computeColors(prefix: string, hex: string): CssVariable[] {
     return MaterialCssVarsService.COLOR_MAPPER.map(item => {
+      const mappedColor = tinycolor2(hex)
+        .lighten(item.map[0])
+        .darken(item.map[1])
+        .saturate(item.map[2]);
+
       return this._getColorObject(
         prefix,
         item.name,
-        tinycolor2(hex).lighten(item.map[0]).darken(item.map[1]).saturate(item.map[2])
+        mappedColor,
       );
     });
   }
