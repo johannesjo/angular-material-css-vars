@@ -57,6 +57,15 @@ $palette-contrast: map_get($palette-primary, contrast);
   color: rgba(map_get($palette-contrast, 900));
 }
 
+.config-cards {
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    flex: 1;
+  }
+}
+
 .palette {
   display: flex;
   flex-wrap: wrap;
@@ -81,7 +90,7 @@ $palette-contrast: map_get($palette-primary, contrast);
 }
 
 .app-content mat-card {
-  margin: 5px;
+  margin: 6px;
 }
 
 .app-sidenav {

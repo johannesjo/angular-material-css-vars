@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<mat-sidenav-container [class.isDarkTheme]="isDarkTheme">
+<mat-sidenav-container>
 
   <mat-sidenav #sidenav
                class="app-sidenav"
@@ -57,136 +57,143 @@
 
   <div class="app-content mat-typography">
 
-    <mat-card>
-      <mat-card-content>
-        <h1>Configure Theme</h1>
-        <button (click)="isDarkTheme = !isDarkTheme"
-                class="app-sidebar-button"
-                color="accent"
-                mat-raised-button>TOGGLE DARK THEME
-        </button>
+    <section>
+      <h1>Configure Theme</h1>
 
-        <!--        <mat-form-field>-->
-        <!--          <input matInput-->
-        <!--                 [(ngModel)]="primary"-->
-        <!--                 (ngModelChange)="onPrimaryChange($event)"-->
-        <!--                 type="color"-->
-        <!--                 placeholder="Primary Color" />-->
-        <!--        </mat-form-field>-->
-        <!--        <mat-form-field>-->
-        <!--          <input matInput-->
-        <!--                 [(ngModel)]="accent"-->
-        <!--                 (ngModelChange)="onAccentChange($event)"-->
-        <!--                 type="color"-->
-        <!--                 placeholder="Accent Color" />-->
-        <!--        </mat-form-field>-->
+      <!--        <mat-form-field>-->
+      <!--          <input matInput-->
+      <!--                 [(ngModel)]="primary"-->
+      <!--                 (ngModelChange)="onPrimaryChange($event)"-->
+      <!--                 type="color"-->
+      <!--                 placeholder="Primary Color" />-->
+      <!--        </mat-form-field>-->
+      <!--        <mat-form-field>-->
+      <!--          <input matInput-->
+      <!--                 [(ngModel)]="accent"-->
+      <!--                 (ngModelChange)="onAccentChange($event)"-->
+      <!--                 type="color"-->
+      <!--                 placeholder="Accent Color" />-->
+      <!--        </mat-form-field>-->
 
-        <div style="display: flex;">
-          <mat-card class="mat-elevation-z3">
-            <mat-card-content>
-              <h2>Primary color</h2>
-              <div [colorPicker]="primary"
-                   [style.background]="primary"
-                   [cpOKButton]="false"
-                   [cpDialogDisplay]="'inline'"
-                   [cpToggle]="true"
-                   [cpAlphaChannel]="'disabled'"
-                   [cpOutputFormat]="'hex'"
-                   (colorPickerChange)="onPrimaryChange($event)"></div>
-            </mat-card-content>
-          </mat-card>
-          <mat-card class="mat-elevation-z3">
-            <mat-card-content>
-              <h2>Accent color</h2>
-              <div [colorPicker]="accent"
-                   [style.background]="accent"
-                   [cpOKButton]="false"
-                   [cpDialogDisplay]="'inline'"
-                   [cpToggle]="true"
-                   [cpAlphaChannel]="'disabled'"
-                   [cpOutputFormat]="'hex'"
-                   (colorPickerChange)="onAccentChange($event)"></div>
-            </mat-card-content>
-          </mat-card>
+      <div class="config-cards">
+        <mat-card class="mat-elevation-z3">
+          <mat-card-content>
+            <h2>Primary color</h2>
+            <div [colorPicker]="primary"
+                 [style.background]="primary"
+                 [cpOKButton]="false"
+                 [cpDialogDisplay]="'inline'"
+                 [cpToggle]="true"
+                 [cpAlphaChannel]="'disabled'"
+                 [cpOutputFormat]="'hex'"
+                 (colorPickerChange)="onPrimaryChange($event)"></div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="mat-elevation-z3">
+          <mat-card-content>
+            <h2>Accent color</h2>
+            <div [colorPicker]="accent"
+                 [style.background]="accent"
+                 [cpOKButton]="false"
+                 [cpDialogDisplay]="'inline'"
+                 [cpToggle]="true"
+                 [cpAlphaChannel]="'disabled'"
+                 [cpOutputFormat]="'hex'"
+                 (colorPickerChange)="onAccentChange($event)"></div>
+          </mat-card-content>
+        </mat-card>
 
-          <mat-card class="mat-elevation-z3">
-            <mat-card-content>
-              <h2>Contrast Color</h2>
+        <mat-card class="mat-elevation-z3">
+          <mat-card-content>
+            <h2>Contrast Color</h2>
 
-              <mat-slide-toggle (change)="toggleAutoContrast()"
-                                [checked]="isAutoContrast">Auto Contrast Colors
-              </mat-slide-toggle>
-              <br>
-              <br>
+            <mat-slide-toggle (change)="toggleAutoContrast()"
+                              [checked]="isAutoContrast">Auto Contrast Colors
+            </mat-slide-toggle>
+            <br>
+            <br>
 
-              <button (click)="materialCssVarsService.setDarkContrastColor()"
-                      class="app-sidebar-button"
-                      color="accent"
-                      mat-raised-button>Set Dark Contrast
-              </button>
-              <br>
-              <br>
+            <button (click)="materialCssVarsService.setDarkContrastColor()"
+                    class="app-sidebar-button"
+                    color="accent"
+                    mat-raised-button>Set Dark Contrast
+            </button>
+            <br>
+            <br>
 
-              <button (click)="materialCssVarsService.setLightContrastColor()"
-                      class="app-sidebar-button"
-                      color="accent"
-                      mat-raised-button>Set Light Contrast
-              </button>
-              <br>
-              <br>
+            <button (click)="materialCssVarsService.setLightContrastColor()"
+                    class="app-sidebar-button"
+                    color="accent"
+                    mat-raised-button>Set Light Contrast
+            </button>
+            <br>
+            <br>
 
-              <mat-form-field>
-                <mat-select [(ngModel)]="materialCssVarsService.contrastColorThreshold"
-                            (ngModelChange)="onChangeThreshold($event)"
-                            name="game"
-                            placeholder="Threshold for contrast color">
-                  <mat-option *ngFor="let hue of hues"
-                              [value]="hue.value">
-                    {{hue.viewValue}}
-                  </mat-option>
-                </mat-select>
+            <mat-form-field>
+              <mat-select [(ngModel)]="materialCssVarsService.contrastColorThreshold"
+                          (ngModelChange)="onChangeThreshold($event)"
+                          name="game"
+                          placeholder="Threshold for contrast color">
+                <mat-option *ngFor="let hue of hues"
+                            [value]="hue.value">
+                  {{hue.viewValue}}
+                </mat-option>
+              </mat-select>
 
-              </mat-form-field>
-            </mat-card-content>
-          </mat-card>
-        </div>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
 
-        <div class="palette mat-elevation-z5"
-             style="margin-top: 50px;">
-          <div class="bg-50">
-            <div>50</div>
-          </div>
-          <div class="bg-100">
-            <div>100</div>
-          </div>
-          <div class="bg-200">
-            <div>200</div>
-          </div>
-          <div class="bg-300">
-            <div>300</div>
-          </div>
-          <div class="bg-400">
-            <div>400</div>
-          </div>
-          <div class="bg-500">
-            <div>primary: <br>500</div>
-          </div>
-          <div class="bg-600">
-            <div>600</div>
-          </div>
-          <div class="bg-700">
-            <div>700</div>
-          </div>
-          <div class="bg-800">
-            <div>800</div>
-          </div>
-          <div class="bg-900">
-            <div>900</div>
-          </div>
-        </div>
 
-      </mat-card-content>
-    </mat-card>
+        <mat-card class="mat-elevation-z3">
+          <mat-card-content>
+            <h2>Dark/Light</h2>
+            <mat-slide-toggle (change)="toggleTheme()"
+                              [checked]="isDarkTheme">Dark Theme Enabled
+            </mat-slide-toggle>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <mat-card class="mat-elevation-z3">
+        <mat-card-content>
+          <h2 style="margin-top: 10px; margin-bottom: 0;">Palette</h2>
+          <div class="palette mat-elevation-z5">
+            <div class="bg-50">
+              <div>50</div>
+            </div>
+            <div class="bg-100">
+              <div>100</div>
+            </div>
+            <div class="bg-200">
+              <div>200</div>
+            </div>
+            <div class="bg-300">
+              <div>300</div>
+            </div>
+            <div class="bg-400">
+              <div>400</div>
+            </div>
+            <div class="bg-500">
+              <div>primary: <br>500</div>
+            </div>
+            <div class="bg-600">
+              <div>600</div>
+            </div>
+            <div class="bg-700">
+              <div>700</div>
+            </div>
+            <div class="bg-800">
+              <div>800</div>
+            </div>
+            <div class="bg-900">
+              <div>900</div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </section>
 
 
     <!-- Material Button -->
@@ -373,19 +380,6 @@
     </mat-card>
     <!-- /Material Checkbox -->
 
-    <!-- Material Radio Button -->
-    <mat-card>
-      <mat-card-content>
-        <h2>Material Radio Button</h2>
-        <mat-radio-button name="symbol">Alpha</mat-radio-button>
-        <mat-radio-button name="symbol">Beta</mat-radio-button>
-        <mat-radio-button disabled
-                          name="symbol">Disabled
-        </mat-radio-button>
-      </mat-card-content>
-    </mat-card>
-    <!-- /Material Radio Button -->
-
     <!-- Material Input -->
     <mat-card class="app-input-section">
       <mat-card-content>
@@ -424,61 +418,64 @@
 
 
     <!-- Material Spinner -->
-    <mat-card>
-      <mat-card-content>
-        <h2>Progress spinner configuration</h2>
+    <section class="config-cards">
+      <mat-card>
+        <mat-card-content>
+          <h2>Progress spinner configuration</h2>
 
-        <section class="example-section">
-          <label class="example-margin">Color:</label>
-          <mat-radio-group [(ngModel)]="color">
-            <mat-radio-button class="example-margin"
-                              value="primary">
-              Primary
-            </mat-radio-button>
-            <mat-radio-button class="example-margin"
-                              value="accent">
-              Accent
-            </mat-radio-button>
-            <mat-radio-button class="example-margin"
-                              value="warn">
-              Warn
-            </mat-radio-button>
-          </mat-radio-group>
-        </section>
+          <section class="example-section">
+            <label class="example-margin">Color:</label>
+            <mat-radio-group [(ngModel)]="color">
+              <mat-radio-button class="example-margin"
+                                value="primary">
+                Primary
+              </mat-radio-button>
+              <mat-radio-button class="example-margin"
+                                value="accent">
+                Accent
+              </mat-radio-button>
+              <mat-radio-button class="example-margin"
+                                value="warn">
+                Warn
+              </mat-radio-button>
+            </mat-radio-group>
+          </section>
 
-        <section class="example-section">
-          <label class="example-margin">Mode:</label>
-          <mat-radio-group [(ngModel)]="mode">
-            <mat-radio-button class="example-margin"
-                              value="determinate">
-              Determinate
-            </mat-radio-button>
-            <mat-radio-button class="example-margin"
-                              value="indeterminate">
-              Indeterminate
-            </mat-radio-button>
-          </mat-radio-group>
-        </section>
+          <section class="example-section">
+            <label class="example-margin">Mode:</label>
+            <mat-radio-group [(ngModel)]="mode">
+              <mat-radio-button class="example-margin"
+                                value="determinate">
+                Determinate
+              </mat-radio-button>
+              <mat-radio-button class="example-margin"
+                                value="indeterminate">
+                Indeterminate
+              </mat-radio-button>
+            </mat-radio-group>
+          </section>
 
-        <section *ngIf="mode === 'determinate'"
-                 class="example-section">
-          <label class="example-margin">Progress:</label>
-          <mat-slider [(ngModel)]="value"
-                      class="example-margin"></mat-slider>
-        </section>
-      </mat-card-content>
-    </mat-card>
-    <mat-card>
-      <mat-card-content>
-        <h2>Result</h2>
+          <section *ngIf="mode === 'determinate'"
+                   class="example-section">
+            <label class="example-margin">Progress:</label>
+            <mat-slider [(ngModel)]="value"
+                        class="example-margin"></mat-slider>
+          </section>
+        </mat-card-content>
+      </mat-card>
 
-        <mat-progress-spinner [color]="color"
-                              [mode]="mode"
-                              [value]="value"
-                              class="example-margin">
-        </mat-progress-spinner>
-      </mat-card-content>
-    </mat-card>
+      <mat-card>
+        <mat-card-content>
+          <h2>Result</h2>
+
+          <mat-progress-spinner [color]="color"
+                                [mode]="mode"
+                                [value]="value"
+                                class="example-margin">
+          </mat-progress-spinner>
+        </mat-card-content>
+      </mat-card>
+    </section>
     <!-- /Material Spinner -->
 
     <!-- Material Progress Bar -->
