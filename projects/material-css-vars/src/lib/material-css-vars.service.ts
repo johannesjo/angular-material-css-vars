@@ -16,8 +16,8 @@ export class MaterialCssVarsService {
   private static PREFIX_CONTRAST = '--palette-primary-contrast-';
   private static DARK_TEXT_VAR = '--dark-primary-text';
   private static LIGHT_TEXT_VAR = '--light-primary-text';
-  private static MAGIC_THRESHOLD_LIGHT: HueValue = '600';
-  private static MAGIC_THRESHOLD_DARK: HueValue = '300';
+  private static MAGIC_THRESHOLD_LIGHT: HueValue = '300';
+  private static MAGIC_THRESHOLD_DARK: HueValue = '600';
 
   private static ROOT = document.documentElement;
 
@@ -88,10 +88,10 @@ export class MaterialCssVarsService {
   changeContrastColorThreshold(threshold: HueValue) {
     this.contrastColorThreshold = threshold;
 
-    let color = MaterialCssVarsService.LIGHT_TEXT_VAR;
+    let color = MaterialCssVarsService.DARK_TEXT_VAR;
     const updates = MaterialCssVarsService.SORTED_HUES.map((hue) => {
       if (hue === threshold) {
-        color = MaterialCssVarsService.DARK_TEXT_VAR;
+        color = MaterialCssVarsService.LIGHT_TEXT_VAR;
       }
       return {
         rgb: `var(${color})`,

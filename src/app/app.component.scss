@@ -4,44 +4,57 @@ mat-sidenav-container.isDarkTheme {
   background: black;
 }
 
+$palette-contrast: map_get($palette-primary, contrast);
+
 .bg-50 {
   background-color: rgba(map_get($palette-primary, 50));
+  color: rgba(map_get($palette-contrast, 50));
 }
 
 .bg-100 {
   background-color: rgba(map_get($palette-primary, 100));
+  color: rgba(map_get($palette-contrast, 100));
 }
 
 .bg-200 {
   background-color: rgba(map_get($palette-primary, 200));
+  color: rgba(map_get($palette-contrast, 200));
 }
 
 .bg-300 {
   background-color: rgba(map_get($palette-primary, 300));
+  color: rgba(map_get($palette-contrast, 300));
 }
 
 .bg-400 {
   background-color: rgba(map_get($palette-primary, 400));
+  color: rgba(map_get($palette-contrast, 400));
 }
 
 .bg-500 {
   background-color: rgba(map_get($palette-primary, 500));
+  color: rgba(map_get($palette-contrast, 500));
+  border: 2px dashed red;
 }
 
 .bg-600 {
   background-color: rgba(map_get($palette-primary, 600));
+  color: rgba(map_get($palette-contrast, 600));
 }
 
 .bg-700 {
   background-color: rgba(map_get($palette-primary, 700));
+  color: rgba(map_get($palette-contrast, 700));
 }
 
 .bg-800 {
   background-color: rgba(map_get($palette-primary, 800));
+  color: rgba(map_get($palette-contrast, 800));
 }
 
 .bg-900 {
   background-color: rgba(map_get($palette-primary, 900));
+  color: rgba(map_get($palette-contrast, 900));
 }
 
 .palette {
@@ -51,6 +64,15 @@ mat-sidenav-container.isDarkTheme {
   > div {
     flex: 1;
     height: 50px;
+    text-align: center;
+    position: relative;
+
+    div {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
 
