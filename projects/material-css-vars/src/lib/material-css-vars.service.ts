@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import tinycolor2 from 'tinycolor2';
+import {HueValue} from './model';
 
 interface CssVariable {
   name: string;
@@ -12,6 +13,12 @@ interface CssVariable {
 export class MaterialCssVarsService {
   private static PREFIX_PRIMARY = '--palette-primary-';
   private static PREFIX_ACCENT = '--palette-accent-';
+  private static PREFIX_CONTRAST = '--palette-primary-contrast-';
+  private static DARK_TEXT_VAR = '--dark-primary-text';
+  private static LIGHT_TEXT_VAR = '--light-primary-text';
+  private static MAGIC_THRESHOLD_LIGHT: HueValue = '600';
+  private static MAGIC_THRESHOLD_DARK: HueValue = '300';
+
   private static ROOT = document.documentElement;
 
   private static COLOR_MAPPER = [
@@ -31,8 +38,26 @@ export class MaterialCssVarsService {
     {name: 'A700', map: [5, 0, 5]},
   ];
 
+  private static SORTED_HUES: HueValue[] = [
+    '50',
+    '100',
+    '200',
+    '300',
+    '400',
+    '500',
+    '600',
+    '700',
+    '800',
+    '900',
+    'A100',
+    'A200',
+    'A400',
+    'A700',
+  ];
+
   public primary: string;
   public accent: string;
+  public darkContrastThreshold: HueValue = '400';
 
   private _stylePrimary: CssVariable[];
   private _styleAccent: CssVariable[];
@@ -50,6 +75,30 @@ export class MaterialCssVarsService {
     this.accent = hex;
     this._styleAccent = this._computeColors(MaterialCssVarsService.PREFIX_ACCENT, this.accent);
     this._setStyle(this._styleAccent);
+  }
+
+  setDarkContrastColor() {
+    this.changeContrastColorThreshold(MaterialCssVarsService.MAGIC_THRESHOLD_DARK);
+  }
+
+  setLightContrastColor() {
+    this.changeContrastColorThreshold(MaterialCssVarsService.MAGIC_THRESHOLD_LIGHT);
+  }
+
+  changeContrastColorThreshold(threshold: HueValue) {
+    this.darkContrastThreshold = threshold;
+
+    let color = MaterialCssVarsService.LIGHT_TEXT_VAR;
+    const updates = MaterialCssVarsService.SORTED_HUES.map((hue) => {
+      if (hue === threshold) {
+        color = MaterialCssVarsService.DARK_TEXT_VAR;
+      }
+      return {
+        rgb: `var(${color})`,
+        name: `${MaterialCssVarsService.PREFIX_CONTRAST}${hue}`,
+      };
+    });
+    this._setStyle(updates);
   }
 
   private _computeColors(prefix: string, hex: string): CssVariable[] {

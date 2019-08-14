@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {MaterialCssVarsService} from '../../projects/material-css-vars/src/lib/material-css-vars.service';
+import {HueValue} from '../../projects/material-css-vars/src/lib/model';
 
 @Component({
   selector: 'app-root',
@@ -19,12 +20,23 @@ export class AppComponent {
     {name: 'French fries', rating: 'Pretty good'},
   ];
 
-  selectedValue: string;
+  threshold: HueValue;
 
-  games = [
-    {value: 'rts-0', viewValue: 'Starcraft'},
-    {value: 'rpg-1', viewValue: 'Baldur\'s Gate'},
-    {value: 'fps-2', viewValue: 'Doom'}
+  hues = [
+    {value: '50', viewValue: '50'},
+    {value: '100', viewValue: '100'},
+    {value: '200', viewValue: '200'},
+    {value: '300', viewValue: '300'},
+    {value: '400', viewValue: '400'},
+    {value: '500', viewValue: '500'},
+    {value: '600', viewValue: '600'},
+    {value: '700', viewValue: '700'},
+    {value: '800', viewValue: '800'},
+    {value: '900', viewValue: '900'},
+    {value: 'A100', viewValue: 'A100'},
+    {value: 'A200', viewValue: 'A200'},
+    {value: 'A400', viewValue: 'A400'},
+    {value: 'A700', viewValue: 'A700'},
   ];
 
   progress = 0;
@@ -64,7 +76,7 @@ export class AppComponent {
   constructor(
     private _dialog: MatDialog,
     private _snackbar: MatSnackBar,
-    private _materialCssVarsService: MaterialCssVarsService,
+    public materialCssVarsService: MaterialCssVarsService,
   ) {
     this.onPrimaryChange(this.primary);
     this.onAccentChange(this.accent);
@@ -98,12 +110,17 @@ export class AppComponent {
 
   onPrimaryChange(hex: string) {
     this.primary = hex;
-    this._materialCssVarsService.changePrimary(hex);
+    this.materialCssVarsService.changePrimary(hex);
   }
 
   onAccentChange(hex: string) {
     this.accent = hex;
-    this._materialCssVarsService.changeAccent(hex);
+    this.materialCssVarsService.changeAccent(hex);
+  }
+
+  onChangeThreshold(threshold: HueValue) {
+    this.threshold = threshold;
+    this.materialCssVarsService.changeContrastColorThreshold(threshold);
   }
 
 }

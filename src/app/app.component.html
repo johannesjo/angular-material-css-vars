@@ -56,9 +56,9 @@
 
   <div class="app-content mat-typography">
 
-    <h1>Theme</h1>
     <mat-card>
       <mat-card-content>
+        <h1>Configure Theme</h1>
         <button (click)="isDarkTheme = !isDarkTheme"
                 class="app-sidebar-button"
                 color="accent"
@@ -81,31 +81,71 @@
         <!--        </mat-form-field>-->
 
         <div style="display: flex;">
-          <div>
-            <h4>Primary color</h4>
-            <div [colorPicker]="primary"
-                 [style.background]="primary"
-                 [cpOKButton]="false"
-                 [cpDialogDisplay]="'inline'"
-                 [cpToggle]="true"
-                 [cpAlphaChannel]="'disabled'"
-                 [cpOutputFormat]="'hex'"
-                 (colorPickerChange)="onPrimaryChange($event)"></div>
-          </div>
-          <div>
-            <h4>Accent color</h4>
-            <div [colorPicker]="accent"
-                 [style.background]="accent"
-                 [cpOKButton]="false"
-                 [cpDialogDisplay]="'inline'"
-                 [cpToggle]="true"
-                 [cpAlphaChannel]="'disabled'"
-                 [cpOutputFormat]="'hex'"
-                 (colorPickerChange)="onAccentChange($event)"></div>
-          </div>
+          <mat-card class="mat-elevation-z3">
+            <mat-card-content>
+              <h2>Primary color</h2>
+              <div [colorPicker]="primary"
+                   [style.background]="primary"
+                   [cpOKButton]="false"
+                   [cpDialogDisplay]="'inline'"
+                   [cpToggle]="true"
+                   [cpAlphaChannel]="'disabled'"
+                   [cpOutputFormat]="'hex'"
+                   (colorPickerChange)="onPrimaryChange($event)"></div>
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="mat-elevation-z3">
+            <mat-card-content>
+              <h2>Accent color</h2>
+              <div [colorPicker]="accent"
+                   [style.background]="accent"
+                   [cpOKButton]="false"
+                   [cpDialogDisplay]="'inline'"
+                   [cpToggle]="true"
+                   [cpAlphaChannel]="'disabled'"
+                   [cpOutputFormat]="'hex'"
+                   (colorPickerChange)="onAccentChange($event)"></div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="mat-elevation-z3">
+            <mat-card-content>
+              <h2>Contrast Color</h2>
+
+              <button (click)="materialCssVarsService.setDarkContrastColor()"
+                      class="app-sidebar-button"
+                      color="accent"
+                      mat-raised-button>Set Dark Contrast
+              </button>
+              <br>
+              <br>
+
+              <button (click)="materialCssVarsService.setLightContrastColor()"
+                      class="app-sidebar-button"
+                      color="accent"
+                      mat-raised-button>Set Light Contrast
+              </button>
+              <br>
+              <br>
+
+              <mat-form-field>
+                <mat-select [(ngModel)]="threshold"
+                            (ngModelChange)="onChangeThreshold($event)"
+                            name="game"
+                            placeholder="Threshold for contrast color">
+                  <mat-option *ngFor="let hue of hues"
+                              [value]="hue.value">
+                    {{hue.viewValue}}
+                  </mat-option>
+                </mat-select>
+
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
         </div>
 
-        <div class="palette">
+        <div class="palette mat-elevation-z5"
+             style="margin-top: 50px;">
           <div class="bg-50">50</div>
           <div class="bg-100">100</div>
           <div class="bg-200">200</div>
@@ -122,12 +162,11 @@
     </mat-card>
 
 
-    <h1 class="mat-h1">Demo Components</h1>
     <!-- Material Button -->
     <mat-card>
       <mat-card-content>
-        <h2 class="example-h2">Material Button</h2>
-        <h3>Basic Buttons</h3>
+        <h2>Material Button</h2>
+        <!--        <h3>Basic Buttons</h3>-->
         <div class="example-button-row">
           <button mat-button>Basic</button>
           <button mat-button
@@ -146,7 +185,7 @@
              routerLink=".">Link</a>
         </div>
 
-        <h3>Raised Buttons</h3>
+        <!--        <h3>Raised Buttons</h3>-->
         <div class="example-button-row">
           <button mat-raised-button>Basic</button>
           <button mat-raised-button
@@ -165,7 +204,7 @@
              routerLink=".">Link</a>
         </div>
 
-        <h3>Stroked Buttons</h3>
+        <!--        <h3>Stroked Buttons</h3>-->
         <div class="example-button-row">
           <button mat-stroked-button>Basic</button>
           <button mat-stroked-button
@@ -184,7 +223,7 @@
              routerLink=".">Link</a>
         </div>
 
-        <h3>Flat Buttons</h3>
+        <!--        <h3>Flat Buttons</h3>-->
         <div class="example-button-row">
           <button mat-flat-button>Basic</button>
           <button mat-flat-button
@@ -203,7 +242,7 @@
              routerLink=".">Link</a>
         </div>
 
-        <h3>Icon Buttons</h3>
+        <!--        <h3>Icon Buttons</h3>-->
         <div class="example-button-row">
           <button mat-icon-button
                   aria-label="Example icon-button with a heart icon">
@@ -231,7 +270,7 @@
           </button>
         </div>
 
-        <h3>Fab Buttons</h3>
+        <!--        <h3>Fab Buttons</h3>-->
         <div class="example-button-row">
           <button mat-fab>Basic</button>
           <button mat-fab
@@ -254,7 +293,7 @@
              routerLink=".">Link</a>
         </div>
 
-        <h3>Mini Fab Buttons</h3>
+        <!--        <h3>Mini Fab Buttons</h3>-->
         <div class="example-button-row">
           <button mat-mini-fab>Basic</button>
           <button mat-mini-fab
@@ -283,7 +322,7 @@
     <!-- Material Chip List -->
     <mat-card>
       <mat-card-content>
-        <h2 class="example-h2">Material Chips</h2>
+        <h2>Material Chips</h2>
         <mat-chip-list>
           <mat-chip *ngFor="let chipColor of availableColors"
                     color="{{chipColor.color}}"
@@ -298,7 +337,7 @@
     <!-- Material Checkbox -->
     <mat-card>
       <mat-card-content>
-        <h2 class="example-h2">Material Checkbox</h2>
+        <h2>Material Checkbox</h2>
         <mat-checkbox color="warn">Unchecked</mat-checkbox>
         <mat-checkbox [checked]="true">Checked</mat-checkbox>
         <mat-checkbox [indeterminate]="true">Indeterminate</mat-checkbox>
@@ -310,7 +349,7 @@
     <!-- Material Radio Button -->
     <mat-card>
       <mat-card-content>
-        <h2 class="example-h2">Material Radio Button</h2>
+        <h2>Material Radio Button</h2>
         <mat-radio-button name="symbol">Alpha</mat-radio-button>
         <mat-radio-button name="symbol">Beta</mat-radio-button>
         <mat-radio-button disabled
@@ -323,7 +362,7 @@
     <!-- Material Input -->
     <mat-card class="app-input-section">
       <mat-card-content>
-        <h2 class="example-h2">Material Input</h2>
+        <h2>Material Input</h2>
         <mat-form-field>
           <input matInput
                  placeholder="First name" />
@@ -356,63 +395,11 @@
     </mat-card>
     <!-- /Material Input -->
 
-    <!-- Material Select -->
-    <mat-card>
-      <mat-card-content>
-        <h2 class="example-h2">Material Select</h2>
-        <mat-form-field>
-          <mat-select [(ngModel)]="selectedValue"
-                      name="game"
-                      placeholder="Favorite game">
-            <mat-option *ngFor="let game of games"
-                        [value]="game.value">
-              {{game.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <p> Selected value: {{selectedValue}} </p>
-
-      </mat-card-content>
-    </mat-card>
-    <!-- /Material Select -->
-
-    <!-- Material List -->
-    <mat-card>
-      <mat-card-content>
-        <h2 class="example-h2">Material List</h2>
-        <mat-list class="app-list">
-          <mat-list-item *ngFor="let food of foods">
-            <h3 mat-line>{{food.name}}</h3>
-            <p class="demo-secondary-text"
-               mat-line>{{food.rating}}</p>
-          </mat-list-item>
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
-    <!-- /Material List -->
-
-    <!-- Material Grid List -->
-    <mat-card>
-      <mat-card-content>
-        <h2 class="example-h2">Material Grid List</h2>
-        <mat-grid-list cols="4"
-                       rowHeight="100px">
-          <mat-grid-tile *ngFor="let tile of tiles"
-                         [colspan]="tile.cols"
-                         [rowspan]="tile.rows"
-                         [style.background]="tile.color"
-                         class="grid-test-1">
-            {{tile.text}}
-          </mat-grid-tile>
-        </mat-grid-list>
-      </mat-card-content>
-    </mat-card>
-    <!-- /Material Grid List -->
 
     <!-- Material Spinner -->
     <mat-card>
       <mat-card-content>
-        <h2 class="example-h2">Progress spinner configuration</h2>
+        <h2>Progress spinner configuration</h2>
 
         <section class="example-section">
           <label class="example-margin">Color:</label>
@@ -456,7 +443,7 @@
     </mat-card>
     <mat-card>
       <mat-card-content>
-        <h2 class="example-h2">Result</h2>
+        <h2>Result</h2>
 
         <mat-progress-spinner [color]="color"
                               [mode]="mode"
@@ -470,7 +457,7 @@
     <!-- Material Progress Bar -->
     <mat-card>
       <mat-card-content>
-        <h2 class="example-h2">Material Progress Bar</h2>
+        <h2>Material Progress Bar</h2>
         <label>
           Indeterminate progress-bar
           <mat-progress-bar aria-label="Indeterminate progress-bar example"
@@ -492,7 +479,7 @@
     <!-- Material Tab -->
     <mat-card>
       <mat-card-content>
-        <h2 class="example-h2">Material Tab</h2>
+        <h2>Material Tab</h2>
         <mat-tab-group>
           <mat-tab label="Air Nomads">
             <p>The Air Nomads were a civilization composed of people who practiced the art of airbending. While nomadic,
@@ -545,7 +532,7 @@
     <!-- Material Slider -->
     <mat-card>
       <mat-card-content>
-        <h2 class="example-h2">Material Slider :: Configuration</h2>
+        <h2>Material Slider :: Configuration</h2>
 
         <section class="example-section">
           <mat-form-field class="example-margin">
@@ -621,7 +608,7 @@
       </mat-card-content>
 
       <mat-card-content>
-        <h2 class="example-h2">Slider Result</h2>
+        <h2>Slider Result</h2>
         <mat-slider [disabled]="slider.disabled"
                     [invert]="slider.invert"
                     [max]="slider.max"
@@ -636,7 +623,7 @@
       </mat-card-content>
 
       <mat-card-content>
-        <h2 class="example-h2">Slider Toggle Result</h2>
+        <h2>Slider Toggle Result</h2>
         <mat-slide-toggle (change)="slider.checked = !slider.checked"
                           [checked]="slider.checked"
                           [disabled]="slider.disabled">Slide me!
@@ -649,7 +636,7 @@
     <!-- Material Menu -->
     <mat-card>
       <mat-card-content>
-        <h2 class="example-h2">Material Menu</h2>
+        <h2>Material Menu</h2>
         <button [matMenuTriggerFor]="menu"
                 mat-icon-button>
           <mat-icon>more_vert</mat-icon>
@@ -676,7 +663,7 @@
     <!-- Material Dialog-->
     <mat-card>
       <mat-card-content>
-        <h2 class="example-h2">Material Dialog</h2>
+        <h2>Material Dialog</h2>
         <p>Last dialog result: {{lastDialogResult}}</p>
         <button (click)="openDialog()"
                 mat-raised-button>DIALOG
