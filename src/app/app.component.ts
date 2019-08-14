@@ -113,12 +113,12 @@ export class AppComponent {
 
   onPrimaryChange(hex: string) {
     this.primary = hex;
-    this.materialCssVarsService.changePrimary(hex);
+    this.materialCssVarsService.changePrimaryColor(hex);
   }
 
   onAccentChange(hex: string) {
     this.accent = hex;
-    this.materialCssVarsService.changeAccent(hex);
+    this.materialCssVarsService.changeAccentColor(hex);
   }
 
   onChangeThreshold(threshold: HueValue) {

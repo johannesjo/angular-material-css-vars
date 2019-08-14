@@ -58,41 +58,40 @@ export class MaterialCssVarsService {
     'A700',
   ];
 
+  // This should be readonly from the outside
   primary: string;
   accent: string;
   isDarkTheme: boolean;
   contrastColorThreshold: HueValue = '400';
 
   private _isAutoContrast = true;
-  private _stylePrimary: CssVariable[];
-  private _styleAccent: CssVariable[];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
   ) {
   }
 
-  changePrimary(hex: string) {
+  changePrimaryColor(hex: string) {
     this.primary = hex;
-    this._stylePrimary = this._computeColors(MaterialCssVarsService.PREFIX_PRIMARY, this.primary);
-    this._setStyle(this._stylePrimary);
+    const stylePrimary = this._computePaletteColors(MaterialCssVarsService.PREFIX_PRIMARY, this.primary);
+    this._setStyle(stylePrimary);
 
     if (this._isAutoContrast) {
       this._recalculatePrimaryPaletteContrastColor();
     }
   }
 
-  changeAccent(hex: string) {
+  changeAccentColor(hex: string) {
     this.accent = hex;
-    this._styleAccent = this._computeColors(MaterialCssVarsService.PREFIX_ACCENT, this.accent);
-    this._setStyle(this._styleAccent);
+    const styleAccent = this._computePaletteColors(MaterialCssVarsService.PREFIX_ACCENT, this.accent);
+    this._setStyle(styleAccent);
   }
 
-  setDarkContrastColor() {
+  switchToDarkContrastColor() {
     this.changeContrastColorThreshold(MaterialCssVarsService.MAGIC_THRESHOLD_DARK);
   }
 
-  setLightContrastColor() {
+  switchToLightContrastColor() {
     this.changeContrastColorThreshold(MaterialCssVarsService.MAGIC_THRESHOLD_LIGHT);
   }
 
@@ -156,7 +155,7 @@ export class MaterialCssVarsService {
     this._setStyle(updates);
   }
 
-  private _computeColors(prefix: string, hex: string): CssVariable[] {
+  private _computePaletteColors(prefix: string, hex: string): CssVariable[] {
     return MaterialCssVarsService.COLOR_MAPPER.map(item => {
       const mappedColor = tinycolor2(hex)
         .lighten(item.map[0])
