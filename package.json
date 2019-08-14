@@ -1,13 +1,22 @@
 {
   "name": "angular-material-css-vars",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "demo": "run-s demo.build demo.gh-pages",
+    "demo.build": "ng build --prod",
+    "demo.gh-pages": "gh-pages -d dist/angular-material-css-vars",
+    "build_lib": "ng build ng-example-library",
+    "copy": "run-s copy.license copy.readme",
+    "copy.license": "copy ./LICENSE ./dist/material-css-vars",
+    "copy.readme": "copy ./README.md ./dist/material-css-vars",
+    "pack": "cd dist/material-css-vars && npm pack",
+    "package": "run-s build_lib copy pack"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +46,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "gh-pages": "^2.1.1",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -45,6 +55,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "ng-packagr": "^5.1.0",
+    "npm-run-all": "^4.1.5",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tsickle": "^0.35.0",

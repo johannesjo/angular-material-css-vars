@@ -38,6 +38,7 @@ import {
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {ColorPickerModule} from 'ngx-color-picker';
+import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,10 @@ import {ColorPickerModule} from 'ngx-color-picker';
     ColorPickerModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    // tslint:disable-next-line
+    {provide: APP_BASE_HREF, useValue: window['_app_base'] || '/'},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
