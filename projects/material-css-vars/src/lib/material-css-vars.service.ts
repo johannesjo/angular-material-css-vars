@@ -1,6 +1,7 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import tinycolor2 from 'tinycolor2';
 import {HueValue, MaterialCssVariables} from './model';
+import {DOCUMENT} from '@angular/common';
 
 interface CssVariable {
   name: string;
@@ -18,6 +19,8 @@ export class MaterialCssVarsService {
   private static LIGHT_TEXT_VAR = '--light-primary-text';
   private static MAGIC_THRESHOLD_LIGHT: HueValue = '300';
   private static MAGIC_THRESHOLD_DARK: HueValue = '600';
+  private static DARK_THEME_CLASS = 'isDarkTheme';
+  private static LIGHT_THEME_CLASS = 'isLightTheme';
 
   private static ROOT = document.documentElement;
 
@@ -55,15 +58,18 @@ export class MaterialCssVarsService {
     'A700',
   ];
 
-  public primary: string;
-  public accent: string;
-  public contrastColorThreshold: HueValue = '400';
+  primary: string;
+  accent: string;
+  isDarkTheme: boolean;
+  contrastColorThreshold: HueValue = '400';
 
   private _isAutoContrast = true;
   private _stylePrimary: CssVariable[];
   private _styleAccent: CssVariable[];
 
-  constructor() {
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+  ) {
   }
 
   changePrimary(hex: string) {
@@ -95,6 +101,17 @@ export class MaterialCssVarsService {
       name: cssVarName,
       val: value,
     }]);
+  }
+
+  setDarkTheme(isDark: boolean) {
+    if (isDark) {
+      this.document.body.classList.remove(MaterialCssVarsService.LIGHT_THEME_CLASS);
+      this.document.body.classList.add(MaterialCssVarsService.DARK_THEME_CLASS);
+    } else {
+      this.document.body.classList.remove(MaterialCssVarsService.DARK_THEME_CLASS);
+      this.document.body.classList.add(MaterialCssVarsService.LIGHT_THEME_CLASS);
+    }
+    this.isDarkTheme = isDark;
   }
 
   setAutoContrastEnabled(val: boolean) {
