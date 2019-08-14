@@ -1,6 +1,6 @@
 {
   "name": "angular-material-css-vars",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -15,6 +15,8 @@
     "lib.build": "ng build material-css-vars",
     "lib.pack": "cd dist/material-css-vars && npm pack",
     "lib.pub": "cd dist/material-css-vars && npm pack",
+    "copy": "run-s copy.license",
+    "copy.license": "copyfiles ./LICENSE ./dist/material-css-vars",
     "package": "run-s lib copy lib.pack",
     "pub": "cd ./dist/material-css-vars/ && npm publish",
     "patch": "npm version patch && cd ./projects/material-css-vars && npm patch && cd .. && cd ..",
