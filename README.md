@@ -35,6 +35,7 @@ You want to style your angular material dynamically with all the colors in the r
   * `changeContrastColorThreshold(hueVal: HueValue)`
 * Helper to set all variables
   * `setVariable(cssVarName: MaterialCssVariables, value: string)`
+  * You can use the `MaterialCssVariables` enum [from here](https://github.com/johannesjo/angular-material-css-vars/blob/master/projects/material-css-vars/src/lib/model.ts) to make sure you get the variable name right.
 * Rudimentary dark theme support via body class
   * `setDarkTheme(isDark: boolean)`
 
