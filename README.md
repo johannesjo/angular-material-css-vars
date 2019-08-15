@@ -21,7 +21,9 @@ You want to style your angular material dynamically with all the colors in the r
     export class SomeComponentOrService {
       constructor(public materialCssVarsService: MaterialCssVarsService) {
         const hex = '#3f51b5';
+        this.materialCssVarsService.setDarkTheme(true);
         this.materialCssVarsService.changePrimaryColor(hex);
+        this.materialCssVarsService.changeAccentColor('#333');
       }
     }
     ```
