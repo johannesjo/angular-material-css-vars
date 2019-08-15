@@ -69,64 +69,63 @@
   }
 }
 
-.app-content {
+.content {
   padding: 5px;
 }
 
-.app-content mat-card {
+.box {
   margin: 6px;
 }
 
-.app-sidenav {
+.content mat-card {
+  margin-top: 12px;
+}
+
+.sidenav {
   min-width: 200px;
 }
 
-.app-content mat-checkbox {
+.content mat-checkbox {
   margin: 10px;
 }
 
-.app-toolbar-filler {
+.toolbar-filler {
   flex: 1 1 auto;
 }
 
 
-.app-fab {
+.fab {
   position: fixed !important;
   bottom: 20px;
   right: 20px;
 }
 
-.app-spinner {
+.spinner {
   height: 30px;
   width: 30px;
   display: inline-block;
 }
 
-.app-input-icon {
+.input-icon {
   font-size: 16px;
   padding: 0 5px;
 }
 
-.app-menu-button {
+.menu-button {
   padding: 0;
   min-width: 50px;
 }
 
-.app-button {
+.button {
   margin: 5px;
 }
 
-.app-list {
+.list {
   border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.app-progress {
+.progress {
   margin: 5px;
-}
-
-.example-h2 {
-  margin: 10px 0;
-  color: rgba(0, 0, 0, .54);
 }
 
 .example-section {
@@ -152,7 +151,7 @@ mat-chip {
   max-width: 200px;
 }
 
-.app-sidebar-button {
+.sidebar-button {
   width: inherit;
 }
 

@@ -2,24 +2,24 @@
 <mat-sidenav-container>
 
   <mat-sidenav #sidenav
-               class="app-sidenav"
+               class="sidenav"
                color="primary"
                mode="over">
     <mat-toolbar>
       <mat-toolbar-row>
         <span>Settings</span>
-        <span class="app-toolbar-filler"></span>
+        <span class="toolbar-filler"></span>
         <mat-icon class="example-icon">build</mat-icon>
       </mat-toolbar-row>
 
       <mat-toolbar-row>
         <span>Account</span>
-        <span class="app-toolbar-filler"></span>
+        <span class="toolbar-filler"></span>
         <mat-icon class="example-icon">account_circle</mat-icon>
       </mat-toolbar-row>
 
       <mat-toolbar-row>
-        <button class="app-sidebar-button"
+        <button class="sidebar-button"
                 color="accent"
                 mat-raised-button>
           <mat-icon class="example-icon">verified_user</mat-icon>
@@ -29,12 +29,12 @@
 
       <mat-toolbar-row>
         <span>Favorites</span>
-        <span class="app-toolbar-filler"></span>
+        <span class="toolbar-filler"></span>
         <mat-icon class="example-icon">favorite</mat-icon>
       </mat-toolbar-row>
 
       <mat-toolbar-row>
-        <button class="app-sidebar-button"
+        <button class="sidebar-button"
                 color="warn"
                 mat-raised-button>
           <mat-icon class="example-icon">delete</mat-icon>
@@ -48,16 +48,15 @@
   <mat-toolbar class="mat-elevation-z5"
                color="primary">
     <button (click)="sidenav.toggle()"
-            class="app-menu-button"
+            class="menu-button"
             mat-button>
       <i class="material-icons">menu</i>
     </button>
     <span class="title">Angular Material CSS Vars Demo</span>
   </mat-toolbar>
 
-  <div class="app-content mat-typography">
-
-    <section>
+  <div class="content mat-typography">
+    <section class="box">
       <h1>Configure Theme</h1>
 
       <!--        <mat-form-field>-->
@@ -114,7 +113,7 @@
             <br>
 
             <button (click)="materialCssVarsService.switchToDarkContrastColor()"
-                    class="app-sidebar-button"
+                    class="sidebar-button"
                     color="accent"
                     mat-raised-button>Set Dark Contrast
             </button>
@@ -122,7 +121,7 @@
             <br>
 
             <button (click)="materialCssVarsService.switchToLightContrastColor()"
-                    class="app-sidebar-button"
+                    class="sidebar-button"
                     color="accent"
                     mat-raised-button>Set Light Contrast
             </button>
@@ -158,7 +157,7 @@
 
       <mat-card class="mat-elevation-z3">
         <mat-card-content>
-          <h2 style="margin-top: 10px; margin-bottom: 0;">Palette</h2>
+          <h2 style="margin-bottom: 0;">Palette</h2>
           <div class="palette mat-elevation-z5">
             <div class="bg-50">
               <div>50</div>
@@ -176,7 +175,7 @@
               <div>400</div>
             </div>
             <div class="bg-500">
-              <div>primary: <br>500</div>
+              <div>primary<br>500</div>
             </div>
             <div class="bg-600">
               <div>600</div>
@@ -196,368 +195,368 @@
     </section>
 
 
-    <mat-tab-group>
-      <mat-tab label="Buttons">
-        <!-- Material Button -->
-        <mat-card>
-          <mat-card-content>
-            <h2>Material Buttons</h2>
-            <!--        <h3>Basic Buttons</h3>-->
-            <div class="example-button-row">
-              <button mat-button>Basic</button>
-              <button color="primary"
-                      mat-button>Primary
-              </button>
-              <button color="accent"
-                      mat-button>Accent
-              </button>
-              <button color="warn"
-                      mat-button>Warn
-              </button>
-              <button disabled
-                      mat-button>Disabled
-              </button>
-              <a mat-button
-                 routerLink=".">Link</a>
-            </div>
+    <section class="box">
+      <h1 style="margin-top: 32px;">Demo Components</h1>
 
-            <!--        <h3>Raised Buttons</h3>-->
-            <div class="example-button-row">
-              <button mat-raised-button>Basic</button>
-              <button color="primary"
-                      mat-raised-button>Primary
-              </button>
-              <button color="accent"
-                      mat-raised-button>Accent
-              </button>
-              <button color="warn"
-                      mat-raised-button>Warn
-              </button>
-              <button disabled
-                      mat-raised-button>Disabled
-              </button>
-              <a mat-raised-button
-                 routerLink=".">Link</a>
-            </div>
-
-            <!--        <h3>Stroked Buttons</h3>-->
-            <div class="example-button-row">
-              <button mat-stroked-button>Basic</button>
-              <button color="primary"
-                      mat-stroked-button>Primary
-              </button>
-              <button color="accent"
-                      mat-stroked-button>Accent
-              </button>
-              <button color="warn"
-                      mat-stroked-button>Warn
-              </button>
-              <button disabled
-                      mat-stroked-button>Disabled
-              </button>
-              <a mat-stroked-button
-                 routerLink=".">Link</a>
-            </div>
-
-            <!--        <h3>Flat Buttons</h3>-->
-            <div class="example-button-row">
-              <button mat-flat-button>Basic</button>
-              <button color="primary"
-                      mat-flat-button>Primary
-              </button>
-              <button color="accent"
-                      mat-flat-button>Accent
-              </button>
-              <button color="warn"
-                      mat-flat-button>Warn
-              </button>
-              <button disabled
-                      mat-flat-button>Disabled
-              </button>
-              <a mat-flat-button
-                 routerLink=".">Link</a>
-            </div>
-
-            <!--        <h3>Icon Buttons</h3>-->
-            <div class="example-button-row">
-              <button aria-label="Example icon-button with a heart icon"
-                      mat-icon-button>
-                <mat-icon>favorite</mat-icon>
-              </button>
-              <button aria-label="Example icon-button with a heart icon"
-                      color="primary"
-                      mat-icon-button>
-                <mat-icon>favorite</mat-icon>
-              </button>
-              <button aria-label="Example icon-button with a heart icon"
-                      color="accent"
-                      mat-icon-button>
-                <mat-icon>favorite</mat-icon>
-              </button>
-              <button aria-label="Example icon-button with a heart icon"
-                      color="warn"
-                      mat-icon-button>
-                <mat-icon>favorite</mat-icon>
-              </button>
-              <button aria-label="Example icon-button with a heart icon"
-                      disabled
-                      mat-icon-button>
-                <mat-icon>favorite</mat-icon>
-              </button>
-            </div>
-
-            <!--        <h3>Fab Buttons</h3>-->
-            <div class="example-button-row">
-              <button mat-fab>Basic</button>
-              <button color="primary"
-                      mat-fab>Primary
-              </button>
-              <button color="accent"
-                      mat-fab>Accent
-              </button>
-              <button color="warn"
-                      mat-fab>Warn
-              </button>
-              <button disabled
-                      mat-fab>Disabled
-              </button>
-              <button aria-label="Example icon-button with a heart icon"
-                      mat-fab>
-                <mat-icon>favorite</mat-icon>
-              </button>
-              <a mat-fab
-                 routerLink=".">Link</a>
-            </div>
-
-            <!--        <h3>Mini Fab Buttons</h3>-->
-            <div class="example-button-row">
-              <button mat-mini-fab>Basic</button>
-              <button color="primary"
-                      mat-mini-fab>Primary
-              </button>
-              <button color="accent"
-                      mat-mini-fab>Accent
-              </button>
-              <button color="warn"
-                      mat-mini-fab>Warn
-              </button>
-              <button disabled
-                      mat-mini-fab>Disabled
-              </button>
-              <button aria-label="Example icon-button with a heart icon"
-                      mat-mini-fab>
-                <mat-icon>favorite</mat-icon>
-              </button>
-              <a mat-mini-fab
-                 routerLink=".">Link</a>
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <!-- /Material Button -->
-      </mat-tab>
-      <mat-tab label="Chips">
-        <!-- Material Chip List -->
-        <mat-card>
-          <mat-card-content>
-            <h2>Material Chips</h2>
-            <mat-chip-list>
-              <mat-chip *ngFor="let chipColor of availableColors"
-                        color="{{chipColor.color}}"
-                        selected="true">
-                {{chipColor.name}}
-              </mat-chip>
-            </mat-chip-list>
-          </mat-card-content>
-        </mat-card>
-        <!-- /Material Chip List -->
-      </mat-tab>
-      <mat-tab label="Checkboxes">
-        <!-- Material Checkbox -->
-        <mat-card>
-          <mat-card-content>
-            <h2>Material Checkbox</h2>
-            <mat-checkbox color="warn">Unchecked</mat-checkbox>
-            <mat-checkbox [checked]="true">Checked</mat-checkbox>
-            <mat-checkbox [indeterminate]="true">Indeterminate</mat-checkbox>
-            <mat-checkbox [disabled]="true">Disabled</mat-checkbox>
-          </mat-card-content>
-        </mat-card>
-        <!-- /Material Checkbox -->
-
-      </mat-tab>
-      <mat-tab label="Form Inputs">
-        <!-- Material Input -->
-        <mat-card class="app-input-section">
-          <mat-card-content>
-            <h2>Material Input</h2>
-            <mat-form-field>
-              <input matInput
-                     placeholder="First name" />
-            </mat-form-field>
-            <mat-form-field>
-              <input #nickname
-                     matInput
-                     maxlength="50"
-                     placeholder="Nickname" />
-              <mat-hint align="end">
-                {{nickname.value.length}} / 50
-              </mat-hint>
-            </mat-form-field>
-            <mat-form-field>
-              <mat-icon class="app-input-icon"
-                        matPrefix>android
-              </mat-icon>
-              <input matInput
-                     placeholder="Favorite phone">
-            </mat-form-field>
-            <mat-form-field>
-
-              <mat-icon class="app-input-icon"
-                        matPrefix>motorcycle
-              </mat-icon>
-              <input matInput
-                     placeholder="Motorcycle model">
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
-        <!-- /Material Input -->
-      </mat-tab>
-      <mat-tab label="Spinner">
-        <!-- Material Spinner -->
-        <section class="config-cards">
+      <mat-tab-group>
+        <mat-tab label="Buttons">
+          <!-- Material Button -->
           <mat-card>
             <mat-card-content>
-              <h2>Progress spinner configuration</h2>
+              <h2>Material Buttons</h2>
+              <!--        <h3>Basic Buttons</h3>-->
+              <div class="example-button-row">
+                <button mat-button>Basic</button>
+                <button color="primary"
+                        mat-button>Primary
+                </button>
+                <button color="accent"
+                        mat-button>Accent
+                </button>
+                <button color="warn"
+                        mat-button>Warn
+                </button>
+                <button disabled
+                        mat-button>Disabled
+                </button>
+                <a mat-button
+                   routerLink=".">Link</a>
+              </div>
 
-              <section class="example-section">
-                <label class="example-margin">Color:</label>
-                <mat-radio-group [(ngModel)]="color">
-                  <mat-radio-button class="example-margin"
-                                    value="primary">
-                    Primary
-                  </mat-radio-button>
-                  <mat-radio-button class="example-margin"
-                                    value="accent">
-                    Accent
-                  </mat-radio-button>
-                  <mat-radio-button class="example-margin"
-                                    value="warn">
-                    Warn
-                  </mat-radio-button>
-                </mat-radio-group>
-              </section>
+              <!--        <h3>Raised Buttons</h3>-->
+              <div class="example-button-row">
+                <button mat-raised-button>Basic</button>
+                <button color="primary"
+                        mat-raised-button>Primary
+                </button>
+                <button color="accent"
+                        mat-raised-button>Accent
+                </button>
+                <button color="warn"
+                        mat-raised-button>Warn
+                </button>
+                <button disabled
+                        mat-raised-button>Disabled
+                </button>
+                <a mat-raised-button
+                   routerLink=".">Link</a>
+              </div>
 
-              <section class="example-section">
-                <label class="example-margin">Mode:</label>
-                <mat-radio-group [(ngModel)]="mode">
-                  <mat-radio-button class="example-margin"
-                                    value="determinate">
-                    Determinate
-                  </mat-radio-button>
-                  <mat-radio-button class="example-margin"
-                                    value="indeterminate">
-                    Indeterminate
-                  </mat-radio-button>
-                </mat-radio-group>
-              </section>
+              <!--        <h3>Stroked Buttons</h3>-->
+              <div class="example-button-row">
+                <button mat-stroked-button>Basic</button>
+                <button color="primary"
+                        mat-stroked-button>Primary
+                </button>
+                <button color="accent"
+                        mat-stroked-button>Accent
+                </button>
+                <button color="warn"
+                        mat-stroked-button>Warn
+                </button>
+                <button disabled
+                        mat-stroked-button>Disabled
+                </button>
+                <a mat-stroked-button
+                   routerLink=".">Link</a>
+              </div>
 
-              <section *ngIf="mode === 'determinate'"
-                       class="example-section">
-                <label class="example-margin">Progress:</label>
-                <mat-slider [(ngModel)]="value"
-                            class="example-margin"></mat-slider>
-              </section>
+              <!--        <h3>Flat Buttons</h3>-->
+              <div class="example-button-row">
+                <button mat-flat-button>Basic</button>
+                <button color="primary"
+                        mat-flat-button>Primary
+                </button>
+                <button color="accent"
+                        mat-flat-button>Accent
+                </button>
+                <button color="warn"
+                        mat-flat-button>Warn
+                </button>
+                <button disabled
+                        mat-flat-button>Disabled
+                </button>
+                <a mat-flat-button
+                   routerLink=".">Link</a>
+              </div>
+
+              <!--        <h3>Icon Buttons</h3>-->
+              <div class="example-button-row">
+                <button aria-label="Example icon-button with a heart icon"
+                        mat-icon-button>
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button aria-label="Example icon-button with a heart icon"
+                        color="primary"
+                        mat-icon-button>
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button aria-label="Example icon-button with a heart icon"
+                        color="accent"
+                        mat-icon-button>
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button aria-label="Example icon-button with a heart icon"
+                        color="warn"
+                        mat-icon-button>
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <button aria-label="Example icon-button with a heart icon"
+                        disabled
+                        mat-icon-button>
+                  <mat-icon>favorite</mat-icon>
+                </button>
+              </div>
+
+              <!--        <h3>Fab Buttons</h3>-->
+              <div class="example-button-row">
+                <button mat-fab>Basic</button>
+                <button color="primary"
+                        mat-fab>Primary
+                </button>
+                <button color="accent"
+                        mat-fab>Accent
+                </button>
+                <button color="warn"
+                        mat-fab>Warn
+                </button>
+                <button disabled
+                        mat-fab>Disabled
+                </button>
+                <button aria-label="Example icon-button with a heart icon"
+                        mat-fab>
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <a mat-fab
+                   routerLink=".">Link</a>
+              </div>
+
+              <!--        <h3>Mini Fab Buttons</h3>-->
+              <div class="example-button-row">
+                <button mat-mini-fab>Basic</button>
+                <button color="primary"
+                        mat-mini-fab>Primary
+                </button>
+                <button color="accent"
+                        mat-mini-fab>Accent
+                </button>
+                <button color="warn"
+                        mat-mini-fab>Warn
+                </button>
+                <button disabled
+                        mat-mini-fab>Disabled
+                </button>
+                <button aria-label="Example icon-button with a heart icon"
+                        mat-mini-fab>
+                  <mat-icon>favorite</mat-icon>
+                </button>
+                <a mat-mini-fab
+                   routerLink=".">Link</a>
+              </div>
             </mat-card-content>
           </mat-card>
+          <!-- /Material Button -->
+        </mat-tab>
 
+        <mat-tab label="Form Inputs">
+          <!-- Material Input -->
+          <mat-card class="input-section">
+            <mat-card-content>
+              <h2>Material Input</h2>
+              <mat-form-field>
+                <input matInput
+                       placeholder="First name" />
+              </mat-form-field>
+              <mat-form-field>
+                <input #nickname
+                       matInput
+                       maxlength="50"
+                       placeholder="Nickname" />
+                <mat-hint align="end">
+                  {{nickname.value.length}} / 50
+                </mat-hint>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-icon class="input-icon"
+                          matPrefix>android
+                </mat-icon>
+                <input matInput
+                       placeholder="Favorite phone">
+              </mat-form-field>
+              <mat-form-field>
+
+                <mat-icon class="input-icon"
+                          matPrefix>motorcycle
+                </mat-icon>
+                <input matInput
+                       placeholder="Motorcycle model">
+              </mat-form-field>
+            </mat-card-content>
+          </mat-card>
+          <!-- /Material Input -->
+
+          <!-- Material Checkbox -->
           <mat-card>
             <mat-card-content>
-              <h2>Result</h2>
-
-              <mat-progress-spinner [color]="color"
-                                    [mode]="mode"
-                                    [value]="value"
-                                    class="example-margin">
-              </mat-progress-spinner>
+              <h2>Material Checkbox</h2>
+              <mat-checkbox color="warn">Unchecked</mat-checkbox>
+              <mat-checkbox [checked]="true">Checked</mat-checkbox>
+              <mat-checkbox [indeterminate]="true">Indeterminate</mat-checkbox>
+              <mat-checkbox [disabled]="true">Disabled</mat-checkbox>
             </mat-card-content>
           </mat-card>
-        </section>
-        <!-- /Material Spinner -->
-      </mat-tab>
-      <mat-tab label="Progress Bar">
-        <!-- Material Progress Bar -->
-        <mat-card>
-          <mat-card-content>
-            <h2>Material Progress Bar</h2>
-            <label>
-              Indeterminate progress-bar
-              <mat-progress-bar aria-label="Indeterminate progress-bar example"
-                                class="app-progress"
-                                mode="indeterminate"></mat-progress-bar>
-            </label>
-            <label>
-              Determinate progress bar - {{progress}}%
-              <mat-progress-bar [value]="progress"
-                                aria-label="Determinate progress-bar example"
-                                class="app-progress"
-                                color="accent"
-                                mode="determinate"></mat-progress-bar>
-            </label>
-          </mat-card-content>
-        </mat-card>
-        <!-- /Material Progress Bar -->
-      </mat-tab>
-      <mat-tab label="Various">
-        <!-- Material Menu -->
-        <mat-card>
-          <mat-card-content>
-            <h2>Material Menu</h2>
-            <button [matMenuTriggerFor]="menu"
-                    mat-icon-button>
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item>
-                <mat-icon>dialpad</mat-icon>
-                <span>Redial</span>
+          <!-- /Material Checkbox -->
+        </mat-tab>
+
+        <mat-tab label="Spinner & Progress">
+          <!-- Material Spinner -->
+          <section class="config-cards">
+            <mat-card>
+              <mat-card-content>
+                <h2>Progress spinner configuration</h2>
+
+                <section class="example-section">
+                  <label class="example-margin">Color:</label>
+                  <mat-radio-group [(ngModel)]="color">
+                    <mat-radio-button class="example-margin"
+                                      value="primary">
+                      Primary
+                    </mat-radio-button>
+                    <mat-radio-button class="example-margin"
+                                      value="accent">
+                      Accent
+                    </mat-radio-button>
+                    <mat-radio-button class="example-margin"
+                                      value="warn">
+                      Warn
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </section>
+
+                <section class="example-section">
+                  <label class="example-margin">Mode:</label>
+                  <mat-radio-group [(ngModel)]="mode">
+                    <mat-radio-button class="example-margin"
+                                      value="determinate">
+                      Determinate
+                    </mat-radio-button>
+                    <mat-radio-button class="example-margin"
+                                      value="indeterminate">
+                      Indeterminate
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </section>
+
+                <section *ngIf="mode === 'determinate'"
+                         class="example-section">
+                  <label class="example-margin">Progress:</label>
+                  <mat-slider [(ngModel)]="value"
+                              class="example-margin"></mat-slider>
+                </section>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card>
+              <mat-card-content>
+                <h2>Result</h2>
+
+                <mat-progress-spinner [color]="color"
+                                      [mode]="mode"
+                                      [value]="value"
+                                      class="example-margin">
+                </mat-progress-spinner>
+              </mat-card-content>
+            </mat-card>
+          </section>
+          <!-- /Material Spinner -->
+
+          <!-- Material Progress Bar -->
+          <mat-card>
+            <mat-card-content>
+              <h2>Material Progress Bar</h2>
+              <label>
+                Indeterminate progress-bar
+                <mat-progress-bar aria-label="Indeterminate progress-bar example"
+                                  class="progress"
+                                  mode="indeterminate"></mat-progress-bar>
+              </label>
+              <label>
+                Determinate progress bar - {{progress}}%
+                <mat-progress-bar [value]="progress"
+                                  aria-label="Determinate progress-bar example"
+                                  class="progress"
+                                  color="accent"
+                                  mode="determinate"></mat-progress-bar>
+              </label>
+            </mat-card-content>
+          </mat-card>
+          <!-- /Material Progress Bar -->
+        </mat-tab>
+
+        <mat-tab label="Various">
+          <!-- Material Chip List -->
+          <mat-card>
+            <mat-card-content>
+              <h2>Material Chips</h2>
+              <mat-chip-list>
+                <mat-chip *ngFor="let chipColor of availableColors"
+                          color="{{chipColor.color}}"
+                          selected="true">
+                  {{chipColor.name}}
+                </mat-chip>
+              </mat-chip-list>
+            </mat-card-content>
+          </mat-card>
+          <!-- /Material Chip List -->
+
+          <!-- Material Menu -->
+          <mat-card>
+            <mat-card-content>
+              <h2>Material Menu</h2>
+              <button [matMenuTriggerFor]="menu"
+                      mat-icon-button>
+                <mat-icon>more_vert</mat-icon>
               </button>
-              <button disabled
-                      mat-menu-item>
-                <mat-icon>voicemail</mat-icon>
-                <span>Check voicemail</span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>dialpad</mat-icon>
+                  <span>Redial</span>
+                </button>
+                <button disabled
+                        mat-menu-item>
+                  <mat-icon>voicemail</mat-icon>
+                  <span>Check voicemail</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>notifications_off</mat-icon>
+                  <span>Disable alerts</span>
+                </button>
+              </mat-menu>
+            </mat-card-content>
+          </mat-card>
+          <!-- /Material Menu-->
+
+          <!-- Material Dialog-->
+          <mat-card>
+            <mat-card-content>
+              <h2>Material Dialog</h2>
+              <p>Last dialog result: {{lastDialogResult}}</p>
+              <button (click)="openDialog()"
+                      mat-raised-button>DIALOG
               </button>
-              <button mat-menu-item>
-                <mat-icon>notifications_off</mat-icon>
-                <span>Disable alerts</span>
+              <button (click)="showSnackbar()"
+                      mat-raised-button>SNACKBAR
               </button>
-            </mat-menu>
-          </mat-card-content>
-        </mat-card>
-        <!-- /Material Menu-->
+            </mat-card-content>
+          </mat-card>
+          <!-- /Material Dialog-->
+        </mat-tab>
 
-        <!-- Material Dialog-->
-        <mat-card>
-          <mat-card-content>
-            <h2>Material Dialog</h2>
-            <p>Last dialog result: {{lastDialogResult}}</p>
-            <button (click)="openDialog()"
-                    mat-raised-button>DIALOG
-            </button>
-            <button (click)="showSnackbar()"
-                    mat-raised-button>SNACKBAR
-            </button>
-          </mat-card-content>
-        </mat-card>
-        <!-- /Material Dialog-->
-      </mat-tab>
-    </mat-tab-group>
-
-
-
-
+      </mat-tab-group>
+    </section>
 
     <!-- Material Fab-->
-    <button class="app-fab"
+    <button class="fab"
             mat-fab>
       <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
     </button>
