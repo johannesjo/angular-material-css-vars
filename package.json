@@ -18,7 +18,8 @@
     "copy.readme": "copyfiles ./README.md ./dist/material-css-vars",
     "pub": "run-s lib && cd ./dist/material-css-vars/ && npm publish && cd .. && cd ..",
     "patch": "npm version patch && cd ./projects/material-css-vars && npm version patch && cd .. && cd ..",
-    "patch-release": "run-s lib demo patch pub"
+    "patch-release_": "run-s lib demo patch pub",
+    "patch-release": "npm run patch-release_"
   },
   "dependencies": {
     "@angular/animations": "~8.1.2",
