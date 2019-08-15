@@ -52,8 +52,8 @@ export class AppComponent {
     public materialCssVarsService: MaterialCssVarsService,
   ) {
     this.toggleTheme();
-    this.onPrimaryChange(this.primary);
-    this.onAccentChange(this.accent);
+    // this.onPrimaryChange(this.primary);
+    // this.onAccentChange(this.accent);
 
 
     // Update the value for the progress-bar on an interval.

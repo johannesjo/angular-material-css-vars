@@ -1,6 +1,12 @@
+@import '../projects/material-css-vars/src/lib/public-util';
 @import '../projects/material-css-vars/src/lib/main';
 
 @include initMaterialCssVars();
+
+@include mat-css-set-palette-defaults($mat-light-blue, 'primary');
+@include mat-css-set-palette-defaults($mat-pink, 'accent');
+@include mat-css-set-palette-defaults($mat-red, 'warn');
+
 
 body {
   padding: 0;
