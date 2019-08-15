@@ -30,7 +30,8 @@
         <mat-card class="mat-elevation-z3">
           <mat-card-content>
             <h2>Primary color</h2>
-            <div (colorPickerChange)="onPrimaryChange($event)"
+            <div class="color-picker-el"
+                 (colorPickerChange)="onPrimaryChange($event)"
                  [colorPicker]="primary"
                  [cpAlphaChannel]="'disabled'"
                  [cpDialogDisplay]="'inline'"
@@ -43,7 +44,8 @@
         <mat-card class="mat-elevation-z3">
           <mat-card-content>
             <h2>Accent color</h2>
-            <div (colorPickerChange)="onAccentChange($event)"
+            <div class="color-picker-el"
+                 (colorPickerChange)="onAccentChange($event)"
                  [colorPicker]="accent"
                  [cpAlphaChannel]="'disabled'"
                  [cpDialogDisplay]="'inline'"

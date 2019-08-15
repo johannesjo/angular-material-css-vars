@@ -1,5 +1,7 @@
 @import '../../projects/material-css-vars/src/lib/public-util';
 
+$lighter-dark: rgb(88, 88, 88);
+
 .bg-50 {
   @include mat-css-color-and-contrast(50);
 }
@@ -41,6 +43,17 @@
   @include mat-css-color-and-contrast(900);
 }
 
+
+::ng-deep color-picker {
+  .color-picker {
+
+    @include mat-css-dark-theme {
+      color: #fff;
+      background: $lighter-dark;
+    }
+  }
+}
+
 .config-cards {
   display: flex;
   flex-wrap: wrap;
@@ -74,7 +87,7 @@
   }
 }
 
-:host ::ng-deep   {
+:host ::ng-deep {
   .mat-tab-body-content {
     padding: 12px;
   }

@@ -2,13 +2,12 @@
 @import 'internal-helper';
 
 $mat-css-dark-theme-selector: '.isDarkTheme' !default;
+$mat-css-light-theme-selector: '.isLightTheme' !default;
 
 $mat-css-text: (
   --dark-primary-text: hex-to-rgb($dark-primary-text),
   --light-primary-text: hex-to-rgb($light-primary-text),
 ) !default;
-
-// TODO convert standard theme to map
 
 $mat-css-default-light-theme: (
   // PRIMARY

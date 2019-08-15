@@ -51,6 +51,7 @@ export class AppComponent {
     private _snackbar: MatSnackBar,
     public materialCssVarsService: MaterialCssVarsService,
   ) {
+    this.toggleTheme();
     this.onPrimaryChange(this.primary);
     this.onAccentChange(this.accent);
 

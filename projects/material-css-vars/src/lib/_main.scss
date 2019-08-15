@@ -11,7 +11,6 @@
   @include mat-css-root($default-theme);
 }
 
-
 @mixin initMatTheme($dark-theme-selector) {
   @include mat-core();
 

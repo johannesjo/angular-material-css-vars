@@ -35,3 +35,14 @@
   background: mat-css-primary-color($hue);
 }
 
+@mixin mat-css-dark-theme {
+  :host-context(#{$mat-css-dark-theme-selector}) & {
+    @content;
+  }
+}
+
+@mixin mat-css-light-theme {
+  :host-context(#{$mat-css-light-theme-selector}) & {
+    @content;
+  }
+}
