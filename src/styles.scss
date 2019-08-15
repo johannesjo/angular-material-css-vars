@@ -5,6 +5,10 @@
 body {
   padding: 0;
   margin: 0;
+
+  &.isDarkTheme {
+    background: rgb(39, 39, 39);
+  }
 }
 
 * {
