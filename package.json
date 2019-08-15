@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "demo": "run-s demo.build demo.gh-pages",
-    "demo.build": "ng build --prod",
+    "demo.build": "ng build --aot --prod --base-href='./'",
     "demo.gh-pages": "gh-pages -d dist/angular-material-css-vars",
     "lib": "run-s lib.build copy.license",
     "lib.build": "ng build material-css-vars",
