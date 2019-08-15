@@ -67,7 +67,7 @@ You can provide different options during initialization to change the body class
   // ...
 }
 ``` 
-A full list of the theme map [can be found here](https://github.com/johannesjo/angular-material-css-vars/blob/master/projects/material-css-vars/src/lib/_css-variables-maps.scss).
+A full list of the theme map [can be found here](https://github.com/johannesjo/angular-material-css-vars/blob/master/projects/material-css-vars/src/lib/_variables.scss).
 
 
 ## Credit...
