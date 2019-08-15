@@ -1,37 +1,37 @@
+@import 'variables';
 @import '~@angular/material/theming';
 @import 'internal-helper';
-@import 'css-variables-maps';
 // contains main overwrite of `mat-color` to make it all work
+// needs to come after '~@angular/material/theming'
 @import 'mat-color-overwrite';
-
 
 @mixin initCssVars($default-theme, $text) {
   // init css variables
-  @include css-vars-root($text);
-  @include css-vars-root($default-theme);
+  @include mat-css-root($text);
+  @include mat-css-root($default-theme);
 }
 
 
-@mixin initMatTheme($dark-theme-body-class) {
+@mixin initMatTheme($dark-theme-selector) {
   @include mat-core();
 
-  $primary: mat-palette($css-vars-palette-primary);
-  $accent: mat-palette($css-vars-palette-accent);
-  $warn: mat-palette($css-vars-palette-warn);
+  $primary: mat-palette($mat-css-palette-primary);
+  $accent: mat-palette($mat-css-palette-accent);
+  $warn: mat-palette($mat-css-palette-warn);
 
   $theme: mat-light-theme($primary, $accent, $warn);
   $dark-theme: mat-dark-theme($primary, $accent, $warn);
 
   $theme: map_merge($theme, (
-    background: $css-vars-palette-background,
-    foreground: $css-vars-palette-foreground,
+    background: $mat-css-palette-background,
+    foreground: $mat-css-palette-foreground,
   ));
 
   @at-root {
     @include angular-material-theme($theme);
 
-    @if $dark-theme-body-class {
-      .#{$dark-theme-body-class} {
+    @if $dark-theme-selector {
+      #{$dark-theme-selector} {
         @include angular-material-theme($dark-theme);
       }
     }
@@ -39,10 +39,10 @@
 }
 
 @mixin initMaterialCssVars(
-  $default-theme: $css-vars-default-light-theme,
-  $dark-theme-body-class: 'isDarkTheme',
-  $default-theme-text: $css-vars-text
+  $default-theme: $mat-css-default-light-theme,
+  $dark-theme-selector: $mat-css-dark-theme-selector,
+  $default-theme-text: $mat-css-text
 ) {
   @include initCssVars($default-theme, $default-theme-text);
-  @include initMatTheme($dark-theme-body-class);
+  @include initMatTheme($dark-theme-selector);
 }

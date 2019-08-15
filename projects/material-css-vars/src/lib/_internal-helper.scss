@@ -12,7 +12,7 @@
   @return (red($color), green($color), blue($color));
 }
 
-@mixin css-vars-root($varMap: null) {
+@mixin mat-css-root($varMap: null) {
   @at-root :root {
     @each $varName, $varValue in $varMap {
       @if (type_of($varValue)==string) {

@@ -1,14 +1,16 @@
-@import 'internal-helper';
 @import '~@angular/material/theming';
+@import 'internal-helper';
 
-$css-vars-text: (
+$mat-css-dark-theme-selector: '.isDarkTheme' !default;
+
+$mat-css-text: (
   --dark-primary-text: hex-to-rgb($dark-primary-text),
   --light-primary-text: hex-to-rgb($light-primary-text),
-);
+) !default;
 
 // TODO convert standard theme to map
 
-$css-vars-default-light-theme: (
+$mat-css-default-light-theme: (
   // PRIMARY
   --palette-primary-50: hex-to-rgb(#e1f5fe),
   --palette-primary-100: hex-to-rgb(#b3e5fc), //lighter
@@ -115,10 +117,10 @@ $css-vars-default-light-theme: (
   --palette-foreground-slider-off-alpha: 0.26,
   --palette-foreground-slider-off-active: hex-to-rgb(#000000),
   --palette-foreground-slider-off-active-alpha: 0.38,
-);
+) !default;
 
 
-$css-vars-palette-primary: (
+$mat-css-palette-primary: (
   50: var(--palette-primary-50),
   100: var(--palette-primary-100),
   200: var(--palette-primary-200),
@@ -151,7 +153,10 @@ $css-vars-palette-primary: (
   )
 ) !default;
 
-$css-vars-palette-accent: (
+$mat-css-contrast-palette: map_get($mat-css-palette-primary, 'contrast') !default;
+
+
+$mat-css-palette-accent: (
   50: var(--palette-accent-50),
   100: var(--palette-accent-100),
   200: var(--palette-accent-200),
@@ -184,7 +189,7 @@ $css-vars-palette-accent: (
   )
 ) !default;
 
-$css-vars-palette-warn: (
+$mat-css-palette-warn: (
   50: var(--palette-warn-50),
   100: var(--palette-warn-100),
   200: var(--palette-warn-200),
@@ -217,7 +222,7 @@ $css-vars-palette-warn: (
   )
 ) !default;
 
-$css-vars-palette-background: (
+$mat-css-palette-background: (
   status-bar: var(--palette-background-status-bar),
   app-bar: var(--palette-background-app-bar),
   background: var(--palette-background-background),
@@ -234,7 +239,7 @@ $css-vars-palette-background: (
   disabled-list-option: var(--palette-background-disabled-list-option),
 ) !default;
 
-$css-vars-palette-foreground: (
+$mat-css-palette-foreground: (
   base: var(--palette-foreground-base),
   divider: var(--palette-foreground-divider),
   dividers: var(--palette-foreground-dividers),
