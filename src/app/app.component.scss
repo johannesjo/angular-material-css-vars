@@ -22,7 +22,7 @@
 
 .bg-500 {
   @include mat-css-color-and-contrast(500);
-  border: 2px dashed red;
+  border: 4px dashed mat-css-accent-color();
 }
 
 .bg-600 {
