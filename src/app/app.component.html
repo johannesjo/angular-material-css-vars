@@ -1,57 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <mat-sidenav-container>
 
-  <mat-sidenav #sidenav
-               class="sidenav"
-               color="primary"
-               mode="over">
-    <mat-toolbar>
-      <mat-toolbar-row>
-        <span>Settings</span>
-        <span class="toolbar-filler"></span>
-        <mat-icon class="example-icon">build</mat-icon>
-      </mat-toolbar-row>
-
-      <mat-toolbar-row>
-        <span>Account</span>
-        <span class="toolbar-filler"></span>
-        <mat-icon class="example-icon">account_circle</mat-icon>
-      </mat-toolbar-row>
-
-      <mat-toolbar-row>
-        <button class="sidebar-button"
-                color="accent"
-                mat-raised-button>
-          <mat-icon class="example-icon">verified_user</mat-icon>
-          Login
-        </button>
-      </mat-toolbar-row>
-
-      <mat-toolbar-row>
-        <span>Favorites</span>
-        <span class="toolbar-filler"></span>
-        <mat-icon class="example-icon">favorite</mat-icon>
-      </mat-toolbar-row>
-
-      <mat-toolbar-row>
-        <button class="sidebar-button"
-                color="warn"
-                mat-raised-button>
-          <mat-icon class="example-icon">delete</mat-icon>
-          Delete
-        </button>
-      </mat-toolbar-row>
-
-    </mat-toolbar>
-  </mat-sidenav>
 
   <mat-toolbar class="mat-elevation-z5"
                color="primary">
-    <button (click)="sidenav.toggle()"
-            class="menu-button"
-            mat-button>
-      <i class="material-icons">menu</i>
-    </button>
     <span class="title">Angular Material CSS Vars Demo</span>
   </mat-toolbar>
 
@@ -417,7 +369,7 @@
 
                 <section class="example-section">
                   <label class="example-margin">Color:</label>
-                  <mat-radio-group [(ngModel)]="color">
+                  <mat-radio-group [(ngModel)]="spinnerColor">
                     <mat-radio-button class="example-margin"
                                       value="primary">
                       Primary
@@ -435,7 +387,7 @@
 
                 <section class="example-section">
                   <label class="example-margin">Mode:</label>
-                  <mat-radio-group [(ngModel)]="mode">
+                  <mat-radio-group [(ngModel)]="spinnerMode">
                     <mat-radio-button class="example-margin"
                                       value="determinate">
                       Determinate
@@ -447,10 +399,10 @@
                   </mat-radio-group>
                 </section>
 
-                <section *ngIf="mode === 'determinate'"
+                <section *ngIf="spinnerMode === 'determinate'"
                          class="example-section">
                   <label class="example-margin">Progress:</label>
-                  <mat-slider [(ngModel)]="value"
+                  <mat-slider [(ngModel)]="spinnerValue"
                               class="example-margin"></mat-slider>
                 </section>
               </mat-card-content>
@@ -460,9 +412,9 @@
               <mat-card-content>
                 <h2>Result</h2>
 
-                <mat-progress-spinner [color]="color"
-                                      [mode]="mode"
-                                      [value]="value"
+                <mat-progress-spinner [color]="spinnerColor"
+                                      [mode]="spinnerMode"
+                                      [value]="spinnerValue"
                                       class="example-margin">
                 </mat-progress-spinner>
               </mat-card-content>
@@ -499,7 +451,7 @@
             <mat-card-content>
               <h2>Material Chips</h2>
               <mat-chip-list>
-                <mat-chip *ngFor="let chipColor of availableColors"
+                <mat-chip *ngFor="let chipColor of availableSpinnerColors"
                           color="{{chipColor.color}}"
                           selected="true">
                   {{chipColor.name}}
@@ -536,20 +488,6 @@
           </mat-card>
           <!-- /Material Menu-->
 
-          <!-- Material Dialog-->
-          <mat-card>
-            <mat-card-content>
-              <h2>Material Dialog</h2>
-              <p>Last dialog result: {{lastDialogResult}}</p>
-              <button (click)="openDialog()"
-                      mat-raised-button>DIALOG
-              </button>
-              <button (click)="showSnackbar()"
-                      mat-raised-button>SNACKBAR
-              </button>
-            </mat-card-content>
-          </mat-card>
-          <!-- /Material Dialog-->
         </mat-tab>
 
       </mat-tab-group>

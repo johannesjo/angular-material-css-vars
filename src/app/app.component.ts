@@ -9,20 +9,11 @@ import {HueValue} from '../../projects/material-css-vars/src/lib/model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  primary = '#3f51b5';
+  accent = '#ff4081';
+
   isDarkTheme = false;
   isAutoContrast = true;
-
-
-  lastDialogResult: string;
-  mode: string;
-  value: number;
-
-  foods: any[] = [
-    {name: 'Pizza', rating: 'Excellent'},
-    {name: 'Burritos', rating: 'Great'},
-    {name: 'French fries', rating: 'Pretty good'},
-  ];
-
   threshold: HueValue;
 
   hues = [
@@ -42,39 +33,18 @@ export class AppComponent {
     {value: 'A700', viewValue: 'A700'},
   ];
 
-  progress = 0;
-  slider = {
-    autoTicks: false,
-    disabled: false,
-    invert: false,
-    max: 100,
-    min: 0,
-    showTicks: false,
-    step: 1,
-    thumbLabel: false,
-    value: 0,
-    vertical: false,
-    tickInterval: 1,
-    checked: true
-  };
-  tiles = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-  ];
-
-  color: string;
-
-  availableColors = [
+  lastDialogResult: string;
+  spinnerMode = 'indeterminate';
+  spinnerValue: number;
+  spinnerColor = 'primary';
+  availableSpinnerColors = [
     {name: 'none', color: ''},
     {name: 'Primary', color: 'primary'},
     {name: 'Accent', color: 'accent'},
     {name: 'Warn', color: 'warn'}
   ];
 
-  primary = '#3f51b5';
-  accent = '#ff4081';
+  progress = 0;
 
   constructor(
     private _dialog: MatDialog,
@@ -91,21 +61,6 @@ export class AppComponent {
     }, 200);
   }
 
-  get tickInterval(): number | 'auto' {
-    return this.slider.showTicks ? (this.slider.autoTicks ? 'auto' : this.slider.tickInterval) : null;
-  }
-
-  set tickInterval(v) {
-    this.slider.tickInterval = Number(v);
-  }
-
-  openDialog() {
-    // const dialogRef = this._dialog.open(DialogContentComponent);
-    //
-    // dialogRef.afterClosed().subscribe(result => {
-    //   this.lastDialogResult = result;
-    // });
-  }
 
   showSnackbar() {
     this._snackbar.open('YUM SNACKS', 'CHEW');

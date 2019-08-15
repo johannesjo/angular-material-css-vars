@@ -45,8 +45,13 @@
   display: flex;
   flex-wrap: wrap;
 
-  > * {
+  > mat-card {
     flex: 1;
+    margin-right: 12px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 
@@ -69,6 +74,12 @@
   }
 }
 
+:host ::ng-deep   {
+  .mat-tab-body-content {
+    padding: 12px;
+  }
+}
+
 .content {
   padding: 5px;
 }
@@ -79,10 +90,6 @@
 
 .content mat-card {
   margin-top: 12px;
-}
-
-.sidenav {
-  min-width: 200px;
 }
 
 .content mat-checkbox {
@@ -98,6 +105,7 @@
   position: fixed !important;
   bottom: 20px;
   right: 20px;
+  z-index: 3;
 }
 
 .spinner {
@@ -106,22 +114,8 @@
   display: inline-block;
 }
 
-.input-icon {
-  font-size: 16px;
-  padding: 0 5px;
-}
-
-.menu-button {
-  padding: 0;
-  min-width: 50px;
-}
-
 .button {
   margin: 5px;
-}
-
-.list {
-  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .progress {
@@ -149,14 +143,6 @@
 
 mat-chip {
   max-width: 200px;
-}
-
-.sidebar-button {
-  width: inherit;
-}
-
-.example-spacer {
-  flex: 1 1 auto;
 }
 
 .picker-label {
