@@ -5,25 +5,25 @@
 
 @function mat-css-primary-color($hue: 500,  $opacity: null) {
   @if (type-of($opacity) == number) {
-    @return rgba(map_get($mat-css-palette-primary, $hue), $opacity);
+    @return mat-css-rgba(map_get($mat-css-palette-primary, $hue), $opacity);
   } @else {
-    @return rgb(map_get($mat-css-palette-primary, $hue));
+    @return mat-css-rgb(map_get($mat-css-palette-primary, $hue));
   }
 }
 
 @function mat-css-accent-color($hue: 500,  $opacity: null) {
   @if (type-of($opacity) == number) {
-    @return rgba(map_get($mat-css-palette-accent, $hue), $opacity);
+    @return mat-css-rgba(map_get($mat-css-palette-accent, $hue), $opacity);
   } @else {
-    @return rgb(map_get($mat-css-palette-accent, $hue));
+    @return mat-css-rgb(map_get($mat-css-palette-accent, $hue));
   }
 }
 
 @function mat-css-contrast-color($hue: 500,  $opacity: null) {
   @if (type-of($opacity) == number) {
-    @return rgba(map_get($mat-css-contrast-palette, $hue), $opacity);
+    @return mat-css-rgba(map_get($mat-css-contrast-palette, $hue), $opacity);
   } @else {
-    @return rgb(map_get($mat-css-contrast-palette, $hue));
+    @return mat-css-rgb(map_get($mat-css-contrast-palette, $hue));
   }
 }
 

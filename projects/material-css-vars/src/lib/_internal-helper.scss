@@ -12,6 +12,31 @@
   @return (red($color), green($color), blue($color));
 }
 
+// used to circumvent node sass issue: https://github.com/sass/node-sass/issues/2251
+@function mat-css-rgb($r, $g: null, $b: null ) {
+  @if ($g == null) {
+    @return unquote('rgb(#{$r})');
+  }
+
+  @if ($g and $b) {
+    @return unquote('rgb(#{$r}, #{$g}, #{$b})');
+  }
+
+  @error "wrong number of arguments";
+}
+
+@function mat-css-rgba($r, $g, $b: null, $a: null ) {
+  @if ($b == null) {
+    @return unquote('rgba(#{$r}, #{$g})');
+  }
+
+  @if ($b and $a) {
+    @return unquote('rgba(#{$r}, #{$g}, #{$b}, #{$a})');
+  }
+
+  @error "wrong number of arguments";
+}
+
 @mixin mat-css-root($varMap: null) {
   @at-root :root {
     @each $varName, $varValue in $varMap {
