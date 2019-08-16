@@ -16,8 +16,8 @@
     "copy": "run-s copy.licence copy.readme",
     "copy.licence": "copyfiles ./LICENSE ./dist/material-css-vars",
     "copy.readme": "copyfiles ./README.md ./dist/material-css-vars",
-    "pub": "cd ./dist/material-css-vars/ && npm publish && cd .. && cd ..",
-    "patch": "cd ./projects/material-css-vars && npm version patch && cd .. && cd ..",
+    "pub": "run-s lib && cd ./dist/material-css-vars/ && npm publish && cd .. && cd ..",
+    "patch": "npm version patch && cd ./projects/material-css-vars && npm version patch && cd .. && cd .. && git add . && git commit -am\"chore: update lib version\"",
     "patch-release_": "run-s lib demo patch pub",
     "patch-release": "npm run patch-release_"
   },
