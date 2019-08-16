@@ -5,25 +5,25 @@
 
 @function mat-css-primary-color($hue: 500,  $opacity: null) {
   @if (type-of($opacity) == number) {
-    @return mat-css-rgba(map_get($mat-css-palette-primary, $hue), $opacity);
+    @return _mat-css-rgba(map_get($mat-css-palette-primary, $hue), $opacity);
   } @else {
-    @return mat-css-rgb(map_get($mat-css-palette-primary, $hue));
+    @return _mat-css-rgb(map_get($mat-css-palette-primary, $hue));
   }
 }
 
 @function mat-css-accent-color($hue: 500,  $opacity: null) {
   @if (type-of($opacity) == number) {
-    @return mat-css-rgba(map_get($mat-css-palette-accent, $hue), $opacity);
+    @return _mat-css-rgba(map_get($mat-css-palette-accent, $hue), $opacity);
   } @else {
-    @return mat-css-rgb(map_get($mat-css-palette-accent, $hue));
+    @return _mat-css-rgb(map_get($mat-css-palette-accent, $hue));
   }
 }
 
 @function mat-css-contrast-color($hue: 500,  $opacity: null) {
   @if (type-of($opacity) == number) {
-    @return mat-css-rgba(map_get($mat-css-contrast-palette, $hue), $opacity);
+    @return _mat-css-rgba(map_get($mat-css-contrast-palette, $hue), $opacity);
   } @else {
-    @return mat-css-rgb(map_get($mat-css-contrast-palette, $hue));
+    @return _mat-css-rgb(map_get($mat-css-contrast-palette, $hue));
   }
 }
 
@@ -49,16 +49,16 @@
 }
 
 @mixin mat-css-set-css-var-default($css-var-map) {
-  @include mat-css-root($css-var-map);
+  @include _mat-css-root($css-var-map);
 }
 
 @mixin mat-css-set-palette-defaults($css-var-map, $paletteType: 'primary') {
   $new-map: ();
   @each $var, $defaultVal in $css-var-map {
     @if ($var != 'contrast') {
-      $new-map: map_merge($new-map, (--palette-#{$paletteType}-#{$var}: #{hex-to-rgb($defaultVal)}));
+      $new-map: map_merge($new-map, (--palette-#{$paletteType}-#{$var}: #{_mat-css-hex-to-rgb($defaultVal)}));
     }
   }
-  @include mat-css-root($new-map);
+  @include _mat-css-root($new-map);
 }
 

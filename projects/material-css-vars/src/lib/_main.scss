@@ -7,8 +7,8 @@
 
 @mixin initCssVars($default-theme, $text) {
   // init css variables
-  @include mat-css-root($text);
-  @include mat-css-root($default-theme);
+  @include _mat-css-root($text);
+  @include _mat-css-root($default-theme);
 }
 
 @mixin initMatTheme($dark-theme-selector) {
