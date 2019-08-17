@@ -19,6 +19,14 @@
   }
 }
 
+@function mat-css-warn-color($hue: 500,  $opacity: null) {
+  @if (type-of($opacity) == number) {
+    @return _mat-css-rgba(map_get($mat-css-palette-warn, $hue), $opacity);
+  } @else {
+    @return _mat-css-rgb(map_get($mat-css-palette-warn, $hue));
+  }
+}
+
 @function mat-css-contrast-color($hue: 500,  $opacity: null) {
   @if (type-of($opacity) == number) {
     @return _mat-css-rgba(map_get($mat-css-contrast-palette, $hue), $opacity);
@@ -27,9 +35,35 @@
   }
 }
 
+@function mat-css-contrast-color-accent($hue: 500,  $opacity: null) {
+  @if (type-of($opacity) == number) {
+    @return _mat-css-rgba(map_get($mat-css-contrast-palette-accent, $hue), $opacity);
+  } @else {
+    @return _mat-css-rgb(map_get($mat-css-contrast-palette-accent, $hue));
+  }
+}
+
+@function mat-css-contrast-color-warn($hue: 500,  $opacity: null) {
+  @if (type-of($opacity) == number) {
+    @return _mat-css-rgba(map_get($mat-css-contrast-palette-warn, $hue), $opacity);
+  } @else {
+    @return _mat-css-rgb(map_get($mat-css-contrast-palette-warn, $hue));
+  }
+}
+
 @mixin mat-css-color-and-contrast($hue) {
   background: mat-css-primary-color($hue);
   color: mat-css-contrast-color($hue);
+}
+
+@mixin mat-css-color-and-contrast-accent($hue) {
+  background: mat-css-accent-color($hue);
+  color: mat-css-contrast-color-accent($hue);
+}
+
+@mixin mat-css-color-and-contrast-warn($hue) {
+  background: mat-css-warn-color($hue);
+  color: mat-css-contrast-color-warn($hue);
 }
 
 @mixin mat-css-bg($hue) {

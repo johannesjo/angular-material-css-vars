@@ -14,7 +14,8 @@ interface CssVariable {
 export class MaterialCssVarsService {
   private static PREFIX_PRIMARY = '--palette-primary-';
   private static PREFIX_ACCENT = '--palette-accent-';
-  private static PREFIX_CONTRAST = '--palette-primary-contrast-';
+  private static PREFIX_WARN = '--palette-warn-';
+  private static CONTRAST_PREFIX = 'contrast-';
   private static DARK_TEXT_VAR = '--dark-primary-text';
   private static LIGHT_TEXT_VAR = '--light-primary-text';
   private static MAGIC_THRESHOLD_LIGHT: HueValue = '300';
@@ -61,6 +62,7 @@ export class MaterialCssVarsService {
   // This should be readonly from the outside
   primary: string;
   accent: string;
+  warn: string;
   isDarkTheme: boolean;
   contrastColorThreshold: HueValue = '400';
 
@@ -73,18 +75,35 @@ export class MaterialCssVarsService {
 
   changePrimaryColor(hex: string) {
     this.primary = hex;
-    const stylePrimary = this._computePaletteColors(MaterialCssVarsService.PREFIX_PRIMARY, this.primary);
+    const varPrefix = MaterialCssVarsService.PREFIX_PRIMARY;
+    const stylePrimary = this._computePaletteColors(varPrefix, this.primary);
     this._setStyle(stylePrimary);
 
     if (this._isAutoContrast) {
-      this._recalculatePrimaryPaletteContrastColor();
+      this._recalculateContrastColor(varPrefix);
     }
   }
 
   changeAccentColor(hex: string) {
     this.accent = hex;
-    const styleAccent = this._computePaletteColors(MaterialCssVarsService.PREFIX_ACCENT, this.accent);
+    const varPrefix = MaterialCssVarsService.PREFIX_ACCENT;
+    const styleAccent = this._computePaletteColors(varPrefix, this.accent);
     this._setStyle(styleAccent);
+
+    if (this._isAutoContrast) {
+      this._recalculateContrastColor(varPrefix);
+    }
+  }
+
+  changeWarnColor(hex: string) {
+    this.warn = hex;
+    const varPrefix = MaterialCssVarsService.PREFIX_WARN;
+    const styleWarn = this._computePaletteColors(varPrefix, this.warn);
+    this._setStyle(styleWarn);
+
+    if (this._isAutoContrast) {
+      this._recalculateContrastColor(varPrefix);
+    }
   }
 
   switchToDarkContrastColor() {
@@ -115,7 +134,7 @@ export class MaterialCssVarsService {
 
   setAutoContrastEnabled(val: boolean) {
     this._isAutoContrast = val;
-    this._recalculatePrimaryPaletteContrastColor();
+    this._recalculateContrastColor(MaterialCssVarsService.PREFIX_PRIMARY);
   }
 
   changeContrastColorThreshold(threshold: HueValue) {
@@ -128,18 +147,18 @@ export class MaterialCssVarsService {
       }
       return {
         val: `var(${color})`,
-        name: `${MaterialCssVarsService.PREFIX_CONTRAST}${hue}`,
+        name: `${MaterialCssVarsService.CONTRAST_PREFIX}${hue}`,
       };
     });
     this._setStyle(updates);
   }
 
-  private _recalculatePrimaryPaletteContrastColor() {
+  private _recalculateContrastColor(palettePrefix: string) {
     const lightText = this._getCssVarValue(MaterialCssVarsService.LIGHT_TEXT_VAR);
     const darkText = this._getCssVarValue(MaterialCssVarsService.DARK_TEXT_VAR);
 
     const updates = MaterialCssVarsService.SORTED_HUES.map((hue) => {
-      const hueVarVal = this._getCssVarValue(`${MaterialCssVarsService.PREFIX_PRIMARY}${hue}`);
+      const hueVarVal = this._getCssVarValue(`${palettePrefix}${hue}`);
 
       const rLight = tinycolor2.readability(`rgb(${hueVarVal})`, `rgb(${lightText})`);
       const rDark = tinycolor2.readability(`rgb(${hueVarVal})`, `rgb(${darkText})`);
@@ -149,7 +168,7 @@ export class MaterialCssVarsService {
 
       return {
         val: `var(${color})`,
-        name: `${MaterialCssVarsService.PREFIX_CONTRAST}${hue}`,
+        name: `${palettePrefix + MaterialCssVarsService.CONTRAST_PREFIX}${hue}`,
       };
     });
     this._setStyle(updates);

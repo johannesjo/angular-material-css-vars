@@ -58,6 +58,21 @@
 
         <mat-card class="mat-elevation-z3">
           <mat-card-content>
+            <h2>Warn color</h2>
+            <div class="color-picker-el"
+                 (colorPickerChange)="onWarnChange($event)"
+                 [colorPicker]="warn"
+                 [cpAlphaChannel]="'disabled'"
+                 [cpDialogDisplay]="'inline'"
+                 [cpOKButton]="false"
+                 [cpOutputFormat]="'hex'"
+                 [cpToggle]="true"
+                 [style.background]="warn"></div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="mat-elevation-z3">
+          <mat-card-content>
             <h2>Contrast Color</h2>
 
             <mat-slide-toggle (change)="toggleAutoContrast()"
@@ -141,6 +156,73 @@
               <div>800</div>
             </div>
             <div class="bg-900">
+              <div>900</div>
+            </div>
+          </div>
+
+          <div class="palette mat-elevation-z5">
+            <div class="bga-50">
+              <div>50</div>
+            </div>
+            <div class="bga-100">
+              <div>100</div>
+            </div>
+            <div class="bga-200">
+              <div>200</div>
+            </div>
+            <div class="bga-300">
+              <div>300</div>
+            </div>
+            <div class="bga-400">
+              <div>400</div>
+            </div>
+            <div class="bga-500">
+              <div>primary<br>500</div>
+            </div>
+            <div class="bga-600">
+              <div>600</div>
+            </div>
+            <div class="bga-700">
+              <div>700</div>
+            </div>
+            <div class="bga-800">
+              <div>800</div>
+            </div>
+            <div class="bga-900">
+              <div>900</div>
+            </div>
+          </div>
+
+
+          <div class="palette mat-elevation-z5">
+            <div class="bgw-50">
+              <div>50</div>
+            </div>
+            <div class="bgw-100">
+              <div>100</div>
+            </div>
+            <div class="bgw-200">
+              <div>200</div>
+            </div>
+            <div class="bgw-300">
+              <div>300</div>
+            </div>
+            <div class="bgw-400">
+              <div>400</div>
+            </div>
+            <div class="bgw-500">
+              <div>primary<br>500</div>
+            </div>
+            <div class="bgw-600">
+              <div>600</div>
+            </div>
+            <div class="bgw-700">
+              <div>700</div>
+            </div>
+            <div class="bgw-800">
+              <div>800</div>
+            </div>
+            <div class="bgw-900">
               <div>900</div>
             </div>
           </div>
