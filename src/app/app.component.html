@@ -138,6 +138,14 @@
       <mat-card class="mat-elevation-z3">
         <mat-card-content>
           <h2 style="margin-bottom: 0;">Palette</h2>
+
+<!--          <div class="palette mat-elevation-z5">-->
+          <!--            <div *ngFor="let item of palettePrimary;"-->
+          <!--                 [ngStyle]="{'background-color': item.color.str}">-->
+          <!--              <div [ngStyle]="{'color': item.contrast.str}">{{item.hue}}</div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+
           <div class="palette mat-elevation-z5">
             <div class="bg-50">
               <div>50</div>
@@ -412,13 +420,13 @@
               <h2>Material Input</h2>
               <mat-form-field>
                 <input matInput
-                       placeholder="First name" />
+                       placeholder="First name"/>
               </mat-form-field>
               <mat-form-field>
                 <input #nickname
                        matInput
                        maxlength="50"
-                       placeholder="Nickname" />
+                       placeholder="Nickname"/>
                 <mat-hint align="end">
                   {{nickname.value.length}} / 50
                 </mat-hint>

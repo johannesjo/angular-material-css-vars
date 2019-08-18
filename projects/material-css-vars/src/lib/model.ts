@@ -28,6 +28,17 @@ export interface MatCssHueColorMapItem {
     g: number;
     b: number;
     a: number;
+    str: string;
+  };
+}
+
+export interface MatCssHueColorContrastMapItem extends MatCssHueColorMapItem{
+  contrast: {
+    r: number;
+    g: number;
+    b: number;
+    a: number;
+    str: string;
   };
 }
 

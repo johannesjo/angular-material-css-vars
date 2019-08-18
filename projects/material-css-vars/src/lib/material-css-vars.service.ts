@@ -1,6 +1,13 @@
 import {Inject, Injectable} from '@angular/core';
 import tinycolor2 from 'tinycolor2';
-import {HueValue, MatCssHueColorMapItem, MatCssPalettePrefix, MaterialCssVariables, MaterialCssVariablesConfig} from './model';
+import {
+  HueValue,
+  MatCssHueColorContrastMapItem,
+  MatCssHueColorMapItem,
+  MatCssPalettePrefix,
+  MaterialCssVariables,
+  MaterialCssVariablesConfig
+} from './model';
 import {DOCUMENT} from '@angular/common';
 import {DEFAULT_MAT_CSS_CFG} from './default-cfg.const';
 
@@ -139,7 +146,74 @@ export class MaterialCssVarsService {
     this._setStyle(updates);
   }
 
-  calculateContrastColors(palettePrefix: MatCssPalettePrefix): { contrastColorVar: string, hue: HueValue }[] {
+
+  getPaletteForColor(hex: string): MatCssHueColorMapItem[] {
+    return this.cfg.colorMap.map(item => {
+      const mappedColor = tinycolor2(hex)
+        .lighten(item.map[0])
+        .darken(item.map[1])
+        .saturate(item.map[2]);
+      const c = tinycolor2(mappedColor).toRgb();
+      return {
+        hue: item.name,
+        color: {
+          ...c,
+          str: `rgb(${c.r},${c.g},${c.b})`
+        }
+      };
+    });
+  }
+
+  getPaletteWithContrastForColor(hex: string): MatCssHueColorContrastMapItem[] {
+    const lightText = this._getCssVarValue(MaterialCssVarsService.LIGHT_TEXT_VAR);
+    const darkText = this._getCssVarValue(MaterialCssVarsService.DARK_TEXT_VAR);
+    const palette = this.getPaletteForColor(hex);
+
+    // TODO handle non auto case
+    return palette.map((item) => {
+      const c = item.color;
+      const hueRgbStr = `rgb(${c.r},${c.g},${c.b})`;
+      const rLight = tinycolor2.readability(hueRgbStr, `rgb(${lightText})`);
+      const rDark = tinycolor2.readability(hueRgbStr, `rgb(${darkText})`);
+      const contrastStr = (rLight > rDark)
+        ? lightText
+        : darkText;
+
+      const sLight = contrastStr.split(',').map(v => +v);
+      const cco = {r: sLight[0], g: sLight[1], b: sLight[2], a: 1};
+      return {
+        ...item,
+        contrast: {
+          ...cco,
+          str: `rgb(${cco.r},${cco.g},${cco.b})`
+        },
+      };
+    });
+  }
+
+  private _computePaletteColors(prefix: MatCssPalettePrefix, hex: string): CssVariable[] {
+    return this.getPaletteForColor(hex).map(item => {
+      const c = item.color;
+      return {
+        name: `${prefix}${item.hue}`,
+        val: `${c.r}, ${c.g}, ${c.b}`
+      };
+    });
+  }
+
+  private _recalculateAndSetContrastColor(palettePrefix: MatCssPalettePrefix) {
+    const updates = this._calculateContrastColorsForCurrentValues(palettePrefix)
+      .map(({contrastColorVar, hue}) => {
+        return {
+          val: `var(${contrastColorVar})`,
+          name: `${palettePrefix + MaterialCssVarsService.CONTRAST_PREFIX}${hue}`,
+        };
+      });
+    this._setStyle(updates);
+  }
+
+  private _calculateContrastColorsForCurrentValues(palettePrefix: MatCssPalettePrefix):
+    { contrastColorVar: string, hue: HueValue }[] {
     const lightText = this._getCssVarValue(MaterialCssVarsService.LIGHT_TEXT_VAR);
     const darkText = this._getCssVarValue(MaterialCssVarsService.DARK_TEXT_VAR);
 
@@ -156,41 +230,6 @@ export class MaterialCssVarsService {
       };
     });
   }
-
-  getPaletteForColor(hex: string): MatCssHueColorMapItem[] {
-    return this.cfg.colorMap.map(item => {
-      const mappedColor = tinycolor2(hex)
-        .lighten(item.map[0])
-        .darken(item.map[1])
-        .saturate(item.map[2]);
-      const c = tinycolor2(mappedColor).toRgb();
-      return {
-        hue: item.name,
-        color: c
-      };
-    });
-  }
-
-  private _computePaletteColors(prefix: MatCssPalettePrefix, hex: string): CssVariable[] {
-    return this.getPaletteForColor(hex).map(item => {
-      const c = item.color;
-      return {
-        name: `${prefix}${item.hue}`,
-        val: `${c.r}, ${c.g}, ${c.b}`
-      };
-    });
-  }
-
-  private _recalculateAndSetContrastColor(palettePrefix: MatCssPalettePrefix) {
-    const updates = this.calculateContrastColors(palettePrefix).map(({contrastColorVar, hue}) => {
-      return {
-        val: `var(${contrastColorVar})`,
-        name: `${palettePrefix + MaterialCssVarsService.CONTRAST_PREFIX}${hue}`,
-      };
-    });
-    this._setStyle(updates);
-  }
-
 
   private _setStyle(vars: CssVariable[]) {
     vars.forEach(s => {

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {MaterialCssVarsService} from '../../projects/material-css-vars/src/lib/material-css-vars.service';
-import {HueValue} from '../../projects/material-css-vars/src/lib/model';
+import {HueValue, MatCssHueColorContrastMapItem, MatCssHueColorMapItem} from '../../projects/material-css-vars/src/lib/model';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +11,8 @@ import {HueValue} from '../../projects/material-css-vars/src/lib/model';
 export class AppComponent {
   isDarkTheme = false;
   threshold: HueValue;
+
+  palettePrimary: MatCssHueColorContrastMapItem[];
 
   hues = [
     {value: '50', viewValue: '50'},
@@ -28,6 +30,7 @@ export class AppComponent {
     {value: 'A400', viewValue: 'A400'},
     {value: 'A700', viewValue: 'A700'},
   ];
+
 
   lastDialogResult: string;
   spinnerMode = 'indeterminate';
@@ -65,6 +68,7 @@ export class AppComponent {
 
   onPrimaryChange(hex: string) {
     this.materialCssVarsService.setPrimaryColor(hex);
+    this.palettePrimary = this.materialCssVarsService.getPaletteWithContrastForColor(hex);
   }
 
   onAccentChange(hex: string) {
