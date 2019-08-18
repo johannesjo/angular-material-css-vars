@@ -42,6 +42,16 @@ export class MaterialCssVarsService {
       ...cfg,
     };
     this.isAutoContrast = this.cfg.isAutoContrast;
+
+    if (this.cfg.primary) {
+      this.setPrimaryColor(this.cfg.primary);
+    }
+    if (this.cfg.accent) {
+      this.setAccentColor(this.cfg.accent);
+    }
+    if (this.cfg.warn) {
+      this.setWarnColor(this.cfg.warn);
+    }
   }
 
   setPrimaryColor(hex: string) {

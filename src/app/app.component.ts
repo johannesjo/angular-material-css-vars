@@ -9,10 +9,6 @@ import {HueValue} from '../../projects/material-css-vars/src/lib/model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  primary = '#3f51b5';
-  accent = '#e91e63';
-  warn = '#f44336';
-
   isDarkTheme = false;
   threshold: HueValue;
 
@@ -68,17 +64,14 @@ export class AppComponent {
   }
 
   onPrimaryChange(hex: string) {
-    this.primary = hex;
     this.materialCssVarsService.setPrimaryColor(hex);
   }
 
   onAccentChange(hex: string) {
-    this.accent = hex;
     this.materialCssVarsService.setAccentColor(hex);
   }
 
   onWarnChange(hex: string) {
-    this.warn = hex;
     this.materialCssVarsService.setWarnColor(hex);
   }
 

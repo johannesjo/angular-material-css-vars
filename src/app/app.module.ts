@@ -81,7 +81,11 @@ import {MaterialCssVarsModule} from '../../projects/material-css-vars/src/lib/ma
     MatSnackBarModule,
     ColorPickerModule,
     FormsModule,
-    MaterialCssVarsModule.forRoot(),
+    MaterialCssVarsModule.forRoot({
+      primary: '#3f51b5',
+      accent: '#e91e63',
+      warn: '#f44336',
+    }),
   ],
   providers: [
     // tslint:disable-next-line

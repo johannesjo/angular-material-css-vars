@@ -10,7 +10,7 @@ import {DEFAULT_MAT_CSS_CFG} from './default-cfg.const';
   ]
 })
 export class MaterialCssVarsModule {
-  static forRoot(config?: MaterialCssVariablesConfig): ModuleWithProviders {
+  static forRoot(config?: Partial<MaterialCssVariablesConfig>): ModuleWithProviders {
     return {
       ngModule: MaterialCssVarsModule,
       providers: [{provide: DEFAULT_MAT_CSS_CFG, useValue: config}]

@@ -21,11 +21,15 @@ export interface MaterialCssColorMapperEntry {
 }
 
 export interface MaterialCssVariablesConfig {
-  colorMap: MaterialCssColorMapperEntry[];
   isAutoContrast: boolean;
-  sortedHues: HueValue[];
   darkThemeClass: string;
   lightThemeClass: string;
+
+  colorMap: MaterialCssColorMapperEntry[];
+  primary?: string;
+  accent?: string;
+  warn?: string;
+  sortedHues: HueValue[];
 }
 
 export enum MaterialCssVariables {

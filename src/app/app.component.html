@@ -32,13 +32,13 @@
             <h2>Primary color</h2>
             <div class="color-picker-el"
                  (colorPickerChange)="onPrimaryChange($event)"
-                 [colorPicker]="primary"
+                 [colorPicker]="materialCssVarsService.primary"
                  [cpAlphaChannel]="'disabled'"
                  [cpDialogDisplay]="'inline'"
                  [cpOKButton]="false"
                  [cpOutputFormat]="'hex'"
                  [cpToggle]="true"
-                 [style.background]="primary"></div>
+                 [style.background]="materialCssVarsService.primary"></div>
           </mat-card-content>
         </mat-card>
         <mat-card class="mat-elevation-z3">
@@ -46,13 +46,13 @@
             <h2>Accent color</h2>
             <div class="color-picker-el"
                  (colorPickerChange)="onAccentChange($event)"
-                 [colorPicker]="accent"
+                 [colorPicker]="materialCssVarsService.accent"
                  [cpAlphaChannel]="'disabled'"
                  [cpDialogDisplay]="'inline'"
                  [cpOKButton]="false"
                  [cpOutputFormat]="'hex'"
                  [cpToggle]="true"
-                 [style.background]="accent"></div>
+                 [style.background]="materialCssVarsService.accent"></div>
           </mat-card-content>
         </mat-card>
 
@@ -61,13 +61,13 @@
             <h2>Warn color</h2>
             <div class="color-picker-el"
                  (colorPickerChange)="onWarnChange($event)"
-                 [colorPicker]="warn"
+                 [colorPicker]="materialCssVarsService.warn"
                  [cpAlphaChannel]="'disabled'"
                  [cpDialogDisplay]="'inline'"
                  [cpOKButton]="false"
                  [cpOutputFormat]="'hex'"
                  [cpToggle]="true"
-                 [style.background]="warn"></div>
+                 [style.background]="materialCssVarsService.warn"></div>
           </mat-card-content>
         </mat-card>
 
