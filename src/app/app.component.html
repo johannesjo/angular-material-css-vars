@@ -81,33 +81,44 @@
             <br>
             <br>
 
-            <button (click)="materialCssVarsService.switchToDarkContrastColor()"
-                    class="sidebar-button"
-                    color="accent"
-                    mat-raised-button>Set Dark Contrast
-            </button>
-            <br>
-            <br>
-
-            <button (click)="materialCssVarsService.switchToLightContrastColor()"
-                    class="sidebar-button"
-                    color="accent"
-                    mat-raised-button>Set Light Contrast
-            </button>
-            <br>
-            <br>
-
             <mat-form-field>
-              <mat-select (ngModelChange)="onChangeThreshold($event)"
-                          [(ngModel)]="materialCssVarsService.contrastColorThreshold"
-                          name="game"
-                          placeholder="Threshold for contrast color">
+              <mat-select (ngModelChange)="onChangeThresholdPrimary($event)"
+                          [disabled]="isAutoContrast"
+                          [(ngModel)]="materialCssVarsService.contrastColorThresholdPrimary"
+                          placeholder="Threshold for primary contrast color">
                 <mat-option *ngFor="let hue of hues"
                             [value]="hue.value">
                   {{hue.viewValue}}
                 </mat-option>
               </mat-select>
+            </mat-form-field>
+            <br>
+            <br>
 
+            <mat-form-field>
+              <mat-select (ngModelChange)="onChangeThresholdAccent($event)"
+                          [disabled]="isAutoContrast"
+                          [(ngModel)]="materialCssVarsService.contrastColorThresholdAccent"
+                          placeholder="Threshold for Accent contrast color">
+                <mat-option *ngFor="let hue of hues"
+                            [value]="hue.value">
+                  {{hue.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <br>
+
+            <mat-form-field>
+              <mat-select (ngModelChange)="onChangeThresholdWarn($event)"
+                          [disabled]="isAutoContrast"
+                          [(ngModel)]="materialCssVarsService.contrastColorThresholdWarn"
+                          placeholder="Threshold for Warn contrast color">
+                <mat-option *ngFor="let hue of hues"
+                            [value]="hue.value">
+                  {{hue.viewValue}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
           </mat-card-content>
         </mat-card>

@@ -83,9 +83,19 @@ export class AppComponent {
     this.materialCssVarsService.setWarnColor(hex);
   }
 
-  onChangeThreshold(threshold: HueValue) {
+  onChangeThresholdPrimary(threshold: HueValue) {
     this.threshold = threshold;
-    this.materialCssVarsService.changeContrastColorThreshold(threshold);
+    this.materialCssVarsService.changeContrastColorThresholdPrimary(threshold);
+  }
+
+  onChangeThresholdAccent(threshold: HueValue) {
+    this.threshold = threshold;
+    this.materialCssVarsService.changeContrastColorThresholdAccent(threshold);
+  }
+
+  onChangeThresholdWarn(threshold: HueValue) {
+    this.threshold = threshold;
+    this.materialCssVarsService.changeContrastColorThresholdWarn(threshold);
   }
 
   toggleAutoContrast() {

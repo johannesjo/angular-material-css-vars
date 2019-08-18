@@ -63,7 +63,9 @@ export class MaterialCssVarsService {
   accent: string;
   warn: string;
   isDarkTheme: boolean;
-  contrastColorThreshold: HueValue = '400';
+  contrastColorThresholdPrimary: HueValue = '400';
+  contrastColorThresholdAccent: HueValue = '400';
+  contrastColorThresholdWarn: HueValue = '400';
 
   private _isAutoContrast = true;
 
@@ -128,9 +130,22 @@ export class MaterialCssVarsService {
     this._recalculateContrastColor(MaterialCssVarsService.PREFIX_PRIMARY);
   }
 
-  changeContrastColorThreshold(threshold: HueValue) {
-    this.contrastColorThreshold = threshold;
+  changeContrastColorThresholdPrimary(threshold: HueValue) {
+    this.contrastColorThresholdPrimary = threshold;
+    this.changeContrastColorThreshold(threshold, MaterialCssVarsService.PREFIX_PRIMARY);
+  }
 
+  changeContrastColorThresholdAccent(threshold: HueValue) {
+    this.contrastColorThresholdAccent = threshold;
+    this.changeContrastColorThreshold(threshold, MaterialCssVarsService.PREFIX_ACCENT);
+  }
+
+  changeContrastColorThresholdWarn(threshold: HueValue) {
+    this.contrastColorThresholdWarn = threshold;
+    this.changeContrastColorThreshold(threshold, MaterialCssVarsService.PREFIX_WARN);
+  }
+
+  changeContrastColorThreshold(threshold: HueValue, palettePrefix) {
     let color = MaterialCssVarsService.DARK_TEXT_VAR;
     const updates = MaterialCssVarsService.SORTED_HUES.map((hue) => {
       if (hue === threshold) {
@@ -138,7 +153,7 @@ export class MaterialCssVarsService {
       }
       return {
         val: `var(${color})`,
-        name: `${MaterialCssVarsService.CONTRAST_PREFIX}${hue}`,
+        name: `${palettePrefix + MaterialCssVarsService.CONTRAST_PREFIX}${hue}`,
       };
     });
     this._setStyle(updates);
