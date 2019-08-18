@@ -26,10 +26,12 @@ export interface MaterialCssVariablesConfig {
   lightThemeClass: string;
 
   colorMap: MaterialCssColorMapperEntry[];
+  sortedHues: HueValue[];
+
+  isDarkTheme?: boolean;
   primary?: string;
   accent?: string;
   warn?: string;
-  sortedHues: HueValue[];
 }
 
 export enum MaterialCssVariables {
