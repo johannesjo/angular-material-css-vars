@@ -15,6 +15,19 @@ export type HueValue
   | 'A700'
   ;
 
+export interface MaterialCssColorMapperEntry {
+  name: HueValue;
+  map: [number, number, number];
+}
+
+export interface MaterialCssVariablesConfig {
+  colorMap: MaterialCssColorMapperEntry[];
+  isAutoContrast: boolean;
+  sortedHues: HueValue[];
+  darkThemeClass: string;
+  lightThemeClass: string;
+}
+
 export enum MaterialCssVariables {
   'Primary50' = '--palette-primary-50',
   'Primary100' = '--palette-primary-100',

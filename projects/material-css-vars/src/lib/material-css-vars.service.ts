@@ -1,7 +1,8 @@
 import {Inject, Injectable} from '@angular/core';
 import tinycolor2 from 'tinycolor2';
-import {HueValue, MaterialCssVariables} from './model';
+import {HueValue, MaterialCssVariables, MaterialCssVariablesConfig} from './model';
 import {DOCUMENT} from '@angular/common';
+import {DEFAULT_MAT_CSS_CFG} from './default-cfg.const';
 
 interface CssVariable {
   name: string;
@@ -19,46 +20,10 @@ export class MaterialCssVarsService {
   private static DARK_TEXT_VAR = '--dark-primary-text';
   private static LIGHT_TEXT_VAR = '--light-primary-text';
 
-  private static DARK_THEME_CLASS = 'isDarkTheme';
-  private static LIGHT_THEME_CLASS = 'isLightTheme';
-
   private static ROOT = document.documentElement;
 
-  private static COLOR_MAPPER = [
-    {name: '50', map: [52, 0, 0]},
-    {name: '100', map: [37, 0, 0]},
-    {name: '200', map: [26, 0, 0]},
-    {name: '300', map: [12, 0, 0]},
-    {name: '400', map: [6, 0, 0]},
-    {name: '500', map: [0, 0, 0]},
-    {name: '600', map: [0, 6, 0]},
-    {name: '700', map: [0, 12, 0]},
-    {name: '800', map: [0, 18, 0]},
-    {name: '900', map: [0, 24, 0]},
-    {name: 'A100', map: [50, 0, 30]},
-    {name: 'A200', map: [30, 0, 30]},
-    {name: 'A400', map: [10, 0, 15]},
-    {name: 'A700', map: [5, 0, 5]},
-  ];
-
-  private static SORTED_HUES: HueValue[] = [
-    '50',
-    '100',
-    '200',
-    '300',
-    '400',
-    '500',
-    '600',
-    '700',
-    '800',
-    '900',
-    'A100',
-    'A200',
-    'A400',
-    'A700',
-  ];
-
   // This should be readonly from the outside
+  cfg: MaterialCssVariablesConfig;
   primary: string;
   accent: string;
   warn: string;
@@ -66,12 +31,17 @@ export class MaterialCssVarsService {
   contrastColorThresholdPrimary: HueValue = '400';
   contrastColorThresholdAccent: HueValue = '400';
   contrastColorThresholdWarn: HueValue = '400';
-
-  private _isAutoContrast = true;
+  isAutoContrast = false;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
+    @Inject(DEFAULT_MAT_CSS_CFG) cfg: Partial<MaterialCssVariablesConfig>,
   ) {
+    this.cfg = {
+      ...DEFAULT_MAT_CSS_CFG,
+      ...cfg,
+    };
+    this.isAutoContrast = this.cfg.isAutoContrast;
   }
 
   setPrimaryColor(hex: string) {
@@ -80,7 +50,7 @@ export class MaterialCssVarsService {
     const stylePrimary = this._computePaletteColors(varPrefix, this.primary);
     this._setStyle(stylePrimary);
 
-    if (this._isAutoContrast) {
+    if (this.isAutoContrast) {
       this._recalculateContrastColor(varPrefix);
     }
   }
@@ -91,7 +61,7 @@ export class MaterialCssVarsService {
     const styleAccent = this._computePaletteColors(varPrefix, this.accent);
     this._setStyle(styleAccent);
 
-    if (this._isAutoContrast) {
+    if (this.isAutoContrast) {
       this._recalculateContrastColor(varPrefix);
     }
   }
@@ -102,7 +72,7 @@ export class MaterialCssVarsService {
     const styleWarn = this._computePaletteColors(varPrefix, this.warn);
     this._setStyle(styleWarn);
 
-    if (this._isAutoContrast) {
+    if (this.isAutoContrast) {
       this._recalculateContrastColor(varPrefix);
     }
   }
@@ -116,17 +86,17 @@ export class MaterialCssVarsService {
 
   setDarkTheme(isDark: boolean) {
     if (isDark) {
-      this.document.body.classList.remove(MaterialCssVarsService.LIGHT_THEME_CLASS);
-      this.document.body.classList.add(MaterialCssVarsService.DARK_THEME_CLASS);
+      this.document.body.classList.remove(this.cfg.lightThemeClass);
+      this.document.body.classList.add(this.cfg.darkThemeClass);
     } else {
-      this.document.body.classList.remove(MaterialCssVarsService.DARK_THEME_CLASS);
-      this.document.body.classList.add(MaterialCssVarsService.LIGHT_THEME_CLASS);
+      this.document.body.classList.remove(this.cfg.darkThemeClass);
+      this.document.body.classList.add(this.cfg.lightThemeClass);
     }
     this.isDarkTheme = isDark;
   }
 
   setAutoContrastEnabled(val: boolean) {
-    this._isAutoContrast = val;
+    this.isAutoContrast = val;
     this._recalculateContrastColor(MaterialCssVarsService.PREFIX_PRIMARY);
   }
 
@@ -147,7 +117,7 @@ export class MaterialCssVarsService {
 
   changeContrastColorThreshold(threshold: HueValue, palettePrefix) {
     let color = MaterialCssVarsService.DARK_TEXT_VAR;
-    const updates = MaterialCssVarsService.SORTED_HUES.map((hue) => {
+    const updates = this.cfg.sortedHues.map((hue) => {
       if (hue === threshold) {
         color = MaterialCssVarsService.LIGHT_TEXT_VAR;
       }
@@ -163,7 +133,7 @@ export class MaterialCssVarsService {
     const lightText = this._getCssVarValue(MaterialCssVarsService.LIGHT_TEXT_VAR);
     const darkText = this._getCssVarValue(MaterialCssVarsService.DARK_TEXT_VAR);
 
-    const updates = MaterialCssVarsService.SORTED_HUES.map((hue) => {
+    const updates = this.cfg.sortedHues.map((hue) => {
       const hueVarVal = this._getCssVarValue(`${palettePrefix}${hue}`);
 
       const rLight = tinycolor2.readability(`rgb(${hueVarVal})`, `rgb(${lightText})`);
@@ -181,7 +151,7 @@ export class MaterialCssVarsService {
   }
 
   private _computePaletteColors(prefix: string, hex: string): CssVariable[] {
-    return MaterialCssVarsService.COLOR_MAPPER.map(item => {
+    return this.cfg.colorMap.map(item => {
       const mappedColor = tinycolor2(hex)
         .lighten(item.map[0])
         .darken(item.map[1])

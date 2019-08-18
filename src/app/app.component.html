@@ -76,14 +76,14 @@
             <h2>Contrast Color</h2>
 
             <mat-slide-toggle (change)="toggleAutoContrast()"
-                              [checked]="isAutoContrast">Auto Contrast Colors
+                              [checked]="materialCssVarsService.isAutoContrast">Auto Contrast Colors
             </mat-slide-toggle>
             <br>
             <br>
 
             <mat-form-field>
               <mat-select (ngModelChange)="onChangeThresholdPrimary($event)"
-                          [disabled]="isAutoContrast"
+                          [disabled]="materialCssVarsService.isAutoContrast"
                           [(ngModel)]="materialCssVarsService.contrastColorThresholdPrimary"
                           placeholder="Threshold for primary contrast color">
                 <mat-option *ngFor="let hue of hues"
@@ -97,7 +97,7 @@
 
             <mat-form-field>
               <mat-select (ngModelChange)="onChangeThresholdAccent($event)"
-                          [disabled]="isAutoContrast"
+                          [disabled]="materialCssVarsService.isAutoContrast"
                           [(ngModel)]="materialCssVarsService.contrastColorThresholdAccent"
                           placeholder="Threshold for Accent contrast color">
                 <mat-option *ngFor="let hue of hues"
@@ -111,7 +111,7 @@
 
             <mat-form-field>
               <mat-select (ngModelChange)="onChangeThresholdWarn($event)"
-                          [disabled]="isAutoContrast"
+                          [disabled]="materialCssVarsService.isAutoContrast"
                           [(ngModel)]="materialCssVarsService.contrastColorThresholdWarn"
                           placeholder="Threshold for Warn contrast color">
                 <mat-option *ngFor="let hue of hues"

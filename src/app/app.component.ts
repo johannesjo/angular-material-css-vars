@@ -14,7 +14,6 @@ export class AppComponent {
   warn = '#f44336';
 
   isDarkTheme = false;
-  isAutoContrast = true;
   threshold: HueValue;
 
   hues = [
@@ -99,8 +98,7 @@ export class AppComponent {
   }
 
   toggleAutoContrast() {
-    this.isAutoContrast = !this.isAutoContrast;
-    this.materialCssVarsService.setAutoContrastEnabled(this.isAutoContrast);
+    this.materialCssVarsService.setAutoContrastEnabled(!this.materialCssVarsService.isAutoContrast);
   }
 
   toggleTheme() {

@@ -39,6 +39,7 @@ import {
 import {FormsModule} from '@angular/forms';
 import {ColorPickerModule} from 'ngx-color-picker';
 import {APP_BASE_HREF} from '@angular/common';
+import {MaterialCssVarsModule} from '../../projects/material-css-vars/src/lib/material-css-vars.module';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import {APP_BASE_HREF} from '@angular/common';
     MatSnackBarModule,
     ColorPickerModule,
     FormsModule,
+    MaterialCssVarsModule.forRoot(),
   ],
   providers: [
     // tslint:disable-next-line
