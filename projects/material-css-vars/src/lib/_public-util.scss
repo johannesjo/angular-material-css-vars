@@ -3,71 +3,89 @@
 
 // Utility mixins for the public
 
-@function mat-css-primary-color($hue: 500,  $opacity: null) {
-  @if (type-of($opacity) == number) {
-    @return _mat-css-rgba(map_get($mat-css-palette-primary, $hue), $opacity);
+// colors
+// ------
+@function mat-css-color($hue: 500,  $opacity: null, $palette: 'primary') {
+  $palette_: $mat-css-palette-primary;
+  @if ($palette=='primary') {
+    $palette_: $mat-css-palette-primary;
+  } @else if ($palette=='accent') {
+    $palette_: $mat-css-palette-accent;
+  } @else if ($palette=='warn') {
+    $palette_: $mat-css-palette-warn;
   } @else {
-    @return _mat-css-rgb(map_get($mat-css-palette-primary, $hue));
+    @error 'Invalid palette';
+  }
+
+  @if (type-of($opacity) == number) {
+    @return _mat-css-rgba(map_get($palette_, $hue), $opacity);
+  } @else {
+    @return _mat-css-rgb(map_get($palette_, $hue));
   }
 }
 
-@function mat-css-accent-color($hue: 500,  $opacity: null) {
+@function mat-css-color-primary($hue: 500,  $opacity: null) {
+  @return mat-css-color($hue, $opacity, 'primary');
+}
+
+@function mat-css-color-accent($hue: 500,  $opacity: null) {
+  @return mat-css-color($hue, $opacity, 'accent');
+}
+
+@function mat-css-color-warn($hue: 500,  $opacity: null) {
+  @return mat-css-color($hue, $opacity, 'warn');
+}
+
+// contrast-colors
+// ---------------
+@function mat-css-color-contrast($hue: 500,  $opacity: null, $palette: 'primary') {
+  $palette_: $mat-css-contrast-palette;
+  @if ($palette=='primary') {
+    $palette_: $mat-css-contrast-palette;
+  } @else if ($palette=='accent') {
+    $palette_: $mat-css-contrast-palette-accent;
+  } @else if ($palette=='warn') {
+    $palette_: $mat-css-contrast-palette-warn;
+  }
+
   @if (type-of($opacity) == number) {
-    @return _mat-css-rgba(map_get($mat-css-palette-accent, $hue), $opacity);
+    @return _mat-css-rgba(map_get($palette_, $hue), $opacity);
   } @else {
-    @return _mat-css-rgb(map_get($mat-css-palette-accent, $hue));
+    @return _mat-css-rgb(map_get($palette_, $hue));
   }
 }
 
-@function mat-css-warn-color($hue: 500,  $opacity: null) {
-  @if (type-of($opacity) == number) {
-    @return _mat-css-rgba(map_get($mat-css-palette-warn, $hue), $opacity);
-  } @else {
-    @return _mat-css-rgb(map_get($mat-css-palette-warn, $hue));
-  }
-}
-
-@function mat-css-contrast-color($hue: 500,  $opacity: null) {
-  @if (type-of($opacity) == number) {
-    @return _mat-css-rgba(map_get($mat-css-contrast-palette, $hue), $opacity);
-  } @else {
-    @return _mat-css-rgb(map_get($mat-css-contrast-palette, $hue));
-  }
+@function mat-css-contrast-color-primary($hue: 500,  $opacity: null) {
+  @return mat-css-color-contrast($hue, $opacity, 'primary');
 }
 
 @function mat-css-contrast-color-accent($hue: 500,  $opacity: null) {
-  @if (type-of($opacity) == number) {
-    @return _mat-css-rgba(map_get($mat-css-contrast-palette-accent, $hue), $opacity);
-  } @else {
-    @return _mat-css-rgb(map_get($mat-css-contrast-palette-accent, $hue));
-  }
+  @return mat-css-color-contrast($hue, $opacity, 'accent');
 }
 
 @function mat-css-contrast-color-warn($hue: 500,  $opacity: null) {
-  @if (type-of($opacity) == number) {
-    @return _mat-css-rgba(map_get($mat-css-contrast-palette-warn, $hue), $opacity);
-  } @else {
-    @return _mat-css-rgb(map_get($mat-css-contrast-palette-warn, $hue));
-  }
+  @return mat-css-color-contrast($hue, $opacity, 'warn');
 }
 
+// mixins
+// ------
 @mixin mat-css-color-and-contrast($hue) {
-  background: mat-css-primary-color($hue);
-  color: mat-css-contrast-color($hue);
+  background: mat-css-color-primary($hue);
+  color: mat-css-color-contrast($hue);
 }
 
 @mixin mat-css-color-and-contrast-accent($hue) {
-  background: mat-css-accent-color($hue);
+  background: mat-css-color-accent($hue);
   color: mat-css-contrast-color-accent($hue);
 }
 
 @mixin mat-css-color-and-contrast-warn($hue) {
-  background: mat-css-warn-color($hue);
+  background: mat-css-color-warn($hue);
   color: mat-css-contrast-color-warn($hue);
 }
 
 @mixin mat-css-bg($hue) {
-  background: mat-css-primary-color($hue);
+  background: mat-css-color-primary($hue);
 }
 
 @mixin mat-css-dark-theme {

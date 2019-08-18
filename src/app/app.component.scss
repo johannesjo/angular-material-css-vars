@@ -24,7 +24,7 @@ $lighter-dark: rgb(88, 88, 88);
 
 .bg-500 {
   @include mat-css-color-and-contrast(500);
-  border: 4px dashed mat-css-accent-color();
+  border: 4px dashed mat-css-color-accent();
 }
 
 .bg-600 {
@@ -66,7 +66,7 @@ $lighter-dark: rgb(88, 88, 88);
 
 .bga-500 {
   @include mat-css-color-and-contrast-accent(500);
-  border: 4px dashed mat-css-primary-color();
+  border: 4px dashed mat-css-color-primary();
 }
 
 .bga-600 {
@@ -108,7 +108,7 @@ $lighter-dark: rgb(88, 88, 88);
 
 .bgw-500 {
   @include mat-css-color-and-contrast-warn(500);
-  border: 4px dashed mat-css-primary-color();
+  border: 4px dashed mat-css-color-primary();
 }
 
 .bgw-600 {

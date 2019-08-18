@@ -45,7 +45,7 @@ There are also several [utility functions and mixins](https://github.com/johanne
 @import '~angular-material-css-vars/public-util';
 
 .with-color {
-  border-color: mat-css-primary-color(300);
+  border-color: mat-css-color-primary(300);
 }
 
 .color-and-contrast {
