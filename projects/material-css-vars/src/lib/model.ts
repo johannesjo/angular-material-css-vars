@@ -17,7 +17,7 @@ export type HueValue
 
 export enum MatCssPalettePrefix {
   Primary = '--palette-primary-',
-  Accent = '--palette-accent--',
+  Accent = '--palette-accent-',
   Warn = '--palette-warn-',
 }
 
