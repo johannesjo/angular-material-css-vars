@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import tinycolor2 from 'tinycolor2';
-import {HueValue, MatCssPalettePrefix, MaterialCssVariables, MaterialCssVariablesConfig} from './model';
+import {HueValue, MatCssHueColorMapItem, MatCssPalettePrefix, MaterialCssVariables, MaterialCssVariablesConfig} from './model';
 import {DOCUMENT} from '@angular/common';
 import {DEFAULT_MAT_CSS_CFG} from './default-cfg.const';
 
@@ -157,6 +157,30 @@ export class MaterialCssVarsService {
     });
   }
 
+  getPaletteForColor(hex: string): MatCssHueColorMapItem[] {
+    return this.cfg.colorMap.map(item => {
+      const mappedColor = tinycolor2(hex)
+        .lighten(item.map[0])
+        .darken(item.map[1])
+        .saturate(item.map[2]);
+      const c = tinycolor2(mappedColor).toRgb();
+      return {
+        hue: item.name,
+        color: c
+      };
+    });
+  }
+
+  private _computePaletteColors(prefix: MatCssPalettePrefix, hex: string): CssVariable[] {
+    return this.getPaletteForColor(hex).map(item => {
+      const c = item.color;
+      return {
+        name: `${prefix}${item.hue}`,
+        val: `${c.r}, ${c.g}, ${c.b}`
+      };
+    });
+  }
+
   private _recalculateAndSetContrastColor(palettePrefix: MatCssPalettePrefix) {
     const updates = this.calculateContrastColors(palettePrefix).map(({contrastColorVar, hue}) => {
       return {
@@ -167,28 +191,6 @@ export class MaterialCssVarsService {
     this._setStyle(updates);
   }
 
-  private _computePaletteColors(prefix: MatCssPalettePrefix, hex: string): CssVariable[] {
-    return this.cfg.colorMap.map(item => {
-      const mappedColor = tinycolor2(hex)
-        .lighten(item.map[0])
-        .darken(item.map[1])
-        .saturate(item.map[2]);
-
-      return this._getColorObject(
-        prefix,
-        item.name,
-        mappedColor,
-      );
-    });
-  }
-
-  private _getColorObject(prefix: MatCssPalettePrefix, name: string, value: tinycolor2.Instance): CssVariable {
-    const c = tinycolor2(value).toRgb();
-    return {
-      name: `${prefix}${name}`,
-      val: `${c.r}, ${c.g}, ${c.b}`
-    };
-  }
 
   private _setStyle(vars: CssVariable[]) {
     vars.forEach(s => {

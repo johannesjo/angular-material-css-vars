@@ -21,6 +21,16 @@ export enum MatCssPalettePrefix {
   Warn = '--palette-warn-',
 }
 
+export interface MatCssHueColorMapItem {
+  hue: HueValue;
+  color: {
+    r: number;
+    g: number;
+    b: number;
+    a: number;
+  };
+}
+
 export interface MaterialCssColorMapperEntry {
   name: HueValue;
   map: [number, number, number];
