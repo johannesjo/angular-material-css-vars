@@ -14,7 +14,24 @@ You want to style your angular material dynamically with all the colors in the r
     @import '~angular-material-css-vars/main';
     @include initMaterialCssVars();
     ```
-4. Then use it like so:
+4. Add to your main module:
+```typescript
+import {MaterialCssVarsModule} from 'angular-material-css-vars';
+
+@NgModule({
+  imports: [
+    MaterialCssVarsModule.forRoot({
+      isAutoContrast: true,
+      darkThemeClass: 'isDarkTheme',
+      lightThemeClass: 'isLightTheme',
+      // ...
+    }),
+  ],
+})
+export class AppModule {
+}
+```
+5. Then use it like so:
     ```typescript
     import {MaterialCssVarsService} from 'angular-material-css-vars';
     
