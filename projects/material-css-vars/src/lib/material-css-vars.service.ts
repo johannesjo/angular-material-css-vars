@@ -18,8 +18,7 @@ export class MaterialCssVarsService {
   private static CONTRAST_PREFIX = 'contrast-';
   private static DARK_TEXT_VAR = '--dark-primary-text';
   private static LIGHT_TEXT_VAR = '--light-primary-text';
-  private static MAGIC_THRESHOLD_LIGHT: HueValue = '300';
-  private static MAGIC_THRESHOLD_DARK: HueValue = '600';
+
   private static DARK_THEME_CLASS = 'isDarkTheme';
   private static LIGHT_THEME_CLASS = 'isLightTheme';
 
@@ -104,14 +103,6 @@ export class MaterialCssVarsService {
     if (this._isAutoContrast) {
       this._recalculateContrastColor(varPrefix);
     }
-  }
-
-  switchToDarkContrastColor() {
-    this.changeContrastColorThreshold(MaterialCssVarsService.MAGIC_THRESHOLD_DARK);
-  }
-
-  switchToLightContrastColor() {
-    this.changeContrastColorThreshold(MaterialCssVarsService.MAGIC_THRESHOLD_LIGHT);
   }
 
   setVariable(cssVarName: MaterialCssVariables, value: string) {

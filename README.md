@@ -29,8 +29,6 @@ You want to style your angular material dynamically with all the colors in the r
     ```
 ## Additional Features
 * Auto or manually set contrast color via 
-  * `switchToDarkContrastColor()`
-  * `switchToLightContrastColor()`
   * `setAutoContrastEnabled(bool)`
   * `changeContrastColorThreshold(hueVal: HueValue)`
 * Helper to set all variables
