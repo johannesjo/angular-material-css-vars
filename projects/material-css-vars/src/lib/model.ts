@@ -15,6 +15,12 @@ export type HueValue
   | 'A700'
   ;
 
+export enum MatCssPalettePrefix {
+  Primary = '--palette-primary-',
+  Accent = '--palette-accent--',
+  Warn = '--palette-warn-',
+}
+
 export interface MaterialCssColorMapperEntry {
   name: HueValue;
   map: [number, number, number];

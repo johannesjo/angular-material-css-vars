@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import tinycolor2 from 'tinycolor2';
-import {HueValue, MaterialCssVariables, MaterialCssVariablesConfig} from './model';
+import {HueValue, MatCssPalettePrefix, MaterialCssVariables, MaterialCssVariablesConfig} from './model';
 import {DOCUMENT} from '@angular/common';
 import {DEFAULT_MAT_CSS_CFG} from './default-cfg.const';
 
@@ -13,9 +13,6 @@ interface CssVariable {
   providedIn: 'root'
 })
 export class MaterialCssVarsService {
-  private static PREFIX_PRIMARY = '--palette-primary-';
-  private static PREFIX_ACCENT = '--palette-accent-';
-  private static PREFIX_WARN = '--palette-warn-';
   private static CONTRAST_PREFIX = 'contrast-';
   private static DARK_TEXT_VAR = '--dark-primary-text';
   private static LIGHT_TEXT_VAR = '--light-primary-text';
@@ -59,34 +56,34 @@ export class MaterialCssVarsService {
 
   setPrimaryColor(hex: string) {
     this.primary = hex;
-    const varPrefix = MaterialCssVarsService.PREFIX_PRIMARY;
+    const varPrefix = MatCssPalettePrefix.Primary;
     const stylePrimary = this._computePaletteColors(varPrefix, this.primary);
     this._setStyle(stylePrimary);
 
     if (this.isAutoContrast) {
-      this._recalculateContrastColor(varPrefix);
+      this._recalculateAndSetContrastColor(varPrefix);
     }
   }
 
   setAccentColor(hex: string) {
     this.accent = hex;
-    const varPrefix = MaterialCssVarsService.PREFIX_ACCENT;
+    const varPrefix = MatCssPalettePrefix.Accent;
     const styleAccent = this._computePaletteColors(varPrefix, this.accent);
     this._setStyle(styleAccent);
 
     if (this.isAutoContrast) {
-      this._recalculateContrastColor(varPrefix);
+      this._recalculateAndSetContrastColor(varPrefix);
     }
   }
 
   setWarnColor(hex: string) {
     this.warn = hex;
-    const varPrefix = MaterialCssVarsService.PREFIX_WARN;
+    const varPrefix = MatCssPalettePrefix.Warn;
     const styleWarn = this._computePaletteColors(varPrefix, this.warn);
     this._setStyle(styleWarn);
 
     if (this.isAutoContrast) {
-      this._recalculateContrastColor(varPrefix);
+      this._recalculateAndSetContrastColor(varPrefix);
     }
   }
 
@@ -110,25 +107,25 @@ export class MaterialCssVarsService {
 
   setAutoContrastEnabled(val: boolean) {
     this.isAutoContrast = val;
-    this._recalculateContrastColor(MaterialCssVarsService.PREFIX_PRIMARY);
+    this._recalculateAndSetContrastColor(MatCssPalettePrefix.Primary);
   }
 
   changeContrastColorThresholdPrimary(threshold: HueValue) {
     this.contrastColorThresholdPrimary = threshold;
-    this.changeContrastColorThreshold(threshold, MaterialCssVarsService.PREFIX_PRIMARY);
+    this.changeContrastColorThreshold(threshold, MatCssPalettePrefix.Primary);
   }
 
   changeContrastColorThresholdAccent(threshold: HueValue) {
     this.contrastColorThresholdAccent = threshold;
-    this.changeContrastColorThreshold(threshold, MaterialCssVarsService.PREFIX_ACCENT);
+    this.changeContrastColorThreshold(threshold, MatCssPalettePrefix.Accent);
   }
 
   changeContrastColorThresholdWarn(threshold: HueValue) {
     this.contrastColorThresholdWarn = threshold;
-    this.changeContrastColorThreshold(threshold, MaterialCssVarsService.PREFIX_WARN);
+    this.changeContrastColorThreshold(threshold, MatCssPalettePrefix.Warn);
   }
 
-  changeContrastColorThreshold(threshold: HueValue, palettePrefix) {
+  changeContrastColorThreshold(threshold: HueValue, palettePrefix: MatCssPalettePrefix) {
     let color = MaterialCssVarsService.DARK_TEXT_VAR;
     const updates = this.cfg.sortedHues.map((hue) => {
       if (hue === threshold) {
@@ -142,28 +139,35 @@ export class MaterialCssVarsService {
     this._setStyle(updates);
   }
 
-  private _recalculateContrastColor(palettePrefix: string) {
+  calculateContrastColors(palettePrefix: MatCssPalettePrefix): { contrastColorVar: string, hue: HueValue }[] {
     const lightText = this._getCssVarValue(MaterialCssVarsService.LIGHT_TEXT_VAR);
     const darkText = this._getCssVarValue(MaterialCssVarsService.DARK_TEXT_VAR);
 
-    const updates = this.cfg.sortedHues.map((hue) => {
+    return this.cfg.sortedHues.map((hue) => {
       const hueVarVal = this._getCssVarValue(`${palettePrefix}${hue}`);
-
       const rLight = tinycolor2.readability(`rgb(${hueVarVal})`, `rgb(${lightText})`);
       const rDark = tinycolor2.readability(`rgb(${hueVarVal})`, `rgb(${darkText})`);
-      const color = (rLight > rDark)
+      const contrastColorVar = (rLight > rDark)
         ? MaterialCssVarsService.LIGHT_TEXT_VAR
         : MaterialCssVarsService.DARK_TEXT_VAR;
-
       return {
-        val: `var(${color})`,
+        contrastColorVar,
+        hue,
+      };
+    });
+  }
+
+  private _recalculateAndSetContrastColor(palettePrefix: MatCssPalettePrefix) {
+    const updates = this.calculateContrastColors(palettePrefix).map(({contrastColorVar, hue}) => {
+      return {
+        val: `var(${contrastColorVar})`,
         name: `${palettePrefix + MaterialCssVarsService.CONTRAST_PREFIX}${hue}`,
       };
     });
     this._setStyle(updates);
   }
 
-  private _computePaletteColors(prefix: string, hex: string): CssVariable[] {
+  private _computePaletteColors(prefix: MatCssPalettePrefix, hex: string): CssVariable[] {
     return this.cfg.colorMap.map(item => {
       const mappedColor = tinycolor2(hex)
         .lighten(item.map[0])
@@ -178,7 +182,7 @@ export class MaterialCssVarsService {
     });
   }
 
-  private _getColorObject(prefix: string, name: string, value: tinycolor2.Instance): CssVariable {
+  private _getColorObject(prefix: MatCssPalettePrefix, name: string, value: tinycolor2.Instance): CssVariable {
     const c = tinycolor2(value).toRgb();
     return {
       name: `${prefix}${name}`,
