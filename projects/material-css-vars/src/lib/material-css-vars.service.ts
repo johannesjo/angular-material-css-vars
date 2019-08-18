@@ -72,7 +72,7 @@ export class MaterialCssVarsService {
   ) {
   }
 
-  changePrimaryColor(hex: string) {
+  setPrimaryColor(hex: string) {
     this.primary = hex;
     const varPrefix = MaterialCssVarsService.PREFIX_PRIMARY;
     const stylePrimary = this._computePaletteColors(varPrefix, this.primary);
@@ -83,7 +83,7 @@ export class MaterialCssVarsService {
     }
   }
 
-  changeAccentColor(hex: string) {
+  setAccentColor(hex: string) {
     this.accent = hex;
     const varPrefix = MaterialCssVarsService.PREFIX_ACCENT;
     const styleAccent = this._computePaletteColors(varPrefix, this.accent);
@@ -94,7 +94,7 @@ export class MaterialCssVarsService {
     }
   }
 
-  changeWarnColor(hex: string) {
+  setWarnColor(hex: string) {
     this.warn = hex;
     const varPrefix = MaterialCssVarsService.PREFIX_WARN;
     const styleWarn = this._computePaletteColors(varPrefix, this.warn);

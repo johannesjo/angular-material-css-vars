@@ -70,17 +70,17 @@ export class AppComponent {
 
   onPrimaryChange(hex: string) {
     this.primary = hex;
-    this.materialCssVarsService.changePrimaryColor(hex);
+    this.materialCssVarsService.setPrimaryColor(hex);
   }
 
   onAccentChange(hex: string) {
     this.accent = hex;
-    this.materialCssVarsService.changeAccentColor(hex);
+    this.materialCssVarsService.setAccentColor(hex);
   }
 
   onWarnChange(hex: string) {
     this.warn = hex;
-    this.materialCssVarsService.changeWarnColor(hex);
+    this.materialCssVarsService.setWarnColor(hex);
   }
 
   onChangeThreshold(threshold: HueValue) {
