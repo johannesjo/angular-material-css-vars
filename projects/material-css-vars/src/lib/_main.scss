@@ -27,6 +27,7 @@
   ));
 
   @at-root {
+    // NOTE: light theme is the default theme
     @include angular-material-theme($theme);
 
     @if $dark-theme-selector {
