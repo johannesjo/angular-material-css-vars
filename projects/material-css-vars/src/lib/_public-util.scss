@@ -5,16 +5,28 @@
 
 // colors
 // ------
-@function mat-css-color($hue: 500,  $opacity: null, $palette: 'primary') {
+@function mat-css-color($hue: 500,  $opacity: null, $palette: 'primary', $is-contrast-color: false) {
   $palette_: $mat-css-palette-primary;
-  @if ($palette=='primary') {
-    $palette_: $mat-css-palette-primary;
-  } @else if ($palette=='accent') {
-    $palette_: $mat-css-palette-accent;
-  } @else if ($palette=='warn') {
-    $palette_: $mat-css-palette-warn;
+  @if ($is-contrast-color == true) {
+    @if ($palette=='primary') {
+      $palette_: $mat-css-contrast-palette;
+    } @else if ($palette=='accent') {
+      $palette_: $mat-css-contrast-palette-accent;
+    } @else if ($palette=='warn') {
+      $palette_: $mat-css-contrast-palette-warn;
+    } @else {
+      @error 'Invalid contrast palette';
+    }
   } @else {
-    @error 'Invalid palette';
+    @if ($palette=='primary') {
+      $palette_: $mat-css-palette-primary;
+    } @else if ($palette=='accent') {
+      $palette_: $mat-css-palette-accent;
+    } @else if ($palette=='warn') {
+      $palette_: $mat-css-palette-warn;
+    } @else {
+      @error 'Invalid palette';
+    }
   }
 
   @if (type-of($opacity) == number) {
@@ -38,40 +50,27 @@
 
 // contrast-colors
 // ---------------
-@function mat-css-color-contrast($hue: 500,  $opacity: null, $palette: 'primary') {
-  $palette_: $mat-css-contrast-palette;
-  @if ($palette=='primary') {
-    $palette_: $mat-css-contrast-palette;
-  } @else if ($palette=='accent') {
-    $palette_: $mat-css-contrast-palette-accent;
-  } @else if ($palette=='warn') {
-    $palette_: $mat-css-contrast-palette-warn;
-  }
-
-  @if (type-of($opacity) == number) {
-    @return _mat-css-rgba(map_get($palette_, $hue), $opacity);
-  } @else {
-    @return _mat-css-rgb(map_get($palette_, $hue));
-  }
+@function mat-css-contrast-color($hue: 500,  $opacity: null, $palette: 'primary') {
+  @return mat-css-color($hue, $opacity, $palette, true);
 }
 
 @function mat-css-contrast-color-primary($hue: 500,  $opacity: null) {
-  @return mat-css-color-contrast($hue, $opacity, 'primary');
+  @return mat-css-contrast-color($hue, $opacity, 'primary');
 }
 
 @function mat-css-contrast-color-accent($hue: 500,  $opacity: null) {
-  @return mat-css-color-contrast($hue, $opacity, 'accent');
+  @return mat-css-contrast-color($hue, $opacity, 'accent');
 }
 
 @function mat-css-contrast-color-warn($hue: 500,  $opacity: null) {
-  @return mat-css-color-contrast($hue, $opacity, 'warn');
+  @return mat-css-contrast-color($hue, $opacity, 'warn');
 }
 
 // mixins
 // ------
 @mixin mat-css-color-and-contrast($hue) {
   background: mat-css-color-primary($hue);
-  color: mat-css-color-contrast($hue);
+  color: mat-css-contrast-color($hue);
 }
 
 @mixin mat-css-color-and-contrast-accent($hue) {
