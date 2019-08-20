@@ -12,6 +12,12 @@ You want to style your angular material dynamically with all the colors in the r
 3. Add this to your main stylesheet instead:
     ```scss
     @import '~angular-material-css-vars/main';
+ 
+    // optional
+    $mat-css-dark-theme-selector: '.isDarkTheme';
+    $mat-css-light-theme-selector: '.isLightTheme';
+ 
+    // init theme
     @include initMaterialCssVars();
     ```
 4. Add to your main module:
@@ -21,6 +27,7 @@ import {MaterialCssVarsModule} from 'angular-material-css-vars';
 @NgModule({
   imports: [
     MaterialCssVarsModule.forRoot({
+      // all optional
       isAutoContrast: true,
       darkThemeClass: 'isDarkTheme',
       lightThemeClass: 'isLightTheme',
@@ -72,16 +79,31 @@ There are also several [utility functions and mixins](https://github.com/johanne
 }
 ```
 ## Initialization Options
-You can provide different options during initialization to change the body class used for the dark theme and to provide different default styles:
+You can provide different options before initialization to change the body class used for the dark theme and to provide different default styles:
 ```scss
-@mixin initMaterialCssVars(
-  $default-theme: $css-vars-default-light-theme,
-  $dark-theme-body-class: 'isDarkTheme',
-  $default-theme-text: $css-vars-text
-) {
-  // ...
-}
+// $mat-css-default-light-theme: ... ;
+// $mat-css-text: ... ;
+$mat-css-dark-theme-selector: '.isDarkTheme';
+$mat-css-light-theme-selector: '.isLightTheme';
+
+@include initMaterialCssVars();
+
 ``` 
+To make those variables take effect with your mixins, you need to make sure that they are also defined before using them. E.g.:
+```scss
+// probably best put in a common variables file and imported before the mixins
+$mat-css-dark-theme-selector: '.isDarkThemeCUSTOM';
+
+@import '~angular-material-css-vars/public-util';
+
+.my-component {
+  @include mat-css-dark-theme {
+    // dark theme styles ...  
+  } 
+}
+```
+ 
+
 A full list of the theme map [can be found here](https://github.com/johannesjo/angular-material-css-vars/blob/master/projects/material-css-vars/src/lib/_variables.scss).
 
 
