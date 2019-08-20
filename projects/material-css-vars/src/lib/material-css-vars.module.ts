@@ -1,7 +1,7 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MaterialCssVariablesConfig} from './model';
-import {DEFAULT_MAT_CSS_CFG} from './default-cfg.const';
+import {MATERIAL_CSS_VARS_CFG} from '../mat-css-config-token.const';
 
 @NgModule({
   declarations: [],
@@ -13,7 +13,7 @@ export class MaterialCssVarsModule {
   static forRoot(config?: Partial<MaterialCssVariablesConfig>): ModuleWithProviders {
     return {
       ngModule: MaterialCssVarsModule,
-      providers: [{provide: DEFAULT_MAT_CSS_CFG, useValue: config}]
+      providers: [{provide: MATERIAL_CSS_VARS_CFG, useValue: config}]
     };
   }
 }

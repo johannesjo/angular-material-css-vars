@@ -10,6 +10,7 @@ import {
 } from './model';
 import {DOCUMENT} from '@angular/common';
 import {DEFAULT_MAT_CSS_CFG} from './default-cfg.const';
+import {MATERIAL_CSS_VARS_CFG} from '../mat-css-config-token.const';
 
 interface CssVariable {
   name: string;
@@ -39,7 +40,7 @@ export class MaterialCssVarsService {
 
   constructor(
     @Inject(DOCUMENT) private document: any,
-    @Inject(DEFAULT_MAT_CSS_CFG) cfg: Partial<MaterialCssVariablesConfig>,
+    @Inject(MATERIAL_CSS_VARS_CFG) cfg: MaterialCssVariablesConfig,
   ) {
     this.cfg = {
       ...DEFAULT_MAT_CSS_CFG,
