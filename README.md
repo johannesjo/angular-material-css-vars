@@ -107,6 +107,42 @@ $mat-css-dark-theme-selector: '.isDarkThemeCUSTOM';
 A full list of the theme map [can be found here](https://github.com/johannesjo/angular-material-css-vars/blob/master/projects/material-css-vars/src/lib/_variables.scss).
 
 
+### Set default (fallback palettes)
+There are two ways to set the default fallback theme. One is using the `mat-css-palette-defaults` mixin.
+```scss
+@import '../projects/material-css-vars/src/lib/public-util';
+@import '../projects/material-css-vars/src/lib/main';
+
+@include initMaterialCssVars();
+
+@include mat-css-set-palette-defaults($mat-light-blue, 'primary');
+@include mat-css-set-palette-defaults($mat-pink, 'accent');
+@include mat-css-set-palette-defaults($mat-red, 'warn');
+```
+The other is to include your own variables for [$mat-css-default-light-theme](https://github.com/johannesjo/angular-material-css-vars/blob/master/projects/material-css-vars/src/lib/_variables.scss).
+```scss
+@import '../projects/material-css-vars/src/lib/main';
+
+$mat-css-default-light-theme: map-merge(
+  // if you don't want to enter ALL the properties
+  $mat-css-default-light-theme,
+  (
+  --palette-primary-50: _mat-css-hex-to-rgb(#e1f5fe),
+  --palette-primary-100: _mat-css-hex-to-rgb(#b3e5fc),
+  --palette-primary-200: _mat-css-hex-to-rgb(#81d4fa),
+  --palette-primary-300: _mat-css-hex-to-rgb(#4fc3f7),
+  --palette-primary-400: _mat-css-hex-to-rgb(#29b6f6),
+  --palette-primary-500: _mat-css-hex-to-rgb(#03a9f4),
+  // ...
+  )
+);
+
+@include initMaterialCssVars();
+
+```
+
+
+
 ## Credit...
 ...goes to @zbirizdo [project](https://github.com/zbirizdo/material-css-vars) on which parts of this are based which is in turn supposedly based on [this gist](https://gist.github.com/shprink/c7f333e3ad51830f14a6383f3ab35439).
 
