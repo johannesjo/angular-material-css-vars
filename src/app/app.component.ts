@@ -31,8 +31,6 @@ export class AppComponent {
     {value: 'A700', viewValue: 'A700'},
   ];
 
-
-  lastDialogResult: string;
   spinnerMode = 'indeterminate';
   spinnerValue: number;
   spinnerColor = 'primary';
@@ -81,17 +79,17 @@ export class AppComponent {
 
   onChangeThresholdPrimary(threshold: HueValue) {
     this.threshold = threshold;
-    this.materialCssVarsService.changeContrastColorThresholdPrimary(threshold);
+    this.materialCssVarsService.setContrastColorThresholdPrimary(threshold);
   }
 
   onChangeThresholdAccent(threshold: HueValue) {
     this.threshold = threshold;
-    this.materialCssVarsService.changeContrastColorThresholdAccent(threshold);
+    this.materialCssVarsService.setContrastColorThresholdAccent(threshold);
   }
 
   onChangeThresholdWarn(threshold: HueValue) {
     this.threshold = threshold;
-    this.materialCssVarsService.changeContrastColorThresholdWarn(threshold);
+    this.materialCssVarsService.setContrastColorThresholdWarn(threshold);
   }
 
   toggleAutoContrast() {

@@ -118,22 +118,22 @@ export class MaterialCssVarsService {
     this._recalculateAndSetContrastColor(MatCssPalettePrefix.Primary);
   }
 
-  changeContrastColorThresholdPrimary(threshold: HueValue) {
+  setContrastColorThresholdPrimary(threshold: HueValue) {
     this.contrastColorThresholdPrimary = threshold;
-    this.changeContrastColorThreshold(threshold, MatCssPalettePrefix.Primary);
+    this.setContrastColorThreshold(threshold, MatCssPalettePrefix.Primary);
   }
 
-  changeContrastColorThresholdAccent(threshold: HueValue) {
+  setContrastColorThresholdAccent(threshold: HueValue) {
     this.contrastColorThresholdAccent = threshold;
-    this.changeContrastColorThreshold(threshold, MatCssPalettePrefix.Accent);
+    this.setContrastColorThreshold(threshold, MatCssPalettePrefix.Accent);
   }
 
-  changeContrastColorThresholdWarn(threshold: HueValue) {
+  setContrastColorThresholdWarn(threshold: HueValue) {
     this.contrastColorThresholdWarn = threshold;
-    this.changeContrastColorThreshold(threshold, MatCssPalettePrefix.Warn);
+    this.setContrastColorThreshold(threshold, MatCssPalettePrefix.Warn);
   }
 
-  changeContrastColorThreshold(threshold: HueValue, palettePrefix: MatCssPalettePrefix) {
+  setContrastColorThreshold(threshold: HueValue, palettePrefix: MatCssPalettePrefix) {
     let color = MaterialCssVarsService.DARK_TEXT_VAR;
     const updates = this.cfg.sortedHues.map((hue) => {
       if (hue === threshold) {
@@ -145,6 +145,26 @@ export class MaterialCssVarsService {
       };
     });
     this._setStyle(updates);
+  }
+
+  /** @deprecated use setContrastColorThresholdPrimary instead */
+  changeContrastColorThresholdPrimary(threshold: HueValue) {
+    this.setContrastColorThresholdPrimary(threshold);
+  }
+
+  /** @deprecated use setContrastColorThresholdAccent instead */
+  changeContrastColorThresholdAccent(threshold: HueValue) {
+    this.setContrastColorThresholdAccent(threshold);
+  }
+
+  /** @deprecated use setContrastColorThresholdWarn instead */
+  changeContrastColorThresholdWarn(threshold: HueValue) {
+    this.setContrastColorThresholdWarn(threshold);
+  }
+
+  /** @deprecated use setContrastColorThreshold instead */
+  changeContrastColorThreshold(threshold: HueValue, palettePrefix: MatCssPalettePrefix) {
+    this.setContrastColorThreshold(threshold, palettePrefix);
   }
 
 

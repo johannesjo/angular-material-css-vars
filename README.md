@@ -46,15 +46,15 @@ export class AppModule {
       constructor(public materialCssVarsService: MaterialCssVarsService) {
         const hex = '#3f51b5';
         this.materialCssVarsService.setDarkTheme(true);
-        this.materialCssVarsService.changePrimaryColor(hex);
-        this.materialCssVarsService.changeAccentColor('#333');
+        this.materialCssVarsService.setPrimaryColor(hex);
+        this.materialCssVarsService.setAccentColor('#333');
       }
     }
     ```
 ## Additional Features
 * Auto or manually set contrast color via 
   * `setAutoContrastEnabled(bool)`
-  * `changeContrastColorThreshold(hueVal: HueValue)`
+  * `setContrastColorThreshold(hueVal: HueValue)`
 * Helper to set all variables
   * `setVariable(cssVarName: MaterialCssVariables, value: string)`
   * You can use the `MaterialCssVariables` enum [from here](https://github.com/johannesjo/angular-material-css-vars/blob/master/projects/material-css-vars/src/lib/model.ts) to make sure you get the variable name right.
