@@ -9,6 +9,7 @@
   @if type-of($color) == color {
     @return rgba($color, if($opacity == null, opacity($color), $opacity));
   } @else {
-    @return rgba($color, _mat-css-str-replace($color, ')', '-alpha, 1)'));
+    $default-opacity: if($opacity == null, 1, $opacity);
+    @return rgba($color, _mat-css-str-replace($color, ')', "-alpha, #{$default-opacity})"));
   }
 }
