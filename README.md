@@ -46,8 +46,8 @@ export class AppModule {
       constructor(public materialCssVarsService: MaterialCssVarsService) {
         const hex = '#3f51b5';
         this.materialCssVarsService.setDarkTheme(true);
-        this.materialCssVarsService.primary = hex;
-        this.materialCssVarsService.accent = '#333';
+        this.materialCssVarsService.setPrimaryColor(hex);
+        this.materialCssVarsService.setAccentColor('#333');
       }
     }
     ```
