@@ -10,7 +10,12 @@
     @return rgba($color, if($opacity == null, opacity($color), $opacity));
   } @else {
     $default-opacity: if($opacity == null, 1, $opacity);
-    @return rgba($color, _mat-css-str-replace($color, ')', "-alpha, #{$default-opacity})"));
+    $inner-var-alpha-str: str-slice($color, 5, -2) + '-alpha';
+    @if (map_get($mat-css-default-light-theme, $inner-var-alpha-str)) {
+      @return rgba($color, _mat-css-str-replace($color, ')', "-alpha, #{$default-opacity})"));
+    } @else {
+      @return rgba($color, $default-opacity);
+    }
   }
 }
 
