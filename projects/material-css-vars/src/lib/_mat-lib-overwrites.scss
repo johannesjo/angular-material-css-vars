@@ -1,0 +1,33 @@
+// main overwrite to make it all work
+@function mat-color($palette, $hue: default, $opacity: null) {
+  @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {
+    @return mat-color($palette, default, $hue);
+  }
+
+  $color: map-get($palette, $hue);
+
+  @if type-of($color) == color {
+    @return rgba($color, if($opacity == null, opacity($color), $opacity));
+  } @else {
+    $default-opacity: if($opacity == null, 1, $opacity);
+    @return rgba($color, _mat-css-str-replace($color, ')', "-alpha, #{$default-opacity})"));
+  }
+}
+
+// also needs to be overwritten, as otherwise we end up with opacity and alpha value
+@mixin mat-ripple-theme($theme) {
+  $foreground: map_get($theme, foreground);
+  $foreground-base: map_get($foreground, base);
+
+  .mat-ripple-element {
+    @if (type-of($foreground-base) == color) {
+      background-color: rgba($foreground-base, $mat-ripple-color-opacity);
+    } @else {
+      $color: mat-color($foreground, base);
+      background-color: mat-color($foreground, base);
+      @if (not str_index($color, 'alpha')) {
+        opacity: $mat-ripple-color-opacity;
+      }
+    }
+  }
+}
