@@ -78,6 +78,9 @@ There are also several [utility functions and mixins](https://github.com/johanne
   @include mat-css-bg(300);
 }
 ```
+
+There are also [some additional hacks](additional-hacks.md) (e.g. adding a color to the elevation shadow) available in case you need them.
+
 ## Initialization Options
 You can provide different options before initialization to change the body class used for the dark theme and to provide different default styles:
 ```scss
