@@ -11,6 +11,7 @@
   } @else {
     $default-opacity: if($opacity == null, 1, $opacity);
     $inner-var-alpha-str: str-slice($color, 5, -2) + '-alpha';
+    // if we have a corresponding alpha variable use it
     @if (map_get($mat-css-default-light-theme, $inner-var-alpha-str)) {
       @return rgba($color, _mat-css-str-replace($color, ')', "-alpha, #{$default-opacity})"));
     } @else {
@@ -28,11 +29,7 @@
     @if (type-of($foreground-base) == color) {
       background-color: rgba($foreground-base, $mat-ripple-color-opacity);
     } @else {
-      $color: mat-color($foreground, base);
-      background-color: mat-color($foreground, base);
-      @if (not str_index($color, 'alpha')) {
-        opacity: $mat-ripple-color-opacity;
-      }
+      background-color: mat-color($foreground, base, $mat-ripple-color-opacity);
     }
   }
 }
