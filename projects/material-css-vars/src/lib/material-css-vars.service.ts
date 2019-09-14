@@ -235,6 +235,7 @@ export class MaterialCssVarsService {
 
   private _calculateContrastColorsForCurrentValues(palettePrefix: MatCssPalettePrefix):
     { contrastColorVar: string, hue: HueValue }[] {
+    const MAGIC_FACTOR = this.cfg.magicAutoContrastFactor || 0;
     const lightText = this._getCssVarValue(MaterialCssVarsService.LIGHT_TEXT_VAR);
     const darkText = this._getCssVarValue(MaterialCssVarsService.DARK_TEXT_VAR);
 
@@ -242,7 +243,8 @@ export class MaterialCssVarsService {
       const hueVarVal = this._getCssVarValue(`${palettePrefix}${hue}`);
       const rLight = tinycolor2.readability(`rgb(${hueVarVal})`, `rgb(${lightText})`);
       const rDark = tinycolor2.readability(`rgb(${hueVarVal})`, `rgb(${darkText})`);
-      const contrastColorVar = (rLight > rDark)
+
+      const contrastColorVar = ((rLight + MAGIC_FACTOR) > rDark)
         ? MaterialCssVarsService.LIGHT_TEXT_VAR
         : MaterialCssVarsService.DARK_TEXT_VAR;
       return {
