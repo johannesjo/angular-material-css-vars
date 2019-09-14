@@ -32,7 +32,7 @@ export interface MatCssHueColorMapItem {
   };
 }
 
-export interface MatCssHueColorContrastMapItem extends MatCssHueColorMapItem{
+export interface MatCssHueColorContrastMapItem extends MatCssHueColorMapItem {
   contrast: {
     r: number;
     g: number;
@@ -49,6 +49,8 @@ export interface MaterialCssColorMapperEntry {
 
 export interface MaterialCssVariablesConfig {
   isAutoContrast: boolean;
+  magicAutoContrastFactor: number;
+
   darkThemeClass: string;
   lightThemeClass: string;
 
