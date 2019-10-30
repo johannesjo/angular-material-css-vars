@@ -33,3 +33,9 @@
     }
   }
 }
+
+@mixin mat-css-other-overwrites {
+  .mat-button-focus-overlay {
+    background: rgba(var(--palette-foreground-base), 1);
+  }
+}
