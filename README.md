@@ -146,7 +146,7 @@ $mat-css-default-light-theme: map-merge(
 ```
 
 ## IE 11
-This lib won't work  with IE11 but thanks to @Coly010 there is [a workaround for that too](https://github.com/johannesjo/angular-material-css-vars/issues/11).
+This lib won't work  with IE11 but thanks to @Coly010 there is [a workaround for that too](https://github.com/johannesjo/angular-material-css-vars/issues/11#issuecomment-572749449).
 
 
 ## Credit...
