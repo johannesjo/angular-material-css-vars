@@ -1,6 +1,6 @@
 <p align="center"><img alt="logo" src="logo.png"></p>
 
-You want to style your angular material dynamically with all the colors in the rainbow and don't really care about IE11 (support for css variables is required)? Look no further!
+You want to style your angular material dynamically with all the colors in the rainbow? Look no further!
 
 [Check out the Demo!](https://johannesjo.github.io/angular-material-css-vars/)
 
@@ -145,6 +145,8 @@ $mat-css-default-light-theme: map-merge(
 
 ```
 
+## IE 11
+This lib won't work  with IE11 but thanks to @Coly010 there is [a workaround for that too](https://github.com/johannesjo/angular-material-css-vars/issues/11#issuecomment-572749449).
 
 
 ## Credit...
