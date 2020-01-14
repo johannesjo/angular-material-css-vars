@@ -118,6 +118,7 @@ $mat-css-default-light-theme: (
   --palette-background-disabled-button-toggle: _mat-css-hex-to-rgb(map_get($mat-grey, 200)),
   --palette-background-unselected-chip: _mat-css-hex-to-rgb(map_get($mat-grey, 300)),
   --palette-background-disabled-list-option: _mat-css-hex-to-rgb(map_get($mat-grey, 200)),
+  --palette-background-tooltip: _mat-css-hex-to-rgb(map_get($mat-grey, 700)),
   // FOREGROUND
   --palette-foreground-base: _mat-css-hex-to-rgb(#000000),
   --palette-foreground-divider: _mat-css-hex-to-rgb($dark-dividers),
@@ -266,6 +267,7 @@ $mat-css-palette-background: (
   disabled-button-toggle: var(--palette-background-disabled-button-toggle),
   unselected-chip: var(--palette-background-unselected-chip),
   disabled-list-option: var(--palette-background-disabled-list-option),
+  tooltip: var(--palette-background-tooltip),
 ) !default;
 
 $mat-css-palette-foreground: (
