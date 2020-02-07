@@ -23,6 +23,7 @@ export enum MatCssPalettePrefix {
 
 export interface MatCssHueColorMapItem {
   hue: HueValue;
+  isLight: boolean;
   color: {
     r: number;
     g: number;
@@ -49,7 +50,6 @@ export interface MaterialCssColorMapperEntry {
 
 export interface MaterialCssVariablesConfig {
   isAutoContrast: boolean;
-  magicAutoContrastFactor: number;
 
   darkThemeClass: string;
   lightThemeClass: string;

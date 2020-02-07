@@ -11,6 +11,7 @@ import {HueValue, MatCssHueColorContrastMapItem, MatCssHueColorMapItem} from '..
 export class AppComponent {
   isDarkTheme = false;
   threshold: HueValue;
+  isTraditionalColor = true;
 
   palettePrimary: MatCssHueColorContrastMapItem[];
 
@@ -99,5 +100,14 @@ export class AppComponent {
   toggleTheme() {
     this.isDarkTheme = !this.isDarkTheme;
     this.materialCssVarsService.setDarkTheme(this.isDarkTheme);
+  }
+
+  toggleTraditionalColor() {
+    this.isTraditionalColor = !this.isTraditionalColor;
+    this.materialCssVarsService.setColorAlgorithmTraditional(this.isTraditionalColor);
+  }
+
+  get colorAlgorithm(): string {
+    return this.isTraditionalColor ? 'Traditional Color' : 'Constantin Color';
   }
 }
