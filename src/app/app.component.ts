@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {MaterialCssVarsService} from '../../projects/material-css-vars/src/lib/material-css-vars.service';
-import {HueValue, MatCssHueColorContrastMapItem, MatCssHueColorMapItem} from '../../projects/material-css-vars/src/lib/model';
+import {HueValue, MatCssHueColorContrastMapItem} from '../../projects/material-css-vars/src/lib/model';
 
 @Component({
   selector: 'app-root',

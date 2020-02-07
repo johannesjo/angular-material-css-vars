@@ -10,7 +10,7 @@ import {MATERIAL_CSS_VARS_CFG} from '../mat-css-config-token.const';
   ]
 })
 export class MaterialCssVarsModule {
-  static forRoot(config?: Partial<MaterialCssVariablesConfig>): ModuleWithProviders {
+  static forRoot(config?: Partial<MaterialCssVariablesConfig>): ModuleWithProviders<MaterialCssVarsModule> {
     return {
       ngModule: MaterialCssVarsModule,
       providers: [{provide: MATERIAL_CSS_VARS_CFG, useValue: config}]
