@@ -220,8 +220,8 @@ export class MaterialCssVarsService {
         hue: item.name,
         isLight: c.isLight,
         color: {
-          ...c.rgba,
-          str: `rgb(${c.rgba.r},${c.rgba.g},${c.rgba.b})`
+          ...c.rgb,
+          str: `rgb(${c.rgb.r},${c.rgb.g},${c.rgb.b})`
         }
       };
     });
@@ -238,7 +238,7 @@ export class MaterialCssVarsService {
         ? lightText
         : darkText;
 
-      const sLight = contrastStr.split(',').map(v => +v);
+      const sLight = contrastStr.split(',').map(v => + v);
       const cco = {r: sLight[0], g: sLight[1], b: sLight[2], a: 1};
       return {
         ...item,
@@ -306,7 +306,7 @@ export class MaterialCssVarsService {
     const baseLight = new TinyColor('#ffffff');
     const baseDark = this.multiply(new TinyColor(hex).toRgb(), new TinyColor(hex).toRgb());
     const baseTriad = new TinyColor(hex).tetrad();
-    let color: {rgba: Numberify<RGBA>, isLight: boolean};
+    let color: {rgb: Numberify<RGBA>, isLight: boolean};
 
     switch (hue) {
       case '50':
@@ -366,7 +366,7 @@ export class MaterialCssVarsService {
 
   private getColorObject(value: TinyColor) {
     let c = new TinyColor(value);
-    return {rgba: c.toRgb(), isLight: c.isLight()};
+    return {rgb: c.toRgb(), isLight: c.isLight()};
   }
 
 }
