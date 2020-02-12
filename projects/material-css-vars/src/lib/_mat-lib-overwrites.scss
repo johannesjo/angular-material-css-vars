@@ -36,9 +36,9 @@
 
 @mixin mat-css-other-overwrites {
   .mat-button-focus-overlay {
-    background: rgba(var(--palette-foreground-base), 1);
+    background: RGBA(var(--palette-foreground-base), 1);
   }
   .mat-checkbox .mat-ripple-element {
-    background-color: rgb(var(--palette-foreground-base));
+    background-color: RGB(var(--palette-foreground-base));
   }
 }
