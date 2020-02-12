@@ -133,6 +133,16 @@
 
           </mat-card-content>
         </mat-card>
+
+        <mat-card class="mat-elevation-z3">
+          <mat-card-content>
+            <h2>Color Algorithm</h2>
+            <mat-slide-toggle (change)="toggleTraditionalColor()"
+                              [checked]="isTraditionalColor">{{colorAlgorithm}}
+            </mat-slide-toggle>
+
+          </mat-card-content>
+        </mat-card>
       </div>
 
       <mat-card class="mat-elevation-z3">

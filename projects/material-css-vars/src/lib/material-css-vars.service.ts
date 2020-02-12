@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import tinycolor2 from 'tinycolor2';
+import { TinyColor, Numberify, RGBA } from '@ctrl/tinycolor';
 import {
   HueValue,
   MatCssHueColorContrastMapItem,
@@ -37,6 +37,7 @@ export class MaterialCssVarsService {
   contrastColorThresholdAccent: HueValue = '400';
   contrastColorThresholdWarn: HueValue = '400';
   isAutoContrast = false;
+  private _colorAlgorithmTraditional: boolean = true;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -115,7 +116,15 @@ export class MaterialCssVarsService {
 
   setAutoContrastEnabled(val: boolean) {
     this.isAutoContrast = val;
-    this._recalculateAndSetContrastColor(MatCssPalettePrefix.Primary);
+    if (val) {
+      this._recalculateAndSetContrastColor(MatCssPalettePrefix.Primary);
+      this._recalculateAndSetContrastColor(MatCssPalettePrefix.Accent);
+      this._recalculateAndSetContrastColor(MatCssPalettePrefix.Warn);
+    } else {
+      this.changeContrastColorThresholdPrimary(this.contrastColorThresholdPrimary);
+      this.changeContrastColorThresholdAccent(this.contrastColorThresholdAccent);
+      this.changeContrastColorThresholdWarn(this.contrastColorThresholdWarn);
+    }
   }
 
   setContrastColorThresholdPrimary(threshold: HueValue) {
@@ -147,6 +156,17 @@ export class MaterialCssVarsService {
     this._setStyle(updates);
   }
 
+  /**
+   * Generate palette color based on traditional values
+   * @param traditional
+   */
+  setColorAlgorithmTraditional(traditional: boolean): void {
+    this._colorAlgorithmTraditional = traditional;
+    this.setPrimaryColor(this.primary);
+    this.setAccentColor(this.accent);
+    this.setWarnColor(this.warn);
+  }
+
   /** @deprecated use setContrastColorThresholdPrimary instead */
   changeContrastColorThresholdPrimary(threshold: HueValue) {
     this.setContrastColorThresholdPrimary(threshold);
@@ -167,19 +187,41 @@ export class MaterialCssVarsService {
     this.setContrastColorThreshold(threshold, palettePrefix);
   }
 
-
   getPaletteForColor(hex: string): MatCssHueColorMapItem[] {
+    if (this._colorAlgorithmTraditional) {
+      return this.getTraditionalPaletteForColor(hex);
+    } else {
+      return this.getConstantinPaletteForColor(hex);
+    }
+  }
+
+  private getTraditionalPaletteForColor(hex: string): MatCssHueColorMapItem[] {
     return this.cfg.colorMap.map(item => {
-      const mappedColor = tinycolor2(hex)
+      const mappedColor = new TinyColor(hex)
         .lighten(item.map[0])
         .darken(item.map[1])
         .saturate(item.map[2]);
-      const c = tinycolor2(mappedColor).toRgb();
+      const c = new TinyColor(mappedColor);
       return {
         hue: item.name,
+        isLight: c.isLight(),
         color: {
-          ...c,
-          str: `rgb(${c.r},${c.g},${c.b})`
+          ...c.toRgb(),
+          str: `rgb(${c.toRgb().r},${c.toRgb().g},${c.toRgb().b})`
+        }
+      };
+    });
+  }
+
+  private getConstantinPaletteForColor(hex: string): MatCssHueColorMapItem[] {
+    return this.cfg.colorMap.map((item) => {
+      const c = this.computePalletTriad(hex, item.name);
+      return {
+        hue: item.name,
+        isLight: c.isLight,
+        color: {
+          ...c.rgb,
+          str: `rgb(${c.rgb.r},${c.rgb.g},${c.rgb.b})`
         }
       };
     });
@@ -192,15 +234,11 @@ export class MaterialCssVarsService {
 
     // TODO handle non auto case
     return palette.map((item) => {
-      const c = item.color;
-      const hueRgbStr = `rgb(${c.r},${c.g},${c.b})`;
-      const rLight = tinycolor2.readability(hueRgbStr, `rgb(${lightText})`);
-      const rDark = tinycolor2.readability(hueRgbStr, `rgb(${darkText})`);
-      const contrastStr = (rLight > rDark)
+      const contrastStr = item.isLight
         ? lightText
         : darkText;
 
-      const sLight = contrastStr.split(',').map(v => +v);
+      const sLight = contrastStr.split(',').map(v => + v);
       const cco = {r: sLight[0], g: sLight[1], b: sLight[2], a: 1};
       return {
         ...item,
@@ -235,16 +273,10 @@ export class MaterialCssVarsService {
 
   private _calculateContrastColorsForCurrentValues(palettePrefix: MatCssPalettePrefix):
     { contrastColorVar: string, hue: HueValue }[] {
-    const MAGIC_FACTOR = this.cfg.magicAutoContrastFactor || 0;
-    const lightText = this._getCssVarValue(MaterialCssVarsService.LIGHT_TEXT_VAR);
-    const darkText = this._getCssVarValue(MaterialCssVarsService.DARK_TEXT_VAR);
-
     return this.cfg.sortedHues.map((hue) => {
       const hueVarVal = this._getCssVarValue(`${palettePrefix}${hue}`);
-      const rLight = tinycolor2.readability(`rgb(${hueVarVal})`, `rgb(${lightText})`);
-      const rDark = tinycolor2.readability(`rgb(${hueVarVal})`, `rgb(${darkText})`);
-
-      const contrastColorVar = ((rLight + MAGIC_FACTOR) > rDark)
+      const c = new TinyColor(`rgb(${hueVarVal})`);
+      const contrastColorVar = c.isDark()
         ? MaterialCssVarsService.LIGHT_TEXT_VAR
         : MaterialCssVarsService.DARK_TEXT_VAR;
       return {
@@ -263,4 +295,78 @@ export class MaterialCssVarsService {
   private _getCssVarValue(v: string): string {
     return getComputedStyle(MaterialCssVarsService.ROOT).getPropertyValue(v);
   }
+
+  /**
+   * Compute pallet colors based on a Triad (Constantin)
+   * see: https://github.com/mbitson/mcg
+   * @param hex
+   * @param hue
+   */
+  private computePalletTriad(hex: string, hue: HueValue) {
+    const baseLight = new TinyColor('#ffffff');
+    const baseDark = this.multiply(new TinyColor(hex).toRgb(), new TinyColor(hex).toRgb());
+    const baseTriad = new TinyColor(hex).tetrad();
+    let color: {rgb: Numberify<RGBA>, isLight: boolean};
+
+    switch (hue) {
+      case '50':
+        color = this.getColorObject(baseLight.mix(hex, 12))
+        break;
+      case '100':
+        color = this.getColorObject(baseLight.mix(hex, 30));
+        break;
+      case '200':
+        color =  this.getColorObject(baseLight.mix(hex, 50));
+        break;
+      case '300':
+        color = this.getColorObject(baseLight.mix(hex, 70));
+        break;
+      case '400':
+        color = this.getColorObject(baseLight.mix(hex, 85));
+        break;
+      case '500':
+        color = this.getColorObject(baseLight.mix(hex, 100));
+        break;
+      case '600':
+        color = this.getColorObject(baseDark.mix(hex, 87));
+        break;
+      case '700':
+        color = this.getColorObject(baseDark.mix(hex, 70));
+        break;
+      case '800':
+        color = this.getColorObject(baseDark.mix(hex, 54));
+        break;
+      case '900':
+        color = this.getColorObject(baseDark.mix(hex, 25));
+        break;
+      case 'A100':
+        color = this.getColorObject(baseDark.mix(baseTriad[4], 15).saturate(80).lighten(65))
+        break;
+      case 'A200':
+        color = this.getColorObject(baseDark.mix(baseTriad[4], 15).saturate(80).lighten(55))
+        break;
+      case 'A400':
+        color = this.getColorObject(baseDark.mix(baseTriad[4], 15).saturate(100).lighten(45))
+        break;
+      case 'A700':
+        color = this.getColorObject(baseDark.mix(baseTriad[4], 15).saturate(100).lighten(40))
+        break;
+      default:
+        break;
+    }
+    return color;
+  }
+
+  private multiply(rgb1: Numberify<RGBA>, rgb2: Numberify<RGBA>): TinyColor {
+    rgb1.b = Math.floor(rgb1.b * rgb2.b / 255);
+    rgb1.g = Math.floor(rgb1.g * rgb2.g / 255);
+    rgb1.r = Math.floor(rgb1.r * rgb2.r / 255);
+    return new TinyColor('rgb ' + rgb1.r + ' ' + rgb1.g + ' ' + rgb1.b);
+  }
+
+  private getColorObject(value: TinyColor) {
+    let c = new TinyColor(value);
+    return {rgb: c.toRgb(), isLight: c.isLight()};
+  }
+
 }

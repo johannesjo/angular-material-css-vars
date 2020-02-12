@@ -38,4 +38,7 @@
   .mat-button-focus-overlay {
     background: rgba(var(--palette-foreground-base), 1);
   }
+  .mat-checkbox .mat-ripple-element {
+    background-color: rgb(var(--palette-foreground-base));
+  }
 }
