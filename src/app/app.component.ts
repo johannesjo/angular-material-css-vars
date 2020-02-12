@@ -12,7 +12,7 @@ import {HueValue, MatCssHueColorContrastMapItem} from '../../projects/material-c
 export class AppComponent {
   isDarkTheme = false;
   threshold: HueValue;
-  isTraditionalColor = true;
+  isAlternativeColorAlgorithm = false;
 
   palettePrimary: MatCssHueColorContrastMapItem[];
 
@@ -104,11 +104,11 @@ export class AppComponent {
   }
 
   toggleTraditionalColor() {
-    this.isTraditionalColor = !this.isTraditionalColor;
-    this.materialCssVarsService.setColorAlgorithmTraditional(this.isTraditionalColor);
+    this.isAlternativeColorAlgorithm = !this.isAlternativeColorAlgorithm;
+    this.materialCssVarsService.setAlternativeColorAlgorithm(this.isAlternativeColorAlgorithm);
   }
 
   get colorAlgorithm(): string {
-    return this.isTraditionalColor ? 'Traditional Color' : 'Constantin Color';
+    return this.isAlternativeColorAlgorithm ? 'Alternative' : 'Constantin (default)';
   }
 }

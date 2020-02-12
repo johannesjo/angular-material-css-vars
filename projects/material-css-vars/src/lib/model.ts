@@ -50,6 +50,7 @@ export interface MaterialCssColorMapperEntry {
 
 export interface MaterialCssVariablesConfig {
   isAutoContrast: boolean;
+  isAlternativeColorAlgorithm: boolean;
 
   darkThemeClass: string;
   lightThemeClass: string;

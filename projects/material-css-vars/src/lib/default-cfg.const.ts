@@ -2,6 +2,7 @@ import {MaterialCssVariablesConfig} from './model';
 
 export const DEFAULT_MAT_CSS_CFG: MaterialCssVariablesConfig = {
   isAutoContrast: true,
+  isAlternativeColorAlgorithm: false,
   darkThemeClass: 'isDarkTheme',
   lightThemeClass: 'isLightTheme',
   colorMap: [

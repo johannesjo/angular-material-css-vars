@@ -37,7 +37,6 @@ export class MaterialCssVarsService {
   contrastColorThresholdAccent: HueValue = '400';
   contrastColorThresholdWarn: HueValue = '400';
   isAutoContrast = false;
-  private _colorAlgorithmTraditional: boolean = true;
 
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -159,8 +158,8 @@ export class MaterialCssVarsService {
   /**
    * Generate palette color based on traditional values
    */
-  setColorAlgorithmTraditional(traditional: boolean): void {
-    this._colorAlgorithmTraditional = traditional;
+  setAlternativeColorAlgorithm(traditional: boolean): void {
+    this.cfg.isAlternativeColorAlgorithm = traditional;
     this.setPrimaryColor(this.primary);
     this.setAccentColor(this.accent);
     this.setWarnColor(this.warn);
@@ -187,7 +186,7 @@ export class MaterialCssVarsService {
   }
 
   getPaletteForColor(hex: string): MatCssHueColorMapItem[] {
-    if (this._colorAlgorithmTraditional) {
+    if (this.cfg.isAlternativeColorAlgorithm) {
       return this.getTraditionalPaletteForColor(hex);
     } else {
       return this.getConstantinPaletteForColor(hex);
