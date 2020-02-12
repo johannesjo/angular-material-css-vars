@@ -23,6 +23,6 @@
     "@angular/material": "^8.1.3"
   },
   "dependencies": {
-    "tinycolor2": "^1.4.1"
+    "@ctrl/tinycolor": "^2.6.0"
   }
 }

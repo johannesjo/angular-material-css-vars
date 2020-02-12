@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import { TinyColor, Numberify, RGBA } from '@ctrl/tinycolor';
+import {Numberify, RGBA, TinyColor} from '@ctrl/tinycolor';
 import {
   HueValue,
   MatCssHueColorContrastMapItem,
@@ -158,7 +158,6 @@ export class MaterialCssVarsService {
 
   /**
    * Generate palette color based on traditional values
-   * @param traditional
    */
   setColorAlgorithmTraditional(traditional: boolean): void {
     this._colorAlgorithmTraditional = traditional;
@@ -238,7 +237,7 @@ export class MaterialCssVarsService {
         ? lightText
         : darkText;
 
-      const sLight = contrastStr.split(',').map(v => + v);
+      const sLight = contrastStr.split(',').map(v => +v);
       const cco = {r: sLight[0], g: sLight[1], b: sLight[2], a: 1};
       return {
         ...item,
@@ -299,57 +298,55 @@ export class MaterialCssVarsService {
   /**
    * Compute pallet colors based on a Triad (Constantin)
    * see: https://github.com/mbitson/mcg
-   * @param hex
-   * @param hue
    */
-  private computePalletTriad(hex: string, hue: HueValue) {
-    const baseLight = new TinyColor('#ffffff');
-    const baseDark = this.multiply(new TinyColor(hex).toRgb(), new TinyColor(hex).toRgb());
-    const baseTriad = new TinyColor(hex).tetrad();
-    let color: {rgb: Numberify<RGBA>, isLight: boolean};
+  private computePalletTriad(hex: string, hue: HueValue) {
+    const baseLight = new TinyColor('#ffffff');
+    const baseDark = this.multiply(new TinyColor(hex).toRgb(), new TinyColor(hex).toRgb());
+    const baseTriad = new TinyColor(hex).tetrad();
+    let color: { rgb: Numberify<RGBA>, isLight: boolean };
 
     switch (hue) {
       case '50':
-        color = this.getColorObject(baseLight.mix(hex, 12))
+        color = this.getColorObject(baseLight.mix(hex, 12));
         break;
       case '100':
-        color = this.getColorObject(baseLight.mix(hex, 30));
+        color = this.getColorObject(baseLight.mix(hex, 30));
         break;
       case '200':
-        color =  this.getColorObject(baseLight.mix(hex, 50));
+        color = this.getColorObject(baseLight.mix(hex, 50));
         break;
       case '300':
-        color = this.getColorObject(baseLight.mix(hex, 70));
+        color = this.getColorObject(baseLight.mix(hex, 70));
         break;
       case '400':
-        color = this.getColorObject(baseLight.mix(hex, 85));
+        color = this.getColorObject(baseLight.mix(hex, 85));
         break;
       case '500':
-        color = this.getColorObject(baseLight.mix(hex, 100));
+        color = this.getColorObject(baseLight.mix(hex, 100));
         break;
       case '600':
-        color = this.getColorObject(baseDark.mix(hex, 87));
+        color = this.getColorObject(baseDark.mix(hex, 87));
         break;
       case '700':
-        color = this.getColorObject(baseDark.mix(hex, 70));
+        color = this.getColorObject(baseDark.mix(hex, 70));
         break;
       case '800':
-        color = this.getColorObject(baseDark.mix(hex, 54));
+        color = this.getColorObject(baseDark.mix(hex, 54));
         break;
       case '900':
         color = this.getColorObject(baseDark.mix(hex, 25));
         break;
       case 'A100':
-        color = this.getColorObject(baseDark.mix(baseTriad[4], 15).saturate(80).lighten(65))
+        color = this.getColorObject(baseDark.mix(baseTriad[4], 15).saturate(80).lighten(65));
         break;
       case 'A200':
-        color = this.getColorObject(baseDark.mix(baseTriad[4], 15).saturate(80).lighten(55))
+        color = this.getColorObject(baseDark.mix(baseTriad[4], 15).saturate(80).lighten(55));
         break;
       case 'A400':
-        color = this.getColorObject(baseDark.mix(baseTriad[4], 15).saturate(100).lighten(45))
+        color = this.getColorObject(baseDark.mix(baseTriad[4], 15).saturate(100).lighten(45));
         break;
       case 'A700':
-        color = this.getColorObject(baseDark.mix(baseTriad[4], 15).saturate(100).lighten(40))
+        color = this.getColorObject(baseDark.mix(baseTriad[4], 15).saturate(100).lighten(40));
         break;
       default:
         break;
@@ -357,15 +354,15 @@ export class MaterialCssVarsService {
     return color;
   }
 
-  private multiply(rgb1: Numberify<RGBA>, rgb2: Numberify<RGBA>): TinyColor {
-    rgb1.b = Math.floor(rgb1.b * rgb2.b / 255);
-    rgb1.g = Math.floor(rgb1.g * rgb2.g / 255);
-    rgb1.r = Math.floor(rgb1.r * rgb2.r / 255);
-    return new TinyColor('rgb ' + rgb1.r + ' ' + rgb1.g + ' ' + rgb1.b);
+  private multiply(rgb1: Numberify<RGBA>, rgb2: Numberify<RGBA>): TinyColor {
+    rgb1.b = Math.floor(rgb1.b * rgb2.b / 255);
+    rgb1.g = Math.floor(rgb1.g * rgb2.g / 255);
+    rgb1.r = Math.floor(rgb1.r * rgb2.r / 255);
+    return new TinyColor('rgb ' + rgb1.r + ' ' + rgb1.g + ' ' + rgb1.b);
   }
 
-  private getColorObject(value: TinyColor) {
-    let c = new TinyColor(value);
+  private getColorObject(value: TinyColor) {
+    const c = new TinyColor(value);
     return {rgb: c.toRgb(), isLight: c.isLight()};
   }
 
