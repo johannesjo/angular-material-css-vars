@@ -5,6 +5,7 @@
     "entryFile": "src/public-api.ts"
   },
   "whitelistedNonPeerDependencies": [
-    "tinycolor2"
+    "tinycolor2",
+    "@ctrl/tinycolor"
   ]
 }
