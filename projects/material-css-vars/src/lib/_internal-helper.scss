@@ -35,6 +35,9 @@
 }
 
 @function _mat-css-hex-to-rgb($color) {
+  @if ($color == null) {
+    @return null;
+  }
   @return (red($color), green($color), blue($color));
 }
 
