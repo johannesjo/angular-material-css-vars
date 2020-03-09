@@ -119,7 +119,10 @@
   $new-map: ();
   @each $var, $defaultVal in $css-var-map {
     @if ($var != 'contrast') {
-      $new-map: map_merge($new-map, (--palette-#{$paletteType}-#{$var}: #{_mat-css-hex-to-rgb($defaultVal)}));
+      $colorVal: _mat-css-hex-to-rgb($defaultVal);
+      @if $colorVal != null {
+        $new-map: map_merge($new-map, (--palette-#{$paletteType}-#{$var}: #{$colorVal}));
+      }
     }
   }
   @include _mat-css-root($new-map);

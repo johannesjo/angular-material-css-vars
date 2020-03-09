@@ -26,12 +26,18 @@
   $foreground-base: map_get($foreground, base);
 
   .mat-ripple-element {
-    @if (type-of($foreground-base) == color) {
-      background-color: rgba($foreground-base, $mat-ripple-color-opacity);
-    } @else {
-      background-color: mat-color($foreground, base, $mat-ripple-color-opacity);
-    }
+    // if it's a color, rgba just works.
+    // If it's a variable, rgba works because all color variables should be 3 comma separated numbers
+    background-color: rgba($foreground-base, $mat-ripple-color-opacity);
   }
+}
+
+// The material mixin passes an opacity to mat-color and also adds opacity to the element if the background-color is not of type 'color'.
+// This would cause the opacity to get applied twice, resulting in a ripple that is almost invisible.
+// Instead, we will trust that mat-color handles opacity correctly.
+@mixin _mat-button-ripple-background($palette, $hue, $opacity) {
+  $background-color: mat-color($palette, $hue, $opacity);
+  background-color: $background-color;
 }
 
 @mixin mat-css-other-overwrites {
