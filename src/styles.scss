@@ -1,6 +1,9 @@
 @import '../projects/material-css-vars/src/lib/main';
+@import './app//app.theme';
 
-@include initMaterialCssVars();
+@include initMaterialCssVars() {
+  @include app-theme($mat-css-theme);
+};
 
 @include mat-css-set-palette-defaults($mat-light-blue, 'primary');
 @include mat-css-set-palette-defaults($mat-pink, 'accent');
