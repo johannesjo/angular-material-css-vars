@@ -993,6 +993,11 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@ctrl/tinycolor@^2.6.1":
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-2.6.1.tgz#0e78cc836a1fd997a9a22fa1c26c555411882160"
+  integrity sha512-xKN3lAA+xbNhP+JX3sLhzA65IGiKqun/Yf9jBlZX7Og0SxlCrrqKxqTd6ccn20fv3Cgcvq6KnjPhnmS+v7uAwQ==
+
 "@istanbuljs/schema@^0.1.2":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"

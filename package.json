@@ -32,6 +32,7 @@
     "@angular/platform-browser": "~9.0.0",
     "@angular/platform-browser-dynamic": "~9.0.0",
     "@angular/router": "~9.0.0",
+    "@ctrl/tinycolor": "^2.6.1",
     "ngx-color-picker": "^8.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
