@@ -25,7 +25,7 @@ export class MaterialCssVarsService {
   private static DARK_TEXT_VAR = '--dark-primary-text';
   private static LIGHT_TEXT_VAR = '--light-primary-text';
 
-  private static ROOT = document.documentElement;
+  private ROOT;
 
   // This should be readonly from the outside
   cfg: MaterialCssVariablesConfig;
@@ -39,9 +39,11 @@ export class MaterialCssVarsService {
   isAutoContrast = false;
 
   constructor(
-    @Inject(DOCUMENT) private document: any,
+    @Inject(DOCUMENT) private document: Document,
     @Inject(MATERIAL_CSS_VARS_CFG) cfg: MaterialCssVariablesConfig,
   ) {
+    this.ROOT = this.document.documentElement;
+
     this.cfg = {
       ...DEFAULT_MAT_CSS_CFG,
       ...cfg,
@@ -286,12 +288,12 @@ export class MaterialCssVarsService {
 
   private _setStyle(vars: CssVariable[]) {
     vars.forEach(s => {
-      MaterialCssVarsService.ROOT.style.setProperty(s.name, s.val);
+      this.ROOT.style.setProperty(s.name, s.val);
     });
   }
 
   private _getCssVarValue(v: string): string {
-    return getComputedStyle(MaterialCssVarsService.ROOT).getPropertyValue(v);
+    return getComputedStyle(this.ROOT).getPropertyValue(v);
   }
 
   /**
