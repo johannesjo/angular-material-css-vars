@@ -26,19 +26,28 @@
     background: $mat-css-palette-background,
     foreground: $mat-css-palette-foreground,
   ));
+  // set global variable so passed-in content can use the theme
+  $mat-css-theme: $theme !global; 
 
   @at-root {
     // NOTE: light theme is the default theme
     @include angular-material-theme($theme);
+    @content;
 
     @if $dark-theme-selector {
+      $mat-css-theme: $dark-theme !global;
       #{$dark-theme-selector} {
         @include angular-material-theme($dark-theme);
+        // add content passed in, which can use the $theme variable to apply the dark theme to 
+        // other theme mixins needed by the app
+        @content; 
       }
     }
   }
 
   @include mat-css-other-overwrites;
+
+  $mat-css-theme: null !global; 
 }
 
 @mixin initMaterialCssVars(
@@ -47,5 +56,7 @@
   $default-theme-text: $mat-css-text
 ) {
   @include initCssVars($default-theme, $default-theme-text);
-  @include initMatTheme($dark-theme-selector);
+  @include initMatTheme($dark-theme-selector) {
+    @content;
+  };
 }

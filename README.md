@@ -19,7 +19,11 @@ You want to style your angular material dynamically with all the colors in the r
     $mat-css-light-theme-selector: '.isLightTheme';
  
     // init theme
-    @include initMaterialCssVars();
+    @include initMaterialCssVars() {
+      // If your app has any theme mixins, call them here. 
+      // $mat-css-theme gets set to an appropriate value before this content is called.
+      @include app-theme($mat-css-theme);
+    };
     ```
 4. Add to your main module:
 ```typescript
@@ -148,6 +152,10 @@ $mat-css-default-light-theme: map-merge(
 ## IE 11
 This lib won't work  with IE11 but thanks to @Coly010 there is [a workaround for that too](https://github.com/johannesjo/angular-material-css-vars/issues/11#issuecomment-572749449).
 
+## App Theme Mixins
+The `initMaterialCssVars` mixin allows content to be passed into it. This allows you to create app themes that can take advantage of the dynamic theme created inside this mixin. It may be possible to do all theming using the utility mixins outlined above, but in other cases, you may need access to the theme palette, including foreground and background palettes.
+
+See the Material guide on [Theming your custom component](https://material.angular.io/guide/theming-your-components) for more information.
 
 ## Credit...
 ...goes to @zbirizdo [project](https://github.com/zbirizdo/material-css-vars) on which parts of this are based which is in turn supposedly based on [this gist](https://gist.github.com/shprink/c7f333e3ad51830f14a6383f3ab35439).
