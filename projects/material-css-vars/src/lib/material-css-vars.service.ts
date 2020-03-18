@@ -17,6 +17,8 @@ interface CssVariable {
   val: string;
 }
 
+// @see: https://github.com/angular/angular/issues/20351
+/** @dynamic */
 @Injectable({
   providedIn: 'root'
 })
