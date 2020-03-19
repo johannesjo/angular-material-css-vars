@@ -69,6 +69,11 @@
 // mixins
 // ------
 @mixin mat-css-color-and-contrast($hue) {
+  @warn 'mat-css-color-and-contrast() is deprecated. Please use mat-css-color-and-contrast-primary() instead.';
+  @include mat-css-color-and-contrast-primary($hue);
+}
+
+@mixin mat-css-color-and-contrast-primary($hue) {
   background: mat-css-color-primary($hue);
   color: mat-css-contrast-color($hue);
 }
