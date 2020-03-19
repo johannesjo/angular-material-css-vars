@@ -17,9 +17,15 @@
     "copy.licence": "copyfiles ./LICENSE ./dist/material-css-vars",
     "copy.readme": "copyfiles ./README.md ./dist/material-css-vars",
     "pub": "run-s lib && cd ./dist/material-css-vars/ && npm publish && cd .. && cd ..",
-    "patch": "npm version patch && cd ./projects/material-css-vars && npm version patch && cd .. && cd .. && git add . && git commit -am\"chore: update lib version\"",
+    "patch": "npm version patch && cd ./projects/material-css-vars && npm version patch && cd .. && cd .. && git add . && git commit -am\"chore: update lib version patch\"",
+    "minor": "npm version minor && cd ./projects/material-css-vars && npm version minor && cd .. && cd .. && git add . && git commit -am\"chore: update lib version minor\"",
+    "major": "npm version major && cd ./projects/material-css-vars && npm version major && cd .. && cd .. && git add . && git commit -am\"chore: update lib version major\"",
     "patch-release_": "run-s lib demo patch pub",
-    "patch-release": "npm run patch-release_"
+    "patch-release": "npm run patch-release_",
+    "minor-release_": "run-s lib demo minor pub",
+    "minor-release": "npm run patch-release_",
+    "major-release_": "run-s lib demo major pub",
+    "major-release": "npm run patch-release_"
   },
   "dependencies": {
     "@angular/animations": "~9.0.0",
