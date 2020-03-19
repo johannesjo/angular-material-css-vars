@@ -3,44 +3,44 @@
 $lighter-dark: rgb(88, 88, 88);
 
 .bg-50 {
-  @include mat-css-color-and-contrast(50);
+  @include mat-css-color-and-contrast-primary(50);
 }
 
 .bg-100 {
-  @include mat-css-color-and-contrast(100);
+  @include mat-css-color-and-contrast-primary(100);
 }
 
 .bg-200 {
-  @include mat-css-color-and-contrast(200);
+  @include mat-css-color-and-contrast-primary(200);
 }
 
 .bg-300 {
-  @include mat-css-color-and-contrast(300);
+  @include mat-css-color-and-contrast-primary(300);
 }
 
 .bg-400 {
-  @include mat-css-color-and-contrast(400);
+  @include mat-css-color-and-contrast-primary(400);
 }
 
 .bg-500 {
-  @include mat-css-color-and-contrast(500);
+  @include mat-css-color-and-contrast-primary(500);
   border: 4px dashed mat-css-color-accent();
 }
 
 .bg-600 {
-  @include mat-css-color-and-contrast(600);
+  @include mat-css-color-and-contrast-primary(600);
 }
 
 .bg-700 {
-  @include mat-css-color-and-contrast(700);
+  @include mat-css-color-and-contrast-primary(700);
 }
 
 .bg-800 {
-  @include mat-css-color-and-contrast(800);
+  @include mat-css-color-and-contrast-primary(800);
 }
 
 .bg-900 {
-  @include mat-css-color-and-contrast(900);
+  @include mat-css-color-and-contrast-primary(900);
 }
 
 

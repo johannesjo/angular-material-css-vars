@@ -1,7 +1,7 @@
 @import '../projects/material-css-vars/src/lib/main';
 @import './app//app.theme';
 
-@include initMaterialCssVars() {
+@include init-material-css-vars() {
   @include app-theme($mat-css-theme);
 };
 
