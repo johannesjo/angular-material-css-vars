@@ -19,10 +19,10 @@ You want to style your angular material dynamically with all the colors in the r
     $mat-css-light-theme-selector: '.isLightTheme';
  
     // init theme
-    @include initMaterialCssVars() {
+    @include init-material-css-vars() {
       // If your app has any theme mixins, call them here. 
       // $mat-css-theme gets set to an appropriate value before this content is called.
-      @include app-theme($mat-css-theme);
+      // @include your-custom-component-theme($mat-css-theme);
     };
     ```
 4. Add to your main module:
@@ -94,7 +94,7 @@ You can provide different options before initialization to change the body class
 $mat-css-dark-theme-selector: '.isDarkTheme';
 $mat-css-light-theme-selector: '.isLightTheme';
 
-@include initMaterialCssVars();
+@include init-material-css-vars();
 
 ``` 
 To make those variables take effect with your mixins, you need to make sure that they are also defined before using them. E.g.:
@@ -121,7 +121,7 @@ There are two ways to set the default fallback theme. One is using the `mat-css-
 @import '../projects/material-css-vars/src/lib/public-util';
 @import '../projects/material-css-vars/src/lib/main';
 
-@include initMaterialCssVars();
+@include init-material-css-vars();
 
 @include mat-css-set-palette-defaults($mat-light-blue, 'primary');
 @include mat-css-set-palette-defaults($mat-pink, 'accent');
@@ -145,7 +145,7 @@ $mat-css-default-light-theme: map-merge(
   )
 );
 
-@include initMaterialCssVars();
+@include init-material-css-vars();
 
 ```
 
@@ -153,7 +153,7 @@ $mat-css-default-light-theme: map-merge(
 This lib won't work  with IE11 but thanks to @Coly010 there is [a workaround for that too](https://github.com/johannesjo/angular-material-css-vars/issues/11#issuecomment-572749449).
 
 ## App Theme Mixins
-The `initMaterialCssVars` mixin allows content to be passed into it. This allows you to create app themes that can take advantage of the dynamic theme created inside this mixin. It may be possible to do all theming using the utility mixins outlined above, but in other cases, you may need access to the theme palette, including foreground and background palettes.
+The `init-material-css-vars` mixin allows content to be passed into it. This allows you to create app themes that can take advantage of the dynamic theme created inside this mixin. It may be possible to do all theming using the utility mixins outlined above, but in other cases, you may need access to the theme palette, including foreground and background palettes.
 
 See the Material guide on [Theming your custom component](https://material.angular.io/guide/theming-your-components) for more information.
 
