@@ -166,8 +166,5 @@
       }
     }
   },
-  "defaultProject": "angular-material-css-vars",
-  "cli": {
-    "analytics": "a02b9b3f-070c-4444-bf43-634ffebf42aa"
-  }
+  "defaultProject": "angular-material-css-vars"
 }
