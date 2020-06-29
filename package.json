@@ -23,9 +23,9 @@
     "patch-release_": "run-s lib demo patch pub",
     "patch-release": "npm run patch-release_",
     "minor-release_": "run-s lib demo minor pub",
-    "minor-release": "npm run patch-release_",
+    "minor-release": "npm run minor-release_",
     "major-release_": "run-s lib demo major pub",
-    "major-release": "npm run patch-release_"
+    "major-release": "npm run major-release_"
   },
   "dependencies": {
     "@angular/animations": "~10.0.1",
