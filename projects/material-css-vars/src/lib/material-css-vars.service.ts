@@ -124,9 +124,9 @@ export class MaterialCssVarsService {
       this._recalculateAndSetContrastColor(MatCssPalettePrefix.Accent);
       this._recalculateAndSetContrastColor(MatCssPalettePrefix.Warn);
     } else {
-      this.changeContrastColorThresholdPrimary(this.contrastColorThresholdPrimary);
-      this.changeContrastColorThresholdAccent(this.contrastColorThresholdAccent);
-      this.changeContrastColorThresholdWarn(this.contrastColorThresholdWarn);
+      this.setContrastColorThresholdPrimary(this.contrastColorThresholdPrimary);
+      this.setContrastColorThresholdAccent(this.contrastColorThresholdAccent);
+      this.setContrastColorThresholdWarn(this.contrastColorThresholdWarn);
     }
   }
 
