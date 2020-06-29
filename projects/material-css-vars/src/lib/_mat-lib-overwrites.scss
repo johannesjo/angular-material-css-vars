@@ -47,4 +47,7 @@
   .mat-checkbox .mat-ripple-element {
     background-color: RGB(var(--palette-foreground-base));
   }
+  .mat-option.mat-option-disabled {
+    color: rgba(var(--palette-foreground-hint-text), 0.38);
+  }
 }
