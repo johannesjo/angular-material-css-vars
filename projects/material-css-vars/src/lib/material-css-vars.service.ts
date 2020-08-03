@@ -99,7 +99,7 @@ export class MaterialCssVarsService {
     }
   }
 
-  setVariable(cssVarName: MaterialCssVariables, value: string) {
+  setVariable(cssVarName: MaterialCssVariables | string, value: string) {
     this._setStyle([{
       name: cssVarName,
       val: value,
