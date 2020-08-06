@@ -1,7 +1,13 @@
 @import '../projects/material-css-vars/src/lib/main';
-@import './app//app.theme';
+@import './app/app.theme';
 
-@include init-material-css-vars() {
+$custom-typography: mat-typography-config(
+  $font-family: 'Roboto, monospace',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+
+@include init-material-css-vars($typography-config: $custom-typography) {
   @include app-theme($mat-css-theme);
 };
 
