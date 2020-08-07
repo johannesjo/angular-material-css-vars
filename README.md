@@ -157,6 +157,21 @@ The `init-material-css-vars` mixin allows content to be passed into it. This all
 
 See the Material guide on [Theming your custom component](https://material.angular.io/guide/theming-your-components) for more information.
 
+## Font config
+If needed the typography can be adjusted as well.
+```scss
+// example
+$custom-typography: mat-typography-config(
+  $font-family: 'Roboto, monospace',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+
+@include init-material-css-vars($typography-config: $custom-typography) {
+  @include app-theme($mat-css-theme);
+};
+```
+
 ## Credit...
 ...goes to @zbirizdo [project](https://github.com/zbirizdo/material-css-vars) on which parts of this are based which is in turn supposedly based on [this gist](https://gist.github.com/shprink/c7f333e3ad51830f14a6383f3ab35439).
 
