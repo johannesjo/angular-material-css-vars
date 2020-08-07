@@ -12,8 +12,8 @@
   @include _mat-css-root($default-theme);
 }
 
-@mixin init-mat-theme($dark-theme-selector) {
-  @include mat-core();
+@mixin init-mat-theme($dark-theme-selector, $typography-config: null) {
+  @include mat-core($typography-config);
   
   $primary: mat-palette($mat-css-palette-primary);
   $accent: mat-palette($mat-css-palette-accent);
@@ -53,10 +53,11 @@
 @mixin init-material-css-vars(
   $default-theme: $mat-css-default-light-theme,
   $dark-theme-selector: $mat-css-dark-theme-selector,
-  $default-theme-text: $mat-css-text
+  $default-theme-text: $mat-css-text,
+  $typography-config: null
 ) {
   @include init-css-vars($default-theme, $default-theme-text);
-  @include init-mat-theme($dark-theme-selector) {
+  @include init-mat-theme($dark-theme-selector, $typography-config) {
     @content;
   };
 }
