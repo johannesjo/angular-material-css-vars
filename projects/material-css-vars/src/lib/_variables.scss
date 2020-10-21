@@ -129,6 +129,7 @@ $mat-css-default-light-theme: (
   --palette-foreground-disabled-button: _mat-css-hex-to-rgb(#000000),
   --palette-foreground-disabled-button-alpha: 0.26,
   --palette-foreground-disabled-text: _mat-css-hex-to-rgb($dark-disabled-text),
+  --palette-foreground-disabled-text-alpha: 0.26,
   --palette-foreground-elevation: _mat-css-hex-to-rgb(#000000),
   --palette-foreground-hint-text: _mat-css-hex-to-rgb($dark-disabled-text),
   --palette-foreground-secondary-text: _mat-css-hex-to-rgb($dark-secondary-text),
