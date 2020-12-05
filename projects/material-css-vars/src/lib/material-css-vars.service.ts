@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {Inject, Injectable, Renderer2, RendererFactory2, RendererStyleFlags2} from '@angular/core';
 import {Numberify, RGBA, TinyColor} from '@ctrl/tinycolor';
 import {
   HueValue,
@@ -27,7 +27,8 @@ export class MaterialCssVarsService {
   private static DARK_TEXT_VAR = '--dark-primary-text';
   private static LIGHT_TEXT_VAR = '--light-primary-text';
 
-  private ROOT;
+  private renderer: Renderer2;
+  private ROOT: HTMLElement;
 
   // This should be readonly from the outside
   cfg: MaterialCssVariablesConfig;
@@ -41,9 +42,11 @@ export class MaterialCssVarsService {
   isAutoContrast = false;
 
   constructor(
+    rendererFactory: RendererFactory2,
     @Inject(DOCUMENT) private document: Document,
     @Inject(MATERIAL_CSS_VARS_CFG) cfg: MaterialCssVariablesConfig,
   ) {
+    this.renderer = rendererFactory.createRenderer(null, null);
     this.ROOT = this.document.documentElement;
 
     this.cfg = {
@@ -290,7 +293,7 @@ export class MaterialCssVarsService {
 
   private _setStyle(vars: CssVariable[]) {
     vars.forEach(s => {
-      this.ROOT.style.setProperty(s.name, s.val);
+      this.renderer.setStyle(this.ROOT, s.name, s.val, RendererStyleFlags2.DashCase);
     });
   }
 
