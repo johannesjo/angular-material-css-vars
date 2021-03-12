@@ -14,40 +14,51 @@
 
 @mixin init-mat-theme($dark-theme-selector, $typography-config: null) {
   @include mat-core($typography-config);
-  
+
   $primary: mat-palette($mat-css-palette-primary);
   $accent: mat-palette($mat-css-palette-accent);
   $warn: mat-palette($mat-css-palette-warn);
-  
+
   $theme: mat-light-theme($primary, $accent, $warn);
-  $dark-theme: mat-dark-theme($primary, $accent, $warn);
-  
-  $theme: map_merge($theme, (
-    background: $mat-css-palette-background,
-    foreground: $mat-css-palette-foreground,
-  ));
+
+  $theme: map_merge(
+      mat-light-theme($primary, $accent, $warn),
+      (
+        background: $mat-css-palette-background,
+        foreground: $mat-css-palette-foreground,
+      )
+  );
+
+  $dark-theme: map_merge(
+      mat-dark-theme($primary, $accent, $warn),
+      (
+        background: $mat-css-palette-background-dark,
+        foreground: $mat-css-palette-foreground-dark,
+      )
+  );
+
   // set global variable so passed-in content can use the theme
-  $mat-css-theme: $theme !global; 
-  
+  $mat-css-theme: $theme !global;
+
   @at-root {
     // NOTE: light theme is the default theme
     @include angular-material-theme($theme);
     @content;
-  
+
     @if $dark-theme-selector {
       $mat-css-theme: $dark-theme !global;
       #{$dark-theme-selector} {
         @include angular-material-theme($dark-theme);
-        // add content passed in, which can use the $theme variable to apply the dark theme to 
+        // add content passed in, which can use the $theme variable to apply the dark theme to
         // other theme mixins needed by the app
-        @content; 
+        @content;
       }
     }
   }
 
   @include mat-css-other-overwrites;
-  
-  $mat-css-theme: null !global; 
+
+  $mat-css-theme: null !global;
 }
 
 @mixin init-material-css-vars(
@@ -59,7 +70,8 @@
   @include init-css-vars($default-theme, $default-theme-text);
   @include init-mat-theme($dark-theme-selector, $typography-config) {
     @content;
-  };
+  }
+;
 }
 
 @mixin initCssVars($default-theme, $text) {
@@ -71,7 +83,8 @@
   @warn 'initMatTheme() is deprecated. Please use init-mat-theme() instead.';
   @include init-mat-theme($dark-theme-selector) {
     @content;
-  };
+  }
+;
 }
 
 @mixin initMaterialCssVars(
