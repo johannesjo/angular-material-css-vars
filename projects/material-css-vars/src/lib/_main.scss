@@ -1,5 +1,6 @@
-@import 'variables';
+@use '~@angular/material'as mat;
 @import '~@angular/material/theming';
+@import 'variables';
 @import 'internal-helper';
 @import 'public-util';
 // contains main overwrite of `mat-color` to make it all work
@@ -13,42 +14,46 @@
 }
 
 @mixin init-mat-theme($dark-theme-selector, $typography-config: null) {
-  @include mat-core($typography-config);
+  @include mat.core($typography-config);
 
-  $primary: mat-palette($mat-css-palette-primary);
-  $accent: mat-palette($mat-css-palette-accent);
-  $warn: mat-palette($mat-css-palette-warn);
+  $primary: mat.define-palette($mat-css-palette-primary);
+  $accent: mat.define-palette($mat-css-palette-accent);
+  $warn: mat.define-palette($mat-css-palette-warn);
 
-  $theme: mat-light-theme($primary, $accent, $warn);
+  $theme: mat.define-light-theme((
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+    )
+  ));
+  $new-map: map_merge($theme, (
+    color: (
+      background: $mat-css-palette-background-dark,
+      foreground: $mat-css-palette-foreground-dark,
+    )
+  ));
 
-  $theme: map_merge(
-      mat-light-theme($primary, $accent, $warn),
-      (
-        background: $mat-css-palette-background,
-        foreground: $mat-css-palette-foreground,
-      )
-  );
-
-  $dark-theme: map_merge(
-      mat-dark-theme($primary, $accent, $warn),
-      (
-        background: $mat-css-palette-background-dark,
-        foreground: $mat-css-palette-foreground-dark,
-      )
-  );
+  $dark-theme: mat.define-dark-theme((
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+    )
+  ));
 
   // set global variable so passed-in content can use the theme
   $mat-css-theme: $theme !global;
 
   @at-root {
     // NOTE: light theme is the default theme
-    @include angular-material-theme($theme);
+    @include mat.all-component-themes($theme);
     @content;
 
     @if $dark-theme-selector {
       $mat-css-theme: $dark-theme !global;
       #{$dark-theme-selector} {
-        @include angular-material-theme($dark-theme);
+        @include mat.all-component-themes($dark-theme);
         // add content passed in, which can use the $theme variable to apply the dark theme to
         // other theme mixins needed by the app
         @content;

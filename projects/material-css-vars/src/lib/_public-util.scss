@@ -29,11 +29,14 @@
     }
   }
 
+  $color: _mat-css-strip-variable(map_get($palette_, $hue));
+
   @if (type-of($opacity) == number) {
-    @return _mat-css-rgba(map_get($palette_, $hue), $opacity);
+    @return rgba($color, $opacity);
   } @else {
-    @return _mat-css-rgb(map_get($palette_, $hue));
+    @return rgb($color);
   }
+
 }
 
 @function mat-css-color-primary($hue: 500,  $opacity: null) {

@@ -1,23 +1,25 @@
 // main overwrite to make it all work
-@function mat-color($palette, $hue: default, $opacity: null) {
+@function get-color-from-palette($palette, $hue: default, $opacity: null) {
   @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {
-    @return mat-color($palette, default, $hue);
+    @return mat.get-color-from-palette($palette, default, $hue);
   }
 
-  $color: map-get($palette, $hue);
+  $color: mat.get-color-from-palette($palette, $hue);
 
   @if type-of($color) == color {
     @return rgba($color, if($opacity == null, opacity($color), $opacity));
-  } @else {
-    $default-opacity: if($opacity == null, 1, $opacity);
-    $inner-var-alpha-str: str-slice($color, 5, -2) + '-alpha';
-    // if we have a corresponding alpha variable use it
-    @if (map_get($mat-css-default-light-theme, $inner-var-alpha-str)) {
-      @return rgba($color, _mat-css-str-replace($color, ')', "-alpha, #{$default-opacity})"));
-    } @else {
-      @return rgba($color, $default-opacity);
-    }
   }
+
+  $color: _mat-css-strip-variable($color);
+  $inner-var-alpha-str: str-slice($color, 5, -2) + '-alpha';
+
+  // if we have a corresponding alpha variable use it
+  // don't use alpha variable if we have an actual $opacity value
+  @if (map_get($mat-css-default-light-theme, $inner-var-alpha-str) and type-of($opacity) == null) {
+    @return rgba($color, _mat-css-str-replace($color, ')', "-alpha)"));
+  }
+
+  @return rgba($color, if($opacity == null, 1, $opacity));
 }
 
 // also needs to be overwritten, as otherwise we end up with opacity and alpha value
@@ -36,18 +38,101 @@
 // This would cause the opacity to get applied twice, resulting in a ripple that is almost invisible.
 // Instead, we will trust that mat-color handles opacity correctly.
 @mixin _mat-button-ripple-background($palette, $hue, $opacity) {
-  $background-color: mat-color($palette, $hue, $opacity);
+  $background-color: mat.get-color-from-palette($palette, $hue, $opacity);
   background-color: $background-color;
 }
 
 @mixin mat-css-other-overwrites {
   .mat-button-focus-overlay {
-    background: RGBA(var(--palette-foreground-base), 1);
+    background: rgba(var(--palette-foreground-base), 1);
   }
   .mat-checkbox .mat-ripple-element {
-    background-color: RGB(var(--palette-foreground-base));
+    background-color: rgb(var(--palette-foreground-base));
   }
   .mat-option.mat-option-disabled {
     color: rgba(var(--palette-foreground-hint-text), 0.38);
+  }
+  @include _mat-checkbox-overwrites();
+  @include _mat-slide-toggle-color-overwrites();
+}
+
+// Fix a problem where the contrast color for
+// checkboxes are not rendered correctly.
+@mixin _mat-checkbox-overwrites {
+  // focus background color when tabbing
+  .mat-checkbox .mat-ripple-element {
+    background-color: rgb(var(--palette-foreground-base));
+  }
+
+  // -- Primary Color
+  .mat-checkbox.mat-primary,
+  .mat-checkbox.mat-primary {
+    .mat-checkbox-checkmark .mat-checkbox-checkmark-path {
+      stroke: mat-css-contrast-color-primary(500) !important;
+    }
+    .mat-checkbox-mixedmark {
+      background-color: mat-css-contrast-color-primary(500) !important;
+    }
+  }
+  // -- Accent Color
+  .mat-checkbox.mat-accent,
+  .mat-checkbox.mat-accent {
+    .mat-checkbox-checkmark .mat-checkbox-checkmark-path {
+      stroke: mat-css-contrast-color-accent(500) !important;
+    }
+    .mat-checkbox-mixedmark {
+      background-color: mat-css-contrast-color-accent(500) !important;
+    }
+  }
+  // -- Warning Color
+  .mat-checkbox.mat-warn,
+  .mat-checkbox.mat-warn {
+    .mat-checkbox-checkmark .mat-checkbox-checkmark-path {
+      stroke: mat-css-contrast-color-warn(500) !important;
+    }
+    .mat-checkbox-mixedmark {
+      background-color: mat-css-contrast-color-warn(500) !important;
+    }
+  }
+}
+
+// Since we cannot override angulars namespace,
+// target the style and override it with the proper attributes.
+@mixin _mat-slide-toggle-color-overwrites() {
+  $thumb-checked-hue: 500;
+  $accent: $mat-css-palette-accent;
+  $primary: $mat-css-palette-primary;
+  $warn: $mat-css-palette-warn;
+  .mat-slide-toggle {
+    @include _mat-slide-toggle-checked-color-theme($accent, $thumb-checked-hue);
+
+    &.mat-primary {
+      @include _mat-slide-toggle-checked-color-theme($primary, $thumb-checked-hue);
+    }
+
+    &.mat-warn {
+      @include _mat-slide-toggle-checked-color-theme($warn, $thumb-checked-hue);
+    }
+  }
+}
+@mixin _mat-slide-toggle-checked-color-theme($palette, $thumb-checked-hue) {
+  @include mat-css-dark-theme-global() {
+    @include _mat-slide-toggle-checked-color($palette, $thumb-checked-hue)
+  }
+  @include mat-css-light-theme-global() {
+    @include _mat-slide-toggle-checked-color($palette, $thumb-checked-hue)
+  }
+}
+@mixin _mat-slide-toggle-checked-color($palette, $thumb-checked-hue) {
+  &.mat-checked {
+    .mat-slide-toggle-thumb {
+      background-color: get-color-from-palette($palette, $thumb-checked-hue);
+    }
+    .mat-slide-toggle-bar {
+      background-color: get-color-from-palette($palette, $thumb-checked-hue, 0.54);
+    }
+    .mat-ripple-element {
+      background-color: get-color-from-palette($palette, $thumb-checked-hue);
+    }
   }
 }

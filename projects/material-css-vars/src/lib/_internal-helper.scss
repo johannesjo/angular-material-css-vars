@@ -1,11 +1,11 @@
 // used to circumvent node sass issue: https://github.com/sass/node-sass/issues/2251
 @function _mat-css-rgb($r, $g: null, $b: null ) {
   @if ($g == null) {
-    @return unquote('rgb(#{$r})');
+    @return unquote('#{$r}');
   }
 
   @if ($g and $b) {
-    @return unquote('rgb(#{$r}, #{$g}, #{$b})');
+    @return unquote('#{$r}, #{$g}, #{$b}');
   }
 
   @error "wrong number of arguments";
@@ -14,11 +14,11 @@
 // used to circumvent node sass issue: https://github.com/sass/node-sass/issues/2251
 @function _mat-css-rgba($r, $g, $b: null, $a: null ) {
   @if ($b == null) {
-    @return unquote('rgba(#{$r}, #{$g})');
+    @return unquote('#{$r}, #{$g}');
   }
 
   @if ($b and $a) {
-    @return unquote('rgba(#{$r}, #{$g}, #{$b}, #{$a})');
+    @return unquote('#{$r}, #{$g}, #{$b}, #{$a}');
   }
 
   @error "wrong number of arguments";
@@ -38,7 +38,7 @@
   @if ($color == null) {
     @return null;
   }
-  @return (red($color), green($color), blue($color));
+  @return red($color), green($color), blue($color);
 }
 
 @mixin _mat-css-root($varMap: null) {
@@ -51,4 +51,19 @@
       }
     }
   }
+}
+
+@function _mat-css-strip-variable($color) {
+  $var: $color;
+  @if (str-index($var, 'rgba(')) {
+    $var: _mat-css-str-replace($var, 'rgba(', '');
+  }
+  @if (str-index($var, 'rgb(')) {
+    $var: _mat-css-str-replace($var, 'rgb(', '');
+  }
+  @if (str-index($var, 'var(')) {
+    $var: _mat-css-str-replace($var, ')', ''); // remove excess ")"
+    $var: $var + ')';
+  }
+  @return $var;
 }

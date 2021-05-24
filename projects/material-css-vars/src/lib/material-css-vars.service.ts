@@ -249,7 +249,7 @@ export class MaterialCssVarsService {
         ...item,
         contrast: {
           ...cco,
-          str: `rgb(${cco.r},${cco.g},${cco.b})`
+          str: `${cco.r},${cco.g},${cco.b}`
         },
       };
     });
