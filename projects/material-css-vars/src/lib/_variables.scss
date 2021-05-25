@@ -5,7 +5,7 @@ $mat-css-dark-theme-selector: '.isDarkTheme' !default;
 $mat-css-light-theme-selector: '.isLightTheme' !default;
 
 $mat-css-text: (
-  --dark-primary-text: _mat-css-rgba(0, 0, 0, 1),
+  --dark-primary-text: _mat-css-rgba(0, 0, 0, 0.87),
   --light-primary-text: _mat-css-rgba(255, 255, 255, 1),
 ) !default;
 
