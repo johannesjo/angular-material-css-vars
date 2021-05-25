@@ -5,8 +5,8 @@ $mat-css-dark-theme-selector: '.isDarkTheme' !default;
 $mat-css-light-theme-selector: '.isLightTheme' !default;
 
 $mat-css-text: (
-  --dark-primary-text: _mat-css-rgb(0, 0, 0),
-  --light-primary-text: _mat-css-rgb(255, 255, 255)
+  --dark-primary-text: _mat-css-rgba(0, 0, 0, 1),
+  --light-primary-text: _mat-css-rgba(255, 255, 255, 1),
 ) !default;
 
 $mat-css-default-light-theme: (
@@ -210,20 +210,20 @@ $mat-css-palette-primary: (
   A400: rgb(var(--palette-primary-A400)),
   A700: rgb(var(--palette-primary-A700)),
   contrast: (
-    50: rgb(var(--palette-primary-contrast-50)),
-    100: rgb(var(--palette-primary-contrast-100)),
-    200: rgb(var(--palette-primary-contrast-200)),
-    300: rgb(var(--palette-primary-contrast-300)),
-    400: rgb(var(--palette-primary-contrast-400)),
-    500: rgb(var(--palette-primary-contrast-500)),
-    600: rgb(var(--palette-primary-contrast-600)),
-    700: rgb(var(--palette-primary-contrast-700)),
-    800: rgb(var(--palette-primary-contrast-800)),
-    900: rgb(var(--palette-primary-contrast-900)),
-    A100: rgb(var(--palette-primary-contrast-A100)),
-    A200: rgb(var(--palette-primary-contrast-A200)),
-    A400: rgb(var(--palette-primary-contrast-A400)),
-    A700: rgb(var(--palette-primary-contrast-A700)),
+    50: rgba(var(--palette-primary-contrast-50)),
+    100: rgba(var(--palette-primary-contrast-100)),
+    200: rgba(var(--palette-primary-contrast-200)),
+    300: rgba(var(--palette-primary-contrast-300)),
+    400: rgba(var(--palette-primary-contrast-400)),
+    500: rgba(var(--palette-primary-contrast-500)),
+    600: rgba(var(--palette-primary-contrast-600)),
+    700: rgba(var(--palette-primary-contrast-700)),
+    800: rgba(var(--palette-primary-contrast-800)),
+    900: rgba(var(--palette-primary-contrast-900)),
+    A100: rgba(var(--palette-primary-contrast-A100)),
+    A200: rgba(var(--palette-primary-contrast-A200)),
+    A400: rgba(var(--palette-primary-contrast-A400)),
+    A700: rgba(var(--palette-primary-contrast-A700)),
   )
 ) !default;
 
@@ -246,20 +246,20 @@ $mat-css-palette-accent: (
   A400: rgb(var(--palette-accent-A400)),
   A700: rgb(var(--palette-accent-A700)),
   contrast: (
-    50: rgb(var(--palette-accent-contrast-50)),
-    100: rgb(var(--palette-accent-contrast-100)),
-    200: rgb(var(--palette-accent-contrast-200)),
-    300: rgb(var(--palette-accent-contrast-300)),
-    400: rgb(var(--palette-accent-contrast-400)),
-    500: rgb(var(--palette-accent-contrast-500)),
-    600: rgb(var(--palette-accent-contrast-600)),
-    700: rgb(var(--palette-accent-contrast-700)),
-    800: rgb(var(--palette-accent-contrast-800)),
-    900: rgb(var(--palette-accent-contrast-900)),
-    A100: rgb(var(--palette-accent-contrast-A100)),
-    A200: rgb(var(--palette-accent-contrast-A200)),
-    A400: rgb(var(--palette-accent-contrast-A400)),
-    A700: rgb(var(--palette-accent-contrast-A700)),
+    50: rgba(var(--palette-accent-contrast-50)),
+    100: rgba(var(--palette-accent-contrast-100)),
+    200: rgba(var(--palette-accent-contrast-200)),
+    300: rgba(var(--palette-accent-contrast-300)),
+    400: rgba(var(--palette-accent-contrast-400)),
+    500: rgba(var(--palette-accent-contrast-500)),
+    600: rgba(var(--palette-accent-contrast-600)),
+    700: rgba(var(--palette-accent-contrast-700)),
+    800: rgba(var(--palette-accent-contrast-800)),
+    900: rgba(var(--palette-accent-contrast-900)),
+    A100: rgba(var(--palette-accent-contrast-A100)),
+    A200: rgba(var(--palette-accent-contrast-A200)),
+    A400: rgba(var(--palette-accent-contrast-A400)),
+    A700: rgba(var(--palette-accent-contrast-A700)),
   )
 ) !default;
 $mat-css-contrast-palette-accent: map_get($mat-css-palette-accent, 'contrast') !default;
@@ -280,20 +280,20 @@ $mat-css-palette-warn: (
   A400: rgb(var(--palette-warn-A400)),
   A700: rgb(var(--palette-warn-A700)),
   contrast: (
-    50: rgb(var(--palette-warn-contrast-50)),
-    100: rgb(var(--palette-warn-contrast-100)),
-    200: rgb(var(--palette-warn-contrast-200)),
-    300: rgb(var(--palette-warn-contrast-300)),
-    400: rgb(var(--palette-warn-contrast-400)),
-    500: rgb(var(--palette-warn-contrast-500)),
-    600: rgb(var(--palette-warn-contrast-600)),
-    700: rgb(var(--palette-warn-contrast-700)),
-    800: rgb(var(--palette-warn-contrast-800)),
-    900: rgb(var(--palette-warn-contrast-900)),
-    A100: rgb(var(--palette-warn-contrast-A100)),
-    A200: rgb(var(--palette-warn-contrast-A200)),
-    A400: rgb(var(--palette-warn-contrast-A400)),
-    A700: rgb(var(--palette-warn-contrast-A700)),
+    50: rgba(var(--palette-warn-contrast-50)),
+    100: rgba(var(--palette-warn-contrast-100)),
+    200: rgba(var(--palette-warn-contrast-200)),
+    300: rgba(var(--palette-warn-contrast-300)),
+    400: rgba(var(--palette-warn-contrast-400)),
+    500: rgba(var(--palette-warn-contrast-500)),
+    600: rgba(var(--palette-warn-contrast-600)),
+    700: rgba(var(--palette-warn-contrast-700)),
+    800: rgba(var(--palette-warn-contrast-800)),
+    900: rgba(var(--palette-warn-contrast-900)),
+    A100: rgba(var(--palette-warn-contrast-A100)),
+    A200: rgba(var(--palette-warn-contrast-A200)),
+    A400: rgba(var(--palette-warn-contrast-A400)),
+    A700: rgba(var(--palette-warn-contrast-A700)),
   )
 ) !default;
 $mat-css-contrast-palette-warn: map_get($mat-css-palette-warn, 'contrast') !default;
