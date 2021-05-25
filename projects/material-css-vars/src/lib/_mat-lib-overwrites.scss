@@ -1,9 +1,10 @@
 // main overwrite to make it all work
 @function get-color-from-palette($palette, $hue: default, $opacity: null) {
   @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {
-    @return mat.get-color-from-palette($palette, default, $hue);
+    @return get-color-from-palette($palette, default, $hue);
   }
 
+  // use namespace here to avoid stack overflow error
   $color: mat.get-color-from-palette($palette, $hue);
 
   @if type-of($color) == color {
@@ -22,26 +23,7 @@
   @return rgba($color, if($opacity == null, 1, $opacity));
 }
 
-// also needs to be overwritten, as otherwise we end up with opacity and alpha value
-@mixin mat-ripple-theme($theme) {
-  $foreground: map_get($theme, foreground);
-  $foreground-base: map_get($foreground, base);
-
-  .mat-ripple-element {
-    // if it's a color, rgba just works.
-    // If it's a variable, rgba works because all color variables should be 3 comma separated numbers
-    background-color: rgba($foreground-base, $mat-ripple-color-opacity);
-  }
-}
-
-// The material mixin passes an opacity to mat-color and also adds opacity to the element if the background-color is not of type 'color'.
-// This would cause the opacity to get applied twice, resulting in a ripple that is almost invisible.
-// Instead, we will trust that mat-color handles opacity correctly.
-@mixin _mat-button-ripple-background($palette, $hue, $opacity) {
-  $background-color: mat.get-color-from-palette($palette, $hue, $opacity);
-  background-color: $background-color;
-}
-
+// apply additional overwrites
 @mixin mat-css-other-overwrites {
   .mat-button-focus-overlay {
     background: rgba(var(--palette-foreground-base), 1);
@@ -97,7 +79,7 @@
 }
 
 // Since we cannot override angulars namespace,
-// target the style and override it with the proper attributes.
+// target the style and overwrite it with the proper attributes.
 @mixin _mat-slide-toggle-color-overwrites() {
   $thumb-checked-hue: 500;
   $accent: $mat-css-palette-accent;
