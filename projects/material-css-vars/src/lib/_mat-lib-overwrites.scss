@@ -5,7 +5,8 @@
   }
 
   // use namespace here to avoid stack overflow error
-  $color: mat.get-color-from-palette($palette, $hue);
+  // $color: mat.get-color-from-palette($palette, $hue);
+  $color: map-get($palette, $hue);
 
   @if type-of($color) == color {
     @return rgba($color, if($opacity == null, opacity($color), $opacity));
@@ -16,7 +17,7 @@
 
   // if we have a corresponding alpha variable use it
   // don't use alpha variable if we have an actual $opacity value
-  @if (map_get($mat-css-default-light-theme, $inner-var-alpha-str) and type-of($opacity) == null) {
+  @if (map_get($mat-css-default-light-theme, $inner-var-alpha-str) and $opacity == null) {
     @return rgba($color, _mat-css-str-replace($color, ')', "-alpha)"));
   }
 
