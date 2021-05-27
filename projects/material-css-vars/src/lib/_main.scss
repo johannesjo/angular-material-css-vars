@@ -10,7 +10,6 @@
 @mixin init-css-vars($default-theme, $text) {
   // init css variables
   @include _mat-css-root($text);
-  @include _mat-css-root($default-theme);
 }
 
 @mixin init-mat-theme($dark-theme-selector, $typography-config: null) {
@@ -24,13 +23,7 @@
     color: (
       primary: $primary,
       accent: $accent,
-      warn: $warn,
-    )
-  ));
-  $new-map: map_merge($theme, (
-    color: (
-      background: $mat-css-palette-background-dark,
-      foreground: $mat-css-palette-foreground-dark,
+      warn: $warn
     )
   ));
 
@@ -38,7 +31,7 @@
     color: (
       primary: $primary,
       accent: $accent,
-      warn: $warn,
+      warn: $warn
     )
   ));
 
@@ -76,7 +69,6 @@
   @include init-mat-theme($dark-theme-selector, $typography-config) {
     @content;
   }
-;
 }
 
 @mixin initCssVars($default-theme, $text) {
@@ -89,7 +81,6 @@
   @include init-mat-theme($dark-theme-selector) {
     @content;
   }
-;
 }
 
 @mixin initMaterialCssVars(

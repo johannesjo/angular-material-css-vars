@@ -1,12 +1,19 @@
+@use '~@angular/material'as mat;
 @import '~@angular/material/theming';
 @import 'internal-helper';
 
 $mat-css-dark-theme-selector: '.isDarkTheme' !default;
 $mat-css-light-theme-selector: '.isLightTheme' !default;
+$dark-primary-text: _mat-css-rgba(0, 0, 0, 0.87);
+$light-primary-text: _mat-css-rgba(255, 255, 255, 1);
 
 $mat-css-text: (
-  --dark-primary-text: _mat-css-rgba(0, 0, 0, 0.87),
-  --light-primary-text: _mat-css-rgba(255, 255, 255, 1),
+  --dark-primary-text: $dark-primary-text,
+  --light-primary-text: $light-primary-text,
+  --dark-accent-text: $dark-primary-text,
+  --light-accent-text: $light-primary-text,
+  --dark-warn-text: $dark-primary-text,
+  --light-warn-text: $light-primary-text,
 ) !default;
 
 $mat-css-default-light-theme: (
@@ -54,8 +61,6 @@ $mat-css-default-light-theme: (
   --palette-accent-A200: _mat-css-hex-to-rgb(#ff4081), //default
   --palette-accent-A400: _mat-css-hex-to-rgb(#f50057), //darker
   --palette-accent-A700: _mat-css-hex-to-rgb(#c51162),
-  --dark-accent-text: var(--dark-primary-text),
-  --light-accent-text: var(--light-primary-text),
   --palette-accent-contrast-50: var(--dark-accent-text),
   --palette-accent-contrast-100: var(--dark-accent-text),
   --palette-accent-contrast-200: var(--dark-accent-text),
@@ -85,8 +90,6 @@ $mat-css-default-light-theme: (
   --palette-warn-A200: _mat-css-hex-to-rgb(#ff5252),
   --palette-warn-A400: _mat-css-hex-to-rgb(#ff1744),
   --palette-warn-A700: _mat-css-hex-to-rgb(#d50000),
-  --dark-warn-text: var(--dark-primary-text),
-  --light-warn-text: var(--light-primary-text),
   --palette-warn-contrast-50: var(--dark-warn-text),
   --palette-warn-contrast-100: var(--dark-warn-text),
   --palette-warn-contrast-200: var(--dark-warn-text),
@@ -101,97 +104,6 @@ $mat-css-default-light-theme: (
   --palette-warn-contrast-A200: var(--light-warn-text),
   --palette-warn-contrast-A400: var(--light-warn-text),
   --palette-warn-contrast-A700: var(--light-warn-text),
-  // BACKGROUND
-  --palette-background-status-bar: _mat-css-hex-to-rgb(map_get($mat-grey, 300)),
-  --palette-background-app-bar: _mat-css-hex-to-rgb(map_get($mat-grey, 100)),
-  --palette-background-background: _mat-css-hex-to-rgb(map_get($mat-grey, 50)),
-  --palette-background-hover: _mat-css-hex-to-rgb(#000000),
-  --palette-background-hover-alpha: 0.04,
-  --palette-background-card: _mat-css-hex-to-rgb(#ffffff),
-  --palette-background-dialog: _mat-css-hex-to-rgb(#ffffff),
-  --palette-background-disabled-button: _mat-css-hex-to-rgb(#000000),
-  --palette-background-disabled-button-alpha: 0.12,
-  --palette-background-raised-button: _mat-css-hex-to-rgb(#ffffff),
-  --palette-background-focused-button: _mat-css-hex-to-rgb($dark-focused),
-  --palette-background-selected-button: _mat-css-hex-to-rgb(map_get($mat-grey, 300)),
-  --palette-background-selected-disabled-button: _mat-css-hex-to-rgb(map_get($mat-grey, 400)),
-  --palette-background-disabled-button-toggle: _mat-css-hex-to-rgb(map_get($mat-grey, 200)),
-  --palette-background-unselected-chip: _mat-css-hex-to-rgb(map_get($mat-grey, 300)),
-  --palette-background-disabled-list-option: _mat-css-hex-to-rgb(map_get($mat-grey, 200)),
-  --palette-background-tooltip: _mat-css-hex-to-rgb(map_get($mat-grey, 700)),
-  // FOREGROUND
-  --palette-foreground-base: _mat-css-hex-to-rgb(#000000),
-  --palette-foreground-divider: _mat-css-hex-to-rgb($dark-dividers),
-  --palette-foreground-divider-alpha: 0.12,
-  --palette-foreground-dividers: _mat-css-hex-to-rgb($dark-dividers),
-  --palette-foreground-disabled: _mat-css-hex-to-rgb($dark-disabled-text),
-  --palette-foreground-disabled-alpha: 0.5,
-  --palette-foreground-disabled-button: _mat-css-hex-to-rgb(#000000),
-  --palette-foreground-disabled-button-alpha: 0.26,
-  --palette-foreground-disabled-text: _mat-css-hex-to-rgb($dark-disabled-text),
-  --palette-foreground-disabled-text-alpha: 0.26,
-  --palette-foreground-elevation: _mat-css-hex-to-rgb(#000000),
-  --palette-foreground-hint-text: _mat-css-hex-to-rgb($dark-disabled-text),
-  --palette-foreground-secondary-text: _mat-css-hex-to-rgb($dark-secondary-text),
-  --palette-foreground-secondary-text-alpha: 0.54,
-  --palette-foreground-icon: _mat-css-hex-to-rgb(#000000),
-  --palette-foreground-icon-alpha: 0.54,
-  --palette-foreground-icons: _mat-css-hex-to-rgb(#000000),
-  --palette-foreground-icons-alpha: 0.54,
-  --palette-foreground-text: _mat-css-hex-to-rgb(#000000),
-  --palette-foreground-text-alpha: 0.87,
-  --palette-foreground-slider-min: _mat-css-hex-to-rgb(#000000),
-  --palette-foreground-slider-min-alpha: 0.87,
-  --palette-foreground-slider-off: _mat-css-hex-to-rgb(#000000),
-  --palette-foreground-slider-off-alpha: 0.26,
-  --palette-foreground-slider-off-active: _mat-css-hex-to-rgb(#000000),
-  --palette-foreground-slider-off-active-alpha: 0.38,
-
-  // BACKGROUND DARK
-  --palette-background-status-bar-dark: _mat-css-hex-to-rgb(#000),
-  --palette-background-app-bar-dark: _mat-css-hex-to-rgb(map_get($mat-grey, 900)),
-  --palette-background-background-dark: _mat-css-hex-to-rgb(#303030),
-  --palette-background-hover-dark: _mat-css-hex-to-rgb(#ffffff),
-  --palette-background-hover-dark-alpha: 0.04,
-  --palette-background-card-dark: _mat-css-hex-to-rgb(map_get($mat-grey, 800)),
-  --palette-background-dialog-dark: _mat-css-hex-to-rgb(map_get($mat-grey, 800)),
-  --palette-background-disabled-button-dark: _mat-css-hex-to-rgb(#ffffff),
-  --palette-background-disabled-button-dark-alpha: 0.12,
-  --palette-background-raised-button-dark: _mat-css-hex-to-rgb(map_get($mat-grey, 800)),
-  --palette-background-focused-button-dark: _mat-css-hex-to-rgb($light-focused),
-  --palette-background-selected-button-dark: _mat-css-hex-to-rgb(map_get($mat-grey, 900)),
-  --palette-background-selected-disabled-button-dark: _mat-css-hex-to-rgb(map_get($mat-grey, 800)),
-  --palette-background-disabled-button-toggle-dark: _mat-css-hex-to-rgb(#000000),
-  --palette-background-unselected-chip-dark: _mat-css-hex-to-rgb(map_get($mat-grey, 700)),
-  --palette-background-disabled-list-option-dark: _mat-css-hex-to-rgb(#000000),
-  --palette-background-tooltip-dark: _mat-css-hex-to-rgb(map_get($mat-grey, 700)),
-  // FOREGROUND DARK
-  --palette-foreground-base-dark: _mat-css-hex-to-rgb(#ffffff),
-  --palette-foreground-divider-dark: _mat-css-hex-to-rgb($light-dividers),
-  --palette-foreground-divider-dark-alpha: 0.12,
-  --palette-foreground-dividers-dark: _mat-css-hex-to-rgb($light-dividers),
-  --palette-foreground-disabled-dark: _mat-css-hex-to-rgb($light-disabled-text),
-  --palette-foreground-disabled-dark-alpha: 0.5,
-  --palette-foreground-disabled-button-dark: _mat-css-hex-to-rgb(#ffffff),
-  --palette-foreground-disabled-button-dark-alpha: 0.3,
-  --palette-foreground-disabled-text-dark: _mat-css-hex-to-rgb($light-disabled-text),
-  --palette-foreground-disabled-text-dark-alpha: 0.3,
-  --palette-foreground-elevation-dark: _mat-css-hex-to-rgb(#ffffff),
-  --palette-foreground-hint-text-dark: _mat-css-hex-to-rgb($light-disabled-text),
-  --palette-foreground-secondary-text-dark: _mat-css-hex-to-rgb($light-secondary-text),
-  --palette-foreground-secondary-text-dark-alpha: 0.54,
-  --palette-foreground-icon-dark: _mat-css-hex-to-rgb(#ffffff),
-  --palette-foreground-icon-dark-alpha: 0.54,
-  --palette-foreground-icons-dark: _mat-css-hex-to-rgb(#ffffff),
-  --palette-foreground-icons-dark-alpha: 0.54,
-  --palette-foreground-text-dark: _mat-css-hex-to-rgb(#ffffff),
-  --palette-foreground-text-dark-alpha: 0.87,
-  --palette-foreground-slider-min-dark: _mat-css-hex-to-rgb(#ffffff),
-  --palette-foreground-slider-min-dark-alpha: 0.87,
-  --palette-foreground-slider-off-dark: _mat-css-hex-to-rgb(#ffffff),
-  --palette-foreground-slider-off-dark-alpha: 0.3,
-  --palette-foreground-slider-off-active-dark: _mat-css-hex-to-rgb(#ffffff),
-  --palette-foreground-slider-off-active-dark-alpha: 0.38,
 ) !default;
 
 $mat-css-palette-primary: (
@@ -227,9 +139,6 @@ $mat-css-palette-primary: (
   )
 ) !default;
 
-$mat-css-contrast-palette: map_get($mat-css-palette-primary, 'contrast') !default;
-
-
 $mat-css-palette-accent: (
   50: rgb(var(--palette-accent-50)),
   100: rgb(var(--palette-accent-100)),
@@ -262,7 +171,6 @@ $mat-css-palette-accent: (
     A700: rgba(var(--palette-accent-contrast-A700)),
   )
 ) !default;
-$mat-css-contrast-palette-accent: map_get($mat-css-palette-accent, 'contrast') !default;
 
 $mat-css-palette-warn: (
   50: rgb(var(--palette-warn-50)),
@@ -296,76 +204,12 @@ $mat-css-palette-warn: (
     A700: rgba(var(--palette-warn-contrast-A700)),
   )
 ) !default;
+
+$mat-css-contrast-palette: map_get($mat-css-palette-primary, 'contrast') !default;
+$mat-css-contrast-palette-accent: map_get($mat-css-palette-accent, 'contrast') !default;
 $mat-css-contrast-palette-warn: map_get($mat-css-palette-warn, 'contrast') !default;
 
-$mat-css-palette-background: (
-  status-bar: var(--palette-background-status-bar),
-  app-bar: var(--palette-background-app-bar),
-  background: var(--palette-background-background),
-  hover: var(--palette-background-hover),
-  card: var(--palette-background-card),
-  dialog: var(--palette-background-dialog),
-  disabled-button: var(--palette-background-disabled-button),
-  raised-button: var(--palette-background-raised-button),
-  focused-button: var(--palette-background-focused-button),
-  selected-button: var(--palette-background-selected-button),
-  selected-disabled-button: var(--palette-background-selected-disabled-button),
-  disabled-button-toggle: var(--palette-background-disabled-button-toggle),
-  unselected-chip: var(--palette-background-unselected-chip),
-  disabled-list-option: var(--palette-background-disabled-list-option),
-  tooltip: var(--palette-background-tooltip),
-) !default;
-
-$mat-css-palette-foreground: (
-  base: var(--palette-foreground-base),
-  divider: var(--palette-foreground-divider),
-  dividers: var(--palette-foreground-dividers),
-  disabled: var(--palette-foreground-disabled),
-  disabled-button: var(--palette-foreground-disabled-button),
-  disabled-text: var(--palette-foreground-disabled-text),
-  elevation: black,
-  hint-text: var(--palette-foreground-hint-text),
-  secondary-text: var(--palette-foreground-secondary-text),
-  icon: var(--palette-foreground-icon),
-  icons: var(--palette-foreground-icons),
-  text: var(--palette-foreground-text),
-  slider-min: var(--palette-foreground-slider-min),
-  slider-off: var(--palette-foreground-slider-off),
-  slider-off-active: var(--palette-foreground-slider-off-active),
-) !default;
-
-$mat-css-palette-background-dark: (
-  status-bar: var(--palette-background-status-bar-dark),
-  app-bar: var(--palette-background-app-bar-dark),
-  background: var(--palette-background-background-dark),
-  hover: var(--palette-background-hover-dark),
-  card: var(--palette-background-card-dark),
-  dialog: var(--palette-background-dialog-dark),
-  disabled-button: var(--palette-background-disabled-button-dark),
-  raised-button: var(--palette-background-raised-button-dark),
-  focused-button: var(--palette-background-focused-button-dark),
-  selected-button: var(--palette-background-selected-button-dark),
-  selected-disabled-button: var(--palette-background-selected-disabled-button-dark),
-  disabled-button-toggle: var(--palette-background-disabled-button-toggle-dark),
-  unselected-chip: var(--palette-background-unselected-chip-dark),
-  disabled-list-option: var(--palette-background-disabled-list-option-dark),
-  tooltip: var(--palette-background-tooltip-dark),
-) !default;
-
-$mat-css-palette-foreground-dark: (
-  base: var(--palette-foreground-base-dark),
-  divider: var(--palette-foreground-divider-dark),
-  dividers: var(--palette-foreground-dividers-dark),
-  disabled: var(--palette-foreground-disabled-dark),
-  disabled-button: var(--palette-foreground-disabled-button-dark),
-  disabled-text: var(--palette-foreground-disabled-text-dark),
-  elevation: black,
-  hint-text: var(--palette-foreground-hint-text-dark),
-  secondary-text: var(--palette-foreground-secondary-text-dark),
-  icon: var(--palette-foreground-icon-dark),
-  icons: var(--palette-foreground-icons-dark),
-  text: var(--palette-foreground-text-dark),
-  slider-min: var(--palette-foreground-slider-min-dark),
-  slider-off: var(--palette-foreground-slider-off-dark),
-  slider-off-active: var(--palette-foreground-slider-off-active-dark),
-) !default;
+$mat-css-palette-background: mat.$light-theme-background-palette !default;
+$mat-css-palette-foreground: mat.$light-theme-foreground-palette !default;
+$mat-css-palette-background-dark: mat.$dark-theme-background-palette !default;
+$mat-css-palette-foreground-dark: mat.$dark-theme-foreground-palette !default;

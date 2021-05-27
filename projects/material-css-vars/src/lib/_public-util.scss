@@ -33,7 +33,7 @@
 
   @if (type-of($opacity) == number) {
     @return rgba($color, $opacity);
-  } @else {
+  } @else {    
     @return rgb($color);
   }
 
@@ -119,10 +119,6 @@
   }
 }
 
-@mixin mat-css-set-css-var-default($css-var-map) {
-  @include _mat-css-root($css-var-map);
-}
-
 @mixin mat-css-set-palette-defaults($css-var-map, $paletteType: 'primary') {
   $new-map: ();
   @each $var, $defaultVal in $css-var-map {
@@ -133,6 +129,5 @@
       }
     }
   }
-  @include _mat-css-root($new-map);
 }
 
