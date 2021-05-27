@@ -38,19 +38,17 @@
   // set global variable so passed-in content can use the theme
   $mat-css-theme: $theme !global;
 
-  @at-root {
-    // NOTE: light theme is the default theme
-    @include mat.all-component-themes($theme);
-    @content;
+  // NOTE: light theme is the default theme
+  @include mat.all-component-themes($theme);
+  @content;
 
-    @if $dark-theme-selector {
-      $mat-css-theme: $dark-theme !global;
-      #{$dark-theme-selector} {
-        @include mat.all-component-themes($dark-theme);
-        // add content passed in, which can use the $theme variable to apply the dark theme to
-        // other theme mixins needed by the app
-        @content;
-      }
+  @if $dark-theme-selector {
+    $mat-css-theme: $dark-theme !global;
+    #{$dark-theme-selector} {
+      @include mat.all-component-colors($dark-theme);
+      // add content passed in, which can use the $theme variable to apply the dark theme to
+      // other theme mixins needed by the app
+      @content;
     }
   }
 

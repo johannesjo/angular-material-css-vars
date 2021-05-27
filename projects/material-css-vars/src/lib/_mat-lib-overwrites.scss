@@ -4,8 +4,6 @@
     @return get-color-from-palette($palette, default, $hue);
   }
 
-  // use namespace here to avoid stack overflow error
-  // $color: mat.get-color-from-palette($palette, $hue);
   $color: map-get($palette, $hue);
 
   @if type-of($color) == color {
