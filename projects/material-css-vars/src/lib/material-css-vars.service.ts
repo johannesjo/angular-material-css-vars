@@ -270,12 +270,10 @@ export class MaterialCssVarsService {
     const updates = this._calculateContrastColorsForCurrentValues(palettePrefix)
       .map(({contrastColorVar, hue}) => {
         return {
-          // val: `var(${contrastColorVar})`,
           val: this._getCssVarValue(contrastColorVar),
           name: `${palettePrefix + MaterialCssVarsService.CONTRAST_PREFIX}${hue}`,
         };
       });
-      console.log(updates);
     this._setStyle(updates);
   }
 
