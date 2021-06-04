@@ -1,24 +1,26 @@
 // main overwrite to make it all work
 @function get-color-from-palette($palette, $hue: default, $opacity: null) {
   @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {
-    @return get-color-from-palette($palette, default, $hue);
+    @return mat-color($palette, default, $hue);
   }
 
   $color: map-get($palette, $hue);
 
   @if type-of($color) == color {
-    @return rgba($color, if($opacity == null, opacity($color), $opacity));
+    $alpha: if($opacity == null, alpha($color), if($opacity != 1, $opacity, alpha($color)));
+    @return rgba(red($color), green($color), blue($color), $alpha);
   }
 
+  // at this point we have a variable
+  // strip out color functions so we can return proper rgba value
   $color: _mat-css-strip-variable($color);
-  $inner-var-alpha-str: str-slice($color, 5, -2) + '-alpha';
 
-  // if we have a corresponding alpha variable use it
-  // don't use alpha variable if we have an actual $opacity value
-  @if (map_get($mat-css-default-light-theme, $inner-var-alpha-str) and $opacity == null) {
-    @return rgba($color, _mat-css-str-replace($color, ')', "-alpha)"));
+  // contrast color variables are defined as rgba
+  @if (str-index($color, '-contrast-')) {
+    @return rgba($color);
   }
 
+  // non contrast variables are defined as rgb, so add alpha
   @return rgba($color, if($opacity == null, 1, $opacity));
 }
 
