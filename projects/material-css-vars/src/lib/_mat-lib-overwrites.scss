@@ -27,22 +27,37 @@
 
 // apply additional overwrites
 @mixin mat-css-other-overwrites {
-  @include _mat-date-picker-overwrites();
+  @include _mat-date-picker-content-overwrites();
   @include _mat-snack-bar-overwrites();
   @include _mat-checkbox-overwrites();
   @include _mat-slide-toggle-color-overwrites();
 }
 
 // Fix issue with date picker contrast and hover colors
-@mixin _mat-date-picker-overwrites {
+// Account for primary, accent, and warn palettes.
+@mixin _mat-date-picker-content-overwrites {
+  .mat-datepicker-content {
+    $accent: $mat-css-palette-accent;
+    $primary: $mat-css-palette-primary;
+    $warn: $mat-css-palette-warn;
+    @include _mat-date-picker-color-overwrites($primary, 500);
+    &.mat-accent {
+      @include _mat-date-picker-color-overwrites($accent, 500);
+    }
+    &.mat-warn {
+      @include _mat-date-picker-color-overwrites($warn, 500);
+    }
+  }  
+}
+@mixin _mat-date-picker-color-overwrites($palette, $hue) {
   .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover,
   .cdk-keyboard-focused .mat-calendar-body-active,
   .cdk-program-focused .mat-calendar-body-active {
     & > .mat-calendar-body-cell-content {
       &:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
-        background-color: mat-css-color-primary(500, 0.3);
+        background-color: get-color-from-palette($palette, $hue, 0.3);
         @include mat-css-dark-theme-global() {
-          background-color: mat-css-color-primary(500, 0.3);
+          background-color: get-color-from-palette($palette, $hue, 0.3);
         }
       }
     }
