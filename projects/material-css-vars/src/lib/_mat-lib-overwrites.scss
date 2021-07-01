@@ -1,7 +1,8 @@
 // main overwrite to make it all work
 @function get-color-from-palette($palette, $hue: default, $opacity: null) {
-  @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {
-    @return mat-color($palette, default, $hue);
+
+  @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {   
+    @return get-color-from-palette($palette, default, $hue);
   }
 
   $color: map-get($palette, $hue);
