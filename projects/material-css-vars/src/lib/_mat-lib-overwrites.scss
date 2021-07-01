@@ -27,12 +27,15 @@
 
 // apply additional overwrites
 @mixin mat-css-other-overwrites {
-  .mat-button-focus-overlay {
-    background: rgba(var(--palette-foreground-base), 1);
-  }
-  .mat-checkbox .mat-ripple-element {
-    background-color: rgb(var(--palette-foreground-base));
-  }
+  @include _mat-snack-bar-overwrites();
+  @include _mat-checkbox-overwrites();
+  @include _mat-slide-toggle-color-overwrites();
+}
+
+// Fix issue where material uses palette namespace to retrieve a variable value
+// instead of using the theme palette. This was causing snackbar text to not display
+// properly dark mode.
+@mixin _mat-snack-bar-overwrites {
   .mat-snack-bar-container {
     @include mat-css-light-theme-global() {
       color: map-get($mat-css-palette-foreground-dark, 'secondary-text');
@@ -40,18 +43,12 @@
     @include mat-css-dark-theme-global() {
       color: map-get($mat-css-palette-foreground, 'primary-text');
     }
-  }  
-  @include _mat-checkbox-overwrites();
-  @include _mat-slide-toggle-color-overwrites();
+  }
 }
 
-// Fix a problem where the contrast color for
-// checkboxes are not rendered correctly.
+// Fix a problem where the foreground color for the checkmark doesn't reflect
+// the correct contrast color. 
 @mixin _mat-checkbox-overwrites {
-  // focus background color when tabbing
-  .mat-checkbox .mat-ripple-element {
-    background-color: rgb(var(--palette-foreground-base));
-  }
 
   // -- Primary Color
   .mat-checkbox.mat-primary,
