@@ -27,9 +27,26 @@
 
 // apply additional overwrites
 @mixin mat-css-other-overwrites {
+  @include _mat-date-picker-overwrites();
   @include _mat-snack-bar-overwrites();
   @include _mat-checkbox-overwrites();
   @include _mat-slide-toggle-color-overwrites();
+}
+
+// Fix issue with date picker contrast and hover colors
+@mixin _mat-date-picker-overwrites {
+  .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover,
+  .cdk-keyboard-focused .mat-calendar-body-active,
+  .cdk-program-focused .mat-calendar-body-active {
+    & > .mat-calendar-body-cell-content {
+      &:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+        background-color: mat-css-color-primary(500, 0.3);
+        @include mat-css-dark-theme-global() {
+          background-color: mat-css-color-primary(500, 0.3);
+        }
+      }
+    }
+  }
 }
 
 // Fix issue where material uses palette namespace to retrieve a variable value
