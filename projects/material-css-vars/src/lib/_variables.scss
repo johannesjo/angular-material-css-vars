@@ -4,15 +4,32 @@
 
 $mat-css-dark-theme-selector: '.isDarkTheme' !default;
 $mat-css-light-theme-selector: '.isLightTheme' !default;
+
 $dark-primary-text: _mat-css-rgba(0, 0, 0, 0.87);
+$dark-secondary-text: _mat-css-rgba(0, 0, 0, 0.54);
+$dark-disabled-text: _mat-css-rgba(0, 0, 0, 0.38);
+$dark-dividers: _mat-css-rgba(0, 0, 0, 0.12);
+$dark-focused: _mat-css-rgba(0, 0, 0, 0.12);
 $light-primary-text: _mat-css-rgba(255, 255, 255, 1);
+$light-secondary-text: _mat-css-rgba(255, 255, 255, 0.7);
+$light-disabled-text: _mat-css-rgba(255, 255, 255, 0.5);
+$light-dividers: _mat-css-rgba(255, 255, 255, 0.12);
+$light-focused: _mat-css-rgba(255, 255, 255, 0.12);
 
 $mat-css-text: (
   --dark-primary-text: $dark-primary-text,
-  --light-primary-text: $light-primary-text,
+  --dark-secondary-text: $dark-secondary-text,
+  --dark-disabled-text: $dark-disabled-text,
+  --dark-dividers: $dark-dividers,
+  --dark-focused: $dark-focused,
   --dark-accent-text: $dark-primary-text,
-  --light-accent-text: $light-primary-text,
   --dark-warn-text: $dark-primary-text,
+  --light-primary-text: $light-primary-text,
+  --light-secondary-text: $light-secondary-text,
+  --light-disabled-text: $light-disabled-text,
+  --light-dividers: $light-dividers,
+  --light-focused: $light-focused,  
+  --light-accent-text: $light-primary-text,  
   --light-warn-text: $light-primary-text,
 ) !default;
 
@@ -209,7 +226,78 @@ $mat-css-contrast-palette: map_get($mat-css-palette-primary, 'contrast') !defaul
 $mat-css-contrast-palette-accent: map_get($mat-css-palette-accent, 'contrast') !default;
 $mat-css-contrast-palette-warn: map_get($mat-css-palette-warn, 'contrast') !default;
 
-$mat-css-palette-background: mat.$light-theme-background-palette !default;
-$mat-css-palette-foreground: mat.$light-theme-foreground-palette !default;
-$mat-css-palette-background-dark: mat.$dark-theme-background-palette !default;
-$mat-css-palette-foreground-dark: mat.$dark-theme-foreground-palette !default;
+// Background palette for light themes.
+$mat-css-palette-background: (
+  status-bar: map-get(mat.$grey-palette, 300),
+  app-bar:    map-get(mat.$grey-palette, 100),
+  background: map-get(mat.$grey-palette, 50),
+  hover:      rgba(black, 0.04), 
+  card:       white,
+  dialog:     white,
+  disabled-button: rgba(black, 0.12),
+  raised-button: white,
+  focused-button: rgba(var(--dark-focused)),
+  selected-button: map-get(mat.$grey-palette, 300),
+  selected-disabled-button: map-get(mat.$grey-palette, 400),
+  disabled-button-toggle: map-get(mat.$grey-palette, 200),
+  unselected-chip: map-get(mat.$grey-palette, 300),
+  disabled-list-option: map-get(mat.$grey-palette, 200),
+  tooltip: map-get(mat.$grey-palette, 700),
+) !default;
+
+// Background palette for dark themes.
+$mat-css-palette-background-dark: (
+  status-bar: black,
+  app-bar:    map-get(mat.$grey-palette, 900),
+  background: #303030,
+  hover:      rgba(white, 0.04),
+  card:       map-get(mat.$grey-palette, 800),
+  dialog:     map-get(mat.$grey-palette, 800),
+  disabled-button: rgba(white, 0.12),
+  raised-button: map-get(mat.$grey-palette, 800),
+  focused-button: rgba(var(--light-focused)),
+  selected-button: map-get(mat.$grey-palette, 900),
+  selected-disabled-button: map-get(mat.$grey-palette, 800),
+  disabled-button-toggle: black,
+  unselected-chip: map-get(mat.$grey-palette, 700),
+  disabled-list-option: black,
+  tooltip: map-get(mat.$grey-palette, 700),
+) !default;
+
+// Foreground palette for light themes.
+$mat-css-palette-foreground: (
+  base:              black,
+  divider:           rgba(var(--dark-dividers)),
+  dividers:          rgba(var(--dark-dividers)),
+  disabled:          rgba(var(--dark-disabled-text)),
+  disabled-button:   rgba(black, 0.26),
+  disabled-text:     rgba(var(--dark-disabled-text)),
+  elevation:         black,
+  hint-text:         rgba(var(--dark-disabled-text)),
+  secondary-text:    rgba(var(--dark-secondary-text)),
+  icon:              rgba(black, 0.54),
+  icons:             rgba(black, 0.54),
+  text:              rgba(black, 0.87),
+  slider-min:        rgba(black, 0.87),
+  slider-off:        rgba(black, 0.26),
+  slider-off-active: rgba(black, 0.38),
+) !default;
+
+// Foreground palette for dark themes.
+$mat-css-palette-foreground-dark: (
+  base:              white,
+  divider:           rgba(var(--light-dividers)),
+  dividers:          rgba(var(--light-dividers)),
+  disabled:          rgba(var(--light-disabled-text)),
+  disabled-button:   rgba(white, 0.3),
+  disabled-text:     rgba(var(--light-disabled-text)),
+  elevation:         black,
+  hint-text:         rgba(var(--light-disabled-text)),
+  secondary-text:    rgba(var(--light-secondary-text)),
+  icon:              white,
+  icons:             white,
+  text:              white,
+  slider-min:        white,
+  slider-off:        rgba(white, 0.3),
+  slider-off-active: rgba(white, 0.3),
+) !default;

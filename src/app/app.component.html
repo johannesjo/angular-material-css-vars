@@ -618,6 +618,20 @@
 
         </mat-tab>
 
+        <mat-tab label="Snackbar">
+          <mat-form-field appearance="fill">
+            <mat-label>Message</mat-label>
+            <input matInput value="Disco party!" #message>
+          </mat-form-field>
+          
+          <mat-form-field appearance="fill">
+            <mat-label>Action</mat-label>
+            <input matInput value="Dance" #action>
+          </mat-form-field>
+          
+          <button mat-stroked-button (click)="showSnackbar(message.value, action.value)">Show snack-bar</button>
+        </mat-tab>
+
       </mat-tab-group>
     </section>
 

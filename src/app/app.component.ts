@@ -62,8 +62,9 @@ export class AppComponent {
   }
 
 
-  showSnackbar() {
-    this._snackbar.open('YUM SNACKS', 'CHEW');
+  showSnackbar(message: string, action: string) {
+    // this._snackbar.open('YUM SNACKS', 'CHEW');
+    this._snackbar.open(message, action);
   }
 
   onPrimaryChange(hex: string) {
