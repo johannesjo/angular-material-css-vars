@@ -637,11 +637,51 @@
                 <input matInput [matDatepicker]="picker3">
                 <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                 <mat-datepicker #picker3></mat-datepicker>
-              </mat-form-field>              
+              </mat-form-field>    
+              <mat-form-field color="accent" appearance="fill">
+                <mat-label>Custom (accent/primary)</mat-label>
+                <input matInput [matDatepicker]="picker4">
+                <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                <mat-datepicker #picker4 color="primary"></mat-datepicker>
+              </mat-form-field>          
             </mat-card-content>
           </mat-card>
           <!-- /Material Date Picker -->
 
+          <!-- Material Date Range Picker -->
+          <mat-card>
+            <mat-card-content>
+              <h2>Material Date Range Picker</h2>
+              <mat-form-field appearance="fill">
+                <mat-label>Enter a date range (default)</mat-label>
+                <mat-date-range-input [rangePicker]="rangePicker1">
+                  <input matStartDate placeholder="Start date">
+                  <input matEndDate placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="rangePicker1"></mat-datepicker-toggle>
+                <mat-date-range-picker #rangePicker1></mat-date-range-picker>
+              </mat-form-field>           
+              <mat-form-field color="accent" appearance="fill">
+                <mat-label>Enter a date range (accent)</mat-label>
+                <mat-date-range-input [rangePicker]="rangePicker2">
+                  <input matStartDate placeholder="Start date">
+                  <input matEndDate placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="rangePicker2"></mat-datepicker-toggle>
+                <mat-date-range-picker #rangePicker2></mat-date-range-picker>
+              </mat-form-field>   
+              <mat-form-field color="warn" appearance="fill">
+                <mat-label>Enter a date range (warn)</mat-label>
+                <mat-date-range-input [rangePicker]="rangePicker3">
+                  <input matStartDate placeholder="Start date">
+                  <input matEndDate placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="rangePicker3"></mat-datepicker-toggle>
+                <mat-date-range-picker #rangePicker3></mat-date-range-picker>
+              </mat-form-field>                 
+            </mat-card-content>
+          </mat-card>
+          <!-- /Material Date Range Picker -->
         </mat-tab>
 
         <mat-tab label="Snackbar">
