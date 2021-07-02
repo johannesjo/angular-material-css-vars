@@ -463,10 +463,33 @@
           <mat-card>
             <mat-card-content>
               <h2>Material Checkbox</h2>
-              <mat-checkbox color="warn">Unchecked</mat-checkbox>
-              <mat-checkbox [checked]="true">Checked</mat-checkbox>
-              <mat-checkbox [indeterminate]="true">Indeterminate</mat-checkbox>
-              <mat-checkbox [disabled]="true">Disabled</mat-checkbox>
+              <section class="checkbox-section">
+                <mat-checkbox class="checkbox-margin">Check me!</mat-checkbox>
+                <mat-checkbox class="checkbox-margin" [disabled]="true">Disabled</mat-checkbox>
+              </section>
+              
+              <section class="checkbox-section">
+                <span class="checkbox-list-section">
+                  <mat-checkbox class="checkbox-margin"
+                                [checked]="allComplete"
+                                [color]="task.color"
+                                [indeterminate]="someComplete()"
+                                (change)="setAll($event.checked)">
+                    {{task.name}}
+                  </mat-checkbox>
+                </span>
+                <span class="checkbox-list-section">
+                  <ul>
+                    <li *ngFor="let subtask of task.subtasks">
+                      <mat-checkbox [(ngModel)]="subtask.completed"
+                                    [color]="subtask.color"
+                                    (ngModelChange)="updateAllComplete()">
+                        {{subtask.name}}
+                      </mat-checkbox>
+                    </li>
+                  </ul>
+                </span>
+              </section>
             </mat-card-content>
           </mat-card>
           <!-- /Material Checkbox -->

@@ -1,9 +1,16 @@
 import {Component} from '@angular/core';
+import {ThemePalette} from '@angular/material/core';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MaterialCssVarsService} from '../../projects/material-css-vars/src/lib/material-css-vars.service';
 import {HueValue, MatCssHueColorContrastMapItem} from '../../projects/material-css-vars/src/lib/model';
 
+export interface Task {
+  name: string;
+  completed: boolean;
+  color: ThemePalette;
+  subtasks?: Task[];
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -44,6 +51,19 @@ export class AppComponent {
   ];
 
   progress = 0;
+  
+  task: Task = {
+    name: 'Indeterminate',
+    completed: false,
+    color: 'primary',
+    subtasks: [
+      {name: 'Primary', completed: false, color: 'primary'},
+      {name: 'Accent', completed: false, color: 'accent'},
+      {name: 'Warn', completed: false, color: 'warn'}
+    ]
+  };
+
+  allComplete: boolean = false;
 
   constructor(
     private _dialog: MatDialog,
@@ -53,7 +73,6 @@ export class AppComponent {
     this.toggleTheme();
     // this.onPrimaryChange(this.primary);
     // this.onAccentChange(this.accent);
-
 
     // Update the value for the progress-bar on an interval.
     setInterval(() => {
@@ -111,5 +130,24 @@ export class AppComponent {
 
   get colorAlgorithm(): string {
     return this.isAlternativeColorAlgorithm ? 'Alternative' : 'Constantin (default)';
+  }
+
+  updateAllComplete() {
+    this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
+  }
+
+  someComplete(): boolean {
+    if (this.task.subtasks == null) {
+      return false;
+    }
+    return this.task.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
+  }
+
+  setAll(completed: boolean) {
+    this.allComplete = completed;
+    if (this.task.subtasks == null) {
+      return;
+    }
+    this.task.subtasks.forEach(t => t.completed = completed);
   }
 }
