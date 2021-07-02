@@ -156,7 +156,6 @@ export class MaterialCssVarsService {
       }
       return {
         val: this._getCssVarValue(color),
-        // val: `var(${color})`,
         name: `${palettePrefix + MaterialCssVarsService.CONTRAST_PREFIX}${hue}`,
       };
     });
