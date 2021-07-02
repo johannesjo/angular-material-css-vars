@@ -274,7 +274,6 @@ export class MaterialCssVarsService {
           name: `${palettePrefix + MaterialCssVarsService.CONTRAST_PREFIX}${hue}`,
         };
       });
-      console.log(updates);
     this._setStyle(updates);
   }
 
