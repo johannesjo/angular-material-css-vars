@@ -50,6 +50,12 @@
   }  
 }
 @mixin _mat-date-picker-color-overwrites($palette, $hue) {
+  .mat-calendar-body-in-range::before {
+    background: get-color-from-palette($palette, $hue, 0.2);
+    @include mat-css-dark-theme-global() {
+      background: get-color-from-palette($palette, $hue, 0.2);
+    }
+  }
   .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover,
   .cdk-keyboard-focused .mat-calendar-body-active,
   .cdk-program-focused .mat-calendar-body-active {
