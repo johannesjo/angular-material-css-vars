@@ -76,10 +76,7 @@
 @mixin _mat-snack-bar-overwrites {
   .mat-snack-bar-container {
     @include mat-css-light-theme-global() {
-      color: map-get($mat-css-palette-foreground-dark, 'secondary-text');
-    }
-    @include mat-css-dark-theme-global() {
-      color: map-get($mat-css-palette-foreground, 'primary-text');
+      color: rgba(var(--light-secondary-text));
     }
   }
 }
