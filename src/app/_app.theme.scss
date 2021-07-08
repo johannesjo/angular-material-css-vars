@@ -6,7 +6,7 @@
   // Define any styles affected by the theme.
   .app-header {
     // Use mat-color to extract individual colors from a palette.
-    background-color: mat-color($primary);
+    // background-color: mat-color($primary);
     border: medium solid mat-color($accent, A400);
   }
 }

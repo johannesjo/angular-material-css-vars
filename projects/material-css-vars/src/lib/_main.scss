@@ -27,13 +27,25 @@
     )
   ));
 
+  $tmp1: map-remove($theme, color, foreground, background); 
+  $tmp1: map-merge($tmp1, foreground, $mat-css-palette-foreground);
+  $tmp1: map-merge($tmp1, background, $mat-css-palette-background);
+  $tmp2: map-merge((), color, $tmp1);
+  $theme: map-merge($tmp2, $tmp1);
+
   $dark-theme: mat.define-dark-theme((
-    color: (
+    color: ( 
       primary: $primary,
       accent: $accent,
       warn: $warn
     )
   ));
+
+  $tmp1: map-remove($dark-theme, color, foreground, background); 
+  $tmp1: map-merge($tmp1, foreground, $mat-css-palette-foreground-dark);
+  $tmp1: map-merge($tmp1, background, $mat-css-palette-background-dark);
+  $tmp2: map-merge((), color, $tmp1);
+  $dark-theme: map-merge($tmp2, $tmp1);
 
   // set global variable so passed-in content can use the theme
   $mat-css-theme: $theme !global;
