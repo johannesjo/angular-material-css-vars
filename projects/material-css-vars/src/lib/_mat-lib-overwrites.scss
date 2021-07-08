@@ -1,7 +1,7 @@
 // main overwrite to make it all work
 @function get-color-from-palette($palette, $hue: default, $opacity: null) {
 
-  @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {   
+  @if type-of($hue) == number and $hue >= 0 and $hue <= 1 {
     @return get-color-from-palette($palette, default, $hue);
   }
 
@@ -41,14 +41,17 @@
     $primary: $mat-css-palette-primary;
     $warn: $mat-css-palette-warn;
     @include _mat-date-picker-color-overwrites($primary, 500);
+
     &.mat-accent {
       @include _mat-date-picker-color-overwrites($accent, 500);
     }
+
     &.mat-warn {
       @include _mat-date-picker-color-overwrites($warn, 500);
     }
-  }  
+  }
 }
+
 @mixin _mat-date-picker-color-overwrites($palette, $hue) {
   .mat-calendar-body-in-range::before {
     background: get-color-from-palette($palette, $hue, 0.2);
@@ -82,7 +85,7 @@
 }
 
 // Fix a problem where the foreground color for the checkmark doesn't reflect
-// the correct contrast color. 
+// the correct contrast color.
 @mixin _mat-checkbox-overwrites {
 
   // -- Primary Color
@@ -91,6 +94,7 @@
     .mat-checkbox-checkmark .mat-checkbox-checkmark-path {
       stroke: mat-css-contrast-color-primary(500) !important;
     }
+
     .mat-checkbox-mixedmark {
       background-color: mat-css-contrast-color-primary(500) !important;
     }
@@ -101,6 +105,7 @@
     .mat-checkbox-checkmark .mat-checkbox-checkmark-path {
       stroke: mat-css-contrast-color-accent(500) !important;
     }
+
     .mat-checkbox-mixedmark {
       background-color: mat-css-contrast-color-accent(500) !important;
     }
@@ -111,6 +116,7 @@
     .mat-checkbox-checkmark .mat-checkbox-checkmark-path {
       stroke: mat-css-contrast-color-warn(500) !important;
     }
+
     .mat-checkbox-mixedmark {
       background-color: mat-css-contrast-color-warn(500) !important;
     }
@@ -136,6 +142,7 @@
     }
   }
 }
+
 @mixin _mat-slide-toggle-checked-color-theme($palette, $thumb-checked-hue) {
   @include mat-css-dark-theme-global() {
     @include _mat-slide-toggle-checked-color($palette, $thumb-checked-hue)
@@ -144,14 +151,17 @@
     @include _mat-slide-toggle-checked-color($palette, $thumb-checked-hue)
   }
 }
+
 @mixin _mat-slide-toggle-checked-color($palette, $thumb-checked-hue) {
   &.mat-checked {
     .mat-slide-toggle-thumb {
       background-color: get-color-from-palette($palette, $thumb-checked-hue);
     }
+
     .mat-slide-toggle-bar {
       background-color: get-color-from-palette($palette, $thumb-checked-hue, 0.54);
     }
+
     .mat-ripple-element {
       background-color: get-color-from-palette($palette, $thumb-checked-hue);
     }

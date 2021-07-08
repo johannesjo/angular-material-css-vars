@@ -33,7 +33,7 @@
 
   @if (type-of($opacity) == number) {
     @return rgba($color, $opacity);
-  } @else {    
+  } @else {
     @return rgb($color);
   }
 
