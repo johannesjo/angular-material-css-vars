@@ -41,6 +41,13 @@
   @return red($color), green($color), blue($color);
 }
 
+@function _mat-css-hex-to-rgba($color) {
+  @if ($color == null) {
+    @return null;
+  }
+  @return red($color), green($color), blue($color), alpha($color);
+}
+
 @mixin _mat-css-root($varMap: null) {
   @at-root :root {
     @each $varName, $varValue in $varMap {
