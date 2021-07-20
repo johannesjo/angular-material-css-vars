@@ -5,16 +5,16 @@
 $mat-css-dark-theme-selector: '.isDarkTheme' !default;
 $mat-css-light-theme-selector: '.isLightTheme' !default;
 
-$dark-primary-text: _mat-css-rgba(0, 0, 0, 0.87);
-$dark-secondary-text: _mat-css-rgba(0, 0, 0, 0.54);
-$dark-disabled-text: _mat-css-rgba(0, 0, 0, 0.38);
-$dark-dividers: _mat-css-rgba(0, 0, 0, 0.12);
-$dark-focused: _mat-css-rgba(0, 0, 0, 0.12);
-$light-primary-text: _mat-css-rgba(255, 255, 255, 1);
-$light-secondary-text: _mat-css-rgba(255, 255, 255, 0.7);
-$light-disabled-text: _mat-css-rgba(255, 255, 255, 0.5);
-$light-dividers: _mat-css-rgba(255, 255, 255, 0.12);
-$light-focused: _mat-css-rgba(255, 255, 255, 0.12);
+$dark-primary-text: rgba(0, 0, 0, 0.87);
+$dark-secondary-text: rgba(0, 0, 0, 0.54);
+$dark-disabled-text: rgba(0, 0, 0, 0.38);
+$dark-dividers: rgba(0, 0, 0, 0.12);
+$dark-focused: rgba(0, 0, 0, 0.12);
+$light-primary-text: rgba(255, 255, 255, 1);
+$light-secondary-text: rgba(255, 255, 255, 0.7);
+$light-disabled-text: rgba(255, 255, 255, 0.5);
+$light-dividers: rgba(255, 255, 255, 0.12);
+$light-focused: rgba(255, 255, 255, 0.12);
 
 $mat-css-default-foreground: (
   // LIGHT
@@ -120,20 +120,20 @@ $mat-css-default-background: (
 
 $mat-css-text: map-merge(
     map-merge(
-        (--dark-primary-text: $dark-primary-text,
-          --dark-secondary-text: $dark-secondary-text,
-          --dark-accent-text: $dark-primary-text,
-          --dark-warn-text: $dark-primary-text,
-          --dark-disabled-text: $dark-disabled-text,
-          --dark-dividers: $dark-dividers,
-          --dark-focused: $dark-focused,
-          --light-primary-text: $light-primary-text,
-          --light-secondary-text: $light-secondary-text,
-          --light-accent-text: $light-primary-text,
-          --light-warn-text: $light-primary-text,
-          --light-disabled-text: $light-disabled-text,
-          --light-dividers: $light-dividers,
-          --light-focused: $light-focused),
+        (--dark-primary-text: _mat-css-hex-to-rgba($dark-primary-text),
+          --dark-secondary-text: _mat-css-hex-to-rgba($dark-secondary-text),
+          --dark-accent-text: _mat-css-hex-to-rgba($dark-primary-text),
+          --dark-warn-text: _mat-css-hex-to-rgba($dark-primary-text),
+          --dark-disabled-text: _mat-css-hex-to-rgba($dark-disabled-text),
+          --dark-dividers: _mat-css-hex-to-rgba($dark-dividers),
+          --dark-focused: _mat-css-hex-to-rgba($dark-focused),
+          --light-primary-text: _mat-css-hex-to-rgba($light-primary-text),
+          --light-secondary-text: _mat-css-hex-to-rgba($light-secondary-text),
+          --light-accent-text: _mat-css-hex-to-rgba($light-primary-text),
+          --light-warn-text: _mat-css-hex-to-rgba($light-primary-text),
+          --light-disabled-text: _mat-css-hex-to-rgba($light-disabled-text),
+          --light-dividers: _mat-css-hex-to-rgba($light-dividers),
+          --light-focused: _mat-css-hex-to-rgba($light-focused)),
         $mat-css-default-background
     ),
     $mat-css-default-foreground) !default;

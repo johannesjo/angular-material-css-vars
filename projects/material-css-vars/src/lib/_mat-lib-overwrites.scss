@@ -28,7 +28,6 @@
 // apply additional overwrites
 @mixin mat-css-other-overwrites {
   @include _mat-date-picker-content-overwrites();
-  @include _mat-snack-bar-overwrites();
   @include _mat-checkbox-overwrites();
   @include _mat-slide-toggle-color-overwrites();
 }
@@ -69,17 +68,6 @@
           background-color: get-color-from-palette($palette, $hue, 0.3);
         }
       }
-    }
-  }
-}
-
-// Fix issue where material uses palette namespace to retrieve a variable value
-// instead of using the theme palette. This was causing snackbar text to not display
-// properly dark mode.
-@mixin _mat-snack-bar-overwrites {
-  .mat-snack-bar-container {
-    @include mat-css-light-theme-global() {
-      color: rgba(var(--light-secondary-text));
     }
   }
 }
