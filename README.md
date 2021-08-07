@@ -172,8 +172,17 @@ $custom-typography: mat-typography-config(
 };
 ```
 
+## upgrading to angular v12
+Angular material v12 interoduces some big changes, which leaves you with two options when upgrading to ng12: You can either stay at angular material v11 and angular-material-css-vars v1.2.0 or you can use v2+ which thanks to @pedrojrivera adds full support for the new version.
+
+## angular material v11 or lower
+Use v1.2.0 of this lib.
+
+
 ## Credit...
 ...goes to @zbirizdo [project](https://github.com/zbirizdo/material-css-vars) on which parts of this are based which is in turn supposedly based on [this gist](https://gist.github.com/shprink/c7f333e3ad51830f14a6383f3ab35439).
+
+...and to @pedrojrivera without whom there would be no support for @angular/material v12.
 
 ## Development server
 
