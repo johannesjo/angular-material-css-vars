@@ -134,17 +134,10 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@linnenschmidt/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/material-css-vars/tsconfig.lib.json",
-            "project": "projects/material-css-vars/ng-package.json",
-            "assets": [
-              {
-                "glob": "**/*.scss",
-                "input": "./src/lib",
-                "output": "./"
-              }
-            ]
+            "project": "projects/material-css-vars/ng-package.json"
           }
         },
         "test": {
