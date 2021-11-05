@@ -100,19 +100,6 @@
             "scripts": []
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -134,17 +121,10 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@linnenschmidt/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/material-css-vars/tsconfig.lib.json",
-            "project": "projects/material-css-vars/ng-package.json",
-            "assets": [
-              {
-                "glob": "**/*.scss",
-                "input": "./src/lib",
-                "output": "./"
-              }
-            ]
+            "project": "projects/material-css-vars/ng-package.json"
           }
         },
         "test": {
@@ -153,18 +133,6 @@
             "main": "projects/material-css-vars/src/test.ts",
             "tsConfig": "projects/material-css-vars/tsconfig.spec.json",
             "karmaConfig": "projects/material-css-vars/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/material-css-vars/tsconfig.lib.json",
-              "projects/material-css-vars/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }

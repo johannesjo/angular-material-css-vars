@@ -1,6 +1,6 @@
 {
   "name": "angular-material-css-vars",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Little library to use css variables for @angular/material",
   "author": "johannesjo <contact@super-productivity.com> (http://super-productivity.com)",
   "license": "MIT",
@@ -18,12 +18,12 @@
     "angular-material"
   ],
   "peerDependencies": {
-    "@angular/common": ">=12",
-    "@angular/core": ">=12",
-    "@angular/material": ">=12"
+    "@angular/common": ">=13",
+    "@angular/core": ">=13",
+    "@angular/material": ">=13"
   },
   "dependencies": {
-    "@ctrl/tinycolor": "^2.6.0",
-    "tslib": "^2.0.0"
+    "@ctrl/tinycolor": "^3.4.0",
+    "tslib": "^2.3.0"
   }
 }
