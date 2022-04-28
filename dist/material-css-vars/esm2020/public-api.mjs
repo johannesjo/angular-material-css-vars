@@ -1,0 +1,7 @@
+/*
+ * Public API Surface of material-css-vars
+ */
+export * from './lib/material-css-vars.service';
+export * from './lib/material-css-vars.module';
+export * from './lib/model';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL21hdGVyaWFsLWNzcy12YXJzL3NyYy9wdWJsaWMtYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztHQUVHO0FBRUgsY0FBYyxpQ0FBaUMsQ0FBQztBQUNoRCxjQUFjLGdDQUFnQyxDQUFDO0FBQy9DLGNBQWMsYUFBYSxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIFB1YmxpYyBBUEkgU3VyZmFjZSBvZiBtYXRlcmlhbC1jc3MtdmFyc1xuICovXG5cbmV4cG9ydCAqIGZyb20gJy4vbGliL21hdGVyaWFsLWNzcy12YXJzLnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvbWF0ZXJpYWwtY3NzLXZhcnMubW9kdWxlJztcbmV4cG9ydCAqIGZyb20gJy4vbGliL21vZGVsJztcbiJdfQ==

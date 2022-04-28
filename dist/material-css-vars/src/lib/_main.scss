@@ -1,0 +1,105 @@
+@use '@angular/material'as mat;
+@import '@angular/material/theming';
+@import 'variables';
+@import 'internal-helper';
+@import 'public-util';
+// contains main overwrite of `mat-color` to make it all work
+// needs to come after '~@angular/material/theming'
+@import 'mat-lib-overwrites';
+
+@mixin init-css-vars($default-theme, $text) {
+  // init css variables
+  @include _mat-css-root($text);
+}
+
+@mixin init-mat-theme($dark-theme-selector, $typography-config: null) {
+  @include mat.core($typography-config);
+
+  $primary: mat.define-palette($mat-css-palette-primary);
+  $accent: mat.define-palette($mat-css-palette-accent);
+  $warn: mat.define-palette($mat-css-palette-warn);
+
+  $theme: mat.define-light-theme((
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn
+    )
+  ));
+
+  $tmp1: map-remove($theme, color, foreground, background);
+  $tmp1: map-merge($tmp1, foreground, $mat-css-palette-foreground);
+  $tmp1: map-merge($tmp1, background, $mat-css-palette-background);
+  $tmp2: map-merge((), color, $tmp1);
+  $theme: map-merge($tmp2, $tmp1);
+
+  $dark-theme: mat.define-dark-theme((
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn
+    )
+  ));
+
+  $tmp1: map-remove($dark-theme, color, foreground, background);
+  $tmp1: map-merge($tmp1, foreground, $mat-css-palette-foreground-dark);
+  $tmp1: map-merge($tmp1, background, $mat-css-palette-background-dark);
+  $tmp2: map-merge((), color, $tmp1);
+  $dark-theme: map-merge($tmp2, $tmp1);
+
+  // set global variable so passed-in content can use the theme
+  $mat-css-theme: $theme !global;
+
+  // NOTE: light theme is the default theme
+  @include mat.all-component-themes($theme);
+  @content;
+
+  @if $dark-theme-selector {
+    $mat-css-theme: $dark-theme !global;
+    #{$dark-theme-selector} {
+      @include mat.all-component-colors($dark-theme);
+      // add content passed in, which can use the $theme variable to apply the dark theme to
+      // other theme mixins needed by the app
+      @content;
+    }
+  }
+
+  @include mat-css-other-overwrites;
+
+  $mat-css-theme: null !global;
+}
+
+@mixin init-material-css-vars(
+  $default-theme: $mat-css-default-light-theme,
+  $dark-theme-selector: $mat-css-dark-theme-selector,
+  $default-theme-text: $mat-css-text,
+  $typography-config: null
+) {
+  @include init-css-vars($default-theme, $default-theme-text);
+  @include init-mat-theme($dark-theme-selector, $typography-config) {
+    @content;
+  }
+}
+
+@mixin initCssVars($default-theme, $text) {
+  @warn 'initCssVars() is deprecated. Please use init-css-vars() instead.';
+  @include init-css-vars($default-theme, $text);
+}
+
+@mixin initMatTheme($dark-theme-selector) {
+  @warn 'initMatTheme() is deprecated. Please use init-mat-theme() instead.';
+  @include init-mat-theme($dark-theme-selector) {
+    @content;
+  }
+}
+
+@mixin initMaterialCssVars(
+  $default-theme: $mat-css-default-light-theme,
+  $dark-theme-selector: $mat-css-dark-theme-selector,
+  $default-theme-text: $mat-css-text
+) {
+  @warn 'initMaterialCssVars() is deprecated. Please use init-material-css-vars() instead.';
+  @include init-material-css-vars($default-theme, $dark-theme-selector, $default-theme-text) {
+    @content;
+  }
+}

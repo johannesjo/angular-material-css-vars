@@ -1,0 +1,49 @@
+{
+  "name": "angular-material-css-vars",
+  "version": "3.0.0",
+  "description": "Little library to use css variables for @angular/material",
+  "author": "johannesjo <contact@super-productivity.com> (http://super-productivity.com)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johannesjo/angular-material-css-vars"
+  },
+  "keywords": [
+    "angular",
+    "javascript",
+    "typescript",
+    "material",
+    "css",
+    "css variables",
+    "angular-material"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">=13",
+    "@angular/core": ">=13",
+    "@angular/material": ">=13"
+  },
+  "dependencies": {
+    "@ctrl/tinycolor": "^3.4.0",
+    "tslib": "^2.3.0"
+  },
+  "module": "fesm2015/angular-material-css-vars.mjs",
+  "es2020": "fesm2020/angular-material-css-vars.mjs",
+  "esm2020": "esm2020/angular-material-css-vars.mjs",
+  "fesm2020": "fesm2020/angular-material-css-vars.mjs",
+  "fesm2015": "fesm2015/angular-material-css-vars.mjs",
+  "typings": "angular-material-css-vars.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./angular-material-css-vars.d.ts",
+      "esm2020": "./esm2020/angular-material-css-vars.mjs",
+      "es2020": "./fesm2020/angular-material-css-vars.mjs",
+      "es2015": "./fesm2015/angular-material-css-vars.mjs",
+      "node": "./fesm2015/angular-material-css-vars.mjs",
+      "default": "./fesm2020/angular-material-css-vars.mjs"
+    }
+  },
+  "sideEffects": false
+}

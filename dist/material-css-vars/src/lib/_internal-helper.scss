@@ -1,0 +1,76 @@
+// used to circumvent node sass issue: https://github.com/sass/node-sass/issues/2251
+@function _mat-css-rgb($r, $g: null, $b: null ) {
+  @if ($g == null) {
+    @return unquote('#{$r}');
+  }
+
+  @if ($g and $b) {
+    @return unquote('#{$r}, #{$g}, #{$b}');
+  }
+
+  @error "wrong number of arguments";
+}
+
+// used to circumvent node sass issue: https://github.com/sass/node-sass/issues/2251
+@function _mat-css-rgba($r, $g, $b: null, $a: null ) {
+  @if ($b == null) {
+    @return unquote('#{$r}, #{$g}');
+  }
+
+  @if ($b and $a) {
+    @return unquote('#{$r}, #{$g}, #{$b}, #{$a}');
+  }
+
+  @error "wrong number of arguments";
+}
+
+@function _mat-css-str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + _mat-css-str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@function _mat-css-hex-to-rgb($color) {
+  @if ($color == null) {
+    @return null;
+  }
+  @return red($color), green($color), blue($color);
+}
+
+@function _mat-css-hex-to-rgba($color) {
+  @if ($color == null) {
+    @return null;
+  }
+  @return red($color), green($color), blue($color), alpha($color);
+}
+
+@mixin _mat-css-root($varMap: null) {
+  @at-root :root {
+    @each $varName, $varValue in $varMap {
+      @if (type_of($varValue)==string) {
+        #{$varName}: $varValue // to prevent quotes interpolation
+      } @else {
+        #{$varName}: #{$varValue}
+      }
+    }
+  }
+}
+
+@function _mat-css-strip-variable($color) {
+  $var: $color;
+  @if (str-index($var, 'rgba(')) {
+    $var: _mat-css-str-replace($var, 'rgba(', '');
+  }
+  @if (str-index($var, 'rgb(')) {
+    $var: _mat-css-str-replace($var, 'rgb(', '');
+  }
+  @if (str-index($var, 'var(')) {
+    $var: _mat-css-str-replace($var, ')', ''); // remove excess ")"
+    $var: $var + ')';
+  }
+  @return $var;
+}
