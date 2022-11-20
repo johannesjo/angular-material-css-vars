@@ -12,7 +12,7 @@
   @include _mat-css-root($text);
 }
 
-@mixin init-mat-theme($dark-theme-selector, $typography-config: null) {
+@mixin init-mat-theme($dark-theme-selector, $typography-config: mat.define-typography-config()) {
   @include mat.core();
 
   $primary: mat.define-palette($mat-css-palette-primary);
@@ -25,22 +25,25 @@
       accent: $accent,
       warn: $warn
     ),
-    typography: $typography-config
+    typography: $typography-config,
+    density: 0
   ));
 
+  // TODO: This area is a reason of null error
   $tmp1: map-remove($theme, color, foreground, background);
   $tmp1: map-merge($tmp1, foreground, $mat-css-palette-foreground);
   $tmp1: map-merge($tmp1, background, $mat-css-palette-background);
   $tmp2: map-merge((), color, $tmp1);
   $theme: map-merge($tmp2, $tmp1);
-
+// ---
   $dark-theme: mat.define-dark-theme((
     color: (
       primary: $primary,
       accent: $accent,
       warn: $warn
     ),
-    typography: $typography-config
+    typography: $typography-config,
+    density: 0
   ));
 
   $tmp1: map-remove($dark-theme, color, foreground, background);
@@ -75,7 +78,7 @@
   $default-theme: $mat-css-default-light-theme,
   $dark-theme-selector: $mat-css-dark-theme-selector,
   $default-theme-text: $mat-css-text,
-  $typography-config: null
+  $typography-config: mat.define-typography-config()
 ) {
   @include init-css-vars($default-theme, $default-theme-text);
   @include init-mat-theme($dark-theme-selector, $typography-config) {
