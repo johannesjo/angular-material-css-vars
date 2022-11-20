@@ -75,7 +75,7 @@
   $default-theme: $mat-css-default-light-theme,
   $dark-theme-selector: $mat-css-dark-theme-selector,
   $default-theme-text: $mat-css-text,
-  $typography-config
+  $typography-config: null
 ) {
   @include init-css-vars($default-theme, $default-theme-text);
   @include init-mat-theme($dark-theme-selector, $typography-config) {
