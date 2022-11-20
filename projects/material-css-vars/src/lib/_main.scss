@@ -12,8 +12,8 @@
   @include _mat-css-root($text);
 }
 
-@mixin init-mat-theme($dark-theme-selector, $typography-config: null) {
-  @include mat.core($typography-config);
+@mixin init-mat-theme($dark-theme-selector) {
+  @include mat.core();
 
   $primary: mat.define-palette($mat-css-palette-primary);
   $accent: mat.define-palette($mat-css-palette-accent);
@@ -51,7 +51,7 @@
   $mat-css-theme: $theme !global;
 
   // NOTE: light theme is the default theme
-  @include mat.all-component-themes($theme);
+  @include mat.all-omponent-themes($theme);
   @content;
 
   @if $dark-theme-selector {
