@@ -12,7 +12,7 @@
   @include _mat-css-root($text);
 }
 
-@mixin init-mat-theme($dark-theme-selector) {
+@mixin init-mat-theme($dark-theme-selector, $typography-config: null) {
   @include mat.core();
 
   $primary: mat.define-palette($mat-css-palette-primary);
@@ -24,7 +24,8 @@
       primary: $primary,
       accent: $accent,
       warn: $warn
-    )
+    ),
+    typography: $typography-config
   ));
 
   $tmp1: map-remove($theme, color, foreground, background);
@@ -38,7 +39,8 @@
       primary: $primary,
       accent: $accent,
       warn: $warn
-    )
+    ),
+    typography: $typography-config
   ));
 
   $tmp1: map-remove($dark-theme, color, foreground, background);
@@ -51,7 +53,7 @@
   $mat-css-theme: $theme !global;
 
   // NOTE: light theme is the default theme
-  @include mat.all-omponent-themes($theme);
+  @include mat.all-component-themes($theme);
   @content;
 
   @if $dark-theme-selector {
@@ -73,33 +75,10 @@
   $default-theme: $mat-css-default-light-theme,
   $dark-theme-selector: $mat-css-dark-theme-selector,
   $default-theme-text: $mat-css-text,
-  $typography-config: null
+  $typography-config
 ) {
   @include init-css-vars($default-theme, $default-theme-text);
   @include init-mat-theme($dark-theme-selector, $typography-config) {
-    @content;
-  }
-}
-
-@mixin initCssVars($default-theme, $text) {
-  @warn 'initCssVars() is deprecated. Please use init-css-vars() instead.';
-  @include init-css-vars($default-theme, $text);
-}
-
-@mixin initMatTheme($dark-theme-selector) {
-  @warn 'initMatTheme() is deprecated. Please use init-mat-theme() instead.';
-  @include init-mat-theme($dark-theme-selector) {
-    @content;
-  }
-}
-
-@mixin initMaterialCssVars(
-  $default-theme: $mat-css-default-light-theme,
-  $dark-theme-selector: $mat-css-dark-theme-selector,
-  $default-theme-text: $mat-css-text
-) {
-  @warn 'initMaterialCssVars() is deprecated. Please use init-material-css-vars() instead.';
-  @include init-material-css-vars($default-theme, $dark-theme-selector, $default-theme-text) {
     @content;
   }
 }
