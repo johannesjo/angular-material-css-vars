@@ -34,7 +34,6 @@
       background: $mat-css-palette-background
   ));
 
-// ---
   $dark-theme: mat.define-dark-theme((
     color: (
       primary: $primary,
@@ -44,9 +43,7 @@
       background: $mat-css-palette-background-dark
     ),
     typography: $typography-config,
-    density: 0,
-      foreground: $mat-css-palette-foreground-dark,
-      background: $mat-css-palette-background-dark
+    density: 0
   ));
 
   // set global variable so passed-in content can use the theme
