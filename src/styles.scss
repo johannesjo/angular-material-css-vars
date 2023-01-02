@@ -2,7 +2,9 @@
 @import './app/app.theme';
 
 $custom-typography: define-typography-config(
-  $font-family: 'Roboto, monospace'
+  $font-family: 'Roboto, monospace',
+  $body-1: mat-typography-level(16px, 24px, 500),
+  $headline-1: mat-typography-level(16px, 24px, 500)
 );
 
 @include init-material-css-vars($typography-config: $custom-typography) {

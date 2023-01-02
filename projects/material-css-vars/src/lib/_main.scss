@@ -29,9 +29,7 @@
       background: $mat-css-palette-background
     ),
     typography: $typography-config,
-    density: 0,
-      foreground: $mat-css-palette-foreground,
-      background: $mat-css-palette-background
+    density: 0
   ));
 
   $dark-theme: mat.define-dark-theme((
