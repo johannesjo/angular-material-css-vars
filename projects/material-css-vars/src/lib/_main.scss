@@ -15,6 +15,7 @@
 
 @mixin init-mat-theme($dark-theme-selector, $typography-config: mat.define-typography-config()) {
   @include mat.core();
+  @include mat.legacy-core();
 
   $primary: mat.define-palette($mat-css-palette-primary);
   $accent: mat.define-palette($mat-css-palette-accent);
@@ -49,12 +50,14 @@
 
   // NOTE: light theme is the default theme
   @include mat.all-component-themes($theme);
+  @include mat.all-legacy-component-themes($theme);
   @content;
 
   @if $dark-theme-selector {
     $mat-css-theme: $dark-theme !global;
     #{$dark-theme-selector} {
       @include mat.all-component-colors($dark-theme);
+      @include mat.all-legacy-component-colors($dark-theme);
       // add content passed in, which can use the $theme variable to apply the dark theme to
       // other theme mixins needed by the app
       @content;

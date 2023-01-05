@@ -9,10 +9,10 @@ You want to style your angular material dynamically with all the colors in the r
     ```bash
     npm i angular-material-css-vars -S
     ```
-2. If @angular/material is already configured remove `@import '~@angular/material/theming';` from your main stylesheet file if present.
+2. If @angular/material is already configured remove `@import '@angular/material/theming';` from your main stylesheet file if present.
 3. Add this to your main stylesheet instead:
     ```scss
-    @import '~angular-material-css-vars/main';
+    @import 'angular-material-css-vars/main';
  
     // optional
     $mat-css-dark-theme-selector: '.isDarkTheme';
@@ -69,7 +69,7 @@ export class AppModule {
 ## Utility
 There are also several [utility functions and mixins](https://github.com/johannesjo/angular-material-css-vars/blob/master/projects/material-css-vars/src/lib/_public-util.scss).
 ```scss
-@import '~angular-material-css-vars/public-util';
+@import 'angular-material-css-vars/public-util';
 
 .with-color {
   border-color: mat-css-color-primary(300);
@@ -102,7 +102,7 @@ To make those variables take effect with your mixins, you need to make sure that
 // probably best put in a common variables file and imported before the mixins
 $mat-css-dark-theme-selector: '.isDarkThemeCUSTOM';
 
-@import '~angular-material-css-vars/public-util';
+@import 'angular-material-css-vars/public-util';
 
 .my-component {
   @include mat-css-dark-theme {
@@ -118,8 +118,8 @@ A full list of the theme map [can be found here](https://github.com/johannesjo/a
 ### Set default (fallback palettes)
 There are two ways to set the default fallback theme. One is using the `mat-css-palette-defaults` mixin.
 ```scss
-@import '../projects/material-css-vars/src/lib/public-util';
-@import '../projects/material-css-vars/src/lib/main';
+@import 'angular-material-css-vars/public-util';
+@import 'angular-material-css-vars/main';
 
 @include init-material-css-vars();
 
@@ -129,7 +129,7 @@ There are two ways to set the default fallback theme. One is using the `mat-css-
 ```
 The other is to include your own variables for [$mat-css-default-light-theme](https://github.com/johannesjo/angular-material-css-vars/blob/master/projects/material-css-vars/src/lib/_variables.scss).
 ```scss
-@import '../projects/material-css-vars/src/lib/main';
+@import 'angular-material-css-vars/main';
 
 $mat-css-default-light-theme: map-merge(
   // if you don't want to enter ALL the properties
