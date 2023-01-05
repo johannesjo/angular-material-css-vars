@@ -91,7 +91,7 @@
   $load-legacy-components: false,
 ) {
   @include init-css-vars($default-theme, $default-theme-text);
-  @include init-mat-theme($dark-theme-selector, $typography-config) {
+  @include init-mat-theme($dark-theme-selector, $typography-config, $load-mdc-components, $load-legacy-components) {
     @content;
   }
 }
