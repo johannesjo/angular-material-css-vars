@@ -138,5 +138,10 @@
       }
     }
   },
-  "defaultProject": "angular-material-css-vars"
+  "cli": {
+    "analytics": false,
+    "cache": {
+      "enabled": false
+    }
+  }
 }

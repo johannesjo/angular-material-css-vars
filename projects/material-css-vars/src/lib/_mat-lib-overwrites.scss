@@ -5,24 +5,7 @@
     @return get-color-from-palette($palette, default, $hue);
   }
 
-  $color: map-get($palette, $hue);
-
-  @if type-of($color) == color {
-    $alpha: if($opacity == null, alpha($color), if($opacity != 1, $opacity, alpha($color)));
-    @return rgba(red($color), green($color), blue($color), $alpha);
-  }
-
-  // at this point we have a variable
-  // strip out color functions so we can return proper rgba value
-  $color: _mat-css-strip-variable($color);
-
-  // contrast color variables are defined as rgba
-  @if (str-index($color, '-contrast-')) {
-    @return rgba($color);
-  }
-
-  // non contrast variables are defined as rgb, so add alpha
-  @return rgba($color, if($opacity == null, 1, $opacity));
+  @return map-get($palette, $hue);
 }
 
 // apply additional overwrites
