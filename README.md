@@ -187,7 +187,7 @@ No further action is required, just import the `init-material-css-vars` mixin li
 @include init-material-css-vars;
 ```
 
-### Keep on using the legacy components
+### Keep using the legacy components
 
 Please pass the following configuration to the mixin:
 
