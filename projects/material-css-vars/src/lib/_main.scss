@@ -13,8 +13,13 @@
   @include _mat-css-root($default-theme);
 }
 
-@mixin init-mat-theme($dark-theme-selector, $typography-config: mat.define-typography-config()) {
-  @include mat.core();
+@mixin init-mat-theme($dark-theme-selector, $typography-config: mat.define-typography-config(), $load-mdc-components, $load-legacy-components) {
+  @if $load-mdc-components {
+    @include mat.core();
+  }
+  @if $load-legacy-components {
+    @include mat.legacy-core();
+  }
 
   $primary: mat.define-palette($mat-css-palette-primary);
   $accent: mat.define-palette($mat-css-palette-accent);
@@ -48,13 +53,24 @@
   $mat-css-theme: $theme !global;
 
   // NOTE: light theme is the default theme
-  @include mat.all-component-themes($theme);
+  @if $load-mdc-components {
+    @include mat.all-component-themes($theme);
+  }
+  @if $load-legacy-components {
+    @include mat.all-legacy-component-themes($theme);
+  }
+
   @content;
 
   @if $dark-theme-selector {
     $mat-css-theme: $dark-theme !global;
     #{$dark-theme-selector} {
-      @include mat.all-component-colors($dark-theme);
+      @if $load-mdc-components {
+        @include mat.all-component-colors($dark-theme);
+      }
+      @if $load-legacy-components {
+        @include mat.all-legacy-component-colors($dark-theme);
+      }
       // add content passed in, which can use the $theme variable to apply the dark theme to
       // other theme mixins needed by the app
       @content;
@@ -70,10 +86,12 @@
   $default-theme: $mat-css-default-light-theme,
   $dark-theme-selector: $mat-css-dark-theme-selector,
   $default-theme-text: $mat-css-text,
-  $typography-config: mat.define-typography-config()
+  $typography-config: mat.define-typography-config(),
+  $load-mdc-components: true,
+  $load-legacy-components: false,
 ) {
   @include init-css-vars($default-theme, $default-theme-text);
-  @include init-mat-theme($dark-theme-selector, $typography-config) {
+  @include init-mat-theme($dark-theme-selector, $typography-config, $load-mdc-components, $load-legacy-components) {
     @content;
   }
 }

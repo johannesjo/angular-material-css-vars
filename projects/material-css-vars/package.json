@@ -25,5 +25,19 @@
   "dependencies": {
     "@ctrl/tinycolor": "^3.4.0",
     "tslib": "^2.3.0"
+  },
+  "exports": {
+    ".": {
+      "sass": "./src/lib/_main.scss"
+    },
+    "./main": {
+      "sass": "./src/lib/_main.scss"
+    },
+    "./public-util": {
+      "sass": "./src/lib/_public-util.scss"
+    },
+    "./variables": {
+      "sass": "./src/lib/_variables.scss"
+    }
   }
 }
