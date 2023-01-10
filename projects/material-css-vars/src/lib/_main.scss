@@ -59,6 +59,9 @@
   @if $load-legacy-components {
     @include mat.all-legacy-component-themes($theme);
   }
+  
+  // Fix mat-typography class, see https://github.com/angular/components/issues/26184
+  @include mat.typography-hierarchy($theme);
 
   @content;
 
