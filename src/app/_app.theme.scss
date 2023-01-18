@@ -1,3 +1,5 @@
+@use '@angular/material/theming' as mat-theming;
+
 @mixin app-theme($theme) {
   // Extract the palettes you need from the theme definition.
   $primary: map-get($theme, primary);
@@ -7,6 +9,6 @@
   .app-header {
     // Use mat-color to extract individual colors from a palette.
     // background-color: mat-color($primary);
-    border: medium solid mat-color($accent, A400);
+    border: medium solid mat-theming.mat-color($accent, A400);
   }
 }

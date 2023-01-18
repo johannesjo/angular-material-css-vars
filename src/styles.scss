@@ -1,19 +1,23 @@
-@import '../projects/material-css-vars/src/lib/main';
+@use '/projects/material-css-vars/src/lib/main' as mat-css-main;
+@use '/projects/material-css-vars/src/lib/public-util' as mat-css-utilities;
+@use '@angular/material' as mat;
+@use '@angular/material/theming' as mat-theming;
+
 @import './app/app.theme';
 
-$custom-typography: define-typography-config(
+$custom-typography: mat.define-typography-config(
   $font-family: 'Roboto, monospace',
-  $body-1: mat-typography-level(16px, 24px, 500),
-  $headline-1: mat-typography-level(16px, 24px, 500)
+  $body-1: mat-theming.mat-typography-level(16px, 24px, 500),
+  $headline-1: mat-theming.mat-typography-level(16px, 24px, 500)
 );
 
-@include init-material-css-vars($typography-config: $custom-typography) {
+@include mat-css-main.init-material-css-vars($typography-config: $custom-typography) using($mat-css-theme) {
   @include app-theme($mat-css-theme);
 };
 
-@include mat-css-set-palette-defaults($mat-light-blue, 'primary');
-@include mat-css-set-palette-defaults($mat-pink, 'accent');
-@include mat-css-set-palette-defaults($mat-red, 'warn');
+@include mat-css-utilities.mat-css-set-palette-defaults(mat-theming.$mat-light-blue, 'primary');
+@include mat-css-utilities.mat-css-set-palette-defaults(mat-theming.$mat-pink, 'accent');
+@include mat-css-utilities.mat-css-set-palette-defaults(mat-theming.$mat-red, 'warn');
 
 
 body {

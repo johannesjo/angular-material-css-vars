@@ -1,16 +1,16 @@
 @use '@angular/material'as mat;
-@import '@angular/material/theming';
-@import 'variables';
-@import 'internal-helper';
-@import 'public-util';
+@use 'internal-helper' as helper;
+@use '@angular/material/theming' as theming;
+@use 'variables' as variables;
+@use 'public-util';
 // contains main overwrite of `mat-color` to make it all work
 // needs to come after '~@angular/material/theming'
-@import 'mat-lib-overwrites';
+@use 'mat-lib-overwrites' as overwrites;
 
 @mixin init-css-vars($default-theme, $text) {
   // init css variables
-  @include _mat-css-root($text);
-  @include _mat-css-root($default-theme);
+  @include helper.root($text);
+  @include helper.root($default-theme);
 }
 
 @mixin init-mat-theme($dark-theme-selector, $typography-config: mat.define-typography-config(), $load-mdc-components, $load-legacy-components) {
@@ -21,17 +21,17 @@
     @include mat.legacy-core();
   }
 
-  $primary: mat.define-palette($mat-css-palette-primary);
-  $accent: mat.define-palette($mat-css-palette-accent);
-  $warn: mat.define-palette($mat-css-palette-warn);
+  $primary: mat.define-palette(variables.$palette-primary);
+  $accent: mat.define-palette(variables.$palette-accent);
+  $warn: mat.define-palette(variables.$palette-warn);
 
   $theme: mat.define-light-theme((
     color: (
       primary: $primary,
       accent: $accent,
       warn: $warn,
-      foreground: $mat-css-palette-foreground,
-      background: $mat-css-palette-background
+      foreground: variables.$palette-foreground,
+      background: variables.$palette-background
     ),
     typography: $typography-config,
     density: 0
@@ -42,15 +42,15 @@
       primary: $primary,
       accent: $accent,
       warn: $warn,
-      foreground: $mat-css-palette-foreground-dark,
-      background: $mat-css-palette-background-dark
+      foreground: variables.$palette-foreground-dark,
+      background: variables.$palette-background-dark
     ),
     typography: $typography-config,
     density: 0
   ));
 
   // set global variable so passed-in content can use the theme
-  $mat-css-theme: $theme !global;
+  $mat-css-theme: $theme !global; // stays for backwards-compatibility
 
   // NOTE: light theme is the default theme
   @if $load-mdc-components {
@@ -59,11 +59,11 @@
   @if $load-legacy-components {
     @include mat.all-legacy-component-themes($theme);
   }
-  
+
   // Fix mat-typography class, see https://github.com/angular/components/issues/26184
   @include mat.typography-hierarchy($theme);
 
-  @content;
+  @content($mat-css-theme);
 
   @if $dark-theme-selector {
     $mat-css-theme: $dark-theme !global;
@@ -76,25 +76,25 @@
       }
       // add content passed in, which can use the $theme variable to apply the dark theme to
       // other theme mixins needed by the app
-      @content;
+      @content($mat-css-theme);
     }
   }
 
-  @include mat-css-other-overwrites;
+  @include overwrites.other-overwrites;
 
   $mat-css-theme: null !global;
 }
 
 @mixin init-material-css-vars(
-  $default-theme: $mat-css-default-light-theme,
-  $dark-theme-selector: $mat-css-dark-theme-selector,
-  $default-theme-text: $mat-css-text,
+  $default-theme: variables.$default-light-theme,
+  $dark-theme-selector: variables.$dark-theme-selector,
+  $default-theme-text: variables.$text,
   $typography-config: mat.define-typography-config(),
   $load-mdc-components: true,
   $load-legacy-components: false,
 ) {
   @include init-css-vars($default-theme, $default-theme-text);
-  @include init-mat-theme($dark-theme-selector, $typography-config, $load-mdc-components, $load-legacy-components) {
-    @content;
+  @include init-mat-theme($dark-theme-selector, $typography-config, $load-mdc-components, $load-legacy-components) using ($mat-css-theme) {
+    @content($mat-css-theme);
   }
 }

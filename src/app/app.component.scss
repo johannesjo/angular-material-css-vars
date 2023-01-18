@@ -1,136 +1,137 @@
-@import '../../projects/material-css-vars/src/lib/public-util';
+@use '../../projects/material-css-vars/src/lib/public-util' as mat-css-utilities;
+@use '../../projects/material-css-vars/src/lib/main' as mat-css-main;
 
 $lighter-dark: rgb(88, 88, 88);
 
 .bg-50 {
-  @include mat-css-color-and-contrast-primary(50);
+  @include mat-css-utilities.mat-css-color-and-contrast-primary(50);
 }
 
 .bg-100 {
-  @include mat-css-color-and-contrast-primary(100);
+  @include mat-css-utilities.mat-css-color-and-contrast-primary(100);
 }
 
 .bg-200 {
-  @include mat-css-color-and-contrast-primary(200);
+  @include mat-css-utilities.mat-css-color-and-contrast-primary(200);
 }
 
 .bg-300 {
-  @include mat-css-color-and-contrast-primary(300);
+  @include mat-css-utilities.mat-css-color-and-contrast-primary(300);
 }
 
 .bg-400 {
-  @include mat-css-color-and-contrast-primary(400);
+  @include mat-css-utilities.mat-css-color-and-contrast-primary(400);
 }
 
 .bg-500 {
-  @include mat-css-color-and-contrast-primary(500);
-  border: 4px dashed mat-css-color-accent();
+  @include mat-css-utilities.mat-css-color-and-contrast-primary(500);
+  border: 4px dashed mat-css-utilities.mat-css-color-accent();
 }
 
 .bg-600 {
-  @include mat-css-color-and-contrast-primary(600);
+  @include mat-css-utilities.mat-css-color-and-contrast-primary(600);
 }
 
 .bg-700 {
-  @include mat-css-color-and-contrast-primary(700);
+  @include mat-css-utilities.mat-css-color-and-contrast-primary(700);
 }
 
 .bg-800 {
-  @include mat-css-color-and-contrast-primary(800);
+  @include mat-css-utilities.mat-css-color-and-contrast-primary(800);
 }
 
 .bg-900 {
-  @include mat-css-color-and-contrast-primary(900);
+  @include mat-css-utilities.mat-css-color-and-contrast-primary(900);
 }
 
 
 .bga-50 {
-  @include mat-css-color-and-contrast-accent(50);
+  @include mat-css-utilities.mat-css-color-and-contrast-accent(50);
 }
 
 .bga-100 {
-  @include mat-css-color-and-contrast-accent(100);
+  @include mat-css-utilities.mat-css-color-and-contrast-accent(100);
 }
 
 .bga-200 {
-  @include mat-css-color-and-contrast-accent(200);
+  @include mat-css-utilities.mat-css-color-and-contrast-accent(200);
 }
 
 .bga-300 {
-  @include mat-css-color-and-contrast-accent(300);
+  @include mat-css-utilities.mat-css-color-and-contrast-accent(300);
 }
 
 .bga-400 {
-  @include mat-css-color-and-contrast-accent(400);
+  @include mat-css-utilities.mat-css-color-and-contrast-accent(400);
 }
 
 .bga-500 {
-  @include mat-css-color-and-contrast-accent(500);
-  border: 4px dashed mat-css-color-primary();
+  @include mat-css-utilities.mat-css-color-and-contrast-accent(500);
+  border: 4px dashed mat-css-utilities.mat-css-color-primary();
 }
 
 .bga-600 {
-  @include mat-css-color-and-contrast-accent(600);
+  @include mat-css-utilities.mat-css-color-and-contrast-accent(600);
 }
 
 .bga-700 {
-  @include mat-css-color-and-contrast-accent(700);
+  @include mat-css-utilities.mat-css-color-and-contrast-accent(700);
 }
 
 .bga-800 {
-  @include mat-css-color-and-contrast-accent(800);
+  @include mat-css-utilities.mat-css-color-and-contrast-accent(800);
 }
 
 .bga-900 {
-  @include mat-css-color-and-contrast-accent(900);
+  @include mat-css-utilities.mat-css-color-and-contrast-accent(900);
 }
 
 
 .bgw-50 {
-  @include mat-css-color-and-contrast-warn(50);
+  @include mat-css-utilities.mat-css-color-and-contrast-warn(50);
 }
 
 .bgw-100 {
-  @include mat-css-color-and-contrast-warn(100);
+  @include mat-css-utilities.mat-css-color-and-contrast-warn(100);
 }
 
 .bgw-200 {
-  @include mat-css-color-and-contrast-warn(200);
+  @include mat-css-utilities.mat-css-color-and-contrast-warn(200);
 }
 
 .bgw-300 {
-  @include mat-css-color-and-contrast-warn(300);
+  @include mat-css-utilities.mat-css-color-and-contrast-warn(300);
 }
 
 .bgw-400 {
-  @include mat-css-color-and-contrast-warn(400);
+  @include mat-css-utilities.mat-css-color-and-contrast-warn(400);
 }
 
 .bgw-500 {
-  @include mat-css-color-and-contrast-warn(500);
-  border: 4px dashed mat-css-color-primary();
+  @include mat-css-utilities.mat-css-color-and-contrast-warn(500);
+  border: 4px dashed mat-css-utilities.mat-css-color-primary();
 }
 
 .bgw-600 {
-  @include mat-css-color-and-contrast-warn(600);
+  @include mat-css-utilities.mat-css-color-and-contrast-warn(600);
 }
 
 .bgw-700 {
-  @include mat-css-color-and-contrast-warn(700);
+  @include mat-css-utilities.mat-css-color-and-contrast-warn(700);
 }
 
 .bgw-800 {
-  @include mat-css-color-and-contrast-warn(800);
+  @include mat-css-utilities.mat-css-color-and-contrast-warn(800);
 }
 
 .bgw-900 {
-  @include mat-css-color-and-contrast-warn(900);
+  @include mat-css-utilities.mat-css-color-and-contrast-warn(900);
 }
 
 ::ng-deep color-picker {
   .color-picker {
 
-    @include mat-css-dark-theme {
+    @include mat-css-utilities.mat-css-dark-theme {
       color: #fff;
       background: $lighter-dark;
     }
