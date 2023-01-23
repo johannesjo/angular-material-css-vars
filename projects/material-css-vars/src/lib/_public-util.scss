@@ -1,5 +1,5 @@
+@forward "public-color-util";
 @use 'variables' as variables;
-@use 'internal-helper' as helper;
 
 // Utility mixins for the public
 
@@ -117,7 +117,7 @@
   $new-map: ();
   @each $var, $defaultVal in $css-var-map {
     @if ($var != 'contrast') {
-      $colorVal: helper.hex-to-rgb($defaultVal);
+      $colorVal: hex-to-rgb($defaultVal);
       @if $colorVal != null {
         $new-map: map_merge($new-map, (--palette-#{$paletteType}-#{$var}: #{$colorVal}));
       }

@@ -1,0 +1,13 @@
+﻿@function hex-to-rgb($color) {
+  @if ($color == null) {
+    @return null;
+  }
+  @return red($color), green($color), blue($color);
+}
+
+@function hex-to-rgba($color) {
+  @if ($color == null) {
+    @return null;
+  }
+  @return red($color), green($color), blue($color), alpha($color);
+}

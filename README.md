@@ -103,10 +103,10 @@ $mat-css-light-theme-selector: '.isLightTheme';
 ``` 
 To make those variables take effect with your mixins, you need to make sure that they are also defined before using them. E.g.:
 ```scss
+@use 'angular-material-css-vars/public-util' as mat-css-utilities;
+
 // probably best put in a common variables file and imported before the mixins
 $mat-css-dark-theme-selector: '.isDarkThemeCUSTOM';
-
-@use 'angular-material-css-vars/public-util' as mat-css-utilities;
 
 .my-component {
   @include mat-css-utilities.mat-css-dark-theme {
@@ -134,23 +134,25 @@ There are two ways to set the default fallback theme. One is using the `mat-css-
 ```
 The other is to include your own variables for [$mat-css-default-light-theme](https://github.com/johannesjo/angular-material-css-vars/blob/master/projects/material-css-vars/src/lib/_variables.scss).
 ```scss
-@import 'angular-material-css-vars/main';
+@use 'angular-material-css-vars/main' as mat-css-main;
+@use 'angular-material-css-vars/variables' as mat-css-vars;
+@use 'angular-material-css-vars/public-util' as mat-css-utilities;
 
 $mat-css-default-light-theme: map-merge(
   // if you don't want to enter ALL the properties
-  $mat-css-default-light-theme,
+    mat-css-vars.$default-light-theme,
   (
-  --palette-primary-50: _mat-css-hex-to-rgb(#e1f5fe),
-  --palette-primary-100: _mat-css-hex-to-rgb(#b3e5fc),
-  --palette-primary-200: _mat-css-hex-to-rgb(#81d4fa),
-  --palette-primary-300: _mat-css-hex-to-rgb(#4fc3f7),
-  --palette-primary-400: _mat-css-hex-to-rgb(#29b6f6),
-  --palette-primary-500: _mat-css-hex-to-rgb(#03a9f4),
+  --palette-primary-50: mat-css-utilities.hex-to-rgb(#e1f5fe),
+  --palette-primary-100: mat-css-utilities.hex-to-rgb(#b3e5fc),
+  --palette-primary-200: mat-css-utilities.hex-to-rgb(#81d4fa),
+  --palette-primary-300: mat-css-utilities.hex-to-rgb(#4fc3f7),
+  --palette-primary-400: mat-css-utilities.hex-to-rgb(#29b6f6),
+  --palette-primary-500: mat-css-utilities.hex-to-rgb(#03a9f4),
   // ...
   )
 );
 
-@include init-material-css-vars();
+@include mat-css-main.init-material-css-vars();
 
 ```
 
@@ -165,6 +167,7 @@ See the Material guide on [Theming your custom component](https://material.angul
 ## Font config
 If needed the typography can be adjusted as well.
 ```scss
+@use 'angular-material-css-vars/main' as mat-css-main;
 @use '@angular/material' as mat;
 @use '@angular/material/theming' as mat-theming;
 
@@ -175,7 +178,7 @@ $custom-typography: mat.mat-typography-config(
   $body-1: mat-theming.mat-typography-level(16px, 24px, 500)
 );
 
-@include init-material-css-vars($typography-config: $custom-typography) using($mat-css-theme) {
+@include mat-css-main.init-material-css-vars($typography-config: $custom-typography) using($mat-css-theme) {
   @include app-theme($mat-css-theme);
 };
 ```
@@ -190,9 +193,9 @@ With Angular v15, you can decide whether to keep using the legacy components, or
 No further action is required, just import the `init-material-css-vars` mixin like before:
 
 ```scss
-@import "angular-material-css-vars/main";
+@use 'angular-material-css-vars/main' as mat-css-main;
 
-@include init-material-css-vars;
+@include mat-css-main.init-material-css-vars;
 ```
 
 ### Keep using the legacy components
@@ -200,9 +203,9 @@ No further action is required, just import the `init-material-css-vars` mixin li
 Please pass the following configuration to the mixin:
 
 ```scss
-@import "angular-material-css-vars/main";
+@use 'angular-material-css-vars/main' as mat-css-main;
 
-@include init-material-css-vars($load-legacy-components: true, $load-mdc-components: false);
+@include mat-css-main.init-material-css-vars($load-legacy-components: true, $load-mdc-components: false);
 ```
 
 ### Use legacy and MDC based components in parallel
@@ -212,9 +215,9 @@ Please pass the following configuration to the mixin:
 Please pass the following configuration to the mixin:
 
 ```scss
-@import "angular-material-css-vars/main";
+@use 'angular-material-css-vars/main' as mat-css-main;
 
-@include init-material-css-vars($load-legacy-components: true, $load-mdc-components: true);
+@include mat-css-main.init-material-css-vars($load-legacy-components: true, $load-mdc-components: true);
 ```
 
 ## upgrading to angular v12
