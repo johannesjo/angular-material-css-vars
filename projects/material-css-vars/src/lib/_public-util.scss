@@ -1,29 +1,29 @@
-@import 'variables';
-@import 'internal-helper';
+@forward "public-color-util";
+@use 'variables' as variables;
 
 // Utility mixins for the public
 
 // colors
 // ------
 @function mat-css-color($hue: 500,  $opacity: null, $palette: 'primary', $is-contrast-color: false) {
-  $palette_: $mat-css-palette-primary;
+  $palette_: variables.$palette-primary;
   @if ($is-contrast-color == true) {
     @if ($palette=='primary') {
-      $palette_: $mat-css-contrast-palette;
+      $palette_: variables.$contrast-palette;
     } @else if ($palette=='accent') {
-      $palette_: $mat-css-contrast-palette-accent;
+      $palette_: variables.$contrast-palette-accent;
     } @else if ($palette=='warn') {
-      $palette_: $mat-css-contrast-palette-warn;
+      $palette_: variables.$contrast-palette-warn;
     } @else {
       @error 'Invalid contrast palette';
     }
   } @else {
     @if ($palette=='primary') {
-      $palette_: $mat-css-palette-primary;
+      $palette_: variables.$palette-primary;
     } @else if ($palette=='accent') {
-      $palette_: $mat-css-palette-accent;
+      $palette_: variables.$palette-accent;
     } @else if ($palette=='warn') {
-      $palette_: $mat-css-palette-warn;
+      $palette_: variables.$palette-warn;
     } @else {
       @error 'Invalid palette';
     }
@@ -90,25 +90,25 @@
 }
 
 @mixin mat-css-dark-theme {
-  :host-context(#{$mat-css-dark-theme-selector}) & {
+  :host-context(#{variables.$dark-theme-selector}) & {
     @content;
   }
 }
 
 @mixin mat-css-light-theme {
-  :host-context(#{$mat-css-light-theme-selector}) & {
+  :host-context(#{variables.$light-theme-selector}) & {
     @content;
   }
 }
 
 @mixin mat-css-dark-theme-global {
-  #{$mat-css-dark-theme-selector} & {
+  #{variables.$dark-theme-selector} & {
     @content;
   }
 }
 
 @mixin mat-css-light-theme-global {
-  #{$mat-css-light-theme-selector} & {
+  #{variables.$light-theme-selector} & {
     @content;
   }
 }
@@ -117,7 +117,7 @@
   $new-map: ();
   @each $var, $defaultVal in $css-var-map {
     @if ($var != 'contrast') {
-      $colorVal: _mat-css-hex-to-rgb($defaultVal);
+      $colorVal: hex-to-rgb($defaultVal);
       @if $colorVal != null {
         $new-map: map_merge($new-map, (--palette-#{$paletteType}-#{$var}: #{$colorVal}));
       }

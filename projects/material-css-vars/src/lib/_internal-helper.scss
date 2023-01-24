@@ -1,5 +1,5 @@
 // used to circumvent node sass issue: https://github.com/sass/node-sass/issues/2251
-@function _mat-css-rgb($r, $g: null, $b: null ) {
+@function rgb($r, $g: null, $b: null ) {
   @if ($g == null) {
     @return unquote('#{$r}');
   }
@@ -12,7 +12,7 @@
 }
 
 // used to circumvent node sass issue: https://github.com/sass/node-sass/issues/2251
-@function _mat-css-rgba($r, $g, $b: null, $a: null ) {
+@function rgba($r, $g, $b: null, $a: null ) {
   @if ($b == null) {
     @return unquote('#{$r}, #{$g}');
   }
@@ -24,31 +24,17 @@
   @error "wrong number of arguments";
 }
 
-@function _mat-css-str-replace($string, $search, $replace: '') {
+@function str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + _mat-css-str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
   }
 
   @return $string;
 }
 
-@function _mat-css-hex-to-rgb($color) {
-  @if ($color == null) {
-    @return null;
-  }
-  @return red($color), green($color), blue($color);
-}
-
-@function _mat-css-hex-to-rgba($color) {
-  @if ($color == null) {
-    @return null;
-  }
-  @return red($color), green($color), blue($color), alpha($color);
-}
-
-@mixin _mat-css-root($varMap: null) {
+@mixin root($varMap: null) {
   @at-root :root {
     @each $varName, $varValue in $varMap {
       @if (type_of($varValue)==string) {
@@ -60,16 +46,16 @@
   }
 }
 
-@function _mat-css-strip-variable($color) {
+@function strip-variable($color) {
   $var: $color;
   @if (str-index($var, 'rgba(')) {
-    $var: _mat-css-str-replace($var, 'rgba(', '');
+    $var: str-replace($var, 'rgba(', '');
   }
   @if (str-index($var, 'rgb(')) {
-    $var: _mat-css-str-replace($var, 'rgb(', '');
+    $var: str-replace($var, 'rgb(', '');
   }
   @if (str-index($var, 'var(')) {
-    $var: _mat-css-str-replace($var, ')', ''); // remove excess ")"
+    $var: str-replace($var, ')', ''); // remove excess ")"
     $var: $var + ')';
   }
   @return $var;

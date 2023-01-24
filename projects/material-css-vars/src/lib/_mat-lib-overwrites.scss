@@ -1,3 +1,6 @@
+@use "variables" as variables;
+@use "public-util" as utilities;
+
 // main overwrite to make it all work
 @function get-color-from-palette($palette, $hue: default, $opacity: null) {
 
@@ -9,7 +12,7 @@
 }
 
 // apply additional overwrites
-@mixin mat-css-other-overwrites {
+@mixin other-overwrites {
   @include _mat-date-picker-content-overwrites();
   @include _mat-checkbox-overwrites();
   @include _mat-slide-toggle-color-overwrites();
@@ -19,9 +22,9 @@
 // Account for primary, accent, and warn palettes.
 @mixin _mat-date-picker-content-overwrites {
   .mat-datepicker-content {
-    $accent: $mat-css-palette-accent;
-    $primary: $mat-css-palette-primary;
-    $warn: $mat-css-palette-warn;
+    $accent: variables.$palette-accent;
+    $primary: variables.$palette-primary;
+    $warn: variables.$palette-warn;
     @include _mat-date-picker-color-overwrites($primary, 500);
 
     &.mat-accent {
@@ -37,7 +40,7 @@
 @mixin _mat-date-picker-color-overwrites($palette, $hue) {
   .mat-calendar-body-in-range::before {
     background: get-color-from-palette($palette, $hue, 0.2);
-    @include mat-css-dark-theme-global() {
+    @include utilities.mat-css-dark-theme-global() {
       background: get-color-from-palette($palette, $hue, 0.2);
     }
   }
@@ -47,7 +50,7 @@
     & > .mat-calendar-body-cell-content {
       &:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
         background-color: get-color-from-palette($palette, $hue, 0.3);
-        @include mat-css-dark-theme-global() {
+        @include utilities.mat-css-dark-theme-global() {
           background-color: get-color-from-palette($palette, $hue, 0.3);
         }
       }
@@ -63,33 +66,33 @@
   .mat-checkbox.mat-primary,
   .mat-checkbox.mat-primary {
     .mat-checkbox-checkmark .mat-checkbox-checkmark-path {
-      stroke: mat-css-contrast-color-primary(500) !important;
+      stroke: utilities.mat-css-contrast-color-primary(500) !important;
     }
 
     .mat-checkbox-mixedmark {
-      background-color: mat-css-contrast-color-primary(500) !important;
+      background-color: utilities.mat-css-contrast-color-primary(500) !important;
     }
   }
   // -- Accent Color
   .mat-checkbox.mat-accent,
   .mat-checkbox.mat-accent {
     .mat-checkbox-checkmark .mat-checkbox-checkmark-path {
-      stroke: mat-css-contrast-color-accent(500) !important;
+      stroke: utilities.mat-css-contrast-color-accent(500) !important;
     }
 
     .mat-checkbox-mixedmark {
-      background-color: mat-css-contrast-color-accent(500) !important;
+      background-color: utilities.mat-css-contrast-color-accent(500) !important;
     }
   }
   // -- Warning Color
   .mat-checkbox.mat-warn,
   .mat-checkbox.mat-warn {
     .mat-checkbox-checkmark .mat-checkbox-checkmark-path {
-      stroke: mat-css-contrast-color-warn(500) !important;
+      stroke: utilities.mat-css-contrast-color-warn(500) !important;
     }
 
     .mat-checkbox-mixedmark {
-      background-color: mat-css-contrast-color-warn(500) !important;
+      background-color: utilities.mat-css-contrast-color-warn(500) !important;
     }
   }
 }
@@ -98,9 +101,9 @@
 // target the style and overwrite it with the proper attributes.
 @mixin _mat-slide-toggle-color-overwrites() {
   $thumb-checked-hue: 500;
-  $accent: $mat-css-palette-accent;
-  $primary: $mat-css-palette-primary;
-  $warn: $mat-css-palette-warn;
+  $accent: variables.$palette-accent;
+  $primary: variables.$palette-primary;
+  $warn: variables.$palette-warn;
   .mat-slide-toggle {
     @include _mat-slide-toggle-checked-color-theme($accent, $thumb-checked-hue);
 
@@ -115,10 +118,10 @@
 }
 
 @mixin _mat-slide-toggle-checked-color-theme($palette, $thumb-checked-hue) {
-  @include mat-css-dark-theme-global() {
+  @include utilities.mat-css-dark-theme-global() {
     @include _mat-slide-toggle-checked-color($palette, $thumb-checked-hue)
   }
-  @include mat-css-light-theme-global() {
+  @include utilities.mat-css-light-theme-global() {
     @include _mat-slide-toggle-checked-color($palette, $thumb-checked-hue)
   }
 }
