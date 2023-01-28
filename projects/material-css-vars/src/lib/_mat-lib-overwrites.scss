@@ -13,6 +13,7 @@
   @include _mat-mdc-chips-overwrites();
   @include _mat-mdc-date-picker-overwrites();
   @include _mat-mdc-progress-bar-overwrites();
+  @include _mat-mdc-slider();
 }
 
 // ---------------------------
@@ -313,6 +314,32 @@
     &.mat-warn .mdc-linear-progress__buffer-bar {
       @include mat-css-light-dark-theme-global() {
         background-color: mat-css-color(500, 0.25, "warn");
+      }
+    }
+  }
+}
+
+// ---------------------------
+// Progress Bar component 
+// ---------------------------
+@mixin _mat-mdc-slider {
+  .mat-mdc-slider {
+    &.mat-primary {
+      @include mat-css-light-dark-theme-global() {
+        --mat-mdc-slider-hover-ripple-color: #{mat-css-color(500, 0.05, "primary")};
+        --mat-mdc-slider-focus-ripple-color: #{mat-css-color(500, 0.2, "primary")};
+      }
+    }    
+    &.mat-accent {
+      @include mat-css-light-dark-theme-global() {
+        --mat-mdc-slider-hover-ripple-color: #{mat-css-color(500, 0.05, "accent")};      
+        --mat-mdc-slider-focus-ripple-color: #{mat-css-color(500, 0.2, "accent")};
+      }
+    }
+    &.mat-warn {
+      @include mat-css-light-dark-theme-global() {
+        --mat-mdc-slider-hover-ripple-color: #{mat-css-color(500, 0.05, "warn")};
+        --mat-mdc-slider-focus-ripple-color: #{mat-css-color(500, 0.2, "warn")};
       }
     }
   }
