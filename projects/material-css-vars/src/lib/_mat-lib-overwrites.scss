@@ -12,6 +12,7 @@
   @include _mat-mdc-checkbox-overwrites();
   @include _mat-mdc-chips-overwrites();
   @include _mat-mdc-date-picker-overwrites();
+  @include _mat-mdc-progress-bar-overwrites();
 }
 
 // ---------------------------
@@ -291,5 +292,28 @@
   .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover
     > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
     background: mat-css-color(500, 0.3, $palette);
+  }
+}
+
+// ---------------------------
+// Progress Bar component 
+// ---------------------------
+@mixin _mat-mdc-progress-bar-overwrites {
+  .mat-mdc-progress-bar {
+    &.mat-primary .mdc-linear-progress__buffer-bar {
+      @include mat-css-light-dark-theme-global() {
+        background-color: mat-css-color(500, 0.25, "primary");
+      }
+    }
+    &.mat-accent .mdc-linear-progress__buffer-bar { 
+      @include mat-css-light-dark-theme-global() {
+        background-color: mat-css-color(500, 0.25, "accent");
+      }
+    }
+    &.mat-warn .mdc-linear-progress__buffer-bar {
+      @include mat-css-light-dark-theme-global() {
+        background-color: mat-css-color(500, 0.25, "warn");
+      }
+    }
   }
 }
