@@ -1,7 +1,8 @@
-@use '@angular/material'as mat;
 @import 'public-util';
 
-// apply additional overwrites
+// ---------------------------
+// MDC Overwrites
+// ---------------------------
 @mixin mat-css-other-overwrites {
   @include _mat-mdc-fab-overwrites();
   @include _mat-mdc-button-overwrites();
@@ -9,8 +10,8 @@
   @include _mat-mdc-slide-toggle-overwrites();
   @include _mat-mdc-select-overwrites();  
   @include _mat-mdc-checkbox-overwrites();
-  @include _mat-mdc-date-picker-overwrites();
   @include _mat-mdc-chips-overwrites();
+  @include _mat-mdc-date-picker-overwrites();
 }
 
 // ---------------------------
@@ -66,13 +67,11 @@
         --mat-mdc-button-ripple-color: #{mat-css-color(500, 0.1, "primary")};
       }
     }
-
     &.mat-accent {
       @include mat-css-light-dark-theme-global() {
        --mat-mdc-button-ripple-color: #{mat-css-color(500, 0.1, "accent")};
       }
     }
-
     &.mat-warn {
       @include mat-css-light-dark-theme-global() {
         --mat-mdc-button-ripple-color: #{mat-css-color(500, 0.1, "warn")};
@@ -88,14 +87,12 @@
         --mdc-protected-button-label-text-color: #{$color-primary};
       }
     }
-
     &.mat-accent {
       @include mat-css-light-dark-theme-global() {
         --mdc-filled-button-label-text-color: #{$color-accent};
         --mdc-protected-button-label-text-color: #{$color-accent};
       }
     }
-
     &.mat-warn {
       @include mat-css-light-dark-theme-global() {
         --mdc-filled-button-label-text-color: #{$color-warn};
@@ -252,6 +249,20 @@
 }
 
 // ---------------------------
+// CHIPS component 
+// ---------------------------
+@mixin _mat-mdc-chips-overwrites {
+  .mat-mdc-standard-chip {
+    @include mat-css-dark-theme-global() {
+      --mdc-chip-elevated-container-color: #{map-get($mat-css-palette-background-dark, "unselected-chip")};
+    }
+    @include mat-css-light-theme-global() {
+      --mdc-chip-elevated-container-color: #{map-get($mat-css-palette-background, "unselected-chip")};
+    }
+  }
+}
+
+// ---------------------------
 // DATE PICKER component 
 // ---------------------------
 @mixin _mat-mdc-date-picker-overwrites {
@@ -275,21 +286,10 @@
     }
   }
   .mat-calendar-body-cell:not(.mat-calendar-body-disabled).mat-calendar-body-active > .mat-calendar-body-today {
-    color: mat-css-contrast-color-primary(500);
+    color: mat-css-color(500, null, $palette, true);
   }
   .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover
     > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
     background: mat-css-color(500, 0.3, $palette);
-  }
-}
-
-@mixin _mat-mdc-chips-overwrites {
-  .mat-mdc-standard-chip {
-    @include mat-css-dark-theme-global() {
-      --mdc-chip-elevated-container-color: #{map-get($mat-css-palette-background-dark, "unselected-chip")};
-    }
-    @include mat-css-light-theme-global() {
-      --mdc-chip-elevated-container-color: #{map-get($mat-css-palette-background, "unselected-chip")};
-    }
   }
 }

@@ -3,8 +3,6 @@
 @import 'variables';
 @import 'internal-helper';
 @import 'public-util';
-// contains main overwrite of `mat-color` to make it all work
-// needs to come after '~@angular/material/theming'
 @import 'mat-lib-overwrites';
 
 @mixin init-css-vars($default-theme, $text) {
