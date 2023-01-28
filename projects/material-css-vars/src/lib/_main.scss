@@ -1,4 +1,4 @@
-@use '@angular/material'as mat;
+@use '@angular/material' as mat;
 @import '@angular/material/theming';
 @import 'variables';
 @import 'internal-helper';
@@ -16,33 +16,35 @@
 @mixin init-mat-theme($dark-theme-selector, $typography-config: mat.define-typography-config()) {
   @include mat.core();
 
-  $primary: mat.define-palette($mat-css-palette-primary);
-  $accent: mat.define-palette($mat-css-palette-accent);
-  $warn: mat.define-palette($mat-css-palette-warn);
+  $palette-primary: mat.define-palette($mat-css-palette-primary);
+  $palette-accent: mat.define-palette($mat-css-palette-accent);
+  $palette-warn: mat.define-palette($mat-css-palette-warn);
 
-  $theme: mat.define-light-theme((
+  $theme: (
     color: (
-      primary: $primary,
-      accent: $accent,
-      warn: $warn,
+      primary: $palette-primary,
+      accent: $palette-accent,
+      warn: $palette-warn,
+      is-dark: false,
       foreground: $mat-css-palette-foreground,
-      background: $mat-css-palette-background
+      background: $mat-css-palette-background,
     ),
     typography: $typography-config,
-    density: 0
-  ));
+    density: 0,
+  );
 
-  $dark-theme: mat.define-dark-theme((
+  $dark-theme: (
     color: (
-      primary: $primary,
-      accent: $accent,
-      warn: $warn,
+      primary: $palette-primary,
+      accent: $palette-accent,
+      warn: $palette-warn,
+      is-dark: true,
       foreground: $mat-css-palette-foreground-dark,
-      background: $mat-css-palette-background-dark
+      background: $mat-css-palette-background-dark,
     ),
     typography: $typography-config,
-    density: 0
-  ));
+    density: 0,
+  );
 
   // set global variable so passed-in content can use the theme
   $mat-css-theme: $theme !global;

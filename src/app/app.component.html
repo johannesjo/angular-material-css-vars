@@ -537,8 +537,9 @@
                 <section *ngIf="spinnerMode === 'determinate'"
                          class="example-section">
                   <label class="example-margin">Progress:</label>
-                  <mat-slider [(ngModel)]="spinnerValue"
-                              class="example-margin"></mat-slider>
+                  <mat-slider class="example-margin">
+                    <input matSliderThumb [(ngModel)]="spinnerValue">
+                  </mat-slider>
                 </section>
               </mat-card-content>
             </mat-card>
@@ -586,11 +587,11 @@
             <mat-card-content>
               <h2>Material Chips</h2>
               <mat-chip-listbox>
-                <mat-chip *ngFor="let chipColor of availableSpinnerColors"
+                <mat-chip-option *ngFor="let chipColor of availableSpinnerColors"
                           color="{{chipColor.color}}"
                           selected="true">
                   {{chipColor.name}}
-                </mat-chip>
+                </mat-chip-option>
               </mat-chip-listbox>
             </mat-card-content>
           </mat-card>

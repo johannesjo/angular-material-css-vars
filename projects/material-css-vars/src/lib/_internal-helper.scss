@@ -34,16 +34,22 @@
   @return $string;
 }
 
-@function _mat-css-hex-to-rgb($color) {
+@function _mat-css-hex-to-rgb($color, $rgb-wrap: true) {
   @if ($color == null) {
     @return null;
+  }
+  @if ($rgb-wrap) {
+    @return rgb(red($color), green($color), blue($color));
   }
   @return red($color), green($color), blue($color);
 }
 
-@function _mat-css-hex-to-rgba($color) {
+@function _mat-css-hex-to-rgba($color, $rgb-wrap: true) {
   @if ($color == null) {
     @return null;
+  }
+  @if ($rgb-wrap) {
+    @return rgba(red($color), green($color), blue($color), alpha($color));
   }
   @return red($color), green($color), blue($color), alpha($color);
 }

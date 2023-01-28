@@ -5,32 +5,62 @@
 
 // colors
 // ------
-@function mat-css-color($hue: 500,  $opacity: null, $palette: 'primary', $is-contrast-color: false) {
+@function mat-css-color($hue: 500, $opacity: null, $palette: "primary", $is-contrast-color: false) {
+  // If opacity is being provided, we need to to use *-no-rgb pallets
+  // in order to return a proper variable value.
+  @if ($opacity != null) {
+    @return _mat-css-color-no-rgb($hue, $opacity, $palette, $is-contrast-color);
+  }
   $palette_: $mat-css-palette-primary;
   @if ($is-contrast-color == true) {
-    @if ($palette=='primary') {
+    @if ($palette== "primary") {
       $palette_: $mat-css-contrast-palette;
-    } @else if ($palette=='accent') {
+    } @else if ($palette== "accent") {
       $palette_: $mat-css-contrast-palette-accent;
-    } @else if ($palette=='warn') {
+    } @else if ($palette== "warn") {
       $palette_: $mat-css-contrast-palette-warn;
     } @else {
       @error 'Invalid contrast palette';
     }
   } @else {
-    @if ($palette=='primary') {
+    @if ($palette== "primary") {
       $palette_: $mat-css-palette-primary;
-    } @else if ($palette=='accent') {
+    } @else if ($palette== "accent") {
       $palette_: $mat-css-palette-accent;
-    } @else if ($palette=='warn') {
+    } @else if ($palette== "warn") {
       $palette_: $mat-css-palette-warn;
     } @else {
       @error 'Invalid palette';
     }
   }
-
   @return map_get($palette_, $hue);
+}
 
+@function _mat-css-color-no-rgb($hue: 500, $opacity: null, $palette: "primary", $is-contrast-color: false) {
+  $palette_: $mat-css-palette-primary-no-rgb;
+  @if ($is-contrast-color == true) {
+    @if ($palette== "primary") {
+      $palette_: $mat-css-contrast-palette-no-rgb;
+    } @else if ($palette== "accent") {
+      $palette_: $mat-css-contrast-palette-accent-no-rgb;
+    } @else if ($palette== "warn") {
+      $palette_: $mat-css-contrast-palette-warn-no-rgb;
+    } @else {
+      @error 'Invalid contrast palette';
+    }
+  } @else {
+    @if ($palette== "primary") {
+      $palette_: $mat-css-palette-primary-no-rgb;
+    } @else if ($palette== "accent") {
+      $palette_: $mat-css-palette-accent-no-rgb;
+    } @else if ($palette== "warn") {
+      $palette_: $mat-css-palette-warn-no-rgb;
+    } @else {
+      @error 'Invalid palette';
+    }
+  }
+  $var: map_get($palette_, $hue);
+  @return #{rgba($var, $opacity)};
 }
 
 @function mat-css-color-primary($hue: 500,  $opacity: null) {
@@ -111,6 +141,16 @@
   #{$mat-css-light-theme-selector} & {
     @content;
   }
+}
+
+// Short hand for both light and dark selectors
+@mixin mat-css-light-dark-theme-global {
+  #{$mat-css-light-theme-selector} & {
+    @content;
+  }
+  #{$mat-css-dark-theme-selector} & {
+    @content;
+  }  
 }
 
 @mixin mat-css-set-palette-defaults($css-var-map, $paletteType: 'primary') {
