@@ -7,6 +7,7 @@
   @include _mat-mdc-fab-overwrites();
   @include _mat-mdc-button-overwrites();
   @include _mat-mdc-text-field-overwrites();
+  @include _mat-mdc-form-field-overwrites();
   @include _mat-mdc-slide-toggle-overwrites();
   @include _mat-mdc-select-overwrites();  
   @include _mat-mdc-checkbox-overwrites();
@@ -105,7 +106,7 @@
 }
 
 // ---------------------------
-// TEXTFIELD component 
+// TEXT FIELD component 
 // ---------------------------
 @mixin _mat-mdc-text-field-overwrites {
   .mdc-text-field--disabled.mdc-text-field--filled,
@@ -124,6 +125,35 @@
     @include mat-css-light-theme-global() {
       color: map-get($mat-css-palette-foreground, "text");
     }    
+  }
+}
+
+// ---------------------------
+// FORM FIELD component 
+// ---------------------------
+@mixin _mat-mdc-form-field-overwrites {
+  .mat-mdc-form-field {
+    &.mat-primary {
+      .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+        @include mat-css-light-dark-theme-global() {
+          color: mat-css-color-primary(500, 0.87);
+        }
+      }
+    }
+    &.mat-accent {
+      .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+        @include mat-css-light-dark-theme-global() {
+          color: mat-css-color-accent(500, 0.87);
+        }
+      }
+    }
+    &.mat-warn {
+      .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+        @include mat-css-light-dark-theme-global() {
+          color: mat-css-color-warn(500, 0.87);
+        }
+      }
+    }
   }
 }
 
@@ -185,10 +215,10 @@
   }
 
   .mat-mdc-select-placeholder {
-    @include mat-css-light-theme-global() {
+    @include mat-css-dark-theme-global() {
       color: rgba(map-get($mat-css-palette-foreground-dark, "base"), 0.6);
     }
-    @include mat-css-dark-theme-global() {
+    @include mat-css-light-theme-global() {
       color: rgba(map-get($mat-css-palette-foreground, "base"), 0.6);
     }    
   }
