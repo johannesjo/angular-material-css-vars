@@ -38,6 +38,15 @@
     },
     "./variables": {
       "sass": "./src/lib/_variables.scss"
+    },
+    "./src/lib/main": {
+      "sass": "./src/lib/_main.scss"
+    },
+    "./src/lib/public-util": {
+      "sass": "./src/lib/_public-util.scss"
+    },
+    "./src/lib/variables": {
+      "sass": "./src/lib/_variables.scss"
     }
   }
 }
