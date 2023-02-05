@@ -586,11 +586,11 @@
             <mat-card-content>
               <h2>Material Chips</h2>
               <mat-chip-listbox>
-                <mat-chip *ngFor="let chipColor of availableSpinnerColors"
+                <mat-chip-option *ngFor="let chipColor of availableSpinnerColors"
                           color="{{chipColor.color}}"
                           selected="true">
                   {{chipColor.name}}
-                </mat-chip>
+                </mat-chip-option>
               </mat-chip-listbox>
             </mat-card-content>
           </mat-card>
