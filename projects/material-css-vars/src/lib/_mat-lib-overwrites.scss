@@ -14,7 +14,7 @@
   @include _mat-mdc-chips-overwrites();
   @include _mat-mdc-date-picker-overwrites();
   @include _mat-mdc-progress-bar-overwrites();
-  @include _mat-mdc-slider();
+  @include _mat-mdc-slider-overwrites();
 }
 
 // ---------------------------
@@ -352,7 +352,7 @@
 // ---------------------------
 // SLIDER component 
 // ---------------------------
-@mixin _mat-mdc-slider {
+@mixin _mat-mdc-slider-overwrites() {
   .mat-mdc-slider {
     &.mat-primary {
       @include mat-css-light-dark-theme-global() {
