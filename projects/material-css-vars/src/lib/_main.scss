@@ -29,9 +29,7 @@
     color: (
       primary: $primary,
       accent: $accent,
-      warn: $warn,
-      foreground: variables.$palette-foreground,
-      background: variables.$palette-background
+      warn: $warn
     ),
     typography: $typography-config,
     density: 0
@@ -41,9 +39,7 @@
     color: (
       primary: $primary,
       accent: $accent,
-      warn: $warn,
-      foreground: variables.$palette-foreground-dark,
-      background: variables.$palette-background-dark
+      warn: $warn
     ),
     typography: $typography-config,
     density: 0
