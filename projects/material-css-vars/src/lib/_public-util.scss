@@ -29,8 +29,13 @@
     }
   }
 
-  @return map_get($palette_, $hue);
+  $color: map_get($palette_, $hue);
 
+  @if (type-of($opacity) == number) {
+    @return rgba($color, $opacity);
+  } @else {
+    @return rgb($color);
+  }
 }
 
 @function mat-css-color-primary($hue: 500,  $opacity: null) {
