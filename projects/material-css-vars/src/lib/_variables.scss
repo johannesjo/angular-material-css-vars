@@ -35,6 +35,7 @@ $text:
 $default-foreground: (
   // LIGHT
   --palette-foreground-base: utilities.hex-to-rgb(#000000),
+  --palette-foreground-base-alpha: 0,
   --palette-foreground-divider: utilities.hex-to-rgb(#000000),
   --palette-foreground-divider-alpha: 0.12,
   --palette-foreground-dividers: utilities.hex-to-rgb(#000000),
@@ -45,7 +46,6 @@ $default-foreground: (
   --palette-foreground-disabled-button-alpha: 0.26,
   --palette-foreground-disabled-text: utilities.hex-to-rgb(#000000),
   --palette-foreground-disabled-text-alpha: 0.38,
-  // --palette-foreground-elevation: utilities.hex-to-rgb(#000000),
   --palette-foreground-hint-text: utilities.hex-to-rgb(#000000),
   --palette-foreground-hint-text-alpha: 0.38,
   --palette-foreground-secondary-text: utilities.hex-to-rgb(#000000),
@@ -64,6 +64,7 @@ $default-foreground: (
   --palette-foreground-slider-off-active-alpha: 0.38,
   // DARK
   --palette-foreground-base-dark: utilities.hex-to-rgb(#ffffff),
+  --palette-foreground-base-dark-alpha: 0,
   --palette-foreground-divider-dark: utilities.hex-to-rgb(#ffffff),
   --palette-foreground-divider-dark-alpha: 0.12,
   --palette-foreground-dividers-dark: utilities.hex-to-rgb(#ffffff),
@@ -74,7 +75,6 @@ $default-foreground: (
   --palette-foreground-disabled-button-dark-alpha: 0.3,
   --palette-foreground-disabled-text-dark: utilities.hex-to-rgb(#ffffff),
   --palette-foreground-disabled-text-dark-alpha: 0.5,
-  // --palette-foreground-elevation-dark: utilities.hex-to-rgb(#000000),
   --palette-foreground-hint-text-dark: utilities.hex-to-rgb(#ffffff),
   --palette-foreground-hint-text-dark-alpha: 0.5,
   --palette-foreground-secondary-text-dark: utilities.hex-to-rgb(#ffffff),
