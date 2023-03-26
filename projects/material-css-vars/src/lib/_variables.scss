@@ -35,7 +35,7 @@ $text:
 $default-foreground: (
   // LIGHT
   --palette-foreground-base: utilities.hex-to-rgb(#000000),
-  --palette-foreground-base-alpha: 0,
+  --palette-foreground-base-alpha: 1,
   --palette-foreground-divider: utilities.hex-to-rgb(#000000),
   --palette-foreground-divider-alpha: 0.12,
   --palette-foreground-dividers: utilities.hex-to-rgb(#000000),
@@ -64,7 +64,7 @@ $default-foreground: (
   --palette-foreground-slider-off-active-alpha: 0.38,
   // DARK
   --palette-foreground-base-dark: utilities.hex-to-rgb(#ffffff),
-  --palette-foreground-base-dark-alpha: 0,
+  --palette-foreground-base-dark-alpha: 1,
   --palette-foreground-divider-dark: utilities.hex-to-rgb(#ffffff),
   --palette-foreground-divider-dark-alpha: 0.12,
   --palette-foreground-dividers-dark: utilities.hex-to-rgb(#ffffff),
