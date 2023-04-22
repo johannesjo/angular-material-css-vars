@@ -7,16 +7,12 @@
 @mixin other-overwrites {
   @include _mat-mdc-fab-overwrites();
   @include _mat-mdc-button-overwrites();
-  @include _mat-mdc-text-field-overwrites();
   @include _mat-mdc-form-field-overwrites();
   @include _mat-mdc-slide-toggle-overwrites();
-  @include _mat-mdc-select-overwrites();
   @include _mat-mdc-checkbox-overwrites();
-  @include _mat-mdc-chips-overwrites();
   @include _mat-mdc-date-picker-overwrites();
   @include _mat-mdc-progress-bar-overwrites();
   @include _mat-mdc-slider-overwrites();
-  @include _mat-mdc-snackbar-overwrites();
 }
 
 // ---------------------------
@@ -108,29 +104,6 @@
 }
 
 // ---------------------------
-// TEXT FIELD component
-// ---------------------------
-@mixin _mat-mdc-text-field-overwrites {
-  .mdc-text-field--disabled.mdc-text-field--filled,
-  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-    @include public-util.mat-css-dark-theme-global() {
-      background: map-get(variables.$palette-background-dark, "background");
-    }
-    @include public-util.mat-css-light-theme-global() {
-      background: map-get(variables.$palette-background, "background");
-    }
-  }
-  .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
-    @include public-util.mat-css-dark-theme-global() {
-      color: map-get(variables.$palette-foreground-dark, "text");
-    }
-    @include public-util.mat-css-light-theme-global() {
-      color: map-get(variables.$palette-foreground, "text");
-    }
-  }
-}
-
-// ---------------------------
 // FORM FIELD component
 // ---------------------------
 @mixin _mat-mdc-form-field-overwrites {
@@ -204,58 +177,6 @@
 }
 
 // ---------------------------
-// SELECT component
-// ---------------------------
-@mixin _mat-mdc-select-overwrites {
-  .mat-mdc-select-value {
-    @include public-util.mat-css-dark-theme-global() {
-      color: map-get(variables.$palette-foreground-dark, "text");
-    }
-    @include public-util.mat-css-light-theme-global() {
-      color: map-get(variables.$palette-foreground, "text");
-    }
-  }
-
-  .mat-mdc-select-placeholder {
-    @include public-util.mat-css-dark-theme-global() {
-      color: rgba(map-get(variables.$palette-foreground-dark, "base"), 0.6);
-    }
-    @include public-util.mat-css-light-theme-global() {
-      color: rgba(map-get(variables.$palette-foreground, "base"), 0.6);
-    }
-  }
-
-  .mat-mdc-select-disabled .mat-mdc-select-value {
-    @include public-util.mat-css-dark-theme-global() {
-      color: map-get(variables.$palette-foreground-dark, "disabled-text");
-    }
-    @include public-util.mat-css-light-theme-global() {
-      color: map-get(variables.$palette-foreground, "disabled-text");
-    }
-  }
-
-  .mat-mdc-select-arrow {
-    @include public-util.mat-css-dark-theme-global() {
-      color: map-get(variables.$palette-foreground-dark, "secondary-text");
-    }
-    @include public-util.mat-css-light-theme-global() {
-      color: map-get(variables.$palette-foreground, "secondary-text");
-    }
-  }
-
-  .mat-mdc-form-field {
-    .mat-mdc-select.mat-mdc-select-disabled .mat-mdc-select-arrow {
-      @include public-util.mat-css-dark-theme-global() {
-        color: map-get(variables.$palette-foreground-dark, "disabled-text");
-      }
-      @include public-util.mat-css-light-theme-global() {
-        color: map-get(variables.$palette-foreground, "disabled-text");
-      }
-    }
-  }
-}
-
-// ---------------------------
 // CHECKBOX component
 // ---------------------------
 @mixin _mat-mdc-checkbox-overwrites {
@@ -278,20 +199,6 @@
       @include public-util.mat-css-light-dark-theme-global() {
         --mdc-checkbox-selected-checkmark-color: #{$color-warn};
       }
-    }
-  }
-}
-
-// ---------------------------
-// CHIPS component
-// ---------------------------
-@mixin _mat-mdc-chips-overwrites {
-  .mat-mdc-standard-chip {
-    @include public-util.mat-css-dark-theme-global() {
-      --mdc-chip-elevated-container-color: #{map-get(variables.$palette-background-dark, "unselected-chip")};
-    }
-    @include public-util.mat-css-light-theme-global() {
-      --mdc-chip-elevated-container-color: #{map-get(variables.$palette-background, "unselected-chip")};
     }
   }
 }
@@ -373,20 +280,6 @@
         --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(500, 0.05, "warn")};
         --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(500, 0.2, "warn")};
       }
-    }
-  }
-}
-
-// ---------------------------
-// SNACKBAR component
-// ---------------------------
-@mixin _mat-mdc-snackbar-overwrites() {
-  .mat-mdc-snack-bar-container {
-    @include public-util.mat-css-dark-theme-global() {
-      --mdc-snackbar-container-color: #{map-get(variables.$palette-background-dark, "snackbar")};
-    }
-    @include public-util.mat-css-light-theme-global() {
-      --mdc-snackbar-container-color: #{map-get(variables.$palette-background, "snackbar")};
     }
   }
 }

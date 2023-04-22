@@ -464,7 +464,7 @@
                 <mat-checkbox class="checkbox-margin">Check me!</mat-checkbox>
                 <mat-checkbox class="checkbox-margin" [disabled]="true">Disabled</mat-checkbox>
               </section>
-              
+
               <section class="checkbox-section">
                 <span class="checkbox-list-section">
                   <mat-checkbox class="checkbox-margin"
@@ -589,6 +589,7 @@
                           selected="true">
                   {{chipColor.name}}
                 </mat-chip-option>
+                <mat-chip-option disabled>Disabled</mat-chip-option>
               </mat-chip-listbox>
             </mat-card-content>
           </mat-card>
@@ -620,7 +621,7 @@
             </mat-card-content>
           </mat-card>
           <!-- /Material Menu-->
-          
+
           <!-- Material Select -->
           <mat-card>
             <mat-card-content>
@@ -658,13 +659,13 @@
                 <input matInput [matDatepicker]="picker3">
                 <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                 <mat-datepicker #picker3></mat-datepicker>
-              </mat-form-field>    
+              </mat-form-field>
               <mat-form-field color="accent" appearance="fill">
                 <mat-label>Custom (accent/primary)</mat-label>
                 <input matInput [matDatepicker]="picker4">
                 <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                 <mat-datepicker #picker4 color="primary"></mat-datepicker>
-              </mat-form-field>          
+              </mat-form-field>
             </mat-card-content>
           </mat-card>
           <!-- /Material Date Picker -->
@@ -681,7 +682,7 @@
                 </mat-date-range-input>
                 <mat-datepicker-toggle matSuffix [for]="rangePicker1"></mat-datepicker-toggle>
                 <mat-date-range-picker #rangePicker1></mat-date-range-picker>
-              </mat-form-field>           
+              </mat-form-field>
               <mat-form-field color="accent" appearance="fill">
                 <mat-label>Enter a date range (accent)</mat-label>
                 <mat-date-range-input [rangePicker]="rangePicker2">
@@ -690,7 +691,7 @@
                 </mat-date-range-input>
                 <mat-datepicker-toggle matSuffix [for]="rangePicker2"></mat-datepicker-toggle>
                 <mat-date-range-picker #rangePicker2></mat-date-range-picker>
-              </mat-form-field>   
+              </mat-form-field>
               <mat-form-field color="warn" appearance="fill">
                 <mat-label>Enter a date range (warn)</mat-label>
                 <mat-date-range-input [rangePicker]="rangePicker3">
@@ -699,7 +700,7 @@
                 </mat-date-range-input>
                 <mat-datepicker-toggle matSuffix [for]="rangePicker3"></mat-datepicker-toggle>
                 <mat-date-range-picker #rangePicker3></mat-date-range-picker>
-              </mat-form-field>                 
+              </mat-form-field>
             </mat-card-content>
           </mat-card>
           <!-- /Material Date Range Picker -->
@@ -710,12 +711,12 @@
             <mat-label>Message</mat-label>
             <input matInput value="Disco party!" #message>
           </mat-form-field>
-          
+
           <mat-form-field appearance="fill">
             <mat-label>Action</mat-label>
             <input matInput value="Dance" #action>
           </mat-form-field>
-          
+
           <button mat-stroked-button (click)="showSnackbar(message.value, action.value)">Show snack-bar</button>
         </mat-tab>
 

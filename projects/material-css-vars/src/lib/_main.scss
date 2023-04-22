@@ -21,31 +21,25 @@
   $accent: mat.define-palette(variables.$palette-accent);
   $warn: mat.define-palette(variables.$palette-warn);
 
-  $theme: (
+  $theme: mat.define-light-theme((
     color: (
       primary: $primary,
       accent: $accent,
       warn: $warn,
-      is-dark: false,
-      foreground: variables.$palette-foreground,
-      background: variables.$palette-background,
     ),
     typography: $typography-config,
     density: 0,
-  );
+  ));
 
-  $dark-theme: (
+  $dark-theme: mat.define-dark-theme((
     color: (
       primary: $primary,
       accent: $accent,
       warn: $warn,
-      is-dark: true,
-      foreground: variables.$palette-foreground-dark,
-      background: variables.$palette-background-dark,
     ),
     typography: $typography-config,
     density: 0,
-  );
+  ));
 
   // set global variable so passed-in content can use the theme
   $mat-css-theme: $theme !global; // stays for backwards-compatibility
