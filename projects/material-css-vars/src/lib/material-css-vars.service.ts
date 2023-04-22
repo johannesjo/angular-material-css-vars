@@ -149,13 +149,16 @@ export class MaterialCssVarsService {
   }
 
   setContrastColorThreshold(threshold: HueValue, palettePrefix: MatCssPalettePrefix) {
+    if (!threshold || !palettePrefix || this.isAutoContrast) {
+      return;
+    }
     let color = MaterialCssVarsService.DARK_TEXT_VAR;
     const updates = this.cfg.sortedHues.map((hue) => {
       if (hue === threshold) {
         color = MaterialCssVarsService.LIGHT_TEXT_VAR;
       }
       return {
-        val: this._getCssVarValue(color),
+        val: `var(${color})`, //val: this._getCssVarValue(color),
         name: `${palettePrefix + MaterialCssVarsService.CONTRAST_PREFIX}${hue}`,
       };
     });
@@ -243,7 +246,9 @@ export class MaterialCssVarsService {
         ? lightText
         : darkText;
 
-      const sLight = contrastStr.split(',').map(v => +v);
+      const sLight = this._replaceNoRgbValue('', contrastStr)
+      .split(',')
+      .map((v) => +v);
       const cco = {r: sLight[0], g: sLight[1], b: sLight[2], a: 1};
       return {
         ...item,
@@ -260,7 +265,7 @@ export class MaterialCssVarsService {
       const c = item.color;
       return {
         name: `${prefix}${item.hue}`,
-        val: `${c.r}, ${c.g}, ${c.b}`
+        val: `rgb(${c.r}, ${c.g}, ${c.b})`
       };
     });
   }
@@ -269,7 +274,7 @@ export class MaterialCssVarsService {
     const updates = this._calculateContrastColorsForCurrentValues(palettePrefix)
       .map(({contrastColorVar, hue}) => {
         return {
-          val: this._getCssVarValue(contrastColorVar),
+          val: `var(${contrastColorVar})`, //this._getCssVarValue(contrastColorVar),
           name: `${palettePrefix + MaterialCssVarsService.CONTRAST_PREFIX}${hue}`,
         };
       });
@@ -292,9 +297,35 @@ export class MaterialCssVarsService {
   }
 
   private _setStyle(vars: CssVariable[]) {
-    vars.forEach(s => {
+    vars.forEach((s) => {
       this.renderer.setStyle(this.ROOT, s.name, s.val, RendererStyleFlags2.DashCase);
+      this.renderer.setStyle(
+        this.ROOT,
+        s.name + '-no-rgb',
+        this._replaceNoRgbValue(s.name, s.val),
+        RendererStyleFlags2.DashCase
+      );
     });
+  }
+
+  /**
+   * Replace variables that are formatted as rgba(var(rgb(xxx))) to be var(xxx) to allow proper formatting
+   * in variable overrides.
+   * @param value
+   * @returns
+   */
+  private _replaceNoRgbValue(name: string, value: string) {
+    const isContrast: boolean = name.includes(MaterialCssVarsService.CONTRAST_PREFIX);
+    let noRgb: string = '';
+    if (isContrast) {
+      noRgb = value.replace(')', '-no-rgb)');
+    } else {
+      noRgb = value.replace('rgba(', '').replace('rgb(', '').replace(')', '');
+      if (noRgb.startsWith('var(')) {
+        noRgb = noRgb.concat(')');
+      }
+    }
+    return noRgb;
   }
 
   private _getCssVarValue(v: string): string {

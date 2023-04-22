@@ -6,6 +6,11 @@
 // colors
 // ------
 @function mat-css-color($hue: 500,  $opacity: null, $palette: 'primary', $is-contrast-color: false) {
+  // If opacity is being provided, we need to to use *-no-rgb pallets
+  // in order to return a proper variable value.
+  @if ($opacity != null) {
+    @return _mat-css-color-no-rgb($hue, $opacity, $palette, $is-contrast-color);
+  }
   $palette_: variables.$palette-primary;
   @if ($is-contrast-color == true) {
     @if ($palette=='primary') {
@@ -36,6 +41,33 @@
   } @else {
     @return $color;
   }
+}
+
+@function _mat-css-color-no-rgb($hue: 500, $opacity: null, $palette: "primary", $is-contrast-color: false) {
+  $palette_: variables.$palette-primary-no-rgb;
+  @if ($is-contrast-color == true) {
+    @if ($palette== "primary") {
+      $palette_: variables.$contrast-palette-no-rgb;
+    } @else if ($palette== "accent") {
+      $palette_: variables.$contrast-palette-accent-no-rgb;
+    } @else if ($palette== "warn") {
+      $palette_: variables.$contrast-palette-warn-no-rgb;
+    } @else {
+      @error 'Invalid contrast palette';
+    }
+  } @else {
+    @if ($palette== "primary") {
+      $palette_: variables.$palette-primary-no-rgb;
+    } @else if ($palette== "accent") {
+      $palette_: variables.$palette-accent-no-rgb;
+    } @else if ($palette== "warn") {
+      $palette_: variables.$palette-warn-no-rgb;
+    } @else {
+      @error 'Invalid palette';
+    }
+  }
+  $var: map_get($palette_, $hue);
+  @return #{rgba($var, $opacity)};
 }
 
 @function mat-css-color-primary($hue: 500,  $opacity: null) {
@@ -114,6 +146,16 @@
 
 @mixin mat-css-light-theme-global {
   #{variables.$light-theme-selector} & {
+    @content;
+  }
+}
+
+// Short hand for both light and dark selectors
+@mixin mat-css-light-dark-theme-global {
+  #{variables.$light-theme-selector} & {
+    @content;
+  }
+  #{variables.$dark-theme-selector} & {
     @content;
   }
 }

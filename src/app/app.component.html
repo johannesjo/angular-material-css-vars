@@ -80,11 +80,11 @@
             <br>
             <br>
 
-            <mat-form-field>
+            <mat-form-field color="primary">
+              <mat-label>Primary Contrast Threshold</mat-label>
               <mat-select (ngModelChange)="onChangeThresholdPrimary($event)"
                           [disabled]="materialCssVarsService.isAutoContrast"
-                          [(ngModel)]="materialCssVarsService.contrastColorThresholdPrimary"
-                          placeholder="Threshold for primary contrast color">
+                          [(ngModel)]="materialCssVarsService.contrastColorThresholdPrimary">
                 <mat-option *ngFor="let hue of hues"
                             [value]="hue.value">
                   {{hue.viewValue}}
@@ -92,13 +92,12 @@
               </mat-select>
             </mat-form-field>
             <br>
-            <br>
 
-            <mat-form-field>
+            <mat-form-field color="accent">
+              <mat-label>Accent Contrast Threshold</mat-label>
               <mat-select (ngModelChange)="onChangeThresholdAccent($event)"
                           [disabled]="materialCssVarsService.isAutoContrast"
-                          [(ngModel)]="materialCssVarsService.contrastColorThresholdAccent"
-                          placeholder="Threshold for Accent contrast color">
+                          [(ngModel)]="materialCssVarsService.contrastColorThresholdAccent">
                 <mat-option *ngFor="let hue of hues"
                             [value]="hue.value">
                   {{hue.viewValue}}
@@ -106,13 +105,12 @@
               </mat-select>
             </mat-form-field>
             <br>
-            <br>
 
-            <mat-form-field>
+            <mat-form-field color="warn">
+              <mat-label>Warn Contrast Threshold</mat-label>
               <mat-select (ngModelChange)="onChangeThresholdWarn($event)"
                           [disabled]="materialCssVarsService.isAutoContrast"
-                          [(ngModel)]="materialCssVarsService.contrastColorThresholdWarn"
-                          placeholder="Threshold for Warn contrast color">
+                          [(ngModel)]="materialCssVarsService.contrastColorThresholdWarn">
                 <mat-option *ngFor="let hue of hues"
                             [value]="hue.value">
                   {{hue.viewValue}}
@@ -121,7 +119,6 @@
             </mat-form-field>
           </mat-card-content>
         </mat-card>
-
 
         <mat-card class="mat-elevation-z3">
           <mat-card-content>
@@ -427,15 +424,17 @@
           <mat-card class="input-section">
             <mat-card-content>
               <h2>Material Input</h2>
-              <mat-form-field>
-                <input matInput
-                       placeholder="First name"/>
+              <mat-form-field color="primary">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="Enter your first name"/>
+                <mat-hint align="start">This is a hint</mat-hint>
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field color="accent">
+                <mat-label>Nickname</mat-label>
                 <input #nickname
                        matInput
                        maxlength="50"
-                       placeholder="Nickname"/>
+                       placeholder="Enter your Nickname"/>
                 <mat-hint align="end">
                   {{nickname.value.length}} / 50
                 </mat-hint>
@@ -444,16 +443,14 @@
                 <mat-icon class="input-icon"
                           matPrefix>android
                 </mat-icon>
+                <mat-label>Phone Number</mat-label>
                 <input matInput
-                       placeholder="Favorite phone">
+                       placeholder="Enter your favorite phone">
               </mat-form-field>
-              <mat-form-field>
-
-                <mat-icon class="input-icon"
-                          matPrefix>motorcycle
-                </mat-icon>
-                <input matInput
-                       placeholder="Motorcycle model">
+              <mat-form-field color="warn">
+                <mat-icon class="input-icon" matPrefix>motorcycle</mat-icon>
+                <mat-label>Motorcycle Model</mat-label>
+                <input matInput placeholder="Motorcycle model">
               </mat-form-field>
             </mat-card-content>
           </mat-card>
@@ -537,8 +534,9 @@
                 <section *ngIf="spinnerMode === 'determinate'"
                          class="example-section">
                   <label class="example-margin">Progress:</label>
-                  <mat-slider [(ngModel)]="spinnerValue"
-                              class="example-margin"></mat-slider>
+                  <mat-slider class="example-margin">
+                    <input matSliderThumb [(ngModel)]="spinnerValue">
+                  </mat-slider>
                 </section>
               </mat-card-content>
             </mat-card>
