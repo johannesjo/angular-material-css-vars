@@ -111,6 +111,15 @@
               "devServerTarget": "angular-material-css-vars:serve:production"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -134,6 +143,15 @@
             "tsConfig": "projects/material-css-vars/tsconfig.spec.json",
             "karmaConfig": "projects/material-css-vars/karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/material-css-vars/**/*.ts",
+              "projects/material-css-vars/**/*.html"
+            ]
+          }
         }
       }
     }
@@ -142,6 +160,9 @@
     "analytics": false,
     "cache": {
       "enabled": false
-    }
+    },
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
