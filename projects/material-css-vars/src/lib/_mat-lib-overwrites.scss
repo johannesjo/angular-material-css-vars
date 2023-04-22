@@ -1,4 +1,4 @@
-@use 'public-util';
+@use "public-util";
 @use "variables";
 
 // ---------------------------
@@ -16,6 +16,7 @@
   @include _mat-mdc-date-picker-overwrites();
   @include _mat-mdc-progress-bar-overwrites();
   @include _mat-mdc-slider-overwrites();
+  @include _mat-mdc-snackbar-overwrites();
 }
 
 // ---------------------------
@@ -372,6 +373,20 @@
         --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(500, 0.05, "warn")};
         --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(500, 0.2, "warn")};
       }
+    }
+  }
+}
+
+// ---------------------------
+// SNACKBAR component
+// ---------------------------
+@mixin _mat-mdc-snackbar-overwrites() {
+  .mat-mdc-snack-bar-container {
+    @include public-util.mat-css-dark-theme-global() {
+      --mdc-snackbar-container-color: #{map-get(variables.$palette-background-dark, "snackbar")};
+    }
+    @include public-util.mat-css-light-theme-global() {
+      --mdc-snackbar-container-color: #{map-get(variables.$palette-background, "snackbar")};
     }
   }
 }

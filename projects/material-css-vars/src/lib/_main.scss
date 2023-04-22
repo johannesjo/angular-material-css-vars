@@ -1,18 +1,17 @@
-@use '@angular/material' as mat;
-@use 'internal-helper' as helper;
-@use 'variables' as variables;
-@use 'internal-helper';
-@use 'public-util';
+@use "@angular/material" as mat;
+@use "variables";
+@use "internal-helper";
+@use "public-util";
 // contains main overwrite of `mat-color` to make it all work
-// needs to come after '@angular/material'
-@use 'mat-lib-overwrites' as overwrites;
+// needs to come after "@angular/material"
+@use "mat-lib-overwrites";
 
 @mixin init-css-vars($default-theme, $text, $default-foreground, $default-background) {
   // init css variables
-  @include helper.root($text);
-  @include helper.root($default-theme);
-  @include helper.root($default-foreground);
-  @include helper.root($default-background);
+  @include internal-helper.root($text);
+  @include internal-helper.root($default-theme);
+  @include internal-helper.root($default-foreground);
+  @include internal-helper.root($default-background);
 }
 
 @mixin init-mat-theme($dark-theme-selector, $typography-config: mat.define-typography-config()) {
@@ -69,7 +68,7 @@
     }
   }
 
-  @include overwrites.other-overwrites;
+  @include mat-lib-overwrites.other-overwrites;
 
   $mat-css-theme: null !global;
 }
