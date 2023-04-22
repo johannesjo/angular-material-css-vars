@@ -84,7 +84,6 @@ import {MaterialCssVarsModule} from '../../projects/material-css-vars/src/lib/ma
     }),
   ],
   providers: [
-    // tslint:disable-next-line
     {provide: APP_BASE_HREF, useValue: window['_app_base'] || '/'},
   ],
   bootstrap: [AppComponent]
