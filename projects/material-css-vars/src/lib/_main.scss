@@ -15,13 +15,8 @@
   @include helper.root($default-background);
 }
 
-@mixin init-mat-theme($dark-theme-selector, $typography-config: mat.define-typography-config(), $load-mdc-components, $load-legacy-components) {
-  @if $load-mdc-components {
-    @include mat.core();
-  }
-  @if $load-legacy-components {
-    @include mat.legacy-core();
-  }
+@mixin init-mat-theme($dark-theme-selector, $typography-config: mat.define-typography-config()) {
+  @include mat.core();
 
   $primary: mat.define-palette(variables.$palette-primary);
   $accent: mat.define-palette(variables.$palette-accent);
@@ -57,12 +52,7 @@
   $mat-css-theme: $theme !global; // stays for backwards-compatibility
 
   // NOTE: light theme is the default theme
-  @if $load-mdc-components {
-    @include mat.all-component-themes($theme);
-  }
-  @if $load-legacy-components {
-    @include mat.all-legacy-component-themes($theme);
-  }
+  @include mat.all-component-themes($theme);
 
   // Fix mat-typography class, see https://github.com/angular/components/issues/26184
   @include mat.typography-hierarchy($theme);
@@ -72,12 +62,7 @@
   @if $dark-theme-selector {
     $mat-css-theme: $dark-theme !global;
     #{$dark-theme-selector} {
-      @if $load-mdc-components {
-        @include mat.all-component-colors($dark-theme);
-      }
-      @if $load-legacy-components {
-        @include mat.all-legacy-component-colors($dark-theme);
-      }
+      @include mat.all-component-colors($dark-theme);
       // add content passed in, which can use the $theme variable to apply the dark theme to
       // other theme mixins needed by the app
       @content($mat-css-theme);
@@ -96,11 +81,9 @@
   $typography-config: mat.define-typography-config(),
   $default-foreground: variables.$default-foreground,
   $default-background: variables.$default-background,
-  $load-mdc-components: true,
-  $load-legacy-components: false,
 ) {
   @include init-css-vars($default-theme, $default-theme-text, $default-foreground, $default-background);
-  @include init-mat-theme($dark-theme-selector, $typography-config, $load-mdc-components, $load-legacy-components) using ($mat-css-theme) {
+  @include init-mat-theme($dark-theme-selector, $typography-config) using ($mat-css-theme) {
     @content($mat-css-theme);
   }
 }
