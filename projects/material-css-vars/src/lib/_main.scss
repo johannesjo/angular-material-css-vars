@@ -6,12 +6,10 @@
 // needs to come after "@angular/material"
 @use "mat-lib-overwrites";
 
-@mixin init-css-vars($default-theme, $text, $default-foreground, $default-background) {
+@mixin init-css-vars($default-theme, $text) {
   // init css variables
   @include internal-helper.root($text);
   @include internal-helper.root($default-theme);
-  @include internal-helper.root($default-foreground);
-  @include internal-helper.root($default-background);
 }
 
 @mixin init-mat-theme($dark-theme-selector, $typography-config: mat.define-typography-config()) {
@@ -72,10 +70,8 @@
   $dark-theme-selector: variables.$dark-theme-selector,
   $default-theme-text: variables.$text,
   $typography-config: mat.define-typography-config(),
-  $default-foreground: variables.$default-foreground,
-  $default-background: variables.$default-background,
 ) {
-  @include init-css-vars($default-theme, $default-theme-text, $default-foreground, $default-background);
+  @include init-css-vars($default-theme, $default-theme-text);
   @include init-mat-theme($dark-theme-selector, $typography-config) using ($mat-css-theme) {
     @content($mat-css-theme);
   }
