@@ -183,8 +183,10 @@ $custom-typography: mat.mat-typography-config(
 };
 ```
 
-## Updating to Angular v15
-Angular Material v15 introduces MDC based components, which is basically a re-write for a lot of the available components. With `angular-material-css-vars` to v5+, only MDC components are supported.
+## Legacy components support
+Angular Material v15 introduces MDC based components, which is basically a re-write for a lot of the available components. `angular-material-css-vars` v5+ only supports MDC components.
+
+In case you are still using the legacy components, you can use the package [angular-material-css-vars-legacy](https://github.com/json-derulo/angular-material-css-vars-legacy).
 
 ## upgrading to angular v12
 Angular material v12 interoduces some big changes, which leaves you with two options when upgrading to ng12: You can either stay at angular material v11 and angular-material-css-vars v1.2.0 or you can use v2+ which thanks to @pedrojrivera adds full support for the new version.
