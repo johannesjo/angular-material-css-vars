@@ -1,11 +1,11 @@
 // used to circumvent node sass issue: https://github.com/sass/node-sass/issues/2251
 @function rgb($r, $g: null, $b: null ) {
   @if ($g == null) {
-    @return unquote('#{$r}');
+    @return unquote("#{$r}");
   }
 
   @if ($g and $b) {
-    @return unquote('#{$r}, #{$g}, #{$b}');
+    @return unquote("#{$r}, #{$g}, #{$b}");
   }
 
   @error "wrong number of arguments";
@@ -14,17 +14,17 @@
 // used to circumvent node sass issue: https://github.com/sass/node-sass/issues/2251
 @function rgba($r, $g, $b: null, $a: null ) {
   @if ($b == null) {
-    @return unquote('#{$r}, #{$g}');
+    @return unquote("#{$r}, #{$g}");
   }
 
   @if ($b and $a) {
-    @return unquote('#{$r}, #{$g}, #{$b}, #{$a}');
+    @return unquote("#{$r}, #{$g}, #{$b}, #{$a}");
   }
 
   @error "wrong number of arguments";
 }
 
-@function str-replace($string, $search, $replace: '') {
+@function str-replace($string, $search, $replace: "") {
   $index: str-index($string, $search);
 
   @if $index {
@@ -48,15 +48,15 @@
 
 @function strip-variable($color) {
   $var: $color;
-  @if (str-index($var, 'rgba(')) {
-    $var: str-replace($var, 'rgba(', '');
+  @if (str-index($var, "rgba(")) {
+    $var: str-replace($var, "rgba(", "");
   }
-  @if (str-index($var, 'rgb(')) {
-    $var: str-replace($var, 'rgb(', '');
+  @if (str-index($var, "rgb(")) {
+    $var: str-replace($var, "rgb(", "");
   }
-  @if (str-index($var, 'var(')) {
-    $var: str-replace($var, ')', ''); // remove excess ")"
-    $var: $var + ')';
+  @if (str-index($var, "var(")) {
+    $var: str-replace($var, ")", ""); // remove excess ")"
+    $var: $var + ")";
   }
   @return $var;
 }

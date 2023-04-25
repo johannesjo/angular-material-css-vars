@@ -41,7 +41,7 @@ export class AppComponent {
   ];
 
   spinnerMode = 'indeterminate';
-  spinnerValue: number;
+  spinnerValue: number = 25;
   spinnerColor = 'primary';
   availableSpinnerColors = [
     {name: 'none', color: ''},
