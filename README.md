@@ -14,12 +14,12 @@ You want to style your angular material dynamically with all the colors in the r
     ```scss
     @use 'angular-material-css-vars/main' as mat-css;
  
-    // optional
-    $mat-css-dark-theme-selector: '.isDarkTheme';
-    $mat-css-light-theme-selector: '.isLightTheme';
- 
     // init theme
-    @include mat-css.init-material-css-vars() using($mat-css-theme) {
+    @include mat-css.init-material-css-vars(
+      // optional
+      $dark-theme-selector: '.isDarkTheme',
+      $light-theme-selector: '.isLightTheme',
+   ) using($mat-css-theme) {
       // If your app has any theme mixins, call them here. 
       // $mat-css-theme gets set to an appropriate value before this content is called.
       // @include your-custom-component-theme($mat-css-theme);
@@ -93,20 +93,23 @@ You can provide different options before initialization to change the body class
 @use 'angular-material-css-vars/main' as mat-css;
 ...
 
-// $mat-css-default-light-theme: ... ;
-// $mat-css-text: ... ;
-$mat-css-dark-theme-selector: '.isDarkTheme';
-$mat-css-light-theme-selector: '.isLightTheme';
-
-@include mat-css.init-material-css-vars();
+@include mat-css.init-material-css-vars(
+  // $default-light-theme: ... ;
+  // $text: ... ;
+  $dark-theme-selector: '.isDarkTheme',
+  $light-theme-selector: '.isLightTheme',
+);
 
 ``` 
 To make those variables take effect with your mixins, you need to make sure that they are also defined before using them. E.g.:
 ```scss
+@use 'angular-material-css-vars/main' as mat-css;
 @use 'angular-material-css-vars/public-util' as mat-css-utilities;
 
-// probably best put in a common variables file and imported before the mixins
-$mat-css-dark-theme-selector: '.isDarkThemeCUSTOM';
+@include mat-css.init-material-css-vars(
+  // probably best put in a common variables file and imported before the mixins
+  $dark-theme-selector: '.isDarkTheme',
+);
 
 .my-component {
   @include mat-css-utilities.mat-css-dark-theme {
@@ -181,6 +184,10 @@ $custom-typography: mat.mat-typography-config(
 @include mat-css-main.init-material-css-vars($typography-config: $custom-typography) using($mat-css-theme) {
   @include app-theme($mat-css-theme);
 };
+
+@mixin app-theme($theme) {
+  // Your app theme
+}
 ```
 
 ## Legacy components support
@@ -188,12 +195,15 @@ Angular Material v15 introduces MDC based components, which is basically a re-wr
 
 In case you are still using the legacy components, you can use the package [angular-material-css-vars-legacy](https://github.com/json-derulo/angular-material-css-vars-legacy).
 
-## upgrading to angular v12
-Angular material v12 interoduces some big changes, which leaves you with two options when upgrading to ng12: You can either stay at angular material v11 and angular-material-css-vars v1.2.0 or you can use v2+ which thanks to @pedrojrivera adds full support for the new version.
+## Angular compatibility table
 
-## angular material v11 or lower
-Use v1.2.0 of this lib.
-
+| Angular | angular-material-css-vars |
+|---------|---------------------------|
+| 16      | 5.x                       |
+| 15      | 4.x                       |
+| 13/14   | 3.x                       |
+| 12      | 2.x                       |
+| 11      | 1.x                       |
 
 ## Credit...
 ...goes to @zbirizdo [project](https://github.com/zbirizdo/material-css-vars) on which parts of this are based which is in turn supposedly based on [this gist](https://gist.github.com/shprink/c7f333e3ad51830f14a6383f3ab35439).
