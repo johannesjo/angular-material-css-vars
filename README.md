@@ -156,7 +156,15 @@ $mat-css-default-light-theme: map-merge(
 );
 
 @include mat-css-main.init-material-css-vars();
+```
 
+### Set global density
+To set the global density level, just pass the `$density` variable to the `init-material-css-vars()` mixin like the following:
+
+```scss
+@use 'angular-material-css-vars/main' as mat-css-main;
+
+@include mat-css-main.init-material-css-vars($density: -2);
 ```
 
 ## IE 11
