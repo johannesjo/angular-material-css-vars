@@ -28,7 +28,7 @@
   },
   "exports": {
     ".": {
-      "sass": "./src/lib/_main.scss"
+      "sass": "./index.scss"
     },
     "./main": {
       "sass": "./src/lib/_main.scss"

@@ -1,5 +1,4 @@
-@use '/projects/material-css-vars/src/lib/main' as mat-css-main;
-@use '/projects/material-css-vars/src/lib/public-util' as mat-css-utilities;
+@use '/projects/material-css-vars' as mat-css-vars;
 @use '@angular/material' as mat;
 
 @import './app/app.theme';
@@ -10,13 +9,13 @@ $custom-typography: mat.define-typography-config(
   $headline-1: mat.define-typography-level(16px, 24px, 500)
 );
 
-@include mat-css-main.init-material-css-vars($typography-config: $custom-typography) using($mat-css-theme) {
+@include mat-css-vars.init-material-css-vars($typography-config: $custom-typography) using($mat-css-theme) {
   @include app-theme($mat-css-theme);
 };
 
-@include mat-css-utilities.mat-css-set-palette-defaults(mat.$light-blue-palette, 'primary');
-@include mat-css-utilities.mat-css-set-palette-defaults(mat.$pink-palette, 'accent');
-@include mat-css-utilities.mat-css-set-palette-defaults(mat.$red-palette, 'warn');
+@include mat-css-vars.mat-css-set-palette-defaults(mat.$light-blue-palette, 'primary');
+@include mat-css-vars.mat-css-set-palette-defaults(mat.$pink-palette, 'accent');
+@include mat-css-vars.mat-css-set-palette-defaults(mat.$red-palette, 'warn');
 
 body {
   padding: 0;
