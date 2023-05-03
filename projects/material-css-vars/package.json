@@ -1,6 +1,6 @@
 {
   "name": "angular-material-css-vars",
-  "version": "5.0.0-next.1",
+  "version": "5.0.0-next.2",
   "description": "Little library to use css variables for @angular/material",
   "author": "johannesjo <contact@super-productivity.com> (http://super-productivity.com)",
   "license": "MIT",
