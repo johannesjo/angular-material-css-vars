@@ -169,13 +169,14 @@ The `init-material-css-vars` mixin allows content to be passed into it. This all
 See the Material guide on [Theming your custom component](https://material.angular.io/guide/theming-your-components) for more information.
 
 ## Font config
-If needed the typography can be adjusted as well.
+If needed the typography can be adjusted as well. You can introduce your own CSS variables, if you wish.
 ```scss
 @use 'angular-material-css-vars' as mat-css-vars;
 @use '@angular/material' as mat;
 
 // example
 $custom-typography: mat.define-typography-config(
+  // optionally, you introduce your own CSS variables: `$font-family: var(--my-custom-font-family)`
   $font-family: 'Roboto, monospace',
   $headline: mat.define-typography-level(32px, 48px, 700),
   $body-1: mat.define-typography-level(16px, 24px, 500)
