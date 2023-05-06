@@ -1,0 +1,46 @@
+name: Verify build
+
+on:
+  workflow_dispatch:
+  pull_request_target:
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: install
+        run: npm ci
+
+      - name: build lib
+        run: npm run lib
+
+      - name: build demo
+        run: npm run build
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: install
+        run: npm ci
+
+      - name: lint
+        run: npm run lint
+
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: install
+        run: npm ci
+
+      - name: test
+        run: npm run test -- --watch=false --browsers=ChromeHeadless
