@@ -55,9 +55,7 @@ export class MaterialCssVarsService {
     };
     this.isAutoContrast = this.cfg.isAutoContrast;
 
-    if (this.cfg.isDarkTheme) {
-      this.setDarkTheme(this.cfg.isDarkTheme);
-    }
+    this.setDarkTheme(this.cfg.isDarkTheme ?? false);
     if (this.cfg.primary) {
       this.setPrimaryColor(this.cfg.primary);
     }

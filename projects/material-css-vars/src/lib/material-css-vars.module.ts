@@ -2,6 +2,7 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MaterialCssVariablesConfig} from './model';
 import {MATERIAL_CSS_VARS_CFG} from '../mat-css-config-token.const';
+import {MaterialCssVarsService} from './material-css-vars.service';
 
 @NgModule({
   declarations: [],
@@ -15,5 +16,9 @@ export class MaterialCssVarsModule {
       ngModule: MaterialCssVarsModule,
       providers: [{provide: MATERIAL_CSS_VARS_CFG, useValue: config}]
     };
+  }
+
+  // This is necessary so the service is constructed, even if the service is never injected
+  constructor(private materialCssVarsService: MaterialCssVarsService) {
   }
 }
