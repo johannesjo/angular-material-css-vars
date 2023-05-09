@@ -124,7 +124,10 @@
           "options": {
             "main": "projects/material-css-vars/src/test.ts",
             "tsConfig": "projects/material-css-vars/tsconfig.spec.json",
-            "karmaConfig": "projects/material-css-vars/karma.conf.js"
+            "karmaConfig": "projects/material-css-vars/karma.conf.js",
+            "styles": [
+              "projects/material-css-vars/src/test/global-styles.scss"
+            ]
           }
         },
         "lint": {
