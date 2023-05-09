@@ -1,0 +1,3 @@
+@use '../../index' as mat-css-vars;
+
+@include mat-css-vars.init-material-css-vars;

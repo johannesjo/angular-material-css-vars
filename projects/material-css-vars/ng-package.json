@@ -9,6 +9,7 @@
     "@ctrl/tinycolor"
   ],
   "assets": [
-    "**/*.scss"
+    "./index.scss",
+    "./src/lib/*.scss"
   ]
 }
