@@ -29,25 +29,19 @@
   .mat-mdc-fab,
   .mat-mdc-mini-fab {
     &.mat-primary {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mdc-fab-container-color: #{$primary};
-        --mdc-fab-icon-color: #{$primary-contrast};
-        --mat-mdc-fab-color: #{$primary-contrast};
-      }
+      --mdc-fab-container-color: #{$primary};
+      --mdc-fab-icon-color: #{$primary-contrast};
+      --mat-mdc-fab-color: #{$primary-contrast};
     }
     &.mat-accent {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mdc-fab-container-color: #{$accent};
-        --mdc-fab-icon-color: #{$accent-contrast};
-        --mat-mdc-fab-color: #{$accent-contrast};
-      }
+      --mdc-fab-container-color: #{$accent};
+      --mdc-fab-icon-color: #{$accent-contrast};
+      --mat-mdc-fab-color: #{$accent-contrast};
     }
     &.mat-warn {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mdc-fab-container-color: #{$warn};
-        --mdc-fab-icon-color: #{$warn-contrast};
-        --mat-mdc-fab-color: #{$warn-contrast};
-      }
+      --mdc-fab-container-color: #{$warn};
+      --mdc-fab-icon-color: #{$warn-contrast};
+      --mat-mdc-fab-color: #{$warn-contrast};
     }
   }
 }
@@ -64,41 +58,29 @@
   .mat-mdc-outlined-button,
   .mat-mdc-icon-button {
     &.mat-primary {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mat-mdc-button-ripple-color: #{public-util.mat-css-color(500, 0.1, "primary")};
-      }
+      --mat-mdc-button-ripple-color: #{public-util.mat-css-color(500, 0.1, "primary")};
     }
     &.mat-accent {
-      @include public-util.mat-css-light-dark-theme-global() {
-       --mat-mdc-button-ripple-color: #{public-util.mat-css-color(500, 0.1, "accent")};
-      }
+      --mat-mdc-button-ripple-color: #{public-util.mat-css-color(500, 0.1, "accent")};
     }
     &.mat-warn {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mat-mdc-button-ripple-color: #{public-util.mat-css-color(500, 0.1, "warn")};
-      }
+      --mat-mdc-button-ripple-color: #{public-util.mat-css-color(500, 0.1, "warn")};
     }
   }
   .mat-mdc-unelevated-button:not(:disabled),
   .mat-mdc-unelevated-button,
   .mat-mdc-raised-button {
     &.mat-primary {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mdc-filled-button-label-text-color: #{$color-primary};
-        --mdc-protected-button-label-text-color: #{$color-primary};
-      }
+      --mdc-filled-button-label-text-color: #{$color-primary};
+      --mdc-protected-button-label-text-color: #{$color-primary};
     }
     &.mat-accent {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mdc-filled-button-label-text-color: #{$color-accent};
-        --mdc-protected-button-label-text-color: #{$color-accent};
-      }
+      --mdc-filled-button-label-text-color: #{$color-accent};
+      --mdc-protected-button-label-text-color: #{$color-accent};
     }
     &.mat-warn {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mdc-filled-button-label-text-color: #{$color-warn};
-        --mdc-protected-button-label-text-color: #{$color-warn};
-      }
+      --mdc-filled-button-label-text-color: #{$color-warn};
+      --mdc-protected-button-label-text-color: #{$color-warn};
     }
   }
 }
@@ -110,23 +92,17 @@
   .mat-mdc-form-field {
     &.mat-primary {
       .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
-        @include public-util.mat-css-light-dark-theme-global() {
-          color: public-util.mat-css-color-primary(500, 0.87);
-        }
+        color: public-util.mat-css-color-primary(500, 0.87);
       }
     }
     &.mat-accent {
       .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
-        @include public-util.mat-css-light-dark-theme-global() {
-          color: public-util.mat-css-color-accent(500, 0.87);
-        }
+        color: public-util.mat-css-color-accent(500, 0.87);
       }
     }
     &.mat-warn {
       .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
-        @include public-util.mat-css-light-dark-theme-global() {
-          color: public-util.mat-css-color-warn(500, 0.87);
-        }
+        color: public-util.mat-css-color-warn(500, 0.87);
       }
     }
   }
@@ -152,26 +128,20 @@
       }
     }
     &.mat-primary {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mdc-switch-selected-icon-color: #{$color-primary};
-        --mdc-switch-disabled-selected-icon-color: #{$color-primary};
-        --mdc-switch-disabled-unselected-icon-color: #{$color-primary};
-      }
+      --mdc-switch-selected-icon-color: #{$color-primary};
+      --mdc-switch-disabled-selected-icon-color: #{$color-primary};
+      --mdc-switch-disabled-unselected-icon-color: #{$color-primary};
     }
     &.mat-accent {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mdc-switch-selected-icon-color: #{$color-accent};
-        --mdc-switch-disabled-selected-icon-color: #{$color-accent};
-        --mdc-switch-disabled-unselected-icon-color: #{$color-accent};
-      }
+      --mdc-switch-selected-icon-color: #{$color-accent};
+      --mdc-switch-disabled-selected-icon-color: #{$color-accent};
+      --mdc-switch-disabled-unselected-icon-color: #{$color-accent};
     }
     &.mat-warn {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mdc-switch-selected-icon-color: #{$color-warn};
-        --mdc-switch-disabled-selected-icon-color: #{$color-warn};
-        --mdc-switch-disabled-unselected-icon-color: #{$color-warn};
-        --mdc-switch-unselected-icon-color: #{$color-warn};
-      }
+      --mdc-switch-selected-icon-color: #{$color-warn};
+      --mdc-switch-disabled-selected-icon-color: #{$color-warn};
+      --mdc-switch-disabled-unselected-icon-color: #{$color-warn};
+      --mdc-switch-unselected-icon-color: #{$color-warn};
     }
   }
 }
@@ -186,19 +156,13 @@
 
   .mat-mdc-checkbox {
     &.mat-primary {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mdc-checkbox-selected-checkmark-color: #{$color-primary};
-      }
+      --mdc-checkbox-selected-checkmark-color: #{$color-primary};
     }
     &.mat-accent {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mdc-checkbox-selected-checkmark-color: #{$color-accent};
-      }
+      --mdc-checkbox-selected-checkmark-color: #{$color-accent};
     }
     &.mat-warn {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mdc-checkbox-selected-checkmark-color: #{$color-warn};
-      }
+      --mdc-checkbox-selected-checkmark-color: #{$color-warn};
     }
   }
 }
@@ -222,9 +186,7 @@
 
 @mixin _mat-date-picker-color-overwrites($palette) {
   .mat-calendar-body-in-range::before {
-    @include public-util.mat-css-light-dark-theme-global() {
-      background: public-util.mat-css-color(500, 0.2, $palette);
-    }
+    background: public-util.mat-css-color(500, 0.2, $palette);
   }
   .mat-calendar-body-cell:not(.mat-calendar-body-disabled).mat-calendar-body-active > .mat-calendar-body-today {
     color: public-util.mat-css-color(500, null, $palette, true);
@@ -241,19 +203,13 @@
 @mixin _mat-mdc-progress-bar-overwrites {
   .mat-mdc-progress-bar {
     &.mat-primary .mdc-linear-progress__buffer-bar {
-      @include public-util.mat-css-light-dark-theme-global() {
-        background-color: public-util.mat-css-color(500, 0.25, "primary");
-      }
+      background-color: public-util.mat-css-color(500, 0.25, "primary");
     }
     &.mat-accent .mdc-linear-progress__buffer-bar {
-      @include public-util.mat-css-light-dark-theme-global() {
-        background-color: public-util.mat-css-color(500, 0.25, "accent");
-      }
+      background-color: public-util.mat-css-color(500, 0.25, "accent");
     }
     &.mat-warn .mdc-linear-progress__buffer-bar {
-      @include public-util.mat-css-light-dark-theme-global() {
-        background-color: public-util.mat-css-color(500, 0.25, "warn");
-      }
+      background-color: public-util.mat-css-color(500, 0.25, "warn");
     }
   }
 }
@@ -264,22 +220,16 @@
 @mixin _mat-mdc-slider-overwrites() {
   .mat-mdc-slider {
     &.mat-primary {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(500, 0.05, "primary")};
-        --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(500, 0.2, "primary")};
-      }
+      --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(500, 0.05, "primary")};
+      --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(500, 0.2, "primary")};
     }
     &.mat-accent {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(500, 0.05, "accent")};
-        --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(500, 0.2, "accent")};
-      }
+      --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(500, 0.05, "accent")};
+      --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(500, 0.2, "accent")};
     }
     &.mat-warn {
-      @include public-util.mat-css-light-dark-theme-global() {
-        --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(500, 0.05, "warn")};
-        --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(500, 0.2, "warn")};
-      }
+      --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(500, 0.05, "warn")};
+      --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(500, 0.2, "warn")};
     }
   }
 }
