@@ -17,6 +17,11 @@ interface CssVariable {
   val: string;
 }
 
+interface Color {
+  rgb: Numberify<RGBA>;
+  isLight: boolean;
+}
+
 // @see: https://github.com/angular/angular/issues/20351
 /** @dynamic */
 @Injectable({
@@ -26,20 +31,18 @@ export class MaterialCssVarsService {
   private static CONTRAST_PREFIX = 'contrast-';
   private static DARK_TEXT_VAR = '--dark-primary-text';
   private static LIGHT_TEXT_VAR = '--light-primary-text';
-
-  private renderer: Renderer2;
-  private ROOT: HTMLElement;
-
   // This should be readonly from the outside
   cfg: MaterialCssVariablesConfig;
-  primary: string;
-  accent: string;
-  warn: string;
-  isDarkTheme: boolean;
+  primary = '#03a9f4';
+  accent = '#e91e63';
+  warn = '#f44336';
+  isDarkTheme = false; // ToDo: make this attribute optional in next major version
   contrastColorThresholdPrimary: HueValue = '400';
   contrastColorThresholdAccent: HueValue = '400';
   contrastColorThresholdWarn: HueValue = '400';
   isAutoContrast = false;
+  private renderer: Renderer2;
+  private ROOT: HTMLElement;
 
   constructor(
     rendererFactory: RendererFactory2,
@@ -203,6 +206,31 @@ export class MaterialCssVarsService {
     }
   }
 
+  getPaletteWithContrastForColor(hex: string): MatCssHueColorContrastMapItem[] {
+    const lightText = this._getCssVarValue(MaterialCssVarsService.LIGHT_TEXT_VAR);
+    const darkText = this._getCssVarValue(MaterialCssVarsService.DARK_TEXT_VAR);
+    const palette = this.getPaletteForColor(hex);
+
+    // TODO handle non auto case
+    return palette.map((item) => {
+      const contrastStr = item.isLight
+        ? lightText
+        : darkText;
+
+      const sLight = this._replaceNoRgbValue('', contrastStr)
+        .split(',')
+        .map((v) => +v);
+      const cco = {r: sLight[0], g: sLight[1], b: sLight[2], a: 1};
+      return {
+        ...item,
+        contrast: {
+          ...cco,
+          str: `${cco.r},${cco.g},${cco.b}`
+        },
+      };
+    });
+  }
+
   private getTraditionalPaletteForColor(hex: string): MatCssHueColorMapItem[] {
     return this.cfg.colorMap.map(item => {
       const mappedColor = new TinyColor(hex)
@@ -231,31 +259,6 @@ export class MaterialCssVarsService {
           ...c.rgb,
           str: `rgb(${c.rgb.r},${c.rgb.g},${c.rgb.b})`
         }
-      };
-    });
-  }
-
-  getPaletteWithContrastForColor(hex: string): MatCssHueColorContrastMapItem[] {
-    const lightText = this._getCssVarValue(MaterialCssVarsService.LIGHT_TEXT_VAR);
-    const darkText = this._getCssVarValue(MaterialCssVarsService.DARK_TEXT_VAR);
-    const palette = this.getPaletteForColor(hex);
-
-    // TODO handle non auto case
-    return palette.map((item) => {
-      const contrastStr = item.isLight
-        ? lightText
-        : darkText;
-
-      const sLight = this._replaceNoRgbValue('', contrastStr)
-      .split(',')
-      .map((v) => +v);
-      const cco = {r: sLight[0], g: sLight[1], b: sLight[2], a: 1};
-      return {
-        ...item,
-        contrast: {
-          ...cco,
-          str: `${cco.r},${cco.g},${cco.b}`
-        },
       };
     });
   }
@@ -336,11 +339,11 @@ export class MaterialCssVarsService {
    * Compute pallet colors based on a Triad (Constantin)
    * see: https://github.com/mbitson/mcg
    */
-  private computePalletTriad(hex: string, hue: HueValue) {
+  private computePalletTriad(hex: string, hue: HueValue): Color {
     const baseLight = new TinyColor('#ffffff');
     const baseDark = this.multiply(new TinyColor(hex).toRgb(), new TinyColor(hex).toRgb());
     const baseTriad = new TinyColor(hex).tetrad();
-    let color: { rgb: Numberify<RGBA>, isLight: boolean };
+    let color: Color;
 
     switch (hue) {
       case '50':
@@ -385,8 +388,6 @@ export class MaterialCssVarsService {
       case 'A700':
         color = this.getColorObject(baseDark.mix(baseTriad[4], 15).saturate(100).lighten(40));
         break;
-      default:
-        break;
     }
     return color;
   }
@@ -398,7 +399,7 @@ export class MaterialCssVarsService {
     return new TinyColor('rgb ' + rgb1.r + ' ' + rgb1.g + ' ' + rgb1.b);
   }
 
-  private getColorObject(value: TinyColor) {
+  private getColorObject(value: TinyColor): Color {
     const c = new TinyColor(value);
     return {rgb: c.toRgb(), isLight: c.isLight()};
   }
