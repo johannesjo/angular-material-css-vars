@@ -15,134 +15,134 @@ class ButtonComponent {
   @Input() color: ThemePalette;
 }
 
+function getButtonComputedStyle(fixture: ComponentFixture<ButtonComponent>): CSSStyleDeclaration {
+  const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement;
+  return getComputedStyle(buttonElement);
+}
+
 describe('integration', () => {
-  describe('custom colors', () => {
-    let button: ButtonComponent;
-    let fixture: ComponentFixture<ButtonComponent>;
+  ['isLightTheme', 'isDarkTheme', 'unthemed'].forEach(theme => {
+    const isDarkTheme = theme === 'unthemed' ? undefined : theme === 'isDarkTheme';
 
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          MaterialCssVarsModule.forRoot({
-            primary: '#00ff00',
-            accent: '#0000ff',
-            warn: '#ff0000',
-          }),
-        ],
+    describe(theme, () => {
+      describe('custom colors', () => {
+        let button: ButtonComponent;
+        let fixture: ComponentFixture<ButtonComponent>;
+
+        beforeEach(() => {
+          TestBed.configureTestingModule({
+            imports: [
+              MaterialCssVarsModule.forRoot({
+                primary: '#00ff00',
+                accent: '#0000ff',
+                warn: '#ff0000',
+                isDarkTheme,
+              }),
+            ],
+          });
+          fixture = TestBed.createComponent(ButtonComponent);
+          button = fixture.componentInstance;
+        });
+
+        it('should render a button in the given primary color', () => {
+          button.color = 'primary';
+          fixture.detectChanges();
+
+          expect(getButtonComputedStyle(fixture).backgroundColor).toEqual('rgb(0, 255, 0)');
+        });
+
+        it('should choose the right contrast color for the primary color', () => {
+          button.color = 'primary';
+          fixture.detectChanges();
+
+          expect(getButtonComputedStyle(fixture).color).toEqual('rgba(0, 0, 0, 0.87)');
+        });
+
+        it('should render a button in the given accent color', () => {
+          button.color = 'accent';
+          fixture.detectChanges();
+
+          expect(getButtonComputedStyle(fixture).backgroundColor).toEqual('rgb(0, 0, 255)');
+        });
+
+        it('should choose the right contrast color for the accent color', () => {
+          button.color = 'accent';
+          fixture.detectChanges();
+
+          expect(getButtonComputedStyle(fixture).color).toEqual('rgb(255, 255, 255)');
+        });
+
+        it('should render a button in the given warn color', () => {
+          button.color = 'warn';
+          fixture.detectChanges();
+
+          expect(getButtonComputedStyle(fixture).backgroundColor).toEqual('rgb(255, 0, 0)');
+        });
+
+        it('should choose the right contrast color for the warn color', () => {
+          button.color = 'warn';
+          fixture.detectChanges();
+
+          expect(getButtonComputedStyle(fixture).color).toEqual('rgb(255, 255, 255)');
+        });
       });
-      fixture = TestBed.createComponent(ButtonComponent);
-      button = fixture.componentInstance;
-    });
 
-    it('should render a button in the given primary color', () => {
-      button.color = 'primary';
-      fixture.detectChanges();
-      const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement;
+      describe('default colors', () => {
+        let button: ButtonComponent;
+        let fixture: ComponentFixture<ButtonComponent>;
 
-      expect(getComputedStyle(buttonElement).backgroundColor).toEqual('rgb(0, 255, 0)');
-    });
+        beforeEach(() => {
+          TestBed.configureTestingModule({
+            imports: [
+              MaterialCssVarsModule.forRoot({isDarkTheme}),
+            ],
+          });
+          fixture = TestBed.createComponent(ButtonComponent);
+          button = fixture.componentInstance;
+        });
 
-    it('should choose the right contrast color for the primary color', () => {
-      button.color = 'primary';
-      fixture.detectChanges();
-      const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement;
+        it('should render a button in the default primary color', () => {
+          button.color = 'primary';
+          fixture.detectChanges();
 
-      expect(getComputedStyle(buttonElement).color).toEqual('rgba(0, 0, 0, 0.87)');
-    });
+          expect(getButtonComputedStyle(fixture).backgroundColor).toEqual('rgb(3, 169, 244)');
+        });
 
-    it('should render a button in the given accent color', () => {
-      button.color = 'accent';
-      fixture.detectChanges();
-      const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement;
+        it('should choose the right contrast color for the primary color', () => {
+          button.color = 'primary';
+          fixture.detectChanges();
 
-      expect(getComputedStyle(buttonElement).backgroundColor).toEqual('rgb(0, 0, 255)');
-    });
+          expect(getButtonComputedStyle(fixture).color).toEqual('rgb(255, 255, 255)');
+        });
 
-    it('should choose the right contrast color for the accent color', () => {
-      button.color = 'accent';
-      fixture.detectChanges();
-      const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement;
+        it('should render a button in the default accent color', () => {
+          button.color = 'accent';
+          fixture.detectChanges();
 
-      expect(getComputedStyle(buttonElement).color).toEqual('rgb(255, 255, 255)');
-    });
+          expect(getButtonComputedStyle(fixture).backgroundColor).toEqual('rgb(233, 30, 99)');
+        });
 
-    it('should render a button in the given warn color', () => {
-      button.color = 'warn';
-      fixture.detectChanges();
-      const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement as HTMLButtonElement;
+        it('should choose the right contrast color for the accent color', () => {
+          button.color = 'accent';
+          fixture.detectChanges();
 
-      expect(window.getComputedStyle(buttonElement).backgroundColor).toEqual('rgb(255, 0, 0)');
-    });
+          expect(getButtonComputedStyle(fixture).color).toEqual('rgb(255, 255, 255)');
+        });
 
-    it('should choose the right contrast color for the warn color', () => {
-      button.color = 'warn';
-      fixture.detectChanges();
-      const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement;
+        it('should render a button in the default warn color', () => {
+          button.color = 'warn';
+          fixture.detectChanges();
 
-      expect(getComputedStyle(buttonElement).color).toEqual('rgb(255, 255, 255)');
-    });
-  });
+          expect(getButtonComputedStyle(fixture).backgroundColor).toEqual('rgb(244, 67, 54)');
+        });
 
-  describe('default colors', () => {
-    let button: ButtonComponent;
-    let fixture: ComponentFixture<ButtonComponent>;
+        it('should choose the right contrast color for the warn color', () => {
+          button.color = 'warn';
+          fixture.detectChanges();
 
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          MaterialCssVarsModule.forRoot({}),
-        ],
+          expect(getButtonComputedStyle(fixture).color).toEqual('rgb(255, 255, 255)');
+        });
       });
-      fixture = TestBed.createComponent(ButtonComponent);
-      button = fixture.componentInstance;
-    });
-
-    it('should render a button in the default primary color', () => {
-      button.color = 'primary';
-      fixture.detectChanges();
-      const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement;
-
-      expect(getComputedStyle(buttonElement).backgroundColor).toEqual('rgb(3, 169, 244)');
-    });
-
-    it('should choose the right contrast color for the primary color', () => {
-      button.color = 'primary';
-      fixture.detectChanges();
-      const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement;
-
-      expect(getComputedStyle(buttonElement).color).toEqual('rgb(255, 255, 255)');
-    });
-
-    it('should render a button in the default accent color', () => {
-      button.color = 'accent';
-      fixture.detectChanges();
-      const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement;
-
-      expect(getComputedStyle(buttonElement).backgroundColor).toEqual('rgb(233, 30, 99)');
-    });
-
-    it('should choose the right contrast color for the accent color', () => {
-      button.color = 'accent';
-      fixture.detectChanges();
-      const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement;
-
-      expect(getComputedStyle(buttonElement).color).toEqual('rgb(255, 255, 255)');
-    });
-
-    it('should render a button in the default warn color', () => {
-      button.color = 'warn';
-      fixture.detectChanges();
-      const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement as HTMLButtonElement;
-
-      expect(window.getComputedStyle(buttonElement).backgroundColor).toEqual('rgb(244, 67, 54)');
-    });
-
-    it('should choose the right contrast color for the warn color', () => {
-      button.color = 'warn';
-      fixture.detectChanges();
-      const buttonElement = fixture.debugElement.query(By.css('button')).nativeElement;
-
-      expect(getComputedStyle(buttonElement).color).toEqual('rgb(255, 255, 255)');
     });
   });
 

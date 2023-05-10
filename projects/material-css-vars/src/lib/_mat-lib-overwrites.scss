@@ -26,8 +26,8 @@
   $accent-contrast: public-util.mat-css-color(500, null, "accent", true);
   $warn-contrast: public-util.mat-css-color(500, null, "warn", true);
 
-  .mat-mdc-fab,
-  .mat-mdc-mini-fab {
+  .mat-mdc-fab:not(:disabled),
+  .mat-mdc-mini-fab:not(:disabled) {
     &.mat-primary {
       --mdc-fab-container-color: #{$primary};
       --mdc-fab-icon-color: #{$primary-contrast};
@@ -68,8 +68,7 @@
     }
   }
   .mat-mdc-unelevated-button:not(:disabled),
-  .mat-mdc-unelevated-button,
-  .mat-mdc-raised-button {
+  .mat-mdc-raised-button:not(:disabled) {
     &.mat-primary {
       --mdc-filled-button-label-text-color: #{$color-primary};
       --mdc-protected-button-label-text-color: #{$color-primary};
