@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MaterialCssVarsService} from '../../projects/material-css-vars/src/lib/material-css-vars.service';
 import {HueValue, MatCssHueColorContrastMapItem} from '../../projects/material-css-vars/src/lib/model';
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
 
 export interface Task {
   name: string;
@@ -18,10 +19,10 @@ export interface Task {
 })
 export class AppComponent {
   isDarkTheme = false;
-  threshold: HueValue;
+  threshold?: HueValue;
   isAlternativeColorAlgorithm = false;
 
-  palettePrimary: MatCssHueColorContrastMapItem[];
+  palettePrimary?: MatCssHueColorContrastMapItem[];
 
   hues = [
     {value: '50', viewValue: '50'},
@@ -40,9 +41,9 @@ export class AppComponent {
     {value: 'A700', viewValue: 'A700'},
   ];
 
-  spinnerMode = 'indeterminate';
+  spinnerMode: ProgressSpinnerMode = 'indeterminate';
   spinnerValue: number = 25;
-  spinnerColor = 'primary';
+  spinnerColor: ThemePalette = 'primary';
   availableSpinnerColors = [
     {name: 'none', color: ''},
     {name: 'Primary', color: 'primary'},
@@ -51,7 +52,7 @@ export class AppComponent {
   ];
 
   progress = 0;
-  
+
   task: Task = {
     name: 'Indeterminate',
     completed: false,
