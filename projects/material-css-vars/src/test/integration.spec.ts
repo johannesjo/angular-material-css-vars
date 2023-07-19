@@ -17,9 +17,8 @@ class ButtonComponent {
 function getButtonComputedStyle(
   fixture: ComponentFixture<ButtonComponent>,
 ): CSSStyleDeclaration {
-  const buttonElement = fixture.debugElement.query(
-    By.css("button"),
-  ).nativeElement;
+  const buttonElement = fixture.debugElement.query(By.css("button"))
+    .nativeElement as HTMLButtonElement;
   return getComputedStyle(buttonElement);
 }
 

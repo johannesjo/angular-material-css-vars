@@ -163,6 +163,8 @@ export class MaterialCssVarsService {
     threshold: HueValue,
     palettePrefix: MatCssPalettePrefix,
   ) {
+    // ToDo: address this lint error
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!threshold || !palettePrefix || this.isAutoContrast) {
       return;
     }
@@ -345,7 +347,7 @@ export class MaterialCssVarsService {
     const isContrast: boolean = name.includes(
       MaterialCssVarsService.CONTRAST_PREFIX,
     );
-    let noRgb: string = "";
+    let noRgb = "";
     if (isContrast) {
       noRgb = value.replace(")", "-no-rgb)");
     } else {
