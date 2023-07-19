@@ -22,13 +22,8 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -98,10 +93,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
@@ -125,9 +117,7 @@
             "main": "projects/material-css-vars/src/test.ts",
             "tsConfig": "projects/material-css-vars/tsconfig.spec.json",
             "karmaConfig": "projects/material-css-vars/karma.conf.js",
-            "styles": [
-              "projects/material-css-vars/src/test/global-styles.scss"
-            ]
+            "styles": ["projects/material-css-vars/src/test/global-styles.scss"]
           }
         },
         "lint": {
@@ -147,8 +137,6 @@
     "cache": {
       "enabled": false
     },
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "schematicCollections": ["@angular-eslint/schematics"]
   }
 }

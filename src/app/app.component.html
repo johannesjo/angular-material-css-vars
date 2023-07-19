@@ -1,7 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <mat-sidenav-container>
-
-
   <mat-toolbar color="primary" class="mat-elevation-z5 app-header">
     <span class="title">Angular Material CSS Vars Demo</span>
   </mat-toolbar>
@@ -29,44 +27,50 @@
         <mat-card class="mat-elevation-z3">
           <mat-card-content>
             <h2>Primary color</h2>
-            <div class="color-picker-el"
-                 (colorPickerChange)="onPrimaryChange($event)"
-                 [colorPicker]="materialCssVarsService.primary"
-                 [cpAlphaChannel]="'disabled'"
-                 [cpDialogDisplay]="'inline'"
-                 [cpOKButton]="false"
-                 [cpOutputFormat]="'hex'"
-                 [cpToggle]="true"
-                 [style.background]="materialCssVarsService.primary"></div>
+            <div
+              class="color-picker-el"
+              (colorPickerChange)="onPrimaryChange($event)"
+              [colorPicker]="materialCssVarsService.primary"
+              [cpAlphaChannel]="'disabled'"
+              [cpDialogDisplay]="'inline'"
+              [cpOKButton]="false"
+              [cpOutputFormat]="'hex'"
+              [cpToggle]="true"
+              [style.background]="materialCssVarsService.primary"
+            ></div>
           </mat-card-content>
         </mat-card>
         <mat-card class="mat-elevation-z3">
           <mat-card-content>
             <h2>Accent color</h2>
-            <div class="color-picker-el"
-                 (colorPickerChange)="onAccentChange($event)"
-                 [colorPicker]="materialCssVarsService.accent"
-                 [cpAlphaChannel]="'disabled'"
-                 [cpDialogDisplay]="'inline'"
-                 [cpOKButton]="false"
-                 [cpOutputFormat]="'hex'"
-                 [cpToggle]="true"
-                 [style.background]="materialCssVarsService.accent"></div>
+            <div
+              class="color-picker-el"
+              (colorPickerChange)="onAccentChange($event)"
+              [colorPicker]="materialCssVarsService.accent"
+              [cpAlphaChannel]="'disabled'"
+              [cpDialogDisplay]="'inline'"
+              [cpOKButton]="false"
+              [cpOutputFormat]="'hex'"
+              [cpToggle]="true"
+              [style.background]="materialCssVarsService.accent"
+            ></div>
           </mat-card-content>
         </mat-card>
 
         <mat-card class="mat-elevation-z3">
           <mat-card-content>
             <h2>Warn color</h2>
-            <div class="color-picker-el"
-                 (colorPickerChange)="onWarnChange($event)"
-                 [colorPicker]="materialCssVarsService.warn"
-                 [cpAlphaChannel]="'disabled'"
-                 [cpDialogDisplay]="'inline'"
-                 [cpOKButton]="false"
-                 [cpOutputFormat]="'hex'"
-                 [cpToggle]="true"
-                 [style.background]="materialCssVarsService.warn"></div>
+            <div
+              class="color-picker-el"
+              (colorPickerChange)="onWarnChange($event)"
+              [colorPicker]="materialCssVarsService.warn"
+              [cpAlphaChannel]="'disabled'"
+              [cpDialogDisplay]="'inline'"
+              [cpOKButton]="false"
+              [cpOutputFormat]="'hex'"
+              [cpToggle]="true"
+              [style.background]="materialCssVarsService.warn"
+            ></div>
           </mat-card-content>
         </mat-card>
 
@@ -74,46 +78,55 @@
           <mat-card-content>
             <h2>Contrast Color</h2>
 
-            <mat-slide-toggle (change)="toggleAutoContrast()"
-                              [checked]="materialCssVarsService.isAutoContrast">Auto Contrast Colors
+            <mat-slide-toggle
+              (change)="toggleAutoContrast()"
+              [checked]="materialCssVarsService.isAutoContrast"
+              >Auto Contrast Colors
             </mat-slide-toggle>
-            <br>
-            <br>
+            <br />
+            <br />
 
             <mat-form-field color="primary">
               <mat-label>Primary Contrast Threshold</mat-label>
-              <mat-select (ngModelChange)="onChangeThresholdPrimary($event)"
-                          [disabled]="materialCssVarsService.isAutoContrast"
-                          [(ngModel)]="materialCssVarsService.contrastColorThresholdPrimary">
-                <mat-option *ngFor="let hue of hues"
-                            [value]="hue.value">
-                  {{hue.viewValue}}
+              <mat-select
+                (ngModelChange)="onChangeThresholdPrimary($event)"
+                [disabled]="materialCssVarsService.isAutoContrast"
+                [(ngModel)]="
+                  materialCssVarsService.contrastColorThresholdPrimary
+                "
+              >
+                <mat-option *ngFor="let hue of hues" [value]="hue.value">
+                  {{ hue.viewValue }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
-            <br>
+            <br />
 
             <mat-form-field color="accent">
               <mat-label>Accent Contrast Threshold</mat-label>
-              <mat-select (ngModelChange)="onChangeThresholdAccent($event)"
-                          [disabled]="materialCssVarsService.isAutoContrast"
-                          [(ngModel)]="materialCssVarsService.contrastColorThresholdAccent">
-                <mat-option *ngFor="let hue of hues"
-                            [value]="hue.value">
-                  {{hue.viewValue}}
+              <mat-select
+                (ngModelChange)="onChangeThresholdAccent($event)"
+                [disabled]="materialCssVarsService.isAutoContrast"
+                [(ngModel)]="
+                  materialCssVarsService.contrastColorThresholdAccent
+                "
+              >
+                <mat-option *ngFor="let hue of hues" [value]="hue.value">
+                  {{ hue.viewValue }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
-            <br>
+            <br />
 
             <mat-form-field color="warn">
               <mat-label>Warn Contrast Threshold</mat-label>
-              <mat-select (ngModelChange)="onChangeThresholdWarn($event)"
-                          [disabled]="materialCssVarsService.isAutoContrast"
-                          [(ngModel)]="materialCssVarsService.contrastColorThresholdWarn">
-                <mat-option *ngFor="let hue of hues"
-                            [value]="hue.value">
-                  {{hue.viewValue}}
+              <mat-select
+                (ngModelChange)="onChangeThresholdWarn($event)"
+                [disabled]="materialCssVarsService.isAutoContrast"
+                [(ngModel)]="materialCssVarsService.contrastColorThresholdWarn"
+              >
+                <mat-option *ngFor="let hue of hues" [value]="hue.value">
+                  {{ hue.viewValue }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -123,29 +136,29 @@
         <mat-card class="mat-elevation-z3">
           <mat-card-content>
             <h2>Dark/Light</h2>
-            <mat-slide-toggle (change)="toggleTheme()"
-                              [checked]="isDarkTheme">Dark Theme Enabled
+            <mat-slide-toggle (change)="toggleTheme()" [checked]="isDarkTheme"
+              >Dark Theme Enabled
             </mat-slide-toggle>
-
           </mat-card-content>
         </mat-card>
 
         <mat-card class="mat-elevation-z3">
           <mat-card-content>
             <h2>Color Algorithm</h2>
-            <mat-slide-toggle (change)="toggleTraditionalColor()"
-                              [checked]="isAlternativeColorAlgorithm">{{colorAlgorithm}}
+            <mat-slide-toggle
+              (change)="toggleTraditionalColor()"
+              [checked]="isAlternativeColorAlgorithm"
+              >{{ colorAlgorithm }}
             </mat-slide-toggle>
-
           </mat-card-content>
         </mat-card>
       </div>
 
       <mat-card class="mat-elevation-z3">
         <mat-card-content>
-          <h2 style="margin-bottom: 0;">Palette</h2>
+          <h2 style="margin-bottom: 0">Palette</h2>
 
-<!--          <div class="palette mat-elevation-z5">-->
+          <!--          <div class="palette mat-elevation-z5">-->
           <!--            <div *ngFor="let item of palettePrimary;"-->
           <!--                 [ngStyle]="{'background-color': item.color.str}">-->
           <!--              <div [ngStyle]="{'color': item.contrast.str}">{{item.hue}}</div>-->
@@ -169,7 +182,7 @@
               <div>400</div>
             </div>
             <div class="bg-500">
-              <div>primary<br>500</div>
+              <div>primary<br />500</div>
             </div>
             <div class="bg-600">
               <div>600</div>
@@ -202,7 +215,7 @@
               <div>400</div>
             </div>
             <div class="bga-500">
-              <div>primary<br>500</div>
+              <div>primary<br />500</div>
             </div>
             <div class="bga-600">
               <div>600</div>
@@ -217,7 +230,6 @@
               <div>900</div>
             </div>
           </div>
-
 
           <div class="palette mat-elevation-z5">
             <div class="bgw-50">
@@ -236,7 +248,7 @@
               <div>400</div>
             </div>
             <div class="bgw-500">
-              <div>primary<br>500</div>
+              <div>primary<br />500</div>
             </div>
             <div class="bgw-600">
               <div>600</div>
@@ -255,9 +267,8 @@
       </mat-card>
     </section>
 
-
     <section class="box">
-      <h1 style="margin-top: 32px;">Demo Components</h1>
+      <h1 style="margin-top: 32px">Demo Components</h1>
 
       <mat-tab-group>
         <mat-tab label="Buttons">
@@ -268,103 +279,77 @@
               <!--        <h3>Basic Buttons</h3>-->
               <div class="example-button-row">
                 <button mat-button>Basic</button>
-                <button color="primary"
-                        mat-button>Primary
-                </button>
-                <button color="accent"
-                        mat-button>Accent
-                </button>
-                <button color="warn"
-                        mat-button>Warn
-                </button>
-                <button disabled
-                        mat-button>Disabled
-                </button>
-                <a mat-button
-                   routerLink=".">Link</a>
+                <button color="primary" mat-button>Primary</button>
+                <button color="accent" mat-button>Accent</button>
+                <button color="warn" mat-button>Warn</button>
+                <button disabled mat-button>Disabled</button>
+                <a mat-button routerLink=".">Link</a>
               </div>
 
               <!--        <h3>Raised Buttons</h3>-->
               <div class="example-button-row">
                 <button mat-raised-button>Basic</button>
-                <button color="primary"
-                        mat-raised-button>Primary
-                </button>
-                <button color="accent"
-                        mat-raised-button>Accent
-                </button>
-                <button color="warn"
-                        mat-raised-button>Warn
-                </button>
-                <button disabled
-                        mat-raised-button>Disabled
-                </button>
-                <a mat-raised-button
-                   routerLink=".">Link</a>
+                <button color="primary" mat-raised-button>Primary</button>
+                <button color="accent" mat-raised-button>Accent</button>
+                <button color="warn" mat-raised-button>Warn</button>
+                <button disabled mat-raised-button>Disabled</button>
+                <a mat-raised-button routerLink=".">Link</a>
               </div>
 
               <!--        <h3>Stroked Buttons</h3>-->
               <div class="example-button-row">
                 <button mat-stroked-button>Basic</button>
-                <button color="primary"
-                        mat-stroked-button>Primary
-                </button>
-                <button color="accent"
-                        mat-stroked-button>Accent
-                </button>
-                <button color="warn"
-                        mat-stroked-button>Warn
-                </button>
-                <button disabled
-                        mat-stroked-button>Disabled
-                </button>
-                <a mat-stroked-button
-                   routerLink=".">Link</a>
+                <button color="primary" mat-stroked-button>Primary</button>
+                <button color="accent" mat-stroked-button>Accent</button>
+                <button color="warn" mat-stroked-button>Warn</button>
+                <button disabled mat-stroked-button>Disabled</button>
+                <a mat-stroked-button routerLink=".">Link</a>
               </div>
 
               <!--        <h3>Flat Buttons</h3>-->
               <div class="example-button-row">
                 <button mat-flat-button>Basic</button>
-                <button color="primary"
-                        mat-flat-button>Primary
-                </button>
-                <button color="accent"
-                        mat-flat-button>Accent
-                </button>
-                <button color="warn"
-                        mat-flat-button>Warn
-                </button>
-                <button disabled
-                        mat-flat-button>Disabled
-                </button>
-                <a mat-flat-button
-                   routerLink=".">Link</a>
+                <button color="primary" mat-flat-button>Primary</button>
+                <button color="accent" mat-flat-button>Accent</button>
+                <button color="warn" mat-flat-button>Warn</button>
+                <button disabled mat-flat-button>Disabled</button>
+                <a mat-flat-button routerLink=".">Link</a>
               </div>
 
               <!--        <h3>Icon Buttons</h3>-->
               <div class="example-button-row">
-                <button aria-label="Example icon-button with a heart icon"
-                        mat-icon-button>
+                <button
+                  aria-label="Example icon-button with a heart icon"
+                  mat-icon-button
+                >
                   <mat-icon>favorite</mat-icon>
                 </button>
-                <button aria-label="Example icon-button with a heart icon"
-                        color="primary"
-                        mat-icon-button>
+                <button
+                  aria-label="Example icon-button with a heart icon"
+                  color="primary"
+                  mat-icon-button
+                >
                   <mat-icon>favorite</mat-icon>
                 </button>
-                <button aria-label="Example icon-button with a heart icon"
-                        color="accent"
-                        mat-icon-button>
+                <button
+                  aria-label="Example icon-button with a heart icon"
+                  color="accent"
+                  mat-icon-button
+                >
                   <mat-icon>favorite</mat-icon>
                 </button>
-                <button aria-label="Example icon-button with a heart icon"
-                        color="warn"
-                        mat-icon-button>
+                <button
+                  aria-label="Example icon-button with a heart icon"
+                  color="warn"
+                  mat-icon-button
+                >
                   <mat-icon>favorite</mat-icon>
                 </button>
-                <button aria-label="Example icon-button with a heart icon"
-                        disabled
-                        mat-icon-button>
+                <button
+                  aria-label="Example icon-button with a heart icon"
+                  disabled
+                  mat-icon-button
+                >
                   <mat-icon>favorite</mat-icon>
                 </button>
               </div>
@@ -372,47 +357,33 @@
               <!--        <h3>Fab Buttons</h3>-->
               <div class="example-button-row">
                 <button mat-fab>Basic</button>
-                <button color="primary"
-                        mat-fab>Primary
-                </button>
-                <button color="accent"
-                        mat-fab>Accent
-                </button>
-                <button color="warn"
-                        mat-fab>Warn
-                </button>
-                <button disabled
-                        mat-fab>Disabled
-                </button>
-                <button aria-label="Example icon-button with a heart icon"
-                        mat-fab>
+                <button color="primary" mat-fab>Primary</button>
+                <button color="accent" mat-fab>Accent</button>
+                <button color="warn" mat-fab>Warn</button>
+                <button disabled mat-fab>Disabled</button>
+                <button
+                  aria-label="Example icon-button with a heart icon"
+                  mat-fab
+                >
                   <mat-icon>favorite</mat-icon>
                 </button>
-                <a mat-fab
-                   routerLink=".">Link</a>
+                <a mat-fab routerLink=".">Link</a>
               </div>
 
               <!--        <h3>Mini Fab Buttons</h3>-->
               <div class="example-button-row">
                 <button mat-mini-fab>Basic</button>
-                <button color="primary"
-                        mat-mini-fab>Primary
-                </button>
-                <button color="accent"
-                        mat-mini-fab>Accent
-                </button>
-                <button color="warn"
-                        mat-mini-fab>Warn
-                </button>
-                <button disabled
-                        mat-mini-fab>Disabled
-                </button>
-                <button aria-label="Example icon-button with a heart icon"
-                        mat-mini-fab>
+                <button color="primary" mat-mini-fab>Primary</button>
+                <button color="accent" mat-mini-fab>Accent</button>
+                <button color="warn" mat-mini-fab>Warn</button>
+                <button disabled mat-mini-fab>Disabled</button>
+                <button
+                  aria-label="Example icon-button with a heart icon"
+                  mat-mini-fab
+                >
                   <mat-icon>favorite</mat-icon>
                 </button>
-                <a mat-mini-fab
-                   routerLink=".">Link</a>
+                <a mat-mini-fab routerLink=".">Link</a>
               </div>
             </mat-card-content>
           </mat-card>
@@ -426,31 +397,30 @@
               <h2>Material Input</h2>
               <mat-form-field color="primary">
                 <mat-label>First Name</mat-label>
-                <input matInput placeholder="Enter your first name"/>
+                <input matInput placeholder="Enter your first name" />
                 <mat-hint align="start">This is a hint</mat-hint>
               </mat-form-field>
               <mat-form-field color="accent">
                 <mat-label>Nickname</mat-label>
-                <input #nickname
-                       matInput
-                       maxlength="50"
-                       placeholder="Enter your Nickname"/>
+                <input
+                  #nickname
+                  matInput
+                  maxlength="50"
+                  placeholder="Enter your Nickname"
+                />
                 <mat-hint align="end">
-                  {{nickname.value.length}} / 50
+                  {{ nickname.value.length }} / 50
                 </mat-hint>
               </mat-form-field>
               <mat-form-field>
-                <mat-icon class="input-icon"
-                          matPrefix>android
-                </mat-icon>
+                <mat-icon class="input-icon" matPrefix>android </mat-icon>
                 <mat-label>Phone Number</mat-label>
-                <input matInput
-                       placeholder="Enter your favorite phone">
+                <input matInput placeholder="Enter your favorite phone" />
               </mat-form-field>
               <mat-form-field color="warn">
                 <mat-icon class="input-icon" matPrefix>motorcycle</mat-icon>
                 <mat-label>Motorcycle Model</mat-label>
-                <input matInput placeholder="Motorcycle model">
+                <input matInput placeholder="Motorcycle model" />
               </mat-form-field>
             </mat-card-content>
           </mat-card>
@@ -462,26 +432,32 @@
               <h2>Material Checkbox</h2>
               <section class="checkbox-section">
                 <mat-checkbox class="checkbox-margin">Check me!</mat-checkbox>
-                <mat-checkbox class="checkbox-margin" [disabled]="true">Disabled</mat-checkbox>
+                <mat-checkbox class="checkbox-margin" [disabled]="true"
+                  >Disabled</mat-checkbox
+                >
               </section>
 
               <section class="checkbox-section">
                 <span class="checkbox-list-section">
-                  <mat-checkbox class="checkbox-margin"
-                                [checked]="allComplete"
-                                [color]="task.color"
-                                [indeterminate]="someComplete()"
-                                (change)="setAll($event.checked)">
-                    {{task.name}}
+                  <mat-checkbox
+                    class="checkbox-margin"
+                    [checked]="allComplete"
+                    [color]="task.color"
+                    [indeterminate]="someComplete()"
+                    (change)="setAll($event.checked)"
+                  >
+                    {{ task.name }}
                   </mat-checkbox>
                 </span>
                 <span class="checkbox-list-section">
                   <ul>
                     <li *ngFor="let subtask of task.subtasks">
-                      <mat-checkbox [(ngModel)]="subtask.completed"
-                                    [color]="subtask.color"
-                                    (ngModelChange)="updateAllComplete()">
-                        {{subtask.name}}
+                      <mat-checkbox
+                        [(ngModel)]="subtask.completed"
+                        [color]="subtask.color"
+                        (ngModelChange)="updateAllComplete()"
+                      >
+                        {{ subtask.name }}
                       </mat-checkbox>
                     </li>
                   </ul>
@@ -502,16 +478,13 @@
                 <section class="example-section">
                   <label class="example-margin">Color:</label>
                   <mat-radio-group [(ngModel)]="spinnerColor">
-                    <mat-radio-button class="example-margin"
-                                      value="primary">
+                    <mat-radio-button class="example-margin" value="primary">
                       Primary
                     </mat-radio-button>
-                    <mat-radio-button class="example-margin"
-                                      value="accent">
+                    <mat-radio-button class="example-margin" value="accent">
                       Accent
                     </mat-radio-button>
-                    <mat-radio-button class="example-margin"
-                                      value="warn">
+                    <mat-radio-button class="example-margin" value="warn">
                       Warn
                     </mat-radio-button>
                   </mat-radio-group>
@@ -520,22 +493,28 @@
                 <section class="example-section">
                   <label class="example-margin">Mode:</label>
                   <mat-radio-group [(ngModel)]="spinnerMode">
-                    <mat-radio-button class="example-margin"
-                                      value="determinate">
+                    <mat-radio-button
+                      class="example-margin"
+                      value="determinate"
+                    >
                       Determinate
                     </mat-radio-button>
-                    <mat-radio-button class="example-margin"
-                                      value="indeterminate">
+                    <mat-radio-button
+                      class="example-margin"
+                      value="indeterminate"
+                    >
                       Indeterminate
                     </mat-radio-button>
                   </mat-radio-group>
                 </section>
 
-                <section *ngIf="spinnerMode === 'determinate'"
-                         class="example-section">
+                <section
+                  *ngIf="spinnerMode === 'determinate'"
+                  class="example-section"
+                >
                   <label class="example-margin">Progress:</label>
                   <mat-slider class="example-margin">
-                    <input matSliderThumb [(ngModel)]="spinnerValue">
+                    <input matSliderThumb [(ngModel)]="spinnerValue" />
                   </mat-slider>
                 </section>
               </mat-card-content>
@@ -545,10 +524,12 @@
               <mat-card-content>
                 <h2>Result</h2>
 
-                <mat-progress-spinner [color]="spinnerColor"
-                                      [mode]="spinnerMode"
-                                      [value]="spinnerValue"
-                                      class="example-margin">
+                <mat-progress-spinner
+                  [color]="spinnerColor"
+                  [mode]="spinnerMode"
+                  [value]="spinnerValue"
+                  class="example-margin"
+                >
                 </mat-progress-spinner>
               </mat-card-content>
             </mat-card>
@@ -561,17 +542,21 @@
               <h2>Material Progress Bar</h2>
               <label>
                 Indeterminate progress-bar
-                <mat-progress-bar aria-label="Indeterminate progress-bar example"
-                                  class="progress"
-                                  mode="indeterminate"></mat-progress-bar>
+                <mat-progress-bar
+                  aria-label="Indeterminate progress-bar example"
+                  class="progress"
+                  mode="indeterminate"
+                ></mat-progress-bar>
               </label>
               <label>
-                Determinate progress bar - {{progress}}%
-                <mat-progress-bar [value]="progress"
-                                  aria-label="Determinate progress-bar example"
-                                  class="progress"
-                                  color="accent"
-                                  mode="determinate"></mat-progress-bar>
+                Determinate progress bar - {{ progress }}%
+                <mat-progress-bar
+                  [value]="progress"
+                  aria-label="Determinate progress-bar example"
+                  class="progress"
+                  color="accent"
+                  mode="determinate"
+                ></mat-progress-bar>
               </label>
             </mat-card-content>
           </mat-card>
@@ -584,10 +569,12 @@
             <mat-card-content>
               <h2>Material Chips</h2>
               <mat-chip-listbox>
-                <mat-chip-option *ngFor="let chipColor of availableSpinnerColors"
-                          color="{{chipColor.color}}"
-                          selected="true">
-                  {{chipColor.name}}
+                <mat-chip-option
+                  *ngFor="let chipColor of availableSpinnerColors"
+                  color="{{ chipColor.color }}"
+                  selected="true"
+                >
+                  {{ chipColor.name }}
                 </mat-chip-option>
                 <mat-chip-option disabled>Disabled</mat-chip-option>
               </mat-chip-listbox>
@@ -599,8 +586,7 @@
           <mat-card>
             <mat-card-content>
               <h2>Material Menu</h2>
-              <button [matMenuTriggerFor]="menu"
-                      mat-icon-button>
+              <button [matMenuTriggerFor]="menu" mat-icon-button>
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
@@ -608,8 +594,7 @@
                   <mat-icon>dialpad</mat-icon>
                   <span>Redial</span>
                 </button>
-                <button disabled
-                        mat-menu-item>
+                <button disabled mat-menu-item>
                   <mat-icon>voicemail</mat-icon>
                   <span>Check voicemail</span>
                 </button>
@@ -630,7 +615,9 @@
                 <mat-label>Choose an option</mat-label>
                 <mat-select>
                   <mat-option value="option1">Option 1</mat-option>
-                  <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
+                  <mat-option value="option2" disabled
+                    >Option 2 (disabled)</mat-option
+                  >
                   <mat-option value="option3">Option 3</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -644,26 +631,38 @@
               <h2>Material Date Picker</h2>
               <mat-form-field color="primary" appearance="fill">
                 <mat-label>Choose a date (default)</mat-label>
-                <input matInput [matDatepicker]="picker1">
-                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <input matInput [matDatepicker]="picker1" />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker1"
+                ></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
               <mat-form-field color="accent" appearance="fill">
                 <mat-label>Choose a date (accent)</mat-label>
-                <input matInput [matDatepicker]="picker2">
-                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <input matInput [matDatepicker]="picker2" />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker2"
+                ></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field>
               <mat-form-field color="warn" appearance="fill">
                 <mat-label>Choose a date (warn)</mat-label>
-                <input matInput [matDatepicker]="picker3">
-                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                <input matInput [matDatepicker]="picker3" />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker3"
+                ></mat-datepicker-toggle>
                 <mat-datepicker #picker3></mat-datepicker>
               </mat-form-field>
               <mat-form-field color="accent" appearance="fill">
                 <mat-label>Custom (accent/primary)</mat-label>
-                <input matInput [matDatepicker]="picker4">
-                <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                <input matInput [matDatepicker]="picker4" />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker4"
+                ></mat-datepicker-toggle>
                 <mat-datepicker #picker4 color="primary"></mat-datepicker>
               </mat-form-field>
             </mat-card-content>
@@ -677,28 +676,37 @@
               <mat-form-field appearance="fill">
                 <mat-label>Enter a date range (default)</mat-label>
                 <mat-date-range-input [rangePicker]="rangePicker1">
-                  <input matStartDate placeholder="Start date">
-                  <input matEndDate placeholder="End date">
+                  <input matStartDate placeholder="Start date" />
+                  <input matEndDate placeholder="End date" />
                 </mat-date-range-input>
-                <mat-datepicker-toggle matSuffix [for]="rangePicker1"></mat-datepicker-toggle>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="rangePicker1"
+                ></mat-datepicker-toggle>
                 <mat-date-range-picker #rangePicker1></mat-date-range-picker>
               </mat-form-field>
               <mat-form-field color="accent" appearance="fill">
                 <mat-label>Enter a date range (accent)</mat-label>
                 <mat-date-range-input [rangePicker]="rangePicker2">
-                  <input matStartDate placeholder="Start date">
-                  <input matEndDate placeholder="End date">
+                  <input matStartDate placeholder="Start date" />
+                  <input matEndDate placeholder="End date" />
                 </mat-date-range-input>
-                <mat-datepicker-toggle matSuffix [for]="rangePicker2"></mat-datepicker-toggle>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="rangePicker2"
+                ></mat-datepicker-toggle>
                 <mat-date-range-picker #rangePicker2></mat-date-range-picker>
               </mat-form-field>
               <mat-form-field color="warn" appearance="fill">
                 <mat-label>Enter a date range (warn)</mat-label>
                 <mat-date-range-input [rangePicker]="rangePicker3">
-                  <input matStartDate placeholder="Start date">
-                  <input matEndDate placeholder="End date">
+                  <input matStartDate placeholder="Start date" />
+                  <input matEndDate placeholder="End date" />
                 </mat-date-range-input>
-                <mat-datepicker-toggle matSuffix [for]="rangePicker3"></mat-datepicker-toggle>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="rangePicker3"
+                ></mat-datepicker-toggle>
                 <mat-date-range-picker #rangePicker3></mat-date-range-picker>
               </mat-form-field>
             </mat-card-content>
@@ -709,24 +717,29 @@
         <mat-tab label="Snackbar">
           <mat-form-field appearance="fill">
             <mat-label>Message</mat-label>
-            <input matInput value="Disco party!" #message>
+            <input matInput value="Disco party!" #message />
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Action</mat-label>
-            <input matInput value="Dance" #action>
+            <input matInput value="Dance" #action />
           </mat-form-field>
 
-          <button mat-stroked-button (click)="showSnackbar(message.value, action.value)">Show snack-bar</button>
+          <button
+            mat-stroked-button
+            (click)="showSnackbar(message.value, action.value)"
+          >
+            Show snack-bar
+          </button>
         </mat-tab>
-
       </mat-tab-group>
     </section>
 
     <!-- Material Fab-->
-    <button class="fab"
-            mat-fab>
-      <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+    <button class="fab" mat-fab>
+      <mat-icon aria-label="Example icon-button with a heart icon"
+        >favorite</mat-icon
+      >
     </button>
     <!-- /Material Fab-->
   </div>

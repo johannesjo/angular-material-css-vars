@@ -27,7 +27,8 @@
     "major-release_": "run-s lib demo major pub",
     "major-release": "npm run major-release_",
     "dryBuild": "run-s lib demo",
-    "update": "npx npm-check-updates -u"
+    "update": "npx npm-check-updates -u",
+    "prettier-check": "prettier . --check"
   },
   "dependencies": {
     "@angular/animations": "^16.0.0",
@@ -70,6 +71,7 @@
     "karma-jasmine-html-reporter": "^2.0.0",
     "ng-packagr": "^16.0.0",
     "npm-run-all": "^4.1.5",
+    "prettier": "^3.0.0",
     "typescript": "~5.0.4"
   }
 }

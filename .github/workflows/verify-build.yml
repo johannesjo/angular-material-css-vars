@@ -3,7 +3,7 @@ name: Verify build
 on:
   workflow_dispatch:
   pull_request_target:
-    types: [ opened, synchronize, reopened ]
+    types: [opened, synchronize, reopened]
 
 jobs:
   build:
@@ -44,3 +44,15 @@ jobs:
 
       - name: test
         run: npm run test -- --watch=false --browsers=ChromeHeadless
+
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: install
+        run: npm ci
+
+      - name: prettier
+        run: npm run prettier-check

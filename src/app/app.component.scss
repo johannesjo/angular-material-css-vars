@@ -1,4 +1,4 @@
-@use '../../projects/material-css-vars' as mat-css-vars;
+@use "../../projects/material-css-vars" as mat-css-vars;
 
 $lighter-dark: rgb(88, 88, 88);
 
@@ -43,7 +43,6 @@ $lighter-dark: rgb(88, 88, 88);
   @include mat-css-vars.mat-css-color-and-contrast-primary(900);
 }
 
-
 .bga-50 {
   @include mat-css-vars.mat-css-color-and-contrast-accent(50);
 }
@@ -84,7 +83,6 @@ $lighter-dark: rgb(88, 88, 88);
 .bga-900 {
   @include mat-css-vars.mat-css-color-and-contrast-accent(900);
 }
-
 
 .bgw-50 {
   @include mat-css-vars.mat-css-color-and-contrast-warn(50);
@@ -129,7 +127,6 @@ $lighter-dark: rgb(88, 88, 88);
 
 ::ng-deep color-picker {
   .color-picker {
-
     @include mat-css-vars.mat-css-dark-theme {
       color: #fff;
       background: $lighter-dark;
@@ -196,7 +193,6 @@ $lighter-dark: rgb(88, 88, 88);
 .toolbar-filler {
   flex: 1 1 auto;
 }
-
 
 .fab {
   position: fixed !important;
