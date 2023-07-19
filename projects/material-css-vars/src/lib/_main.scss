@@ -12,32 +12,40 @@
   @include internal-helper.root($default-theme);
 }
 
-@mixin init-mat-theme($dark-theme-selector, $typography-config: mat.define-typography-config(), $density) {
+@mixin init-mat-theme(
+  $dark-theme-selector,
+  $typography-config: mat.define-typography-config(),
+  $density
+) {
   @include mat.core();
 
   $primary: mat.define-palette(variables.$palette-primary);
   $accent: mat.define-palette(variables.$palette-accent);
   $warn: mat.define-palette(variables.$palette-warn);
 
-  $theme: mat.define-light-theme((
-    color: (
-      primary: $primary,
-      accent: $accent,
-      warn: $warn,
-    ),
-    typography: $typography-config,
-    density: $density,
-  ));
+  $theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $primary,
+        accent: $accent,
+        warn: $warn,
+      ),
+      typography: $typography-config,
+      density: $density,
+    )
+  );
 
-  $dark-theme: mat.define-dark-theme((
-    color: (
-      primary: $primary,
-      accent: $accent,
-      warn: $warn,
-    ),
-    typography: $typography-config,
-    density: $density,
-  ));
+  $dark-theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $primary,
+        accent: $accent,
+        warn: $warn,
+      ),
+      typography: $typography-config,
+      density: $density,
+    )
+  );
 
   // set global variable so passed-in content can use the theme
   $mat-css-theme: $theme !global; // stays for backwards-compatibility
@@ -48,7 +56,7 @@
   // Fix mat-typography class, see https://github.com/angular/components/issues/26184
   @include mat.typography-hierarchy($theme);
 
-  @content($mat-css-theme);
+  @content ($mat-css-theme);
 
   @if $dark-theme-selector {
     $mat-css-theme: $dark-theme !global;
@@ -56,7 +64,7 @@
       @include mat.all-component-colors($dark-theme);
       // add content passed in, which can use the $theme variable to apply the dark theme to
       // other theme mixins needed by the app
-      @content($mat-css-theme);
+      @content ($mat-css-theme);
     }
   }
 
@@ -70,10 +78,11 @@
   $dark-theme-selector: variables.$dark-theme-selector,
   $default-theme-text: variables.$text,
   $typography-config: mat.define-typography-config(),
-  $density: 0,
+  $density: 0
 ) {
   @include init-css-vars($default-theme, $default-theme-text);
-  @include init-mat-theme($dark-theme-selector, $typography-config, $density) using ($mat-css-theme) {
-    @content($mat-css-theme);
+  @include init-mat-theme($dark-theme-selector, $typography-config, $density)
+    using ($mat-css-theme) {
+    @content ($mat-css-theme);
   }
 }

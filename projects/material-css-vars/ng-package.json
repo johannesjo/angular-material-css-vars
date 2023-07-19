@@ -4,12 +4,6 @@
   "lib": {
     "entryFile": "src/public-api.ts"
   },
-  "allowedNonPeerDependencies": [
-    "tinycolor2",
-    "@ctrl/tinycolor"
-  ],
-  "assets": [
-    "./index.scss",
-    "./src/lib/*.scss"
-  ]
+  "allowedNonPeerDependencies": ["tinycolor2", "@ctrl/tinycolor"],
+  "assets": ["./index.scss", "./src/lib/*.scss"]
 }

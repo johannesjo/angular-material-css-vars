@@ -1,17 +1,11 @@
 {
   "extends": "../../.eslintrc.json",
-  "ignorePatterns": [
-    "!**/*"
-  ],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
-        "project": [
-          "projects/material-css-vars/tsconfig.(lib|spec).json"
-        ]
+        "project": ["projects/material-css-vars/tsconfig.(lib|spec).json"]
       },
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -33,9 +27,7 @@
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
+      "files": ["*.html"],
       "rules": {}
     }
   ]

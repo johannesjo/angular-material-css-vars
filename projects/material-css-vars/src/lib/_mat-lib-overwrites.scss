@@ -58,13 +58,25 @@
   .mat-mdc-outlined-button,
   .mat-mdc-icon-button {
     &.mat-primary {
-      --mat-mdc-button-ripple-color: #{public-util.mat-css-color(500, 0.1, "primary")};
+      --mat-mdc-button-ripple-color: #{public-util.mat-css-color(
+          500,
+          0.1,
+          "primary"
+        )};
     }
     &.mat-accent {
-      --mat-mdc-button-ripple-color: #{public-util.mat-css-color(500, 0.1, "accent")};
+      --mat-mdc-button-ripple-color: #{public-util.mat-css-color(
+          500,
+          0.1,
+          "accent"
+        )};
     }
     &.mat-warn {
-      --mat-mdc-button-ripple-color: #{public-util.mat-css-color(500, 0.1, "warn")};
+      --mat-mdc-button-ripple-color: #{public-util.mat-css-color(
+          500,
+          0.1,
+          "warn"
+        )};
     }
   }
   .mat-mdc-unelevated-button:not(:disabled),
@@ -90,17 +102,20 @@
 @mixin _mat-mdc-form-field-overwrites {
   .mat-mdc-form-field {
     &.mat-primary {
-      .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+      .mdc-text-field--focused:not(.mdc-text-field--disabled)
+        .mdc-floating-label {
         color: public-util.mat-css-color-primary(500, 0.87);
       }
     }
     &.mat-accent {
-      .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+      .mdc-text-field--focused:not(.mdc-text-field--disabled)
+        .mdc-floating-label {
         color: public-util.mat-css-color-accent(500, 0.87);
       }
     }
     &.mat-warn {
-      .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+      .mdc-text-field--focused:not(.mdc-text-field--disabled)
+        .mdc-floating-label {
         color: public-util.mat-css-color-warn(500, 0.87);
       }
     }
@@ -187,11 +202,16 @@
   .mat-calendar-body-in-range::before {
     background: public-util.mat-css-color(500, 0.2, $palette);
   }
-  .mat-calendar-body-cell:not(.mat-calendar-body-disabled).mat-calendar-body-active > .mat-calendar-body-today {
+  .mat-calendar-body-cell:not(
+      .mat-calendar-body-disabled
+    ).mat-calendar-body-active
+    > .mat-calendar-body-today {
     color: public-util.mat-css-color(500, null, $palette, true);
   }
   .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover
-    > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(
+      .mat-calendar-body-comparison-identical
+    ) {
     background: public-util.mat-css-color(500, 0.3, $palette);
   }
 }
@@ -219,16 +239,40 @@
 @mixin _mat-mdc-slider-overwrites() {
   .mat-mdc-slider {
     &.mat-primary {
-      --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(500, 0.05, "primary")};
-      --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(500, 0.2, "primary")};
+      --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(
+          500,
+          0.05,
+          "primary"
+        )};
+      --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(
+          500,
+          0.2,
+          "primary"
+        )};
     }
     &.mat-accent {
-      --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(500, 0.05, "accent")};
-      --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(500, 0.2, "accent")};
+      --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(
+          500,
+          0.05,
+          "accent"
+        )};
+      --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(
+          500,
+          0.2,
+          "accent"
+        )};
     }
     &.mat-warn {
-      --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(500, 0.05, "warn")};
-      --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(500, 0.2, "warn")};
+      --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(
+          500,
+          0.05,
+          "warn"
+        )};
+      --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(
+          500,
+          0.2,
+          "warn"
+        )};
     }
   }
 }

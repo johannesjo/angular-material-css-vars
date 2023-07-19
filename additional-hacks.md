@@ -1,4 +1,5 @@
 ## Custom elevation shadow color
+
 In case you also want to add a color to your shadows, you can include the following mixin directly before you execute `@include initMaterialCssVars();`. Thanks goes to @picc09 for finding this out.
 
 ```scss
@@ -6,8 +7,7 @@ $mat-css-palette-foreground: map-merge(
   // if you don't want to enter ALL the properties
   $mat-css-palette-foreground,
   (
-      elevation: var(--your-elevation-color-variable)
-  // ...
+    elevation: var(--your-elevation-color-variable),
   )
 );
 
@@ -28,9 +28,10 @@ $mat-css-palette-foreground: map-merge(
     $color-ambient: rgba($color, $opacity * 0.12);
   }
 
-  box-shadow: #{map-get(_get-umbra-map($color-umbra, $opacity), $zValue)},
-  #{map-get(_get-penumbra-map($color-penumbra, $opacity), $zValue)},
-  #{map-get(_get-ambient-map($color-ambient, $opacity), $zValue)};
+  box-shadow:
+    #{map-get(_get-umbra-map($color-umbra, $opacity), $zValue)},
+    #{map-get(_get-penumbra-map($color-penumbra, $opacity), $zValue)},
+    #{map-get(_get-ambient-map($color-ambient, $opacity), $zValue)};
 }
 
 // finally initialize

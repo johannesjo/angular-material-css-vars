@@ -1,5 +1,5 @@
 // used to circumvent node sass issue: https://github.com/sass/node-sass/issues/2251
-@function rgb($r, $g: null, $b: null ) {
+@function rgb($r, $g: null, $b: null) {
   @if ($g == null) {
     @return unquote("#{$r}");
   }
@@ -12,7 +12,7 @@
 }
 
 // used to circumvent node sass issue: https://github.com/sass/node-sass/issues/2251
-@function rgba($r, $g, $b: null, $a: null ) {
+@function rgba($r, $g, $b: null, $a: null) {
   @if ($b == null) {
     @return unquote("#{$r}, #{$g}");
   }
@@ -28,7 +28,12 @@
   $index: str-index($string, $search);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
   }
 
   @return $string;
@@ -37,10 +42,10 @@
 @mixin root($varMap: null) {
   @at-root :root {
     @each $varName, $varValue in $varMap {
-      @if (type_of($varValue)==string) {
-        #{$varName}: $varValue // to prevent quotes interpolation
+      @if (type_of($varValue) ==string) {
+        #{$varName}: $varValue; // to prevent quotes interpolation
       } @else {
-        #{$varName}: #{$varValue}
+        #{$varName}: #{$varValue};
       }
     }
   }
