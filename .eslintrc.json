@@ -9,6 +9,8 @@
         "createDefaultProgram": true
       },
       "extends": [
+        "plugin:@typescript-eslint/strict-type-checked",
+        "plugin:@typescript-eslint/stylistic-type-checked",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
@@ -29,6 +31,12 @@
             "type": "attribute"
           }
         ]
+      }
+    },
+    {
+      "files": ["*.spec.ts"],
+      "rules": {
+        "@typescript-eslint/dot-notation": "off"
       }
     },
     {

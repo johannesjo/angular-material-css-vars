@@ -45,7 +45,7 @@ export class AppComponent {
   ];
 
   spinnerMode: ProgressSpinnerMode = "indeterminate";
-  spinnerValue: number = 25;
+  spinnerValue = 25;
   spinnerColor: ThemePalette = "primary";
   availableSpinnerColors = [
     { name: "none", color: "" },
@@ -67,7 +67,7 @@ export class AppComponent {
     ],
   };
 
-  allComplete: boolean = false;
+  allComplete = false;
 
   constructor(
     private _dialog: MatDialog,

@@ -24,7 +24,7 @@ describe("MaterialCssVarsService", () => {
       ],
     });
     service = TestBed.inject(MaterialCssVarsService);
-    renderer = (service as any).renderer;
+    renderer = service["renderer"];
   });
 
   it("should be created", () => {

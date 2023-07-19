@@ -85,7 +85,8 @@ import { MaterialCssVarsModule } from "../../projects/material-css-vars/src/lib/
       warn: "#f44336",
     }),
   ],
-  providers: [{ provide: APP_BASE_HREF, useValue: window["_app_base"] || "/" }],
+  providers: [{ provide: APP_BASE_HREF, useValue: window._app_base ?? "/" }],
   bootstrap: [AppComponent],
 })
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class AppModule {}
