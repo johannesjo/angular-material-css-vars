@@ -97,7 +97,7 @@ describe("integration", () => {
           fixture.detectChanges();
 
           expect(getButtonComputedStyle(fixture).color).toEqual(
-            "rgb(255, 255, 255)",
+            "rgba(0, 0, 0, 0.87)",
           );
         });
       });

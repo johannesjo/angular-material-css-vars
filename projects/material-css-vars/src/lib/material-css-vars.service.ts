@@ -49,6 +49,8 @@ export class MaterialCssVarsService {
   isAutoContrast = false;
   private renderer: Renderer2;
   private ROOT: HTMLElement;
+  private readonly _black = new TinyColor("#000000");
+  private readonly _white = new TinyColor("#ffffff");
 
   constructor(
     rendererFactory: RendererFactory2,
@@ -310,9 +312,7 @@ export class MaterialCssVarsService {
     return this.cfg.sortedHues.map((hue) => {
       const hueVarVal = this._getCssVarValue(`${palettePrefix}${hue}`);
       const c = new TinyColor(`rgb(${hueVarVal})`);
-      const contrastColorVar = c.isDark()
-        ? MaterialCssVarsService.LIGHT_TEXT_VAR
-        : MaterialCssVarsService.DARK_TEXT_VAR;
+      const contrastColorVar = this._getContrastColorVar(c);
       return {
         contrastColorVar,
         hue,
@@ -441,5 +441,21 @@ export class MaterialCssVarsService {
   private getColorObject(value: TinyColor): Color {
     const c = new TinyColor(value);
     return { rgb: c.toRgb(), isLight: c.isLight() };
+  }
+
+  private _getContrastColorVar(color: TinyColor): string {
+    const contrastDark = this._getContrast(color, this._black);
+    const contrastLight = this._getContrast(color, this._white);
+    return contrastLight > contrastDark
+      ? MaterialCssVarsService.LIGHT_TEXT_VAR
+      : MaterialCssVarsService.DARK_TEXT_VAR;
+  }
+
+  private _getContrast(color1: TinyColor, color2: TinyColor): number {
+    const luminance1 = color1.getLuminance();
+    const luminance2 = color2.getLuminance();
+    const brightest = Math.max(luminance1, luminance2);
+    const darkest = Math.min(luminance1, luminance2);
+    return (brightest + 0.05) / (darkest + 0.05);
   }
 }
