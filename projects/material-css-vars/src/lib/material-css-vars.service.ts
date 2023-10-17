@@ -42,7 +42,7 @@ export class MaterialCssVarsService {
   primary = "#03a9f4";
   accent = "#e91e63";
   warn = "#f44336";
-  isDarkTheme = false; // ToDo: make this attribute optional in next major version
+  isDarkTheme?: boolean;
   contrastColorThresholdPrimary: HueValue = "400";
   contrastColorThresholdAccent: HueValue = "400";
   contrastColorThresholdWarn: HueValue = "400";
@@ -191,29 +191,6 @@ export class MaterialCssVarsService {
     this.setPrimaryColor(this.primary);
     this.setAccentColor(this.accent);
     this.setWarnColor(this.warn);
-  }
-
-  /** @deprecated use setContrastColorThresholdPrimary instead */
-  changeContrastColorThresholdPrimary(threshold: HueValue) {
-    this.setContrastColorThresholdPrimary(threshold);
-  }
-
-  /** @deprecated use setContrastColorThresholdAccent instead */
-  changeContrastColorThresholdAccent(threshold: HueValue) {
-    this.setContrastColorThresholdAccent(threshold);
-  }
-
-  /** @deprecated use setContrastColorThresholdWarn instead */
-  changeContrastColorThresholdWarn(threshold: HueValue) {
-    this.setContrastColorThresholdWarn(threshold);
-  }
-
-  /** @deprecated use setContrastColorThreshold instead */
-  changeContrastColorThreshold(
-    threshold: HueValue,
-    palettePrefix: MatCssPalettePrefix,
-  ) {
-    this.setContrastColorThreshold(threshold, palettePrefix);
   }
 
   getPaletteForColor(hex: string): MatCssHueColorMapItem[] {
