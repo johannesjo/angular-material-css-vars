@@ -29,7 +29,7 @@
     "dryBuild": "run-s lib demo",
     "update": "npx npm-check-updates -u",
     "prettier-check": "prettier . --check",
-    "prettier-fix": "prettier . --fix"
+    "prettier-fix": "prettier . --write"
   },
   "dependencies": {
     "@angular/animations": "^16.0.0",
