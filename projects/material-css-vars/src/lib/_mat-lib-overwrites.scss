@@ -169,14 +169,17 @@
   $color-warn: public-util.mat-css-color(500, null, "warn", true);
 
   .mat-mdc-checkbox {
-    &.mat-primary {
-      --mdc-checkbox-selected-checkmark-color: #{$color-primary};
-    }
-    &.mat-accent {
-      --mdc-checkbox-selected-checkmark-color: #{$color-accent};
-    }
-    &.mat-warn {
-      --mdc-checkbox-selected-checkmark-color: #{$color-warn};
+    &,
+    #{variables.$dark-theme-selector} & {
+      &.mat-primary {
+        --mdc-checkbox-selected-checkmark-color: #{$color-primary};
+      }
+      &.mat-accent {
+        --mdc-checkbox-selected-checkmark-color: #{$color-accent};
+      }
+      &.mat-warn {
+        --mdc-checkbox-selected-checkmark-color: #{$color-warn};
+      }
     }
   }
 }
