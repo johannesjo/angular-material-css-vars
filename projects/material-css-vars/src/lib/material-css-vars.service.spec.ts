@@ -4,6 +4,7 @@ import { MaterialCssVarsService } from "./material-css-vars.service";
 import { MATERIAL_CSS_VARS_CFG } from "../mat-css-config-token.const";
 import { Renderer2, RendererStyleFlags2 } from "@angular/core";
 import { MatCssPalettePrefix, MaterialCssVariables } from "./model";
+import { TinyColor } from "@ctrl/tinycolor";
 
 describe("MaterialCssVarsService", () => {
   let service: MaterialCssVarsService;
@@ -189,6 +190,32 @@ describe("MaterialCssVarsService", () => {
       service.setAlternativeColorAlgorithm(true);
 
       expect(service.cfg.isAlternativeColorAlgorithm).toBeTrue();
+    });
+  });
+
+  describe("_getContrastColorVar", () => {
+    it("should return obvious dark contrast color choice", () => {
+      const color = new TinyColor("#111111");
+
+      expect(service["_getContrastColorVar"](color)).toBe(
+        MaterialCssVarsService["LIGHT_TEXT_VAR"],
+      );
+    });
+
+    it("should return obvious light contrast color choice", () => {
+      const color = new TinyColor("#eeeeee");
+
+      expect(service["_getContrastColorVar"](color)).toBe(
+        MaterialCssVarsService["DARK_TEXT_VAR"],
+      );
+    });
+
+    it("should return the best contrast in edge cases", () => {
+      const color = new TinyColor("#f0002f");
+
+      expect(service["_getContrastColorVar"](color)).toBe(
+        MaterialCssVarsService["DARK_TEXT_VAR"],
+      );
     });
   });
 });
