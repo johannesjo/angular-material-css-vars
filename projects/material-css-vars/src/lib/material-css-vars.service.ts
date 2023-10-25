@@ -35,8 +35,8 @@ interface Color {
 })
 export class MaterialCssVarsService {
   private static CONTRAST_PREFIX = "contrast-";
-  private static DARK_TEXT_VAR = "--dark-primary-text";
-  private static LIGHT_TEXT_VAR = "--light-primary-text";
+  private static DARK_TEXT_VAR = "--dark-text-contrast";
+  private static LIGHT_TEXT_VAR = "--light-text-contrast";
   // This should be readonly from the outside
   cfg: MaterialCssVariablesConfig;
   primary = "#03a9f4";

@@ -44,6 +44,8 @@ $text: (
   --light-disabled-text: rgba(var(--light-disabled-text-no-rgb)),
   --light-dividers: rgba(var(--light-dividers-no-rgb)),
   --light-focused: rgba(var(--light-focused-no-rgb)),
+  --dark-text-contrast: #000000,
+  --light-text-contrast: var(--light-primary-text),
 ) !default;
 
 $default-light-theme: (
