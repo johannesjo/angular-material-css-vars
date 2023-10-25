@@ -60,9 +60,7 @@ describe("integration", () => {
           button.color = "primary";
           fixture.detectChanges();
 
-          expect(getButtonComputedStyle(fixture).color).toEqual(
-            "rgba(0, 0, 0, 0.87)",
-          );
+          expect(getButtonComputedStyle(fixture).color).toEqual("rgb(0, 0, 0)");
         });
 
         it("should render a button in the given accent color", () => {
@@ -96,9 +94,7 @@ describe("integration", () => {
           button.color = "warn";
           fixture.detectChanges();
 
-          expect(getButtonComputedStyle(fixture).color).toEqual(
-            "rgba(0, 0, 0, 0.87)",
-          );
+          expect(getButtonComputedStyle(fixture).color).toEqual("rgb(0, 0, 0)");
         });
       });
 
