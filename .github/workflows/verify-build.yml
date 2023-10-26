@@ -37,8 +37,8 @@ jobs:
       - name: lint
         run: npm run lint
 
-  test:
-    runs-on: ubuntu-20.04
+  test-chrome:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -50,6 +50,34 @@ jobs:
 
       - name: test
         run: npm run test -- --watch=false --browsers=ChromeHeadless
+
+  test-firefox:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: install
+        run: npm ci
+
+      - name: test
+        run: npm run test -- --watch=false --browsers=FirefoxHeadless
+
+  test-safari:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: install
+        run: npm ci
+
+      - name: test
+        run: npm run test -- --watch=false --browsers=SafariNative
 
   prettier:
     runs-on: ubuntu-latest
