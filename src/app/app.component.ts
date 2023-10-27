@@ -1,13 +1,40 @@
 import { Component, TrackByFunction } from "@angular/core";
-import { ThemePalette } from "@angular/material/core";
-import { MatDialog } from "@angular/material/dialog";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import {
+  ThemePalette,
+  MatOptionModule,
+  MatNativeDateModule,
+} from "@angular/material/core";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { MaterialCssVarsService } from "../../projects/material-css-vars/src/lib/material-css-vars.service";
 import {
   HueValue,
   MatCssHueColorContrastMapItem,
 } from "../../projects/material-css-vars/src/lib/model";
-import { ProgressSpinnerMode } from "@angular/material/progress-spinner";
+import {
+  ProgressSpinnerMode,
+  MatProgressSpinnerModule,
+} from "@angular/material/progress-spinner";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatChipsModule } from "@angular/material/chips";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatSliderModule } from "@angular/material/slider";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatInputModule } from "@angular/material/input";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { MatTabsModule } from "@angular/material/tabs";
+import { NgFor, NgIf } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { MatSelectModule } from "@angular/material/select";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { ColorPickerModule } from "ngx-color-picker";
+import { MatCardModule } from "@angular/material/card";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatSidenavModule } from "@angular/material/sidenav";
 
 export interface Task {
   name: string;
@@ -30,6 +57,35 @@ interface SpinnerColor {
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
+  standalone: true,
+  imports: [
+    MatSidenavModule,
+    MatToolbarModule,
+    MatCardModule,
+    ColorPickerModule,
+    MatSlideToggleModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FormsModule,
+    NgFor,
+    MatOptionModule,
+    MatTabsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    NgIf,
+    MatSliderModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatChipsModule,
+    MatMenuModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatNativeDateModule,
+  ],
 })
 export class AppComponent {
   isDarkTheme = false;
