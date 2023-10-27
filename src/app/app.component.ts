@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, TrackByFunction } from "@angular/core";
 import { ThemePalette } from "@angular/material/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -15,6 +15,17 @@ export interface Task {
   color: ThemePalette;
   subtasks?: Task[];
 }
+
+interface Hue {
+  value: string;
+  viewValue: string;
+}
+
+interface SpinnerColor {
+  name: string;
+  color: ThemePalette;
+}
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -27,7 +38,7 @@ export class AppComponent {
 
   palettePrimary?: MatCssHueColorContrastMapItem[];
 
-  hues = [
+  readonly hues: Hue[] = [
     { value: "50", viewValue: "50" },
     { value: "100", viewValue: "100" },
     { value: "200", viewValue: "200" },
@@ -47,8 +58,8 @@ export class AppComponent {
   spinnerMode: ProgressSpinnerMode = "indeterminate";
   spinnerValue = 25;
   spinnerColor: ThemePalette = "primary";
-  availableSpinnerColors = [
-    { name: "none", color: "" },
+  readonly availableSpinnerColors: SpinnerColor[] = [
+    { name: "none", color: undefined },
     { name: "Primary", color: "primary" },
     { name: "Accent", color: "accent" },
     { name: "Warn", color: "warn" },
@@ -56,7 +67,7 @@ export class AppComponent {
 
   progress = 0;
 
-  task: Task = {
+  readonly task: Task = {
     name: "Indeterminate",
     completed: false,
     color: "primary",
@@ -68,6 +79,7 @@ export class AppComponent {
   };
 
   allComplete = false;
+  someComplete = false;
 
   constructor(
     private _dialog: MatDialog,
@@ -142,20 +154,11 @@ export class AppComponent {
       : "Constantin (default)";
   }
 
-  updateAllComplete() {
-    this.allComplete =
-      this.task.subtasks != null &&
-      this.task.subtasks.every((t) => t.completed);
-  }
-
-  someComplete(): boolean {
-    if (this.task.subtasks == null) {
-      return false;
-    }
-    return (
-      this.task.subtasks.filter((t) => t.completed).length > 0 &&
-      !this.allComplete
-    );
+  updateCompletionState() {
+    this.allComplete = this.task.subtasks?.every((t) => t.completed) ?? false;
+    this.someComplete =
+      (!this.allComplete && this.task.subtasks?.some((t) => t.completed)) ??
+      false;
   }
 
   setAll(completed: boolean) {
@@ -165,4 +168,9 @@ export class AppComponent {
     }
     this.task.subtasks.forEach((t) => (t.completed = completed));
   }
+
+  trackByHue: TrackByFunction<Hue> = (index, hue) => hue.value;
+  trackByTask: TrackByFunction<Task> = (index, task) => task.name;
+  trackBySpinnerColor: TrackByFunction<SpinnerColor> = (index, color) =>
+    color.name;
 }

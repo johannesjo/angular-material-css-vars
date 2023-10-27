@@ -95,7 +95,10 @@
                   materialCssVarsService.contrastColorThresholdPrimary
                 "
               >
-                <mat-option *ngFor="let hue of hues" [value]="hue.value">
+                <mat-option
+                  *ngFor="let hue of hues; trackBy: trackByHue"
+                  [value]="hue.value"
+                >
                   {{ hue.viewValue }}
                 </mat-option>
               </mat-select>
@@ -111,7 +114,10 @@
                   materialCssVarsService.contrastColorThresholdAccent
                 "
               >
-                <mat-option *ngFor="let hue of hues" [value]="hue.value">
+                <mat-option
+                  *ngFor="let hue of hues; trackBy: trackByHue"
+                  [value]="hue.value"
+                >
                   {{ hue.viewValue }}
                 </mat-option>
               </mat-select>
@@ -125,7 +131,10 @@
                 [disabled]="materialCssVarsService.isAutoContrast"
                 [(ngModel)]="materialCssVarsService.contrastColorThresholdWarn"
               >
-                <mat-option *ngFor="let hue of hues" [value]="hue.value">
+                <mat-option
+                  *ngFor="let hue of hues; trackBy: trackByHue"
+                  [value]="hue.value"
+                >
                   {{ hue.viewValue }}
                 </mat-option>
               </mat-select>
@@ -405,7 +414,7 @@
                   Warn
                   <mat-icon>favorite</mat-icon>
                 </button>
-                <button disabled mat-fab extended disabled>
+                <button disabled mat-fab extended>
                   Disabled
                   <mat-icon>favorite</mat-icon>
                 </button>
@@ -472,7 +481,7 @@
                     class="checkbox-margin"
                     [checked]="allComplete"
                     [color]="task.color"
-                    [indeterminate]="someComplete()"
+                    [indeterminate]="someComplete"
                     (change)="setAll($event.checked)"
                   >
                     {{ task.name }}
@@ -480,11 +489,16 @@
                 </span>
                 <span class="checkbox-list-section">
                   <ul>
-                    <li *ngFor="let subtask of task.subtasks">
+                    <li
+                      *ngFor="
+                        let subtask of task.subtasks;
+                        trackBy: trackByTask
+                      "
+                    >
                       <mat-checkbox
                         [(ngModel)]="subtask.completed"
                         [color]="subtask.color"
-                        (ngModelChange)="updateAllComplete()"
+                        (ngModelChange)="updateCompletionState()"
                       >
                         {{ subtask.name }}
                       </mat-checkbox>
@@ -505,8 +519,13 @@
                 <h2>Progress spinner configuration</h2>
 
                 <section class="example-section">
-                  <label class="example-margin">Color:</label>
-                  <mat-radio-group [(ngModel)]="spinnerColor">
+                  <label for="spinner-color" class="example-margin">
+                    Color:
+                  </label>
+                  <mat-radio-group
+                    id="spinner-color"
+                    [(ngModel)]="spinnerColor"
+                  >
                     <mat-radio-button class="example-margin" value="primary">
                       Primary
                     </mat-radio-button>
@@ -520,8 +539,10 @@
                 </section>
 
                 <section class="example-section">
-                  <label class="example-margin">Mode:</label>
-                  <mat-radio-group [(ngModel)]="spinnerMode">
+                  <label class="example-margin" for="spinner-mode">
+                    Mode:
+                  </label>
+                  <mat-radio-group id="spinner-mode" [(ngModel)]="spinnerMode">
                     <mat-radio-button
                       class="example-margin"
                       value="determinate"
@@ -541,8 +562,10 @@
                   *ngIf="spinnerMode === 'determinate'"
                   class="example-section"
                 >
-                  <label class="example-margin">Progress:</label>
-                  <mat-slider class="example-margin">
+                  <label class="example-margin" for="spinner-progress">
+                    Progress:
+                  </label>
+                  <mat-slider class="example-margin" id="spinner-progress">
                     <input matSliderThumb [(ngModel)]="spinnerValue" />
                   </mat-slider>
                 </section>
@@ -558,8 +581,7 @@
                   [mode]="spinnerMode"
                   [value]="spinnerValue"
                   class="example-margin"
-                >
-                </mat-progress-spinner>
+                />
               </mat-card-content>
             </mat-card>
           </section>
@@ -569,24 +591,26 @@
           <mat-card>
             <mat-card-content>
               <h2>Material Progress Bar</h2>
-              <label>
+              <label for="indeterminate-progress-bar">
                 Indeterminate progress-bar
-                <mat-progress-bar
-                  aria-label="Indeterminate progress-bar example"
-                  class="progress"
-                  mode="indeterminate"
-                ></mat-progress-bar>
               </label>
-              <label>
+              <mat-progress-bar
+                aria-label="Indeterminate progress-bar example"
+                class="progress"
+                mode="indeterminate"
+                id="indeterminate-progress-bar"
+              />
+              <label for="determinate-progress-bar">
                 Determinate progress bar - {{ progress }}%
-                <mat-progress-bar
-                  [value]="progress"
-                  aria-label="Determinate progress-bar example"
-                  class="progress"
-                  color="accent"
-                  mode="determinate"
-                ></mat-progress-bar>
               </label>
+              <mat-progress-bar
+                [value]="progress"
+                aria-label="Determinate progress-bar example"
+                class="progress"
+                color="accent"
+                mode="determinate"
+                id="determinate-progress-bar"
+              />
             </mat-card-content>
           </mat-card>
           <!-- /Material Progress Bar -->
@@ -599,8 +623,11 @@
               <h2>Material Chips</h2>
               <mat-chip-listbox>
                 <mat-chip-option
-                  *ngFor="let chipColor of availableSpinnerColors"
-                  color="{{ chipColor.color }}"
+                  *ngFor="
+                    let chipColor of availableSpinnerColors;
+                    trackBy: trackBySpinnerColor
+                  "
+                  [color]="chipColor.color"
                   selected="true"
                 >
                   {{ chipColor.name }}
@@ -661,38 +688,26 @@
               <mat-form-field color="primary" appearance="fill">
                 <mat-label>Choose a date (default)</mat-label>
                 <input matInput [matDatepicker]="picker1" />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="picker1"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker>
+                <mat-datepicker-toggle matSuffix [for]="picker1" />
+                <mat-datepicker #picker1 />
               </mat-form-field>
               <mat-form-field color="accent" appearance="fill">
                 <mat-label>Choose a date (accent)</mat-label>
                 <input matInput [matDatepicker]="picker2" />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="picker2"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #picker2></mat-datepicker>
+                <mat-datepicker-toggle matSuffix [for]="picker2" />
+                <mat-datepicker #picker2 />
               </mat-form-field>
               <mat-form-field color="warn" appearance="fill">
                 <mat-label>Choose a date (warn)</mat-label>
                 <input matInput [matDatepicker]="picker3" />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="picker3"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #picker3></mat-datepicker>
+                <mat-datepicker-toggle matSuffix [for]="picker3" />
+                <mat-datepicker #picker3 />
               </mat-form-field>
               <mat-form-field color="accent" appearance="fill">
                 <mat-label>Custom (accent/primary)</mat-label>
                 <input matInput [matDatepicker]="picker4" />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="picker4"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #picker4 color="primary"></mat-datepicker>
+                <mat-datepicker-toggle matSuffix [for]="picker4" />
+                <mat-datepicker #picker4 color="primary" />
               </mat-form-field>
             </mat-card-content>
           </mat-card>
@@ -708,11 +723,8 @@
                   <input matStartDate placeholder="Start date" />
                   <input matEndDate placeholder="End date" />
                 </mat-date-range-input>
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="rangePicker1"
-                ></mat-datepicker-toggle>
-                <mat-date-range-picker #rangePicker1></mat-date-range-picker>
+                <mat-datepicker-toggle matSuffix [for]="rangePicker1" />
+                <mat-date-range-picker #rangePicker1 />
               </mat-form-field>
               <mat-form-field color="accent" appearance="fill">
                 <mat-label>Enter a date range (accent)</mat-label>
@@ -720,11 +732,8 @@
                   <input matStartDate placeholder="Start date" />
                   <input matEndDate placeholder="End date" />
                 </mat-date-range-input>
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="rangePicker2"
-                ></mat-datepicker-toggle>
-                <mat-date-range-picker #rangePicker2></mat-date-range-picker>
+                <mat-datepicker-toggle matSuffix [for]="rangePicker2" />
+                <mat-date-range-picker #rangePicker2 />
               </mat-form-field>
               <mat-form-field color="warn" appearance="fill">
                 <mat-label>Enter a date range (warn)</mat-label>
@@ -732,11 +741,8 @@
                   <input matStartDate placeholder="Start date" />
                   <input matEndDate placeholder="End date" />
                 </mat-date-range-input>
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="rangePicker3"
-                ></mat-datepicker-toggle>
-                <mat-date-range-picker #rangePicker3></mat-date-range-picker>
+                <mat-datepicker-toggle matSuffix [for]="rangePicker3" />
+                <mat-date-range-picker #rangePicker3 />
               </mat-form-field>
             </mat-card-content>
           </mat-card>
@@ -765,11 +771,13 @@
     </section>
 
     <!-- Material Fab-->
-    <button class="fab" mat-fab>
-      <mat-icon aria-label="Example icon-button with a heart icon"
-        >favorite</mat-icon
-      >
-    </button>
+    <a
+      class="fab"
+      mat-fab
+      href="https://github.com/johannesjo/angular-material-css-vars#sponsor-button"
+    >
+      <mat-icon aria-label="Sponsor">favorite</mat-icon>
+    </a>
     <!-- /Material Fab-->
   </div>
 </mat-sidenav-container>
