@@ -42,7 +42,7 @@ export class MaterialCssVarsService {
   primary = "#03a9f4";
   accent = "#e91e63";
   warn = "#f44336";
-  isDarkTheme = false; // ToDo: make this attribute optional in next major version
+  isDarkTheme?: boolean;
   contrastColorThresholdPrimary: HueValue = "400";
   contrastColorThresholdAccent: HueValue = "400";
   contrastColorThresholdWarn: HueValue = "400";
@@ -165,9 +165,7 @@ export class MaterialCssVarsService {
     threshold: HueValue,
     palettePrefix: MatCssPalettePrefix,
   ) {
-    // ToDo: address this lint error
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    if (!threshold || !palettePrefix || this.isAutoContrast) {
+    if (this.isAutoContrast) {
       return;
     }
     let color = MaterialCssVarsService.DARK_TEXT_VAR;
