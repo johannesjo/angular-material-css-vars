@@ -185,6 +185,7 @@ In case you are still using the legacy components, you can use the package [angu
 
 | Angular | angular-material-css-vars |
 | ------- | ------------------------- |
+| 17      | 6.x                       |
 | 16      | 5.x                       |
 | 15      | 4.x                       |
 | 13/14   | 3.x                       |
