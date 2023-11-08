@@ -191,29 +191,6 @@ export class MaterialCssVarsService {
     this.setWarnColor(this.warn);
   }
 
-  /** @deprecated use setContrastColorThresholdPrimary instead */
-  changeContrastColorThresholdPrimary(threshold: HueValue) {
-    this.setContrastColorThresholdPrimary(threshold);
-  }
-
-  /** @deprecated use setContrastColorThresholdAccent instead */
-  changeContrastColorThresholdAccent(threshold: HueValue) {
-    this.setContrastColorThresholdAccent(threshold);
-  }
-
-  /** @deprecated use setContrastColorThresholdWarn instead */
-  changeContrastColorThresholdWarn(threshold: HueValue) {
-    this.setContrastColorThresholdWarn(threshold);
-  }
-
-  /** @deprecated use setContrastColorThreshold instead */
-  changeContrastColorThreshold(
-    threshold: HueValue,
-    palettePrefix: MatCssPalettePrefix,
-  ) {
-    this.setContrastColorThreshold(threshold, palettePrefix);
-  }
-
   getPaletteForColor(hex: string): MatCssHueColorMapItem[] {
     if (this.cfg.isAlternativeColorAlgorithm) {
       return this.getTraditionalPaletteForColor(hex);
