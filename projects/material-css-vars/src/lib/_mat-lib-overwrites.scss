@@ -30,18 +30,18 @@
   .mat-mdc-mini-fab:not(:disabled) {
     &.mat-primary {
       --mdc-fab-container-color: #{$primary};
-      --mdc-fab-icon-color: #{$primary-contrast};
-      --mat-mdc-fab-color: #{$primary-contrast};
+      --mat-fab-foreground-color: #{$primary-contrast};
+      --mat-fab-state-layer-color: #{$primary-contrast};
     }
     &.mat-accent {
       --mdc-fab-container-color: #{$accent};
-      --mdc-fab-icon-color: #{$accent-contrast};
-      --mat-mdc-fab-color: #{$accent-contrast};
+      --mat-fab-foreground-color: #{$accent-contrast};
+      --mat-fab-state-layer-color: #{$accent-contrast};
     }
     &.mat-warn {
       --mdc-fab-container-color: #{$warn};
-      --mdc-fab-icon-color: #{$warn-contrast};
-      --mat-mdc-fab-color: #{$warn-contrast};
+      --mat-fab-foreground-color: #{$warn-contrast};
+      --mat-fab-state-layer-color: #{$warn-contrast};
     }
   }
 }
