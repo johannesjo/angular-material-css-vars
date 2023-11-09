@@ -30,18 +30,18 @@
   .mat-mdc-mini-fab:not(:disabled) {
     &.mat-primary {
       --mdc-fab-container-color: #{$primary};
-      --mdc-fab-icon-color: #{$primary-contrast};
-      --mat-mdc-fab-color: #{$primary-contrast};
+      --mat-fab-foreground-color: #{$primary-contrast};
+      --mat-fab-state-layer-color: #{$primary-contrast};
     }
     &.mat-accent {
       --mdc-fab-container-color: #{$accent};
-      --mdc-fab-icon-color: #{$accent-contrast};
-      --mat-mdc-fab-color: #{$accent-contrast};
+      --mat-fab-foreground-color: #{$accent-contrast};
+      --mat-fab-state-layer-color: #{$accent-contrast};
     }
     &.mat-warn {
       --mdc-fab-container-color: #{$warn};
-      --mdc-fab-icon-color: #{$warn-contrast};
-      --mat-mdc-fab-color: #{$warn-contrast};
+      --mat-fab-foreground-color: #{$warn-contrast};
+      --mat-fab-state-layer-color: #{$warn-contrast};
     }
   }
 }
@@ -53,32 +53,59 @@
   $color-primary: public-util.mat-css-color(500, null, "primary", true);
   $color-accent: public-util.mat-css-color(500, null, "accent", true);
   $color-warn: public-util.mat-css-color(500, null, "warn", true);
+  $color-primary-ripple: public-util.mat-css-color(500, 0.1, "primary");
+  $color-accent-ripple: public-util.mat-css-color(500, 0.1, "accent");
+  $color-warn-ripple: public-util.mat-css-color(500, 0.1, "warn");
 
-  .mat-mdc-button,
-  .mat-mdc-outlined-button,
   .mat-mdc-icon-button {
-    &.mat-primary {
-      --mat-mdc-button-ripple-color: #{public-util.mat-css-color(
-          500,
-          0.1,
-          "primary"
-        )};
-    }
-    &.mat-accent {
-      --mat-mdc-button-ripple-color: #{public-util.mat-css-color(
-          500,
-          0.1,
-          "accent"
-        )};
-    }
-    &.mat-warn {
-      --mat-mdc-button-ripple-color: #{public-util.mat-css-color(
-          500,
-          0.1,
-          "warn"
-        )};
+    &,
+    #{variables.$dark-theme-selector} & {
+      &.mat-primary {
+        --mat-icon-button-ripple-color: #{$color-primary-ripple};
+      }
+      &.mat-accent {
+        --mat-icon-button-ripple-color: #{$color-accent-ripple};
+      }
+      &.mat-warn {
+        --mat-icon-button-ripple-color: #{$color-warn-ripple};
+      }
     }
   }
+
+  .mat-mdc-button {
+    &,
+    #{variables.$dark-theme-selector} & {
+      &.mat-primary {
+        --mat-text-button-ripple-color: #{$color-primary-ripple};
+      }
+
+      &.mat-accent {
+        --mat-text-button-ripple-color: #{$color-accent-ripple};
+      }
+
+      &.mat-warn {
+        --mat-text-button-ripple-color: #{$color-warn-ripple};
+      }
+    }
+  }
+
+  .mat-mdc-outlined-button {
+    &,
+    #{variables.$dark-theme-selector} & {
+      &.mat-primary {
+        --mat-outlined-button-ripple-color: #{$color-primary-ripple};
+      }
+
+      &.mat-accent {
+        --mat-outlined-button-ripple-color: #{$color-accent-ripple};
+      }
+
+      &.mat-warn {
+        --mat-outlined-button-ripple-color: #{$color-warn-ripple};
+      }
+    }
+  }
+
   .mat-mdc-unelevated-button:not(:disabled),
   .mat-mdc-raised-button:not(:disabled) {
     &.mat-primary {
