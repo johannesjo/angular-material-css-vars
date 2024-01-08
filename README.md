@@ -37,6 +37,24 @@ import { MaterialCssVarsModule } from "angular-material-css-vars";
 export class AppModule {}
 ```
 
+In standalone workspaces, add the following to your `app.config.ts`:
+
+```typescript
+import { ApplicationConfig } from "@angular/core";
+import { provideMaterialCssVars } from "angular-material-css-vars";
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideMaterialCssVars({
+      // all optional
+      isAutoContrast: true,
+      primary: "#3f51b5",
+      // ...
+    }),
+  ],
+};
+```
+
 5. If you want to adjust the theme at runtime, you can use `MaterialCssVarsService`:
 
    ```typescript
