@@ -58,7 +58,7 @@
   $color-warn-ripple: public-util.mat-css-color(500, 0.1, "warn");
 
   .mat-mdc-icon-button {
-    &,
+    html &,
     #{variables.$dark-theme-selector} & {
       &.mat-primary {
         --mat-icon-button-ripple-color: #{$color-primary-ripple};
