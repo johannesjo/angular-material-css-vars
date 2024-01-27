@@ -10,7 +10,7 @@
     "ubl": "npx browserslist@latest --update-db",
     "demo": "run-s demo.build demo.gh-pages",
     "demo.build": "ng build --aot --configuration production --base-href='./'",
-    "demo.gh-pages": "gh-pages -d dist/angular-material-css-vars",
+    "demo.gh-pages": "gh-pages -d dist/angular-material-css-vars/browser",
     "lib": "run-s lib.build copy",
     "lib.build": "ng build material-css-vars",
     "copy": "run-s copy.licence copy.readme",
