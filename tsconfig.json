@@ -20,16 +20,16 @@
     "paths": {
       "angular-material-css-variables": ["dist/angular-material-css-variables"],
       "angular-material-css-variables/*": [
-        "dist/angular-material-css-variables/*",
+        "dist/angular-material-css-variables/*"
       ],
       "material-css-vars": ["dist/material-css-vars"],
-      "material-css-vars/*": ["dist/material-css-vars/*"],
+      "material-css-vars/*": ["dist/material-css-vars/*"]
     },
-    "useDefineForClassFields": false,
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "strictTemplates": true,
     "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-  },
+    "strictInputAccessModifiers": true
+  }
 }
