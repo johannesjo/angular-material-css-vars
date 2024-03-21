@@ -19,29 +19,37 @@
 // FAB component
 // ---------------------------
 @mixin _mat-mdc-fab-overwrites {
-  $primary: public-util.mat-css-color(500, null, "primary");
-  $accent: public-util.mat-css-color(500, null, "accent");
-  $warn: public-util.mat-css-color(500, null, "warn");
   $primary-contrast: public-util.mat-css-color(500, null, "primary", true);
   $accent-contrast: public-util.mat-css-color(500, null, "accent", true);
   $warn-contrast: public-util.mat-css-color(500, null, "warn", true);
 
-  .mat-mdc-fab:not(:disabled),
-  .mat-mdc-mini-fab:not(:disabled) {
+  .mat-mdc-fab:not(:disabled) {
     &.mat-primary {
-      --mdc-fab-container-color: #{$primary};
       --mat-fab-foreground-color: #{$primary-contrast};
       --mat-fab-state-layer-color: #{$primary-contrast};
     }
     &.mat-accent {
-      --mdc-fab-container-color: #{$accent};
       --mat-fab-foreground-color: #{$accent-contrast};
       --mat-fab-state-layer-color: #{$accent-contrast};
     }
     &.mat-warn {
-      --mdc-fab-container-color: #{$warn};
       --mat-fab-foreground-color: #{$warn-contrast};
       --mat-fab-state-layer-color: #{$warn-contrast};
+    }
+  }
+
+  .mat-mdc-mini-fab:not(:disabled) {
+    &.mat-primary {
+      --mat-fab-small-foreground-color: #{$primary-contrast};
+      --mat-fab-small-state-layer-color: #{$primary-contrast};
+    }
+    &.mat-accent {
+      --mat-fab-small-foreground-color: #{$accent-contrast};
+      --mat-fab-small-state-layer-color: #{$accent-contrast};
+    }
+    &.mat-warn {
+      --mat-fab-small-foreground-color: #{$warn-contrast};
+      --mat-fab-small-state-layer-color: #{$warn-contrast};
     }
   }
 }
