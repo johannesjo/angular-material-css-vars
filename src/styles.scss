@@ -3,10 +3,10 @@
 
 @import "./app/app.theme";
 
-$custom-typography: mat.define-typography-config(
+$custom-typography: mat.m2-define-typography-config(
   $font-family: "Roboto, monospace",
-  $body-1: mat.define-typography-level(16px, 24px, 500),
-  $headline-1: mat.define-typography-level(16px, 24px, 500),
+  $body-1: mat.m2-define-typography-level(16px, 24px, 500),
+  $headline-1: mat.m2-define-typography-level(16px, 24px, 500),
 );
 
 @include mat-css-vars.init-material-css-vars(
@@ -17,11 +17,14 @@ $custom-typography: mat.define-typography-config(
 }
 
 @include mat-css-vars.mat-css-set-palette-defaults(
-  mat.$light-blue-palette,
+  mat.$m2-light-blue-palette,
   "primary"
 );
-@include mat-css-vars.mat-css-set-palette-defaults(mat.$pink-palette, "accent");
-@include mat-css-vars.mat-css-set-palette-defaults(mat.$red-palette, "warn");
+@include mat-css-vars.mat-css-set-palette-defaults(
+  mat.$m2-pink-palette,
+  "accent"
+);
+@include mat-css-vars.mat-css-set-palette-defaults(mat.$m2-red-palette, "warn");
 
 body {
   padding: 0;

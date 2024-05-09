@@ -14,16 +14,16 @@
 
 @mixin init-mat-theme(
   $dark-theme-selector,
-  $typography-config: mat.define-typography-config(),
+  $typography-config: mat.m2-define-typography-config(),
   $density
 ) {
   @include mat.core();
 
-  $primary: mat.define-palette(variables.$palette-primary);
-  $accent: mat.define-palette(variables.$palette-accent);
-  $warn: mat.define-palette(variables.$palette-warn);
+  $primary: mat.m2-define-palette(variables.$palette-primary);
+  $accent: mat.m2-define-palette(variables.$palette-accent);
+  $warn: mat.m2-define-palette(variables.$palette-warn);
 
-  $theme: mat.define-light-theme(
+  $theme: mat.m2-define-light-theme(
     (
       color: (
         primary: $primary,
@@ -35,7 +35,7 @@
     )
   );
 
-  $dark-theme: mat.define-dark-theme(
+  $dark-theme: mat.m2-define-dark-theme(
     (
       color: (
         primary: $primary,
@@ -77,7 +77,7 @@
   $default-theme: variables.$default-light-theme,
   $dark-theme-selector: variables.$dark-theme-selector,
   $default-theme-text: variables.$text,
-  $typography-config: mat.define-typography-config(),
+  $typography-config: mat.m2-define-typography-config(),
   $density: 0
 ) {
   @include init-css-vars($default-theme, $default-theme-text);
