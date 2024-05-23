@@ -70,6 +70,10 @@ export const appConfig: ApplicationConfig = {
    }
    ```
 
+> Angular Material v18 introduced stable support for M3 theme.
+> For now, this library only supports M2.
+> More information can be found in this [issue](https://github.com/johannesjo/angular-material-css-vars/issues/166).
+
 ## Additional Features
 
 - Auto or manually set contrast color via
@@ -203,6 +207,7 @@ In case you are still using the legacy components, you can use the package [angu
 
 | Angular | angular-material-css-vars |
 | ------- | ------------------------- |
+| 18      | 7.x                       |
 | 17      | 6.x                       |
 | 16      | 5.x                       |
 | 15      | 4.x                       |
