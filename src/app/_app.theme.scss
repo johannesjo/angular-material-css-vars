@@ -3,7 +3,7 @@
 
 @mixin app-theme($theme) {
   // Extract the palettes you need from the theme definition.
-  $color: mat.get-color-config($theme);
+  $color: mat.m2-get-color-config($theme);
   $primary: map.get($color, primary);
   $accent: map.get($color, accent);
 
@@ -11,6 +11,6 @@
   .app-header {
     // Use mat-color to extract individual colors from a palette.
     // background-color: mat-color($primary);
-    border: medium solid mat.get-color-from-palette($accent, A400);
+    border: medium solid mat.m2-get-color-from-palette($accent, A400);
   }
 }
