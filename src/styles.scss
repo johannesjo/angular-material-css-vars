@@ -1,7 +1,7 @@
 @use "../projects/material-css-vars" as mat-css-vars;
 @use "@angular/material" as mat;
 
-@import "./app/app.theme";
+@use "./app/app.theme" as app;
 
 $custom-typography: mat.m2-define-typography-config(
   $font-family: "Roboto, monospace",
@@ -13,7 +13,7 @@ $custom-typography: mat.m2-define-typography-config(
     $typography-config: $custom-typography
   )
   using($mat-css-theme) {
-  @include app-theme($mat-css-theme);
+  @include app.theme($mat-css-theme);
 }
 
 @include mat-css-vars.mat-css-set-palette-defaults(

@@ -1,3 +1,5 @@
+@use "sass:map";
+@use "sass:meta";
 @use "public-color-util";
 @use "variables";
 
@@ -39,9 +41,9 @@
     }
   }
 
-  $color: map_get($palette_, $hue);
+  $color: map.get($palette_, $hue);
 
-  @if (type-of($opacity) == number) {
+  @if (meta.type-of($opacity) == number) {
     @return rgba($color, $opacity);
   } @else {
     @return $color;
@@ -76,7 +78,7 @@
       @error "Invalid palette";
     }
   }
-  $var: map_get($palette_, $hue);
+  $var: map.get($palette_, $hue);
   @return #{rgba($var, $opacity)};
 }
 
@@ -179,7 +181,7 @@
     @if ($var != "contrast") {
       $colorVal: public-color-util.hex-to-rgb($defaultVal);
       @if $colorVal != null {
-        $new-map: map_merge(
+        $new-map: map.merge(
           $new-map,
           (--palette-#{$paletteType}-#{$var}: #{$colorVal})
         );

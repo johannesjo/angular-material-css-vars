@@ -1,8 +1,11 @@
-﻿@function hex-to-rgb($color) {
+﻿@use "sass:color";
+
+@function hex-to-rgb($color) {
   @if ($color == null) {
     @return null;
   }
-  @return red($color), green($color), blue($color);
+  @return color.channel($color, "red"), color.channel($color, "green"),
+    color.channel($color, "blue");
 }
 
 @function hex-to-rgba($color) {
