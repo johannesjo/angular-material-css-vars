@@ -1,3 +1,5 @@
+@use "sass:meta";
+
 // used to circumvent node sass issue: https://github.com/sass/node-sass/issues/2251
 @function rgb($r, $g: null, $b: null) {
   @if ($g == null) {
@@ -42,7 +44,7 @@
 @mixin root($varMap: null) {
   @at-root :root {
     @each $varName, $varValue in $varMap {
-      @if (type_of($varValue) ==string) {
+      @if (meta.type-of($varValue) == string) {
         #{$varName}: $varValue; // to prevent quotes interpolation
       } @else {
         #{$varName}: #{$varValue};

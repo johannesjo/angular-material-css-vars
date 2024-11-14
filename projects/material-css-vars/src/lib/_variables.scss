@@ -1,5 +1,6 @@
 @use "@angular/material" as mat;
 @use "public-color-util";
+@use "sass:map";
 
 $dark-theme-selector: ".isDarkTheme" !default;
 $light-theme-selector: ".isLightTheme" !default;
@@ -507,15 +508,15 @@ $palette-warn-no-rgb: (
   ),
 ) !default;
 
-$contrast-palette: map_get($palette-primary, "contrast") !default;
-$contrast-palette-no-rgb: map_get($palette-primary-no-rgb, "contrast") !default;
-$contrast-palette-accent: map_get($palette-accent, "contrast") !default;
-$contrast-palette-accent-no-rgb: map_get(
+$contrast-palette: map.get($palette-primary, "contrast") !default;
+$contrast-palette-no-rgb: map.get($palette-primary-no-rgb, "contrast") !default;
+$contrast-palette-accent: map.get($palette-accent, "contrast") !default;
+$contrast-palette-accent-no-rgb: map.get(
   $palette-accent-no-rgb,
   "contrast"
 ) !default;
-$contrast-palette-warn: map_get($palette-warn, "contrast") !default;
-$contrast-palette-warn-no-rgb: map_get(
+$contrast-palette-warn: map.get($palette-warn, "contrast") !default;
+$contrast-palette-warn-no-rgb: map.get(
   $palette-warn-no-rgb,
   "contrast"
 ) !default;
