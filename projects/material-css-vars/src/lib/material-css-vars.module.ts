@@ -14,19 +14,16 @@ import { MaterialCssVarsService } from "./material-css-vars.service";
 @NgModule({
   imports: [CommonModule],
 })
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class MaterialCssVarsModule {
   static forRoot(
     config?: Partial<MaterialCssVariablesConfig>,
   ): ModuleWithProviders<MaterialCssVarsModule> {
     return {
       ngModule: MaterialCssVarsModule,
-      providers: [{ provide: MATERIAL_CSS_VARS_CFG, useValue: config }],
+      providers: [provideMaterialCssVars(config)],
     };
   }
-
-  // This is necessary, so the service is constructed, even if the service is never injected
-  // ToDo: change to environment initializer, like in the provideMaterialCssVars() function below
-  constructor(private materialCssVarsService: MaterialCssVarsService) {}
 }
 
 export function provideMaterialCssVars(
