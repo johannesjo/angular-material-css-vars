@@ -1,10 +1,10 @@
 import {
-  ENVIRONMENT_INITIALIZER,
   EnvironmentProviders,
   inject,
   makeEnvironmentProviders,
   ModuleWithProviders,
   NgModule,
+  provideEnvironmentInitializer,
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MaterialCssVariablesConfig } from "./model";
@@ -34,10 +34,6 @@ export function provideMaterialCssVars(
 ): EnvironmentProviders {
   return makeEnvironmentProviders([
     { provide: MATERIAL_CSS_VARS_CFG, useValue: config },
-    {
-      provide: ENVIRONMENT_INITIALIZER,
-      useValue: () => inject(MaterialCssVarsService),
-      multi: true,
-    },
+    provideEnvironmentInitializer(() => inject(MaterialCssVarsService)),
   ]);
 }

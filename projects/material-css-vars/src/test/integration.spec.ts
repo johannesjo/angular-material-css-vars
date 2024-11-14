@@ -7,7 +7,6 @@ import { By } from "@angular/platform-browser";
 
 @Component({
   template: ` <button mat-raised-button [color]="color">Button text</button>`,
-  standalone: true,
   imports: [MatButtonModule],
 })
 class ButtonComponent {
