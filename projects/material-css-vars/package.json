@@ -45,15 +45,6 @@
     },
     "./variables": {
       "sass": "./src/lib/_variables.scss"
-    },
-    "./src/lib/main": {
-      "sass": "./src/lib/legacy/main.scss"
-    },
-    "./src/lib/public-util": {
-      "sass": "./src/lib/legacy/public-util.scss"
-    },
-    "./src/lib/variables": {
-      "sass": "./src/lib/legacy/variables.scss"
     }
   }
 }
