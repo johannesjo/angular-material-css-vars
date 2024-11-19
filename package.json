@@ -32,16 +32,16 @@
     "prettier-fix": "prettier . --write"
   },
   "dependencies": {
-    "@angular/animations": "^19.0.0-rc.2",
-    "@angular/cdk": "^19.0.0-rc.2",
-    "@angular/common": "^19.0.0-rc.2",
-    "@angular/compiler": "^19.0.0-rc.2",
-    "@angular/core": "^19.0.0-rc.2",
-    "@angular/forms": "^19.0.0-rc.2",
-    "@angular/material": "^19.0.0-rc.2",
-    "@angular/platform-browser": "^19.0.0-rc.2",
-    "@angular/platform-browser-dynamic": "^19.0.0-rc.2",
-    "@angular/router": "^19.0.0-rc.2",
+    "@angular/animations": "^19.0.0",
+    "@angular/cdk": "^19.0.0",
+    "@angular/common": "^19.0.0",
+    "@angular/compiler": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/forms": "^19.0.0",
+    "@angular/material": "^19.0.0",
+    "@angular/platform-browser": "^19.0.0",
+    "@angular/platform-browser-dynamic": "^19.0.0",
+    "@angular/router": "^19.0.0",
     "@ctrl/tinycolor": "^4.0.0",
     "ngx-color-picker": "^17.0.0",
     "rxjs": "~7.8.0",
@@ -49,15 +49,15 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.0.0-rc.2",
+    "@angular-devkit/build-angular": "^19.0.0",
     "@angular-eslint/builder": "^18.0.0",
     "@angular-eslint/eslint-plugin": "^18.0.0",
     "@angular-eslint/eslint-plugin-template": "^18.0.0",
     "@angular-eslint/schematics": "^18.0.0",
     "@angular-eslint/template-parser": "^18.0.0",
-    "@angular/cli": "^19.0.0-rc.2",
-    "@angular/compiler-cli": "^19.0.0-rc.2",
-    "@angular/language-service": "^19.0.0-rc.2",
+    "@angular/cli": "^19.0.0",
+    "@angular/compiler-cli": "^19.0.0",
+    "@angular/language-service": "^19.0.0",
     "@types/jasmine": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.0.0",
@@ -72,14 +72,14 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^2.0.0",
     "karma-safarinative-launcher": "^1.1.0",
-    "ng-packagr": "^19.0.0-rc.0",
+    "ng-packagr": "^19.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.0",
     "typescript": "~5.5.3"
   },
   "overrides": {
-    "@angular/common": "^19.0.0-rc.2",
-    "@angular/core": "^19.0.0-rc.2",
-    "@angular/forms": "^19.0.0-rc.2"
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/forms": "^19.0.0"
   }
 }
