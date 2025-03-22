@@ -1,3 +1,4 @@
+@use "@angular/material" as mat;
 @use "public-util";
 @use "variables";
 
@@ -224,34 +225,32 @@
 // ---------------------------
 @mixin _mat-mdc-date-picker-overwrites {
   .mat-datepicker-content {
-    &.mat-primary {
-      @include _mat-date-picker-color-overwrites("primary");
-    }
-    &.mat-accent {
-      @include _mat-date-picker-color-overwrites("accent");
-    }
-    &.mat-warn {
-      @include _mat-date-picker-color-overwrites("warn");
+    &,
+    #{variables.$dark-theme-selector} & {
+      &.mat-primary {
+        @include _mat-date-picker-color-overwrites("primary");
+      }
+      &.mat-accent {
+        @include _mat-date-picker-color-overwrites("accent");
+      }
+      &.mat-warn {
+        @include _mat-date-picker-color-overwrites("warn");
+      }
     }
   }
 }
 
 @mixin _mat-date-picker-color-overwrites($palette) {
-  .mat-calendar-body-in-range::before {
-    background: public-util.mat-css-color(500, 0.2, $palette);
-  }
-  .mat-calendar-body-cell:not(
-      .mat-calendar-body-disabled
-    ).mat-calendar-body-active
-    > .mat-calendar-body-today {
-    color: public-util.mat-css-color(500, null, $palette, true);
-  }
-  .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover
-    > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(
-      .mat-calendar-body-comparison-identical
-    ) {
-    background: public-util.mat-css-color(500, 0.3, $palette);
-  }
+  $date-background-color: public-util.mat-css-color(500, 0.3, $palette);
+  $range-background-color: public-util.mat-css-color(500, 0.2, $palette);
+
+  @include mat.datepicker-overrides(
+    (
+      calendar-date-focus-state-background-color: $date-background-color,
+      calendar-date-hover-state-background-color: $date-background-color,
+      calendar-date-in-range-state-background-color: $range-background-color,
+    )
+  );
 }
 
 // ---------------------------
