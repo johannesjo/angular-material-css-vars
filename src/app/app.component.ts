@@ -31,7 +31,7 @@ import { FormsModule } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
-import { ColorPickerModule } from "ngx-color-picker";
+import { ColorPickerDirective } from "ngx-color-picker";
 import { MatCardModule } from "@angular/material/card";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatSidenavModule } from "@angular/material/sidenav";
@@ -61,7 +61,7 @@ interface SpinnerColor {
     MatSidenavModule,
     MatToolbarModule,
     MatCardModule,
-    ColorPickerModule,
+    ColorPickerDirective,
     MatSlideToggleModule,
     MatFormFieldModule,
     MatSelectModule,
