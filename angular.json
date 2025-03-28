@@ -115,7 +115,8 @@
             "main": "projects/material-css-vars/src/test.ts",
             "tsConfig": "projects/material-css-vars/tsconfig.spec.json",
             "karmaConfig": "projects/material-css-vars/karma.conf.js",
-            "styles": ["projects/material-css-vars/src/test/global-styles.scss"]
+            "styles": ["projects/material-css-vars/src/test/global-styles.scss"],
+            "codeCoverage": true
           }
         },
         "lint": {

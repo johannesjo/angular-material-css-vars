@@ -102,7 +102,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: test
-        run: pnpm test -- --watch=false --browsers=SafariNative
+        run: pnpm test --watch=false --browsers=SafariNative
 
   prettier:
     runs-on: ubuntu-latest
