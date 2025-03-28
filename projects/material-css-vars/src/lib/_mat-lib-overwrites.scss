@@ -6,9 +6,7 @@
 // MDC Overwrites
 // ---------------------------
 @mixin other-overwrites {
-  @include _mat-mdc-fab-overwrites();
   @include _mat-mdc-button-overwrites();
-  @include _mat-mdc-form-field-overwrites();
   @include _mat-mdc-slide-toggle-overwrites();
   @include _mat-mdc-checkbox-overwrites();
   @include _mat-mdc-date-picker-overwrites();
@@ -17,207 +15,109 @@
 }
 
 // ---------------------------
-// FAB component
-// ---------------------------
-@mixin _mat-mdc-fab-overwrites {
-  $primary-contrast: public-util.mat-css-color(500, null, "primary", true);
-  $accent-contrast: public-util.mat-css-color(500, null, "accent", true);
-  $warn-contrast: public-util.mat-css-color(500, null, "warn", true);
-
-  .mat-mdc-fab:not(:disabled) {
-    &.mat-primary {
-      --mat-fab-foreground-color: #{$primary-contrast};
-      --mat-fab-state-layer-color: #{$primary-contrast};
-    }
-    &.mat-accent {
-      --mat-fab-foreground-color: #{$accent-contrast};
-      --mat-fab-state-layer-color: #{$accent-contrast};
-    }
-    &.mat-warn {
-      --mat-fab-foreground-color: #{$warn-contrast};
-      --mat-fab-state-layer-color: #{$warn-contrast};
-    }
-  }
-
-  .mat-mdc-mini-fab:not(:disabled) {
-    &.mat-primary {
-      --mat-fab-small-foreground-color: #{$primary-contrast};
-      --mat-fab-small-state-layer-color: #{$primary-contrast};
-    }
-    &.mat-accent {
-      --mat-fab-small-foreground-color: #{$accent-contrast};
-      --mat-fab-small-state-layer-color: #{$accent-contrast};
-    }
-    &.mat-warn {
-      --mat-fab-small-foreground-color: #{$warn-contrast};
-      --mat-fab-small-state-layer-color: #{$warn-contrast};
-    }
-  }
-}
-
-// ---------------------------
 // BUTTON component
 // ---------------------------
 @mixin _mat-mdc-button-overwrites {
-  $color-primary: public-util.mat-css-color(500, null, "primary", true);
-  $color-accent: public-util.mat-css-color(500, null, "accent", true);
-  $color-warn: public-util.mat-css-color(500, null, "warn", true);
-  $color-primary-ripple: public-util.mat-css-color(500, 0.1, "primary");
-  $color-accent-ripple: public-util.mat-css-color(500, 0.1, "accent");
-  $color-warn-ripple: public-util.mat-css-color(500, 0.1, "warn");
-
-  .mat-mdc-icon-button {
-    html &,
-    #{variables.$dark-theme-selector} & {
+  .mat-mdc-button-base {
+    @include public-util.mat-css-light-dark-theme-global {
       &.mat-primary {
-        --mat-icon-button-ripple-color: #{$color-primary-ripple};
+        @include _mat-mdc-button-color-overwrites("primary");
       }
       &.mat-accent {
-        --mat-icon-button-ripple-color: #{$color-accent-ripple};
+        @include _mat-mdc-button-color-overwrites("accent");
       }
       &.mat-warn {
-        --mat-icon-button-ripple-color: #{$color-warn-ripple};
+        @include _mat-mdc-button-color-overwrites("warn");
       }
-    }
-  }
-
-  .mat-mdc-button {
-    &,
-    #{variables.$dark-theme-selector} & {
-      &.mat-primary {
-        --mat-text-button-ripple-color: #{$color-primary-ripple};
-      }
-
-      &.mat-accent {
-        --mat-text-button-ripple-color: #{$color-accent-ripple};
-      }
-
-      &.mat-warn {
-        --mat-text-button-ripple-color: #{$color-warn-ripple};
-      }
-    }
-  }
-
-  .mat-mdc-outlined-button {
-    &,
-    #{variables.$dark-theme-selector} & {
-      &.mat-primary {
-        --mat-outlined-button-ripple-color: #{$color-primary-ripple};
-      }
-
-      &.mat-accent {
-        --mat-outlined-button-ripple-color: #{$color-accent-ripple};
-      }
-
-      &.mat-warn {
-        --mat-outlined-button-ripple-color: #{$color-warn-ripple};
-      }
-    }
-  }
-
-  .mat-mdc-unelevated-button:not(:disabled),
-  .mat-mdc-raised-button:not(:disabled) {
-    &.mat-primary {
-      --mdc-filled-button-label-text-color: #{$color-primary};
-      --mdc-protected-button-label-text-color: #{$color-primary};
-    }
-    &.mat-accent {
-      --mdc-filled-button-label-text-color: #{$color-accent};
-      --mdc-protected-button-label-text-color: #{$color-accent};
-    }
-    &.mat-warn {
-      --mdc-filled-button-label-text-color: #{$color-warn};
-      --mdc-protected-button-label-text-color: #{$color-warn};
     }
   }
 }
 
-// ---------------------------
-// FORM FIELD component
-// ---------------------------
-@mixin _mat-mdc-form-field-overwrites {
-  .mat-mdc-form-field {
-    &.mat-primary {
-      .mdc-text-field--focused:not(.mdc-text-field--disabled)
-        .mdc-floating-label {
-        color: public-util.mat-css-color-primary(500, 0.87);
-      }
-    }
-    &.mat-accent {
-      .mdc-text-field--focused:not(.mdc-text-field--disabled)
-        .mdc-floating-label {
-        color: public-util.mat-css-color-accent(500, 0.87);
-      }
-    }
-    &.mat-warn {
-      .mdc-text-field--focused:not(.mdc-text-field--disabled)
-        .mdc-floating-label {
-        color: public-util.mat-css-color-warn(500, 0.87);
-      }
-    }
-  }
+@mixin _mat-mdc-button-color-overwrites($palette) {
+  $contrast-color: public-util.mat-css-color(500, null, $palette, true);
+  $ripple-color: public-util.mat-css-color(500, 0.1, $palette);
+
+  @include mat.fab-overrides(
+    (
+      foreground-color: $contrast-color,
+      state-layer-color: $contrast-color,
+      small-foreground-color: $contrast-color,
+      small-state-layer-color: $contrast-color,
+    )
+  );
+
+  @include mat.button-overrides(
+    (
+      outlined-ripple-color: $ripple-color,
+      text-ripple-color: $ripple-color,
+      filled-label-text-color: $contrast-color,
+      protected-label-text-color: $contrast-color,
+    )
+  );
+
+  @include mat.icon-button-overrides(
+    (
+      ripple-color: $ripple-color,
+    )
+  );
 }
 
 // ---------------------------
 // SLIDE TOGGLE component
 // ---------------------------
 @mixin _mat-mdc-slide-toggle-overwrites() {
-  $color-primary: public-util.mat-css-color(500, null, "primary", true);
-  $color-accent: public-util.mat-css-color(500, null, "accent", true);
-  $color-warn: public-util.mat-css-color(500, null, "warn", true);
-
   .mat-mdc-slide-toggle {
-    &.mat-primary,
-    &.mat-accent,
-    &.mat-warn {
-      @include public-util.mat-css-light-theme-global() {
-        --mdc-switch-unselected-icon-color: white;
+    @include public-util.mat-css-light-dark-theme-global {
+      &.mat-primary {
+        @include _mat-mdc-slide-toggle-color-overwrites("primary");
       }
-      @include public-util.mat-css-dark-theme-global() {
-        --mdc-switch-unselected-icon-color: black;
+      &.mat-accent {
+        @include _mat-mdc-slide-toggle-color-overwrites("accent");
       }
-    }
-    &.mat-primary {
-      --mdc-switch-selected-icon-color: #{$color-primary};
-      --mdc-switch-disabled-selected-icon-color: #{$color-primary};
-      --mdc-switch-disabled-unselected-icon-color: #{$color-primary};
-    }
-    &.mat-accent {
-      --mdc-switch-selected-icon-color: #{$color-accent};
-      --mdc-switch-disabled-selected-icon-color: #{$color-accent};
-      --mdc-switch-disabled-unselected-icon-color: #{$color-accent};
-    }
-    &.mat-warn {
-      --mdc-switch-selected-icon-color: #{$color-warn};
-      --mdc-switch-disabled-selected-icon-color: #{$color-warn};
-      --mdc-switch-disabled-unselected-icon-color: #{$color-warn};
-      --mdc-switch-unselected-icon-color: #{$color-warn};
+      &.mat-warn {
+        @include _mat-mdc-slide-toggle-color-overwrites("warn");
+      }
     }
   }
+}
+
+@mixin _mat-mdc-slide-toggle-color-overwrites($palette) {
+  $contrast-color: public-util.mat-css-color(500, null, $palette, true);
+
+  @include mat.slide-toggle-overrides(
+    (
+      selected-icon-color: $contrast-color,
+    )
+  );
 }
 
 // ---------------------------
 // CHECKBOX component
 // ---------------------------
 @mixin _mat-mdc-checkbox-overwrites {
-  $color-primary: public-util.mat-css-color(500, null, "primary", true);
-  $color-accent: public-util.mat-css-color(500, null, "accent", true);
-  $color-warn: public-util.mat-css-color(500, null, "warn", true);
-
   .mat-mdc-checkbox {
-    &,
-    #{variables.$dark-theme-selector} & {
+    @include public-util.mat-css-light-dark-theme-global {
       &.mat-primary {
-        --mdc-checkbox-selected-checkmark-color: #{$color-primary};
+        @include _mat-mdc-checkbox-color-overwrites("primary");
       }
       &.mat-accent {
-        --mdc-checkbox-selected-checkmark-color: #{$color-accent};
+        @include _mat-mdc-checkbox-color-overwrites("accent");
       }
       &.mat-warn {
-        --mdc-checkbox-selected-checkmark-color: #{$color-warn};
+        @include _mat-mdc-checkbox-color-overwrites("warn");
       }
     }
   }
+}
+
+@mixin _mat-mdc-checkbox-color-overwrites($palette) {
+  $contrast-color: public-util.mat-css-color(500, null, $palette, true);
+
+  @include mat.checkbox-overrides(
+    (
+      selected-checkmark-color: $contrast-color,
+    )
+  );
 }
 
 // ---------------------------
@@ -225,8 +125,7 @@
 // ---------------------------
 @mixin _mat-mdc-date-picker-overwrites {
   .mat-datepicker-content {
-    &,
-    #{variables.$dark-theme-selector} & {
+    @include public-util.mat-css-light-dark-theme-global {
       &.mat-primary {
         @include _mat-date-picker-color-overwrites("primary");
       }
@@ -258,16 +157,28 @@
 // ---------------------------
 @mixin _mat-mdc-progress-bar-overwrites {
   .mat-mdc-progress-bar {
-    &.mat-primary .mdc-linear-progress__buffer-bar {
-      background-color: public-util.mat-css-color(500, 0.25, "primary");
-    }
-    &.mat-accent .mdc-linear-progress__buffer-bar {
-      background-color: public-util.mat-css-color(500, 0.25, "accent");
-    }
-    &.mat-warn .mdc-linear-progress__buffer-bar {
-      background-color: public-util.mat-css-color(500, 0.25, "warn");
+    @include public-util.mat-css-light-dark-theme-global {
+      &.mat-primary {
+        @include _mat-mdc-progress-bar-color-overwrites("primary");
+      }
+      &.mat-accent {
+        @include _mat-mdc-progress-bar-color-overwrites("accent");
+      }
+      &.mat-warn {
+        @include _mat-mdc-progress-bar-color-overwrites("warn");
+      }
     }
   }
+}
+
+@mixin _mat-mdc-progress-bar-color-overwrites($palette) {
+  $track-color: public-util.mat-css-color(500, 0.25, $palette);
+
+  @include mat.progress-bar-overrides(
+    (
+      track-color: $track-color,
+    )
+  );
 }
 
 // ---------------------------
@@ -275,41 +186,28 @@
 // ---------------------------
 @mixin _mat-mdc-slider-overwrites() {
   .mat-mdc-slider {
-    &.mat-primary {
-      --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(
-          500,
-          0.05,
-          "primary"
-        )};
-      --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(
-          500,
-          0.2,
-          "primary"
-        )};
-    }
-    &.mat-accent {
-      --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(
-          500,
-          0.05,
-          "accent"
-        )};
-      --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(
-          500,
-          0.2,
-          "accent"
-        )};
-    }
-    &.mat-warn {
-      --mat-mdc-slider-hover-ripple-color: #{public-util.mat-css-color(
-          500,
-          0.05,
-          "warn"
-        )};
-      --mat-mdc-slider-focus-ripple-color: #{public-util.mat-css-color(
-          500,
-          0.2,
-          "warn"
-        )};
+    @include public-util.mat-css-light-dark-theme-global {
+      &.mat-primary {
+        @include _mat-mdc-slider-color-overwrites("primary");
+      }
+      &.mat-accent {
+        @include _mat-mdc-slider-color-overwrites("accent");
+      }
+      &.mat-warn {
+        @include _mat-mdc-slider-color-overwrites("warn");
+      }
     }
   }
+}
+
+@mixin _mat-mdc-slider-color-overwrites($palette) {
+  $hover-background-color: public-util.mat-css-color(500, 0.05, $palette);
+  $focus-background-color: public-util.mat-css-color(500, 0.2, $palette);
+
+  @include mat.slider-overrides(
+    (
+      hover-state-layer-color: $hover-background-color,
+      focus-state-layer-color: $focus-background-color,
+    )
+  );
 }
