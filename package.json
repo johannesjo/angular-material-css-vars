@@ -71,5 +71,11 @@
     "prettier": "^3.0.0",
     "typescript": "~5.8.2",
     "typescript-eslint": "^8.0.0"
-  }
+  },
+  "engines": {
+    "npm": "Please use pnpm instead of npm to install dependencies",
+    "yarn": "Please use pnpm instead of yarn to install dependencies",
+    "pnpm": "^10.7.0"
+  },
+  "packageManager": "pnpm@10.7.0"
 }

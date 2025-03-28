@@ -14,14 +14,19 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+
       - name: install
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: build lib
-        run: npm run lib
+        run: pnpm lib
 
       - name: build demo
-        run: npm run build
+        run: pnpm build
 
   lint:
     runs-on: ubuntu-latest
@@ -31,11 +36,16 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+
       - name: install
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: lint
-        run: npm run lint
+        run: pnpm lint
 
   test-chrome:
     runs-on: ubuntu-latest
@@ -45,11 +55,16 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+
       - name: install
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: test
-        run: npm run test -- --watch=false --browsers=ChromeHeadless
+        run: pnpm test --watch=false --browsers=ChromeHeadless
 
   test-firefox:
     runs-on: ubuntu-latest
@@ -59,11 +74,16 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+
       - name: install
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: test
-        run: npm run test -- --watch=false --browsers=FirefoxHeadless
+        run: pnpm test --watch=false --browsers=FirefoxHeadless
 
   test-safari:
     runs-on: macos-latest
@@ -73,11 +93,16 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+
       - name: install
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: test
-        run: npm run test -- --watch=false --browsers=SafariNative
+        run: pnpm test -- --watch=false --browsers=SafariNative
 
   prettier:
     runs-on: ubuntu-latest
@@ -87,8 +112,13 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+
       - name: install
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: prettier
-        run: npm run prettier-check
+        run: pnpm prettier-check
