@@ -4,6 +4,7 @@ import {
   Renderer2,
   RendererFactory2,
   RendererStyleFlags2,
+  DOCUMENT,
 } from "@angular/core";
 import { Numberify, RGBA, TinyColor } from "@ctrl/tinycolor";
 import {
@@ -14,7 +15,6 @@ import {
   MaterialCssVariables,
   MaterialCssVariablesConfig,
 } from "./model";
-import { DOCUMENT } from "@angular/common";
 import { DEFAULT_MAT_CSS_CFG } from "./default-cfg.const";
 import { MATERIAL_CSS_VARS_CFG } from "../mat-css-config-token.const";
 
