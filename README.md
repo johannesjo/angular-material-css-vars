@@ -207,6 +207,7 @@ In case you are still using the legacy components, you can use the package [angu
 
 | Angular | angular-material-css-vars |
 | ------- | ------------------------- |
+| 20      | 9.x                       |
 | 19      | 8.x                       |
 | 18      | 7.x                       |
 | 17      | 6.x                       |

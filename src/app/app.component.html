@@ -95,12 +95,11 @@
                   materialCssVarsService.contrastColorThresholdPrimary
                 "
               >
-                <mat-option
-                  *ngFor="let hue of hues; trackBy: trackByHue"
-                  [value]="hue.value"
-                >
-                  {{ hue.viewValue }}
-                </mat-option>
+                @for (hue of hues; track hue.value) {
+                  <mat-option [value]="hue.value">
+                    {{ hue.viewValue }}
+                  </mat-option>
+                }
               </mat-select>
             </mat-form-field>
             <br />
@@ -114,12 +113,11 @@
                   materialCssVarsService.contrastColorThresholdAccent
                 "
               >
-                <mat-option
-                  *ngFor="let hue of hues; trackBy: trackByHue"
-                  [value]="hue.value"
-                >
-                  {{ hue.viewValue }}
-                </mat-option>
+                @for (hue of hues; track hue.value) {
+                  <mat-option [value]="hue.value">
+                    {{ hue.viewValue }}
+                  </mat-option>
+                }
               </mat-select>
             </mat-form-field>
             <br />
@@ -131,12 +129,11 @@
                 [disabled]="materialCssVarsService.isAutoContrast"
                 [(ngModel)]="materialCssVarsService.contrastColorThresholdWarn"
               >
-                <mat-option
-                  *ngFor="let hue of hues; trackBy: trackByHue"
-                  [value]="hue.value"
-                >
-                  {{ hue.viewValue }}
-                </mat-option>
+                @for (hue of hues; track hue.value) {
+                  <mat-option [value]="hue.value">
+                    {{ hue.viewValue }}
+                  </mat-option>
+                }
               </mat-select>
             </mat-form-field>
           </mat-card-content>
@@ -489,20 +486,17 @@
                 </span>
                 <span class="checkbox-list-section">
                   <ul>
-                    <li
-                      *ngFor="
-                        let subtask of task.subtasks;
-                        trackBy: trackByTask
-                      "
-                    >
-                      <mat-checkbox
-                        [(ngModel)]="subtask.completed"
-                        [color]="subtask.color"
-                        (ngModelChange)="updateCompletionState()"
-                      >
-                        {{ subtask.name }}
-                      </mat-checkbox>
-                    </li>
+                    @for (subtask of task.subtasks; track subtask.name) {
+                      <li>
+                        <mat-checkbox
+                          [(ngModel)]="subtask.completed"
+                          [color]="subtask.color"
+                          (ngModelChange)="updateCompletionState()"
+                        >
+                          {{ subtask.name }}
+                        </mat-checkbox>
+                      </li>
+                    }
                   </ul>
                 </span>
               </section>
@@ -558,17 +552,16 @@
                   </mat-radio-group>
                 </section>
 
-                <section
-                  *ngIf="spinnerMode === 'determinate'"
-                  class="example-section"
-                >
-                  <label class="example-margin" for="spinner-progress">
-                    Progress:
-                  </label>
-                  <mat-slider class="example-margin" id="spinner-progress">
-                    <input matSliderThumb [(ngModel)]="spinnerValue" />
-                  </mat-slider>
-                </section>
+                @if (spinnerMode === "determinate") {
+                  <section class="example-section">
+                    <label class="example-margin" for="spinner-progress">
+                      Progress:
+                    </label>
+                    <mat-slider class="example-margin" id="spinner-progress">
+                      <input matSliderThumb [(ngModel)]="spinnerValue" />
+                    </mat-slider>
+                  </section>
+                }
               </mat-card-content>
             </mat-card>
 
@@ -622,16 +615,14 @@
             <mat-card-content>
               <h2>Material Chips</h2>
               <mat-chip-listbox>
-                <mat-chip-option
-                  *ngFor="
-                    let chipColor of availableSpinnerColors;
-                    trackBy: trackBySpinnerColor
-                  "
-                  [color]="chipColor.color"
-                  selected="true"
-                >
-                  {{ chipColor.name }}
-                </mat-chip-option>
+                @for (
+                  chipColor of availableSpinnerColors;
+                  track chipColor.name
+                ) {
+                  <mat-chip-option [color]="chipColor.color" selected="true">
+                    {{ chipColor.name }}
+                  </mat-chip-option>
+                }
                 <mat-chip-option disabled>Disabled</mat-chip-option>
               </mat-chip-listbox>
             </mat-card-content>
