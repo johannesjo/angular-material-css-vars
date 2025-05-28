@@ -1,4 +1,4 @@
-import { Component, TrackByFunction } from "@angular/core";
+import { Component } from "@angular/core";
 import {
   ThemePalette,
   MatOptionModule,
@@ -26,7 +26,6 @@ import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatTabsModule } from "@angular/material/tabs";
-import { NgFor, NgIf } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -66,7 +65,6 @@ interface SpinnerColor {
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
-    NgFor,
     MatOptionModule,
     MatTabsModule,
     MatButtonModule,
@@ -74,7 +72,6 @@ interface SpinnerColor {
     MatInputModule,
     MatCheckboxModule,
     MatRadioModule,
-    NgIf,
     MatSliderModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
@@ -223,9 +220,4 @@ export class AppComponent {
     }
     this.task.subtasks.forEach((t) => (t.completed = completed));
   }
-
-  trackByHue: TrackByFunction<Hue> = (index, hue) => hue.value;
-  trackByTask: TrackByFunction<Task> = (index, task) => task.name;
-  trackBySpinnerColor: TrackByFunction<SpinnerColor> = (index, color) =>
-    color.name;
 }
