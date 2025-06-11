@@ -18,17 +18,15 @@
 // BUTTON component
 // ---------------------------
 @mixin _mat-mdc-button-overwrites {
-  .mat-mdc-button-base {
-    @include public-util.mat-css-light-dark-theme-global {
-      &.mat-primary {
-        @include _mat-mdc-button-color-overwrites("primary");
-      }
-      &.mat-accent {
-        @include _mat-mdc-button-color-overwrites("accent");
-      }
-      &.mat-warn {
-        @include _mat-mdc-button-color-overwrites("warn");
-      }
+  :root .mat-mdc-button-base {
+    &.mat-primary {
+      @include _mat-mdc-button-color-overwrites("primary");
+    }
+    &.mat-accent {
+      @include _mat-mdc-button-color-overwrites("accent");
+    }
+    &.mat-warn {
+      @include _mat-mdc-button-color-overwrites("warn");
     }
   }
 }
@@ -66,17 +64,15 @@
 // SLIDE TOGGLE component
 // ---------------------------
 @mixin _mat-mdc-slide-toggle-overwrites() {
-  .mat-mdc-slide-toggle {
-    @include public-util.mat-css-light-dark-theme-global {
-      &.mat-primary {
-        @include _mat-mdc-slide-toggle-color-overwrites("primary");
-      }
-      &.mat-accent {
-        @include _mat-mdc-slide-toggle-color-overwrites("accent");
-      }
-      &.mat-warn {
-        @include _mat-mdc-slide-toggle-color-overwrites("warn");
-      }
+  :root .mat-mdc-slide-toggle {
+    &.mat-primary {
+      @include _mat-mdc-slide-toggle-color-overwrites("primary");
+    }
+    &.mat-accent {
+      @include _mat-mdc-slide-toggle-color-overwrites("accent");
+    }
+    &.mat-warn {
+      @include _mat-mdc-slide-toggle-color-overwrites("warn");
     }
   }
 }
@@ -124,17 +120,15 @@
 // DATE PICKER component
 // ---------------------------
 @mixin _mat-mdc-date-picker-overwrites {
-  .mat-datepicker-content {
-    @include public-util.mat-css-light-dark-theme-global {
-      &.mat-primary {
-        @include _mat-date-picker-color-overwrites("primary");
-      }
-      &.mat-accent {
-        @include _mat-date-picker-color-overwrites("accent");
-      }
-      &.mat-warn {
-        @include _mat-date-picker-color-overwrites("warn");
-      }
+  :root .mat-datepicker-content {
+    &.mat-primary {
+      @include _mat-date-picker-color-overwrites("primary");
+    }
+    &.mat-accent {
+      @include _mat-date-picker-color-overwrites("accent");
+    }
+    &.mat-warn {
+      @include _mat-date-picker-color-overwrites("warn");
     }
   }
 }
@@ -156,17 +150,15 @@
 // PROGRESS BAR component
 // ---------------------------
 @mixin _mat-mdc-progress-bar-overwrites {
-  .mat-mdc-progress-bar {
-    @include public-util.mat-css-light-dark-theme-global {
-      &.mat-primary {
-        @include _mat-mdc-progress-bar-color-overwrites("primary");
-      }
-      &.mat-accent {
-        @include _mat-mdc-progress-bar-color-overwrites("accent");
-      }
-      &.mat-warn {
-        @include _mat-mdc-progress-bar-color-overwrites("warn");
-      }
+  :root .mat-mdc-progress-bar {
+    &.mat-primary {
+      @include _mat-mdc-progress-bar-color-overwrites("primary");
+    }
+    &.mat-accent {
+      @include _mat-mdc-progress-bar-color-overwrites("accent");
+    }
+    &.mat-warn {
+      @include _mat-mdc-progress-bar-color-overwrites("warn");
     }
   }
 }
