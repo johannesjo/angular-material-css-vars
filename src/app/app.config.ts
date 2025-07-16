@@ -8,6 +8,7 @@ export const appConfig: ApplicationConfig = {
       primary: "#3f51b5",
       accent: "#e91e63",
       warn: "#f44336",
+      rootSelector: "app-root",
     }),
     { provide: APP_BASE_HREF, useValue: window._app_base ?? "/" },
   ],
