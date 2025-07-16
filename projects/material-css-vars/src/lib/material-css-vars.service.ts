@@ -1,11 +1,11 @@
 import {
-  Inject,
   Injectable,
   Renderer2,
   RendererFactory2,
   RendererStyleFlags2,
   DOCUMENT,
   isDevMode,
+  inject,
 } from "@angular/core";
 import { Numberify, RGBA, TinyColor } from "@ctrl/tinycolor";
 import {
@@ -52,13 +52,11 @@ export class MaterialCssVarsService {
   private ROOT: HTMLElement;
   private readonly _black = new TinyColor("#000000");
   private readonly _white = new TinyColor("#ffffff");
+  private readonly document = inject(DOCUMENT);
 
-  constructor(
-    rendererFactory: RendererFactory2,
-    @Inject(DOCUMENT) private document: Document,
-    @Inject(MATERIAL_CSS_VARS_CFG) cfg: MaterialCssVariablesConfig,
-  ) {
-    this.renderer = rendererFactory.createRenderer(null, null);
+  constructor() {
+    this.renderer = inject(RendererFactory2).createRenderer(null, null);
+    const cfg = inject(MATERIAL_CSS_VARS_CFG);
     this.ROOT = this._getRootElement(cfg.rootSelector);
 
     this.cfg = {

@@ -12,7 +12,8 @@ export default tseslint.config(
     processor: angularEslint.processInlineTemplates,
     languageOptions: {
       parserOptions: {
-        project: true,
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     rules: {

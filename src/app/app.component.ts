@@ -1,10 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import {
   ThemePalette,
   MatOptionModule,
   MatNativeDateModule,
 } from "@angular/material/core";
-import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 import { MaterialCssVarsService } from "../../projects/material-css-vars/src/lib/material-css-vars.service";
 import {
@@ -133,11 +133,10 @@ export class AppComponent {
   allComplete = false;
   someComplete = false;
 
-  constructor(
-    private _dialog: MatDialog,
-    private _snackbar: MatSnackBar,
-    public materialCssVarsService: MaterialCssVarsService,
-  ) {
+  readonly materialCssVarsService = inject(MaterialCssVarsService);
+  private readonly _snackbar = inject(MatSnackBar);
+
+  constructor() {
     this.toggleTheme();
     // this.onPrimaryChange(this.primary);
     // this.onAccentChange(this.accent);
