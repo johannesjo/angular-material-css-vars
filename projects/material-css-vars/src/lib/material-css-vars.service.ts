@@ -5,6 +5,7 @@ import {
   RendererFactory2,
   RendererStyleFlags2,
   DOCUMENT,
+  isDevMode,
 } from "@angular/core";
 import { Numberify, RGBA, TinyColor } from "@ctrl/tinycolor";
 import {
@@ -58,7 +59,7 @@ export class MaterialCssVarsService {
     @Inject(MATERIAL_CSS_VARS_CFG) cfg: MaterialCssVariablesConfig,
   ) {
     this.renderer = rendererFactory.createRenderer(null, null);
-    this.ROOT = this.document.documentElement;
+    this.ROOT = this._getRootElement(cfg.rootSelector);
 
     this.cfg = {
       ...DEFAULT_MAT_CSS_CFG,
@@ -432,5 +433,21 @@ export class MaterialCssVarsService {
     const brightest = Math.max(luminance1, luminance2);
     const darkest = Math.min(luminance1, luminance2);
     return (brightest + 0.05) / (darkest + 0.05);
+  }
+
+  private _getRootElement(rootSelector: string | undefined): HTMLElement {
+    if (typeof rootSelector !== "string") {
+      return this.document.documentElement;
+    }
+    const rootElement = document.querySelector<HTMLElement>(rootSelector);
+    if (rootElement) {
+      return rootElement;
+    }
+    if (isDevMode()) {
+      console.warn(
+        `[MaterialCssVars] Could not find root element: ${rootSelector}. Falling back to HTML element.`,
+      );
+    }
+    return this.document.documentElement;
   }
 }

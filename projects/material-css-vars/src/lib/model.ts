@@ -54,6 +54,12 @@ export interface MaterialCssVariablesConfig {
   darkThemeClass: string;
   lightThemeClass: string;
 
+  /**
+   * Selector to which the CSS variables are added.
+   * If not specified, the document's HTML element is used.
+   */
+  rootSelector?: string;
+
   colorMap: MaterialCssColorMapperEntry[];
   sortedHues: HueValue[];
 
