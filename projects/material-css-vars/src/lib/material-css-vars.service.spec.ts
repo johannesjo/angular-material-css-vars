@@ -218,4 +218,32 @@ describe("MaterialCssVarsService", () => {
       );
     });
   });
+
+  describe("_getRootElement", () => {
+    it("should return the html if no root selector is set", () => {
+      const rootElement = service["_getRootElement"](undefined);
+
+      expect(rootElement).toBe(document.documentElement);
+    });
+
+    it("should return the element matching the root selector", () => {
+      const mockElement = document.createElement("app-root");
+      const spy = spyOn(document, "querySelector").and.returnValue(mockElement);
+
+      const rootElement = service["_getRootElement"]("app-root");
+
+      expect(rootElement).toBe(mockElement);
+      expect(spy).toHaveBeenCalledWith("app-root");
+    });
+
+    it("should warn and fall back to the html element if the passed root selector cannot be found", () => {
+      spyOn(console, "warn");
+      spyOn(document, "querySelector").and.returnValue(null);
+
+      const rootElement = service["_getRootElement"]("non-existing");
+
+      expect(rootElement).toBe(document.documentElement);
+      expect(console.warn).toHaveBeenCalledTimes(1);
+    });
+  });
 });
