@@ -57,13 +57,13 @@ export class MaterialCssVarsService {
   constructor() {
     this.renderer = inject(RendererFactory2).createRenderer(null, null);
     const cfg = inject(MATERIAL_CSS_VARS_CFG);
-    this.ROOT = this._getRootElement(cfg.rootSelector);
 
     this.cfg = {
       ...DEFAULT_MAT_CSS_CFG,
       ...cfg,
     };
     this.isAutoContrast = this.cfg.isAutoContrast;
+    this.ROOT = this._getRootElement(this.cfg.rootSelector);
 
     if (typeof this.cfg.isDarkTheme === "boolean") {
       this.setDarkTheme(this.cfg.isDarkTheme);
