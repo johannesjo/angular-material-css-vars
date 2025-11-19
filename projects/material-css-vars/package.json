@@ -25,9 +25,9 @@
     "angular-material"
   ],
   "peerDependencies": {
-    "@angular/common": ">=20",
-    "@angular/core": ">=20",
-    "@angular/material": ">=20"
+    "@angular/common": ">=21",
+    "@angular/core": ">=21",
+    "@angular/material": ">=21"
   },
   "dependencies": {
     "@ctrl/tinycolor": "^4.0.0",

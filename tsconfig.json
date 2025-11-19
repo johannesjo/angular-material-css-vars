@@ -16,7 +16,6 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom"],
     "paths": {
       "angular-material-css-variables": ["dist/angular-material-css-variables"],
       "angular-material-css-variables/*": [

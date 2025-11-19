@@ -4,8 +4,7 @@
     "outDir": "../../out-tsc/lib",
     "declaration": true,
     "inlineSources": true,
-    "types": [],
-    "lib": ["dom", "es2018"]
+    "types": []
   },
   "angularCompilerOptions": {
     "annotateForClosureCompiler": false,
