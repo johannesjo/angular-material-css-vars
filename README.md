@@ -70,9 +70,9 @@ export const appConfig: ApplicationConfig = {
    }
    ```
 
-> Angular Material v18 introduced stable support for M3 theme.
-> For now, this library only supports M2.
-> More information can be found in this [issue](https://github.com/johannesjo/angular-material-css-vars/issues/166).
+> This library only supports M2.
+> If you want to use M3, you can use the [angular-material-runtime-theme](https://github.com/json-derulo/angular-material-runtime-theme) library instead.
+> More information can be found in the following [issue](https://github.com/johannesjo/angular-material-css-vars/issues/166).
 
 ## Additional Features
 
@@ -207,6 +207,7 @@ In case you are still using the legacy components, you can use the package [angu
 
 | Angular | angular-material-css-vars |
 | ------- | ------------------------- |
+| 22      | 11.x                      |
 | 21      | 10.x                      |
 | 20      | 9.x                       |
 | 19      | 8.x                       |
