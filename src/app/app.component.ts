@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import {
   ThemePalette,
   MatOptionModule,
@@ -56,6 +56,7 @@ interface SpinnerColor {
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatSidenavModule,
     MatToolbarModule,

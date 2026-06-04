@@ -3,7 +3,7 @@ import baseConfig from "../../eslint.config.mjs";
 export default [
   ...baseConfig,
   {
-    files: "**/*.ts",
+    files: ["**/*.ts"],
     rules: {
       "@angular-eslint/directive-selector": [
         "error",
