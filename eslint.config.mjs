@@ -1,7 +1,8 @@
+import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 import angularEslint from "angular-eslint";
 
-export default tseslint.config(
+export default defineConfig(
   {
     files: ["**/*.ts"],
     extends: [

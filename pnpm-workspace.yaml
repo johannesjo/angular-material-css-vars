@@ -5,5 +5,12 @@ minimumReleaseAgeExclude:
   - "@schematics/angular"
   - ng-packagr
 
-ignoredBuiltDependencies:
-  - esbuild
+allowBuilds:
+  "@parcel/watcher": false
+  esbuild: false
+  lmdb: false
+  msgpackr-extract: false
+
+overrides:
+  # https://github.com/angular/angular-cli/issues/30575
+  "karma-jasmine@5.1.0>jasmine-core@^4.1.0": "$jasmine-core"

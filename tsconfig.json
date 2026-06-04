@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "esModuleInterop": true,
@@ -17,12 +16,14 @@
     "noFallthroughCasesInSwitch": true,
     "typeRoots": ["node_modules/@types"],
     "paths": {
-      "angular-material-css-variables": ["dist/angular-material-css-variables"],
-      "angular-material-css-variables/*": [
-        "dist/angular-material-css-variables/*"
+      "angular-material-css-variables": [
+        "./dist/angular-material-css-variables"
       ],
-      "material-css-vars": ["dist/material-css-vars"],
-      "material-css-vars/*": ["dist/material-css-vars/*"]
+      "angular-material-css-variables/*": [
+        "./dist/angular-material-css-variables/*"
+      ],
+      "material-css-vars": ["./dist/material-css-vars"],
+      "material-css-vars/*": ["./dist/material-css-vars/*"]
     },
     "useDefineForClassFields": false
   },
@@ -30,5 +31,6 @@
     "strictTemplates": true,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true
-  }
+  },
+  "references": [{ "path": "./projects/material-css-vars/tsconfig.spec.json" }]
 }

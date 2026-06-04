@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ChangeDetectionStrategy } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { ThemePalette } from "@angular/material/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
@@ -7,6 +7,7 @@ import { By } from "@angular/platform-browser";
 
 @Component({
   template: ` <button mat-raised-button [color]="color">Button text</button>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatButtonModule],
 })
 class ButtonComponent {
