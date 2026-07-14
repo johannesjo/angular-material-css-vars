@@ -1,9 +1,4 @@
 minimumReleaseAge: 4320
-minimumReleaseAgeExclude:
-  - "@angular/*"
-  - "@angular-devkit/*"
-  - "@schematics/angular"
-  - ng-packagr
 
 allowBuilds:
   "@parcel/watcher": false

@@ -6,6 +6,8 @@
 // needs to come after "@angular/material"
 @use "mat-lib-overwrites";
 
+$mat-css-theme: null;
+
 @mixin init-css-vars($default-theme, $text) {
   // init css variables
   @include internal-helper.root($text);
